@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="15" alignment="TOP_CENTER" prefWidth="1920" prefHeight="1080" fx:id="rootPane" fx:controller="mainMenu.controller.MainMenuController" xmlns:fx="http://javafx.com/fxml">
+
+    <stylesheets>
+        <URL value="@../css/style.css" />
+    </stylesheets>
+
+    <fx:define>
+        <Font fx:id="FONT" size="22" />
+    </fx:define>
+
+    <HBox spacing="1000" alignment="CENTER" prefHeight="350"></HBox>
+
+    <HBox spacing="1" alignment="CENTER">
+        <Button prefWidth="450" prefHeight="140" font="$FONT" id="createRoom" onAction="#createRoom" />
+    </HBox>
+
+    <HBox spacing="1" alignment="CENTER">
+        <Button prefWidth="450" prefHeight="140" font="$FONT" id="availableRoom"/>
+    </HBox>
+
+    <VBox spacing="10" alignment="CENTER" prefHeight="120"></VBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button alignment="CENTER" prefWidth="333" prefHeight="140" id="exitGame" onAction="#close" />
+    </HBox>
+
+    <HBox spacing="10"><Button alignment="TOP_LEFT" prefWidth="140" prefHeight="140" id="cog" onAction="#settings" /></HBox>
+</VBox>
