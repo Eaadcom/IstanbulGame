@@ -1,6 +1,8 @@
 package sample;
 
-import java.util.ArrayList;
+import firebase.FirebaseController;
+
+import java.util.LinkedHashMap;
 
 public class Player {
     private static String username = "Ed";
@@ -8,10 +10,15 @@ public class Player {
     private static String className = "Player";
 
     public static void writeToController() {
-        ArrayList<String> variables = new ArrayList<>();
-        variables.add(username);
-        variables.add(Integer.toString(gemstones));
-        variables.add(className);
-        FirebaseController.fireBaseWriter(variables);
+        LinkedHashMap<String, String> variables = new LinkedHashMap<>();
+
+        variables.put("className", className);
+        variables.put("username", username);
+        variables.put("gemstones", Integer.toString(gemstones));
+        FirebaseController.firebaseWriter(variables);
+    }
+
+    public static void gemstones(String newValue){
+        gemstones = Integer.parseInt(newValue);
     }
 }
