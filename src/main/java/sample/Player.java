@@ -1,7 +1,7 @@
 package sample;
 
 import firebase.FirebaseController;
-
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class Player {
@@ -9,7 +9,7 @@ public class Player {
     private static int gemstones = 2;
     private static String className = "Player";
 
-    public static void writeToController() {
+    public static void getVariables() {
         LinkedHashMap<String, String> variables = new LinkedHashMap<>();
 
         variables.put("className", className);
@@ -18,7 +18,7 @@ public class Player {
         FirebaseController.firebaseWriter(variables);
     }
 
-    public static void gemstones(String newValue){
-        gemstones = Integer.parseInt(newValue);
+    public static void updateVariables(HashMap variables){
+
     }
 }

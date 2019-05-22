@@ -18,9 +18,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
 
         //Player.writeToController();
-
-        FirebaseController.firebaseListener();
-        //testPrinter();
+        //FirebaseController.firebaseListener();
 
         //primaryStage.show();
     }
@@ -30,14 +28,4 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static void testPrinter(){
-        while (true) {
-            try{
-                System.out.println("test");
-                TimeUnit.MINUTES.sleep(1);
-            } catch (Exception e){
-                System.out.println(e);
-            }
-        }
-    }
 }
