@@ -3,7 +3,7 @@ package sample;
 import java.util.ArrayList;
 
 public class Player {
-    private static String username = "Ed";
+    private static String username = "Edje";
     private static int gemstones = 2;
     private static String className = "Player";
 
