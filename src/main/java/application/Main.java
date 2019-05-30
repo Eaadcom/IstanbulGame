@@ -1,13 +1,10 @@
-package sample;
+package application;
 
-import firebase.FirebaseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
 

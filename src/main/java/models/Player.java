@@ -1,6 +1,6 @@
-package sample;
+package models;
 
-import firebase.FirebaseController;
+import controllers.FirebaseController;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 

@@ -1,7 +1,7 @@
-package sample;
+package models;
 
 public class Board {
-    private static Location[] locations = new Location[16];
+//    private static Location[] locations = new Location[16];
 
     public Board(String boardLayout){
         checkLayout(boardLayout);
