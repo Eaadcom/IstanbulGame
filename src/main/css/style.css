@@ -1,0 +1,69 @@
+#availableRoom{
+    -fx-background-image: url('../resources/img/availablerooms.png');
+}
+#exitGame{
+    -fx-background-image: url('../resources/img/exitgame.png');
+}
+#makingRoom{
+    -fx-background-image: url('../resources/img/enterroom.png');
+}
+#createRoom{
+    -fx-background-image: url('../resources/img/createroom.png');
+}
+#backButton{
+    -fx-background-image: url('../resources/img/back.png');
+}
+#cog{
+    -fx-background-image: url('../resources/img/cog.png');
+}
+#enterUsername{
+    -fx-background-image: url('../resources/img/enterusername.png');
+}
+#login{
+    -fx-background-image: url('../resources/img/continue.png');
+}
+#settings{
+    -fx-background-image: url('../resources/img/settings.png');
+}
+
+
+#createRoom, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings{
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90%;
+    -fx-border-width: 0;
+    -fx-background-color:transparent;
+    -fx-background-radius:0;
+    -fx-border-color:transparent;
+    -fx-effect: dropshadow(three-pass-box, black, 20, 0.03 , 0, 0);
+}
+
+#pane{
+    -fx-background-image: url('../resources/img/bg_img.png');
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1920 1080;
+    -fx-background-position: center center;
+}
+
+
+#createRoom:hover, #availableRoom:hover, #exitGame:hover, #backButton:hover, #cog:hover, #login:hover {
+     -fx-scale-y: 1.03;
+     -fx-scale-x: 1.03;
+     -fx-cursor: hand;
+}
+
+#createRoom:pressed, #availableRoom:pressed, #exitGame:pressed, #backButton:pressed, #cog:pressed, #login:pressed {
+     -fx-scale-y: 0.97;
+     -fx-scale-x: 0.97;
+     -fx-cursor: hand;
+}
+
+#roomName{
+ -fx-max-width: 300;
+ -fx-max-height: 70;
+ -fx-background-color:white;
+ -fx-spacing: 80 0 0 0;
+}
+
+#login, #login:hover, #login:pressed{
+    -fx-effect: dropshadow(three-pass-box, black, 0, 0.001 , 0, 0);
+}
