@@ -1,29 +1,29 @@
 #availableRoom{
-    -fx-background-image: url('../../../../img/availablerooms.png');
+    -fx-background-image: url('../img/availablerooms.png');
 }
 #exitGame{
-    -fx-background-image: url('../../../../img/exitgame.png');
+    -fx-background-image: url('../img/exitgame.png');
 }
 #makingRoom{
-    -fx-background-image: url('../../../../img/enterroom.png');
+    -fx-background-image: url('../img/enterroom.png');
 }
 #createRoom{
-    -fx-background-image: url('../../../../img/createroom.png');
+    -fx-background-image: url('../img/createroom.png');
 }
 #backButton{
-    -fx-background-image: url('../../../../img/back.png');
+    -fx-background-image: url('../img/back.png');
 }
 #cog{
-    -fx-background-image: url('../../../../img/cog.png');
+    -fx-background-image: url('../img/cog.png');
 }
 #enterUsername{
-    -fx-background-image: url('../../../../img/enterusername.png');
+    -fx-background-image: url('../img/enterusername.png');
 }
 #login{
-    -fx-background-image: url('../../../../img/continue.png');
+    -fx-background-image: url('../img/continue.png');
 }
 #settings{
-    -fx-background-image: url('../../../../img/settings.png');
+    -fx-background-image: url('../img/settings.png');
 }
 
 
@@ -38,7 +38,7 @@
 }
 
 #pane{
-    -fx-background-image: url("../../../../img/bg_img.png");
+    -fx-background-image: url('../img/bg_img.png');
     -fx-background-repeat: stretch;
     -fx-background-size: 1920 1080;
     -fx-background-position: center center;

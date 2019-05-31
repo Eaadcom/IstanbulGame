@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="popupback" prefHeight="362.0" prefWidth="524.0" style="-fx-background-color: transparent;" stylesheets="@../../mainMenu/css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.model.Game">
+<AnchorPane id="popupback" prefHeight="362.0" prefWidth="524.0" style="-fx-background-color: transparent;" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
    <children>
       <Pane id="askClose" prefHeight="362.0" prefWidth="524.0" style="-fx-background-color: transparent;">
          <children>

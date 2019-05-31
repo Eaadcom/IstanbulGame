@@ -21,7 +21,7 @@ public class GameView {
 
 
     public void start() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("src/main/fxml/game.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -32,7 +32,7 @@ public class GameView {
     }
 
     public void askClose() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("src/main/fxml/askClose.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/askClose.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -43,7 +43,7 @@ public class GameView {
     }
 
     public void playerProgression() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("src/main/fxml/playerProgression.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);

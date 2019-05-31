@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import controllers.GameController;
 
 public class MenuViewController implements Initializable {
 
@@ -38,21 +39,21 @@ public class MenuViewController implements Initializable {
     // Create Room
     @FXML
     private void createRoom() throws IOException {
-        VBox pane = FXMLLoader.load(getClass().getResource("src/main/fxml/makingroom.fxml"));
+        VBox pane = FXMLLoader.load(getClass().getResource("../fxml/makingroom.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
     // Back button
     @FXML
     private void goBack() throws IOException {
-        VBox pane2 = FXMLLoader.load(getClass().getResource("src/main/fxml/mainmenu.fxml"));
+        VBox pane2 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
         rootPane.getChildren().setAll(pane2);
     }
 
     // Settings
     @FXML
     private void settings() throws IOException {
-        VBox pane3 = FXMLLoader.load(getClass().getResource("src/main/fxml/settings.fxml"));
+        VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/settings.fxml"));
         rootPane.getChildren().setAll(pane3);
     }
 
@@ -65,7 +66,7 @@ public class MenuViewController implements Initializable {
         if (usernamefield.getText().equals("") || usernamefield.getText().contains(" ") || usernamefield.getText().contains("`") || usernamefield.getText().contains("+") || usernamefield.getText().contains("-") || usernamefield.getText().contains("]") || usernamefield.getText().contains("=") || usernamefield.getText().contains("/") || usernamefield.getText().contains("\\") || usernamefield.getText().contains("~") || usernamefield.getText().contains("'") || usernamefield.getText().contains(";") || usernamefield.getText().contains(":") || usernamefield.getText().contains(",") || usernamefield.getText().contains(".") || usernamefield.getText().contains("?") || usernamefield.getText().contains("!") || usernamefield.getText().contains("@") || usernamefield.getText().contains("#") || usernamefield.getText().contains("$") || usernamefield.getText().contains("%") || usernamefield.getText().contains("^") || usernamefield.getText().contains("&") || usernamefield.getText().contains("*") || usernamefield.getText().contains("(") || usernamefield.getText().contains(")") || usernamefield.getText().contains("''")|| usernamefield.getText().contains("_") || usernamefield.getText().contains("{") || usernamefield.getText().contains("}") || usernamefield.getText().contains("|") || usernamefield.getText().contains("\""))
         { // doe niks
             }else{
-            VBox pane3 = FXMLLoader.load(getClass().getResource("src/main/fxml/mainmenu.fxml"));
+            VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
             String username = usernamefield.getText();
             System.out.println(username);

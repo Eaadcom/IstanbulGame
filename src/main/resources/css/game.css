@@ -1,58 +1,58 @@
 #playerscroll{
-    -fx-background-image: url('../resources/img/playerscroll.png');
+    -fx-background-image: url('../img/playerscroll.png');
     -fx-effect: dropshadow(three-pass-box, black, 10, 0.01 , 0, 0);
 }
 #gameback{
-    -fx-background-image: url('../resources/img/gameback.png');
+    -fx-background-image: url('../img/gameback.png');
 }
 #goodsback{
-    -fx-background-image: url('../resources/img/goodsback.png');
+    -fx-background-image: url('../img/goodsback.png');
     -fx-effect: dropshadow(three-pass-box, black, 10, 0.01 , 0, 0);
 }
 #close{
-     -fx-background-image: url('../resources/img/close3.png');
+     -fx-background-image: url('../img/close3.png');
  }
 #heirloomicon{
-    -fx-background-image: url('../resources/img/heirlooms.png');
+    -fx-background-image: url('../img/heirlooms.png');
 }
 #fruiticon{
-    -fx-background-image: url('../resources/img/fruits.png');
+    -fx-background-image: url('../img/fruits.png');
 }
 #spiceicon{
-    -fx-background-image: url('../resources/img/spices.png');
+    -fx-background-image: url('../img/spices.png');
 }
 #fabricicon{
-    -fx-background-image: url('../resources/img/fabric.png');
+    -fx-background-image: url('../img/fabric.png');
 }
 #rubyicon{
-    -fx-background-image: url('../resources/img/ruby.png');
+    -fx-background-image: url('../img/ruby.png');
 }
 #liraicon{
-    -fx-background-image: url('../resources/img/lira.png');
+    -fx-background-image: url('../img/lira.png');
 }
 
 #player1{
-    -fx-background-image: url('../resources/img/player/whiteplayer.png');
+    -fx-background-image: url('../img/player/whiteplayer.png');
 }
 #player2{
-    -fx-background-image: url('../resources/img/player/greenplayer.png');
+    -fx-background-image: url('../img/player/greenplayer.png');
 }
 #player3{
-    -fx-background-image: url('../resources/img/player/blueplayer.png');
+    -fx-background-image: url('../img/player/blueplayer.png');
 }
 #player4{
-    -fx-background-image: url('../resources/img/player/yellowplayer.png');
+    -fx-background-image: url('../img/player/yellowplayer.png');
 }
 #player5{
-    -fx-background-image: url('../resources/img/player/redplayer.png');
+    -fx-background-image: url('../img/player/redplayer.png');
 }
 
 #askClose{
-    -fx-background-image: url('../resources/img/askclose.png');
+    -fx-background-image: url('../img/askclose.png');
 }
 
 #playerProg{
-    -fx-background-image: url('../resources/img/playerprogression.png');
+    -fx-background-image: url('../img/playerprogression.png');
 }
 
 
@@ -78,95 +78,95 @@
 
 
 #tile1{
-    -fx-background-image: url('../resources/img/tiles/wainwright.png');
+    -fx-background-image: url('../img/tiles/wainwright.png');
 }
 #tile2{
-    -fx-background-image: url('../resources/img/tiles/fabric_warehouse.png');
+    -fx-background-image: url('../img/tiles/fabric_warehouse.png');
 }
 #tile3{
-    -fx-background-image: url('../resources/img/tiles/spice_warehouse.png');
+    -fx-background-image: url('../img/tiles/spice_warehouse.png');
 }
 #tile4{
-    -fx-background-image: url('../resources/img/tiles/fruit_warehouse.png');
+    -fx-background-image: url('../img/tiles/fruit_warehouse.png');
 }
 #tile5{
-    -fx-background-image: url('../resources/img/tiles/postoffice.png');
+    -fx-background-image: url('../img/tiles/postoffice.png');
 }
 #tile6{
-    -fx-background-image: url('../resources/img/tiles/caravansary.png');
+    -fx-background-image: url('../img/tiles/caravansary.png');
 }
 #tile7{
-    -fx-background-image: url('../resources/img/tiles/fountain.png');
+    -fx-background-image: url('../img/tiles/fountain.png');
 }
 #tile8{
-    -fx-background-image: url('../resources/img/tiles/black_market.png');
+    -fx-background-image: url('../img/tiles/black_market.png');
 }
 #tile9{
-    -fx-background-image: url('../resources/img/tiles/tea_house.png');
+    -fx-background-image: url('../img/tiles/tea_house.png');
 }
 #tile10{
-    -fx-background-image: url('../resources/img/tiles/large_market.png');
+    -fx-background-image: url('../img/tiles/large_market.png');
 }
 #tile11{
-    -fx-background-image: url('../resources/img/tiles/small_market.png');
+    -fx-background-image: url('../img/tiles/small_market.png');
 }
 #tile12{
-    -fx-background-image: url('../resources/img/tiles/policestation.png');
+    -fx-background-image: url('../img/tiles/policestation.png');
 }
 #tile13{
-    -fx-background-image: url('../resources/img/tiles/sultanspalace.png');
+    -fx-background-image: url('../img/tiles/sultanspalace.png');
 }
 #tile14{
-    -fx-background-image: url('../resources/img/tiles/small_mosque.png');
+    -fx-background-image: url('../img/tiles/small_mosque.png');
 }
 #tile15{
-    -fx-background-image: url('../resources/img/tiles/great_mosque.png');
+    -fx-background-image: url('../img/tiles/great_mosque.png');
 }
 #tile16{
-    -fx-background-image: url('../resources/img/tiles/gemstone_dealer_12.png');
+    -fx-background-image: url('../img/tiles/gemstone_dealer_12.png');
 }
 
 #cac{
-    -fx-background-image: url('../resources/img/no.png');
+    -fx-background-image: url('../img/no.png');
     -fx-background-color: transparent;
 }
 
 #cpp{
-    -fx-background-image: url('../resources/img/close2.png');
+    -fx-background-image: url('../img/close2.png');
     -fx-background-color: transparent;
 }
 #closegame{
-    -fx-background-image: url('../resources/img/yes.png');
+    -fx-background-image: url('../img/yes.png');
     -fx-background-color: transparent;
 }
 
 #arrowleft{
-    -fx-background-image: url('../resources/img/arrowleft.png');
+    -fx-background-image: url('../img/arrowleft.png');
     -fx-background-color: transparent;
 }
 #arrowright{
-    -fx-background-image: url('../resources/img/arrowright.png');
+    -fx-background-image: url('../img/arrowright.png');
     -fx-background-color: transparent;
 }
 
 #niffored{
-    -fx-background-image: url('../resources/img/player/niffored.png');
+    -fx-background-image: url('../img/player/niffored.png');
     -fx-background-color: transparent;
 }
 #niffoyellow{
-    -fx-background-image: url('../resources/img/player/niffoyellow.png');
+    -fx-background-image: url('../img/player/niffoyellow.png');
     -fx-background-color: transparent;
 }
 #niffogreen{
-    -fx-background-image: url('../resources/img/player/niffogreen.png');
+    -fx-background-image: url('../img/player/niffogreen.png');
     -fx-background-color: transparent;
 }
 #niffoblue{
-    -fx-background-image: url('../resources/img/player/niffoblue.png');
+    -fx-background-image: url('../img/player/niffoblue.png');
     -fx-background-color: transparent;
 }
 #niffowhite{
-    -fx-background-image: url('../resources/img/player/niffowhite.png');
+    -fx-background-image: url('../img/player/niffowhite.png');
     -fx-background-color: transparent;
 }
 
