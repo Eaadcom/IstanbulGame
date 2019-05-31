@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="15" alignment="CENTER" prefWidth="1920" prefHeight="1080" fx:id="rootPane" fx:controller="mainMenu.controller.MainMenuController" xmlns:fx="http://javafx.com/fxml">
+
+    <stylesheets>
+        <URL value="@../css/style.css" />
+    </stylesheets>
+
+    <fx:define>
+        <Font fx:id="FONT" size="22" />
+    </fx:define>
+
+    <VBox spacing="1000" alignment="BOTTOM_CENTER" prefHeight="100"></VBox>
+
+    <HBox spacing="1" alignment="CENTER">
+        <VBox spacing ="80" alignment="CENTER" prefWidth="450" prefHeight="400" id="settings"></VBox>
+    </HBox>
+
+    <HBox spacing="1" alignment="CENTER">
+        <Button prefWidth="450" prefHeight="140" font="$FONT" id="backButton" onAction="#goBack"/>
+    </HBox>
+
+</VBox>
