@@ -20,7 +20,7 @@
     <HBox spacing="10" alignment="CENTER">
         <VBox spacing ="80" alignment="CENTER" prefWidth="550" prefHeight="400" id="makingRoom" >
             <TextField alignment="TOP_CENTER" id="roomName"/>
-            <Button alignment="TOP_CENTER" text="Create room" ></Button>
+            <Button alignment="TOP_CENTER" text="Create room" onAction="#startGame" fx:id="startGame"></Button>
         </VBox>
     </HBox>
 
