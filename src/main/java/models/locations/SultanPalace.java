@@ -1,6 +1,6 @@
-package Tiles;
+package models.locations;
 
-public class SultanPalace {
+public class SultanPalace implements Location{
 
 
     int location = 14;

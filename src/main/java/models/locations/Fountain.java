@@ -1,4 +1,7 @@
 package models.locations;
 
-public class Fountain {
+public class Fountain implements Location {
+
+    int location = 4;
+
 }
