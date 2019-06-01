@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="15" alignment="TOP_CENTER" prefWidth="1920" prefHeight="1080" fx:id="rootPane" fx:controller="controllers.MenuViewController" xmlns:fx="http://javafx.com/fxml">
+
+
+    <stylesheets>
+        <URL value="@../css/style.css" />
+    </stylesheets>
+
+
+    <fx:define>
+        <Font fx:id="FONT" size="18" />
+    </fx:define>
+
+
+    <HBox spacing="1000" alignment="CENTER" prefHeight="350"></HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <VBox spacing ="80" alignment="CENTER" prefWidth="450" prefHeight="510" id="enterUsername" >
+            <HBox spacing="1000" alignment="CENTER" prefHeight="170"></HBox>
+            <TextField font="$FONT" alignment="TOP_CENTER" id="roomName" fx:id="usernamefield" onAction="#login"/>
+            <Button alignment="TOP_CENTER" prefWidth="183" prefHeight="70" id="login" onAction="#login"></Button>
+            <HBox spacing="0" alignment="CENTER" prefHeight="60"></HBox>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button alignment="CENTER" prefWidth="333" prefHeight="140" id="exitGame" onAction="#close" />
+    </HBox>
+
+    <VBox spacing="10" alignment="CENTER" prefHeight="120"></VBox>
+</VBox>
