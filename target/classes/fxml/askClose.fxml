@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="popupback" prefHeight="362.0" prefWidth="524.0" style="-fx-background-color: transparent;" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
+   <children>
+      <Pane id="askClose" prefHeight="362.0" prefWidth="524.0" style="-fx-background-color: transparent;">
+         <children>
+            <Button id="closegame" layoutX="124.0" layoutY="166.0" mnemonicParsing="false" onAction="#close" prefHeight="100.0" prefWidth="100.0" />
+            <Button id="cac" fx:id="cac" layoutX="304.0" layoutY="166.0" mnemonicParsing="false" onAction="#closeAskClose" prefHeight="100.0" prefWidth="100.0" />
+         </children></Pane>
+   </children>
+</AnchorPane>
