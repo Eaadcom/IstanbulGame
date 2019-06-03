@@ -1,11 +1,18 @@
 package models.locations;
-import java.util.Scanner;
 
 public class BlackMarket implements Location {
 
-    int location = 1;
+   public int Location = 1;
+
+    public BlackMarket() {
+        this.blackMarket = blackMarket;
+    }
+
+
 
     BlackMarket blackMarket = new BlackMarket();
+
+
 
 
 
