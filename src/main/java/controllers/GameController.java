@@ -35,7 +35,7 @@ public class GameController {
         game.askConfirmMovement();
     }
 
-    //Activated when pressed on a tile
+    //The functions are called when the player clicks on a tile
     @FXML
     public void tileOne() throws IOException { moveToPosition(1); }
     @FXML
@@ -48,5 +48,25 @@ public class GameController {
     public void tileFive() throws IOException { moveToPosition(5); }
     @FXML
     public void tileSix() throws IOException { moveToPosition(6); }
+    @FXML
+    public void tileSeven() throws IOException { moveToPosition(7); }
+    @FXML
+    public void tileEight() throws IOException { moveToPosition(8); }
+    @FXML
+    public void tileNine() throws IOException { moveToPosition(9); }
+    @FXML
+    public void tileTen() throws IOException { moveToPosition(10); }
+    @FXML
+    public void tileEleven() throws IOException { moveToPosition(11); }
+    @FXML
+    public void tileTwelve() throws IOException { moveToPosition(12); }
+    @FXML
+    public void tileThirteen() throws IOException { moveToPosition(13); }
+    @FXML
+    public void tileFourteen() throws IOException { moveToPosition(14); }
+    @FXML
+    public void tileFifteen() throws IOException { moveToPosition(15); }
+    @FXML
+    public void tileSixteen() throws IOException { moveToPosition(16); }
 }
 
