@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<FlowPane id="gameback" maxHeight="1080" maxWidth="1920" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
+<FlowPane id="gameback" maxHeight="1080" maxWidth="1920" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
 
 
 
@@ -57,7 +57,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="1080.0" prefWidth="340.0">
          <children>
-            <Button id="tile1" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0">
+            <Button id="tile1" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#tileOne" prefHeight="230.0" prefWidth="330.0">
                <VBox.margin>
                   <Insets top="60.0" />
                </VBox.margin>

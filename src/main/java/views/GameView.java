@@ -39,11 +39,20 @@ public class GameView {
         stage.setScene(new Scene(root2));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-
     }
 
     public void playerProgression() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void askConfirmMovement() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/confirmMovement.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
