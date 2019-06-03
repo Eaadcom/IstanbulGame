@@ -1,10 +1,10 @@
 package models.locations;
 
-public class Teahouse implements Location {
+public class TeaHouse implements Location {
 
 
     int location = 15;
 
-    Teahouse teahouse = new Teahouse();
+    TeaHouse teahouse = new TeaHouse();
 
 }

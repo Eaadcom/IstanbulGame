@@ -15,7 +15,7 @@ public class Main extends Application {
 
 
         stage.setTitle("Istanbul");
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Parent   root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         root.setId("pane");
         Scene scene = new Scene(root, 1920, 1080);
         stage.setFullScreen(true);
