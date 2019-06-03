@@ -1,11 +1,13 @@
 package controllers;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -21,6 +23,13 @@ public class MenuViewController implements Initializable {
 
     GameController gc = new GameController();
 
+    @FXML
+    ChoiceBox cb = new ChoiceBox();
+    @FXML
+    ChoiceBox cb2 = new ChoiceBox();
+
+
+
 
     @FXML
     private VBox rootPane; // aanmaken fx:id
@@ -30,13 +39,24 @@ public class MenuViewController implements Initializable {
     private Button startGame; // aanmaken fx:id
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){ }
+    public void initialize(URL location, ResourceBundle resources){
+        cb.getItems().add("2");
+        cb.getItems().add("3");
+        cb.getItems().add("4");
+        cb.getItems().add("5");
+
+        cb2.getItems().add("easy");
+        cb2.getItems().add("medium");
+        cb2.getItems().add("hard");
+        cb2.getItems().add("random");
+    }
 
     // Create Room
     @FXML
     private void createRoom() throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("../fxml/makingroom.fxml"));
         rootPane.getChildren().setAll(pane);
+
     }
 
     // Back button
