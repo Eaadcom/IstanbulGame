@@ -24,17 +24,13 @@ public class MenuViewController implements Initializable {
 
     @FXML
     private VBox rootPane; // aanmaken fx:id
-
     @FXML
     private FlowPane flowPane; // aanmaken fx:id
-
     @FXML
     private Button startGame; // aanmaken fx:id
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources){ }
-
 
     // Create Room
     @FXML
@@ -55,6 +51,13 @@ public class MenuViewController implements Initializable {
     private void settings() throws IOException {
         VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/settings.fxml"));
         rootPane.getChildren().setAll(pane3);
+    }
+
+    //available rooms
+    @FXML
+    private void availablerooms() throws IOException {
+        VBox pane4 = FXMLLoader.load(getClass().getResource("../fxml/availablerooms.fxml"));
+        rootPane.getChildren().setAll(pane4);
     }
 
     // Login

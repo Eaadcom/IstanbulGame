@@ -25,6 +25,9 @@
 #settings{
     -fx-background-image: url('../img/settings.png');
 }
+#availRoom{
+    -fx-background-image: url('../img/availableroomspane.png');
+}
 
 
 #createRoom, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings{
@@ -58,10 +61,7 @@
 }
 
 #roomName{
- -fx-max-width: 300;
- -fx-max-height: 70;
  -fx-background-color:white;
- -fx-spacing: 80 0 0 0;
 }
 
 #login, #login:hover, #login:pressed{
