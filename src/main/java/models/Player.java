@@ -4,6 +4,7 @@ import views.GameView;
 import controllers.GameController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * This class is the player. An object of this class is created for every player. All statistics of a player, including it's position on the board, are stored here.
@@ -18,6 +19,7 @@ public class Player {
     public int lira = 0;
     public int carUpgrades = 2;
     public String teamColor;
+    public ArrayList PlayerBonusCards = new ArrayList();
 
     public int spices = 0;
     public int fruits = 0;
