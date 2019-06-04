@@ -7,12 +7,13 @@ import java.io.IOException;
 
 /**
  * This class is the player. An object of this class is created for every player. All statistics of a player, including it's position on the board, are stored here.
- * @author Stan
- * @version 2 juni 2019
+ * @author Stan, Joeri
+ * @version 4 juni 2019
  */
 public class Player {
 
     public String name;
+
 
     public int rubies = 0;
     public int lira = 0;
@@ -42,5 +43,31 @@ public class Player {
 
     ////
 
+    public void setLira(int lira) {
+        this.lira = lira;
+    }
 
+    public void setRubies(int rubies) {
+        this.rubies = rubies;
+    }
+
+    public void setCarUpgrades(int carUpgrades) {
+        this.carUpgrades = carUpgrades;
+    }
+
+    public void setSpices(int spices) {
+        this.spices = spices;
+    }
+
+    public void setFruits(int fruits) {
+        this.fruits = fruits;
+    }
+
+    public void setJewels(int jewels) {
+        this.jewels = jewels;
+    }
+
+    public void setFabrics(int fabrics) {
+        this.fabrics = fabrics;
+    }
 }
