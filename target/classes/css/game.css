@@ -267,3 +267,7 @@
     -fx-scale-x: 0.99;
     -fx-cursor: hand;
 }
+
+#playerblue, #playerred, #playerwhite, #playeryellow, #playergreen{
+    -fx-effect: dropshadow(three-pass-box, grey, 7, 0.005 , 0, 0);
+}
