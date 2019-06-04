@@ -45,7 +45,7 @@ public class Player {
     }
 
     ////
-}
+
 
     public void setLira(int lira) {
         this.lira = lira;
