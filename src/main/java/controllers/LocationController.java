@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class LocationController {
     int location;
+    int DiceResult;
 
     BlackMarket blackMarket = new BlackMarket();
     TeaHouse teaHouse = new TeaHouse();
@@ -22,14 +23,36 @@ public class LocationController {
         switch(location){
             case 1: {
 
+                blackMarket.diceOne = setDiceValue();
+                blackMarket.diceTwo = setDiceValue();
+
+                DiceResult = blackMarket.diceOne + blackMarket.diceTwo;
+
+
+                if(DiceResult < 7 ){
+
+                }else if(DiceResult == 7|| DiceResult == 8){
+
+
+                }else if(DiceResult == 9 || DiceResult == 10){
+
+                }else if(DiceResult == 11 || DiceResult == 12){
+
+                }
+
+
+
+            }
+            case 2: {
+
             }
             case 15:
-                teaHouse.numberChoice = setNumberChoice();
+                teaHouse.   numberChoice = setNumberChoice();
 
                 teaHouse.diceOne = setDiceValue();
                 teaHouse.diceTwo = setDiceValue();
 
-                int DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
+                DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
 
                 if(teaHouse.numberChoice > DiceResult){
 
@@ -49,7 +72,7 @@ public class LocationController {
 
     public int setDiceValue(){
 
-        int DiceValue = (int)(Math.random() * 12 + 1);
+        int DiceValue = (int)(Math.random() * 6 + 1);
 
         return DiceValue;
     }
