@@ -1,7 +1,25 @@
 package models.locations;
 
-public class SultanPalace implements Location{
+import observers.GameViewObserver;
+import observers.locations.SultanPalaceObservable;
 
-    SultanPalace sultanPalace = new SultanPalace();
+import java.util.ArrayList;
+import java.util.List;
 
+public class SultanPalace implements Location, SultanPalaceObservable {
+
+    private List<GameViewObserver> observers = new ArrayList<>();
+
+
+    @Override
+    public void register(GameViewObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (GameViewObserver gvo : observers){
+            gvo.update(this);
+        }
+    }
 }
