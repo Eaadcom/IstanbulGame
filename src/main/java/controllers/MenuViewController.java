@@ -1,46 +1,58 @@
 package controllers;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import controllers.GameController;
 
 public class MenuViewController implements Initializable {
 
     GameController gc = new GameController();
 
+    @FXML
+    ChoiceBox cb = new ChoiceBox();
+    @FXML
+    ChoiceBox cb2 = new ChoiceBox();
+
+
+
 
     @FXML
     private VBox rootPane; // aanmaken fx:id
-
     @FXML
     private FlowPane flowPane; // aanmaken fx:id
-
     @FXML
     private Button startGame; // aanmaken fx:id
 
-
     @Override
-    public void initialize(URL location, ResourceBundle resources){ }
+    public void initialize(URL location, ResourceBundle resources){
+        cb.getItems().add("2");
+        cb.getItems().add("3");
+        cb.getItems().add("4");
+        cb.getItems().add("5");
 
+        cb2.getItems().add("easy");
+        cb2.getItems().add("medium");
+        cb2.getItems().add("hard");
+        cb2.getItems().add("random");
+    }
 
     // Create Room
     @FXML
     private void createRoom() throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("../fxml/makingroom.fxml"));
         rootPane.getChildren().setAll(pane);
+
     }
 
     // Back button
@@ -55,6 +67,13 @@ public class MenuViewController implements Initializable {
     private void settings() throws IOException {
         VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/settings.fxml"));
         rootPane.getChildren().setAll(pane3);
+    }
+
+    //available rooms
+    @FXML
+    private void availablerooms() throws IOException {
+        VBox pane4 = FXMLLoader.load(getClass().getResource("../fxml/availablerooms.fxml"));
+        rootPane.getChildren().setAll(pane4);
     }
 
     // Login

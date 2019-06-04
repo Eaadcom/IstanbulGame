@@ -170,6 +170,48 @@
     -fx-background-color: transparent;
 }
 
+#famred{
+    -fx-background-image: url('../img/player/famred.png');
+    -fx-background-color: transparent;
+}
+#famyellow{
+    -fx-background-image: url('../img/player/famyellow.png');
+    -fx-background-color: transparent;
+}
+#famgreen{
+    -fx-background-image: url('../img/player/famgreen.png');
+    -fx-background-color: transparent;
+}
+#famblue{
+    -fx-background-image: url('../img/player/famblue.png');
+    -fx-background-color: transparent;
+}
+#famwhite{
+    -fx-background-image: url('../img/player/famwhite.png');
+    -fx-background-color: transparent;
+}
+
+#playerred{
+    -fx-background-image: url('../img/player/playerred.png');
+    -fx-background-color: transparent;
+}
+#playeryellow{
+    -fx-background-image: url('../img/player/playeryellow.png');
+    -fx-background-color: transparent;
+}
+#playergreen{
+    -fx-background-image: url('../img/player/playergreen.png');
+    -fx-background-color: transparent;
+}
+#playerblue{
+    -fx-background-image: url('../img/player/playerblue.png');
+    -fx-background-color: transparent;
+}
+#playerwhite{
+    -fx-background-image: url('../img/player/playerwhite.png');
+    -fx-background-color: transparent;
+}
+
 
 
 #tile1, #tile2, #tile3, #tile4, #tile5, #tile6, #tile7, #tile8, #tile9, #tile10, #tile11, #tile12, #tile13, #tile14, #tile15, #tile16{

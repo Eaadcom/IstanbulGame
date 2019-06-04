@@ -25,9 +25,16 @@
 #settings{
     -fx-background-image: url('../img/settings.png');
 }
+#availRoom{
+    -fx-background-image: url('../img/availableroomspane.png');
+}
+
+#startGame{
+    -fx-background-image: url('../img/createtheroom.png');
+}
 
 
-#createRoom, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings{
+#createRoom, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings, #startGame{
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90%;
     -fx-border-width: 0;
@@ -45,25 +52,22 @@
 }
 
 
-#createRoom:hover, #availableRoom:hover, #exitGame:hover, #backButton:hover, #cog:hover, #login:hover {
+#createRoom:hover, #availableRoom:hover, #exitGame:hover, #backButton:hover, #cog:hover, #login:hover, #startGame:hover {
      -fx-scale-y: 1.03;
      -fx-scale-x: 1.03;
      -fx-cursor: hand;
 }
 
-#createRoom:pressed, #availableRoom:pressed, #exitGame:pressed, #backButton:pressed, #cog:pressed, #login:pressed {
+#createRoom:pressed, #availableRoom:pressed, #exitGame:pressed, #backButton:pressed, #cog:pressed, #login:pressed, #startGame:pressed {
      -fx-scale-y: 0.97;
      -fx-scale-x: 0.97;
      -fx-cursor: hand;
 }
 
 #roomName{
- -fx-max-width: 300;
- -fx-max-height: 70;
  -fx-background-color:white;
- -fx-spacing: 80 0 0 0;
 }
 
-#login, #login:hover, #login:pressed{
+#login, #login:hover, #login:pressed, #startGame{
     -fx-effect: dropshadow(three-pass-box, black, 0, 0.001 , 0, 0);
 }
