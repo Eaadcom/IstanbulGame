@@ -3,8 +3,8 @@ package models.locations;
 public class BlackMarket implements Location {
 
    public int Location = 1;
-   public int diceOne;
-   public int diceTwo;
+   public models.Dice diceOne = new models.Dice();
+   public models.Dice diceTwo = new models.Dice();
 
     public BlackMarket() {
         this.blackMarket = blackMarket;
