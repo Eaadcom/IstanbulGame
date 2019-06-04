@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class GameController {
 
+    PlayerController playerController = new PlayerController();
+
     Player playerOne = new Player("yes");
 
     GameView game = new GameView();
@@ -32,7 +34,7 @@ public class GameController {
     }
 
     public void moveToPosition(int tileID) throws IOException {
-        playerOne.changePosition(tileID);
+        playerController.changePosition(tileID);
     }
 
     public void confirmMovement() throws IOException {
