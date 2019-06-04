@@ -2,10 +2,12 @@ package views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -24,10 +26,17 @@ public class GameView {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Istanbul");
         stage.setScene(new Scene(root1));
-        stage.setMaximized(true);
+        //stage.setMaximized(true);
+
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX(primaryScreenBounds.getMinX());
+        stage.setY(primaryScreenBounds.getMinY());
+        stage.setWidth(primaryScreenBounds.getWidth());
+        stage.setHeight(primaryScreenBounds.getHeight());
+
         stage.show();
     }
 
