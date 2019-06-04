@@ -47,6 +47,11 @@
     -fx-background-image: url('../img/player/redplayer.png');
 }
 
+#blankPopup{
+    -fx-background-image: url('../img/blankPopup.png');
+    -fx-background-color: transparent;
+}
+
 #askClose{
     -fx-background-image: url('../img/askclose.png');
 }

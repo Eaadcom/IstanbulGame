@@ -60,7 +60,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="1080.0" prefWidth="340.0">
          <children>
-            <Button id="tile1" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#switchButtonPressed" prefHeight="230.0" prefWidth="330.0">
+            <Button id="tile1" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#tileOne" prefHeight="230.0" prefWidth="330.0">
                <VBox.margin>
                   <Insets top="60.0" />
                </VBox.margin>

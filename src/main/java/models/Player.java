@@ -1,12 +1,22 @@
 package models;
 
+import views.GameView;
+import controllers.GameController;
+
+import java.io.IOException;
+
+/**
+ * This class is the player. An object of this class is created for every player. All statistics of a player, including it's position on the board, are stored here.
+ * @author Stan
+ * @version 2 juni 2019
+ */
 public class Player {
 
     private String name;
 
     private int rubies = 0;
     private int lira = 0;
-    private int carUpgrades = 0;
+    private int carUpgrades = 2;
     private String teamColor;
 
     private int spices = 0;
@@ -15,16 +25,19 @@ public class Player {
     private int fabrics = 0;
 
     private int assistants = 4;
-    private int position;
+    private int position = 7;
 
     private boolean greenTile = false;
     private boolean redTile = false;
     private boolean blueTile = false;
     private boolean yellowTile = false;
 
-    ////
+    private boolean hasMoved = false;
 
-    public void Player(String name){
+    ////
+    GameView game = new GameView();
+
+    public Player(String name){
         this.name = name;
     }
 
@@ -48,19 +61,19 @@ public class Player {
                 // code block
     }}
 
-    public void addGoods(String nameOfGoods, int goodsAmount){
+    public void addGoods(String nameOfGoods){
         switch(nameOfGoods) {
             case "spice":
-                spices += goodsAmount;
+                spices = (carUpgrades);
                 break;
             case "fruit":
-                fruits += goodsAmount;
+                fruits = (carUpgrades);
                 break;
             case "jewel":
-                jewels += goodsAmount;
+                jewels = (carUpgrades);
                 break;
             case "fabric":
-                fabrics += goodsAmount;
+                fabrics = (carUpgrades);
                 break;
             default:
                 // code block
@@ -84,10 +97,20 @@ public class Player {
                 // code block
     }}
 
-    public void changePosition(int pos){
-        if(position != pos){
+    /**
+     * Deze functie wordt aangeroepen als een speler aan het begin van zijn beurt op een tegel klikt waar hij naartoe wilt lopen.
+     * @Author: Stan Hogenboom
+     * @Version: 3 juni 2019
+     * @param pos
+     */
+    public void changePosition(int pos) throws IOException {
+        if(position != pos && !hasMoved){
+            game.askConfirmMovement();
             position = pos;
+            hasMoved = true;
+            System.out.println("Position updated to: " + position);
     }}
+
 
 //    public void placeAssistant(Location l){
 //        if(assistants > 0){
