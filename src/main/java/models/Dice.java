@@ -1,6 +1,13 @@
 package models;
 
-public class Dice {
+import observers.DiceObservable;
+import observers.GameViewObserver;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Dice implements DiceObservable{
+    private List<GameViewObserver> observers = new ArrayList<>();
 
     public int DiceValue;
 
@@ -11,4 +18,15 @@ public class Dice {
     Dice dice = new Dice();
 
 
+    @Override
+    public void register(GameViewObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (GameViewObserver gvo : observers){
+            gvo.update(this);
+        }
+    }
 }

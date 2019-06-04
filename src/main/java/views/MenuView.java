@@ -1,5 +1,8 @@
 package views;
 
+import controllers.MenuViewController;
+import observers.MainMenuObservable;
+import observers.MenuViewObserver;
 
 import controllers.GameController;
 import javafx.fxml.FXML;
@@ -18,8 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MenuView implements Initializable {
+public class MenuView implements Initializable, MenuViewObserver {
 
+    MenuViewController menuViewController = new MenuViewController();
 
     public void start(Stage stage) throws Exception{
 
@@ -105,6 +109,7 @@ public class MenuView implements Initializable {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
             String username = usernamefield.getText();
+
             System.out.println(username);
     }}
 
@@ -125,4 +130,11 @@ public class MenuView implements Initializable {
         System.exit(0);
     }
 
+    //Observer Pattern
+    @Override
+    public void update(MainMenuObservable mmo) {
+        mmo.getUsername();
+        System.out.println(mmo.getUsername());
+    }
 }
+
