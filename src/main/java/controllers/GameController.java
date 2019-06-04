@@ -1,3 +1,9 @@
+/**
+ * Controller for everything that happens while actually playing the game.
+ * @author Stan, Thomas
+ * @version June 4, 2019
+ */
+
 package controllers;
 
 import views.GameView;
