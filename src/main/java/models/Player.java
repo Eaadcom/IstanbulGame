@@ -12,129 +12,35 @@ import java.io.IOException;
  */
 public class Player {
 
-    private String name;
+    public String name;
 
-    private int rubies = 0;
-    private int lira = 0;
-    private int carUpgrades = 2;
-    private String teamColor;
+    public int rubies = 0;
+    public int lira = 0;
+    public int carUpgrades = 2;
+    public String teamColor;
 
-    private int spices = 0;
-    private int fruits = 0;
-    private int jewels = 0;
-    private int fabrics = 0;
+    public int spices = 0;
+    public int fruits = 0;
+    public int jewels = 0;
+    public int fabrics = 0;
 
-    private int assistants = 4;
-    private int position = 7;
+    public int assistants = 4;
+    public int position = 7;
 
-    private boolean greenTile = false;
-    private boolean redTile = false;
-    private boolean blueTile = false;
-    private boolean yellowTile = false;
+    public boolean greenTile = false;
+    public boolean redTile = false;
+    public boolean blueTile = false;
+    public boolean yellowTile = false;
 
-    private boolean hasMoved = false;
+    public boolean hasMoved = false;
 
     ////
-    GameView game = new GameView();
 
     public Player(String name){
         this.name = name;
     }
 
     ////
-
-    public void pay(int amount, Player player){
-        if (amount > this.lira){}else{
-        lira -= amount;
-        player.addRubysLiras("lira", amount);
-    }}
-
-    public void addRubysLiras(String g, int amount){
-        switch(g) {
-            case "ruby":
-                rubies += amount;
-                break;
-            case "lira":
-                lira += amount;
-                break;
-            default:
-                // code block
-    }}
-
-    public void addGoods(String nameOfGoods){
-        switch(nameOfGoods) {
-            case "spice":
-                spices = (carUpgrades);
-                break;
-            case "fruit":
-                fruits = (carUpgrades);
-                break;
-            case "jewel":
-                jewels = (carUpgrades);
-                break;
-            case "fabric":
-                fabrics = (carUpgrades);
-                break;
-            default:
-                // code block
-    }}
-
-    public void addMosqueTile(String colorOfTile){
-        switch(colorOfTile) {
-            case "green":
-                greenTile = true;
-                break;
-            case "blue":
-                blueTile = true;
-                break;
-            case "red":
-                redTile = true;
-                break;
-            case "yellow":
-                yellowTile = true;
-                break;
-            default:
-                // code block
-    }}
-
-    /**
-     * Deze functie wordt aangeroepen als een speler aan het begin van zijn beurt op een tegel klikt waar hij naartoe wilt lopen.
-     * @Author: Stan Hogenboom
-     * @Version: 3 juni 2019
-     * @param pos
-     */
-    public void changePosition(int pos) throws IOException {
-        if(position != pos && !hasMoved){
-            game.askConfirmMovement();
-            position = pos;
-            hasMoved = true;
-            System.out.println("Position updated to: " + position);
-    }}
-
-
-//    public void placeAssistant(Location l){
-//        if(assistants > 0){
-//            assistants =- 1;
-//            l.placeAssistant(teamColor);
-//
-//    }}
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    //    public static void getVariables() {
-//        LinkedHashMap<String, String> variables = new LinkedHashMap<>();
-//
-//        variables.put("className", className);
-//        variables.put("username", username);
-//        variables.put("gemstones", Integer.toString(gemstones));
-//        FirebaseController.firebaseWriter(variables);
-//    }
-//
-//    public static void updateVariables(HashMap variables){
-//
-//    }
 
 
 }
