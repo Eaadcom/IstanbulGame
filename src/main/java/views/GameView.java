@@ -3,9 +3,13 @@ package views;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -20,6 +24,16 @@ public class GameView {
 
     @FXML
     public Button cpp; // aanmaken fx:id
+
+    @FXML
+    public Pane playerblue, playerred, playergreen, playeryellow, playerwhite; // aanmaken fx:id
+
+    @FXML
+    public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
+
+    @FXML
+    public GridPane grid; // aanmaken fx:id
+
 
 
     public void start() throws IOException {
@@ -84,6 +98,108 @@ public class GameView {
     public void closePlayerProg() throws IOException {
         Stage stage = (Stage) cpp.getScene().getWindow();
         stage.close();
-    }}
+    }
+
+
+    /**
+         * This is a method that visualizes the movement of the player.
+         *
+         * @param player Specify the team color of the player who moved. ex: "red" or "green".
+         *               Since the node is only visible and reachable via this class
+         *               I made the parameter a String and used a switch case to reach the right node.
+         * @param column This specifies the column the user moved to.
+         * @param row    This specifies the row the user moved to.
+         * @author       Thomas van Velzen
+         * @version      4 juni 2019
+         */
+        public void movePlayer(String player, int column, int row) {
+            switch(player){
+                case("red"):
+                    grid.setColumnIndex(playerred, column);
+                    grid.setRowIndex(playerred, row); break;
+                case("blue"):
+                    grid.setColumnIndex(playerblue, column);
+                    grid.setRowIndex(playerblue, row); break;
+                case("green"):
+                    grid.setColumnIndex(playergreen, column);
+                    grid.setRowIndex(playergreen, row); break;
+                case("yellow"):
+                    grid.setColumnIndex(playeryellow, column);
+                    grid.setRowIndex(playeryellow, row); break;
+                case("white"):
+                    grid.setColumnIndex(playerwhite, column);
+                    grid.setRowIndex(playerwhite, row); break;
+            }
+    }
+
+    /**
+     * This is a method that visualizes the movement of the player.
+     *
+     * @param familyMember Specify the team color of the player who moved. ex: "red" or "green".
+     *                     Since the node is only visible and reachable via this class
+     *                     I made the parameter a String and used a switch case to reach the right node.
+     * @param column       This specifies the column the user moved to.
+     * @param row          This specifies the row the user moved to.
+     * @author             Thomas van Velzen
+     * @version            4 juni 2019
+     */
+    public void moveFamilyMember(String familyMember, int column, int row) {
+        switch(familyMember){
+            case("red"):
+                grid.setColumnIndex(famred, column);
+                grid.setRowIndex(famred, row); break;
+            case("blue"):
+                grid.setColumnIndex(famblue, column);
+                grid.setRowIndex(famblue, row); break;
+            case("green"):
+                grid.setColumnIndex(famgreen, column);
+                grid.setRowIndex(famgreen, row); break;
+            case("yellow"):
+                grid.setColumnIndex(famyellow, column);
+                grid.setRowIndex(famyellow, row); break;
+            case("white"):
+                grid.setColumnIndex(famwhite, column);
+                grid.setRowIndex(famwhite, row); break;
+        }
+    }
+
+    /**
+     * This is a method returns the location value of the player.
+     *
+     * @param player       Specify the team color of the player you want to know the location of. ex: "red" or "green".
+     *                     The method returns a location integer -1 which you can convert back into coordinates.
+     *                     Example with return value 14: '13 % 4 = 3r1' results in a row/column index of: 3,1 .
+     * @author             Thomas van Velzen
+     * @version            4 juni 2019
+     */
+    public int getPlayerPosition(String player) {
+        switch(player){
+            case("red"):
+                int red1 = grid.getColumnIndex(playerred);
+                int red2 = grid.getRowIndex(playerred); return red1+red2-1;
+            case("yellow"):
+                int yel1 = grid.getColumnIndex(playeryellow);
+                int yel2 = grid.getRowIndex(playeryellow); return yel1+yel2-1;
+            case("green"):
+                int gre1 = grid.getColumnIndex(playergreen);
+                int gre2 = grid.getRowIndex(playergreen); return gre1+gre2-1;
+            case("blue"):
+                int blu1 = grid.getColumnIndex(playerblue);
+                int blu2 = grid.getRowIndex(playerblue); return blu1+blu2-1;
+            case("white"):
+                int whi1 = grid.getColumnIndex(playerwhite);
+                int whi2 = grid.getRowIndex(playerwhite); return whi1+whi2-1;
+            default:break;
+        }
+        return 17;
+    }
+
+
+
+
+
+
+
+}
 
 
