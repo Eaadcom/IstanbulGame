@@ -26,10 +26,10 @@ public class GameView {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
-        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Istanbul");
         stage.setScene(new Scene(root1));
-        //stage.setMaximized(true);
+        stage.setMaximized(true);
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX(primaryScreenBounds.getMinX());
