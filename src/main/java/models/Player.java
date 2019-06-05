@@ -1,19 +1,21 @@
 package models;
 
 import javafx.scene.Node;
-import views.GameView;
 import controllers.GameController;
+import observers.GameViewObserver;
+import observers.PlayerObservable;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is the player. An object of this class is created for every player. All statistics of a player, including it's position on the board, are stored here.
  * @author Stan, Joeri
  * @version 4 juni 2019
  */
-public class    Player {
-
+public class Player implements PlayerObservable {
+    private List<GameViewObserver> observers = new ArrayList<>();
     public String name;
 
 
@@ -73,5 +75,18 @@ public class    Player {
 
     public void setFabrics(int fabrics) {
         this.fabrics = fabrics;
+    }
+
+
+    @Override
+    public void register(GameViewObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (GameViewObserver gvo : observers){
+            gvo.update(this);
+        }
     }
 }

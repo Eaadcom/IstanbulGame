@@ -1,12 +1,20 @@
 package models.cards;
 
+import observers.GameViewObserver;
+import observers.cards.BonusGetLiraObservable;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class is the bonuscard GetLira, when a player uses this card he or she gets +5 lira on her or she lira balance
  * @author Joeri van Duijkeren
  * @version 4 june 2019
  */
 
-public class BonusGetLira {
+public class BonusGetLira implements BonusGetLiraObservable {
+    private List<GameViewObserver> observers = new ArrayList<>();
+
     int lira = 5;
     int cardSupply = 10;
 
@@ -14,5 +22,18 @@ public class BonusGetLira {
     public BonusGetLira(int lira) {
         this.lira = lira;
 
+    }
+
+
+    @Override
+    public void register(GameViewObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (GameViewObserver gvo : observers){
+            gvo.update(this);
+        }
     }
 }

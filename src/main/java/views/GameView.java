@@ -14,10 +14,13 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import observers.*;
+import observers.cards.*;
+import observers.locations.*;
 
 import java.io.IOException;
 
-public class GameView {
+public class GameView implements GameViewObserver {
 
     @FXML
     public Button cac; // aanmaken fx:id
@@ -194,12 +197,177 @@ public class GameView {
         return 17;
     }
 
+    // Dit is de hel, altijd onderaan deze klasse.
+    // Blijf weg voor behoud van breincel
+    @Override
+    public void update(BonusFourMovesObservable bfmo) {
 
+    }
 
+    @Override
+    public void update(BonusGainGoodObservable bggo) {
 
+    }
 
+    @Override
+    public void update(BonusGemstoneDealerObservable bgdo) {
 
+    }
 
+    @Override
+    public void update(BonusGetLiraObservable bglo) {
+
+    }
+
+    @Override
+    public void update(BonusPostOfficeObservable bpoo) {
+
+    }
+
+    @Override
+    public void update(BonusReturnAssistantObservable brao) {
+
+    }
+
+    @Override
+    public void update(BonusReturnMemberObservable brmo) {
+
+    }
+
+    @Override
+    public void update(BonusSmallMarketObservable bsmo) {
+
+    }
+
+    @Override
+    public void update(BonusSultansPalaceObservable bspo) {
+
+    }
+
+    @Override
+    public void update(BonusZeroMovesObservable bzmo) {
+
+    }
+
+    @Override
+    public void update(BlackMarketObservable bmo) {
+
+    }
+
+    @Override
+    public void update(CaravansaryObservable co) {
+
+    }
+
+    @Override
+    public void update(FabricWarehouseObservable fwo) {
+
+    }
+
+    @Override
+    public void update(FountainObservable fo) {
+
+    }
+
+    @Override
+    public void update(FruitWarehouseObservable fwo) {
+
+    }
+
+    @Override
+    public void update(GemstoneDealerObservable gdo) {
+
+    }
+
+    @Override
+    public void update(GreatMosqueObservable gmo) {
+
+    }
+
+    @Override
+    public void update(LargeMarketObservable lmo) {
+
+    }
+
+    @Override
+    public void update(PoliceStationObservable pso) {
+
+    }
+
+    @Override
+    public void update(PostOfficeObservable poo) {
+
+    }
+
+    @Override
+    public void update(SmallMarketObservable smo) {
+
+    }
+
+    @Override
+    public void update(SmallMosqueObservable smo) {
+
+    }
+
+    @Override
+    public void update(SpiceWarehouseObservable swo) {
+
+    }
+
+    @Override
+    public void update(SultanPalaceObservable spo) {
+
+    }
+
+    @Override
+    public void update(TeaHouseObservable tho) {
+
+    }
+
+    @Override
+    public void update(WainwrightObservable wo) {
+
+    }
+
+    @Override
+    public void update(AssistantObservable ao) {
+
+    }
+
+    @Override
+    public void update(BoardObservable bo) {
+
+    }
+
+    @Override
+    public void update(DiceObservable dO) {
+
+    }
+
+    @Override
+    public void update(FamilyMemberObservable fmo) {
+
+    }
+
+    @Override
+    public void update(GameObservable go) {
+
+    }
+
+    @Override
+    public void update(GovernorObservable go) {
+
+    }
+
+    @Override
+    public void update(PlayerObservable po) {
+
+    }
+
+    @Override
+    public void update(SmugglerObservable so) {
+
+    }
 }
 
 

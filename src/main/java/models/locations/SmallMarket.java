@@ -1,12 +1,29 @@
 package models.locations;
 
-import java.util.ArrayList;
+import observers.GameViewObserver;
+import observers.locations.SmallMarketObservable;
 
-public class SmallMarket implements Location {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SmallMarket implements Location, SmallMarketObservable {
 
     private ArrayList<String> demandTiles = new ArrayList<>();
 
-    SmallMarket smallMarket = new SmallMarket();
+    private List<GameViewObserver> observers = new ArrayList<>();
+
+
+    @Override
+    public void register(GameViewObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (GameViewObserver gvo : observers){
+            gvo.update(this);
+        }
+    }
 
 
 }
