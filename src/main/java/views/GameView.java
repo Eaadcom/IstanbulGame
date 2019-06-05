@@ -3,11 +3,9 @@ package views;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -17,10 +15,13 @@ import javafx.stage.StageStyle;
 import observers.*;
 import observers.cards.*;
 import observers.locations.*;
+import views.tiles.BlackMarketView;
 
 import java.io.IOException;
 
 public class GameView implements GameViewObserver {
+
+    BlackMarketView blackMarketView = new BlackMarketView();
 
     @FXML
     public Button cac; // aanmaken fx:id
@@ -101,6 +102,12 @@ public class GameView implements GameViewObserver {
     public void closePlayerProg() throws IOException {
         Stage stage = (Stage) cpp.getScene().getWindow();
         stage.close();
+    }
+
+    //BLACK MARKET POP UP
+    public void blackMarket() throws IOException {
+        blackMarketView.blackMarket();
+
     }
 
 

@@ -15,7 +15,7 @@ public class Dice implements DiceObservable{
         this.DiceValue = DiceValue;
     }
 
-    Dice dice = new Dice();
+    //Dice dice = new Dice();
 
 
     @Override

@@ -19,7 +19,7 @@ public class BlackMarket implements Location, BlackMarketObservable {
 
     }
 
-    BlackMarket blackMarket = new BlackMarket();
+    //BlackMarket blackMarket = new BlackMarket();
 
     private List<GameViewObserver> observers = new ArrayList<>();
 

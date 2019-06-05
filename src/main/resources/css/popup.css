@@ -1,0 +1,52 @@
+#blackmarket{
+    -fx-background-image: url('../img/tiles/popup/blackmarket.png');
+}
+
+#blackmarket2{
+    -fx-background-image: url('../img/tiles/popup/blackmarket2.png');
+}
+
+#blackmarket3{
+    -fx-background-image: url('../img/tiles/popup/blackmarket3.png');
+}
+
+
+#fabric{
+    -fx-background-image: url('../img/fabric.png');
+}
+
+#spice{
+    -fx-background-image: url('../img/spices.png');
+}
+
+#fruit{
+    -fx-background-image: url('../img/fruits.png');
+}
+
+#dices{
+    -fx-background-image: url('../img/dices.png');
+}
+
+#sweet{
+    -fx-background-image: url('../img/sweet.png');
+}
+
+#fabric, #spice, #fruit, #dices, #sweet{
+    -fx-effect: dropshadow(three-pass-box, #000, 3, 0.005 , 0, 0);
+    -fx-border-width: 0;
+    -fx-background-color:transparent;
+    -fx-background-radius:0;
+    -fx-border-color:transparent;
+}
+
+
+#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover{
+    -fx-scale-y: 1.08;
+    -fx-scale-x: 1.08;
+    -fx-cursor: hand;
+}
+#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed{
+    -fx-scale-y: 0.96;
+    -fx-scale-x: 0.96;
+    -fx-cursor: hand;
+}
