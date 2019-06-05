@@ -1,10 +1,12 @@
 package views.tiles;
 
+import controllers.LocationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,6 +18,10 @@ import java.io.IOException;
 public class BlackMarketView {
 
     //BlackMarket blackMarket = new BlackMarket();
+
+    LocationController locationController = new LocationController();
+
+
 
     @FXML
     public Button fabric, fruit, spice, dices, sweet; // aanmaken fx:id
@@ -36,6 +42,7 @@ public class BlackMarketView {
 
         //stuk code voor +1 fabric
 
+
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage2 = new Stage();
@@ -50,7 +57,6 @@ public class BlackMarketView {
         stage.close();
 
         //stuk code voor +1 fruit
-
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage2 = new Stage();
@@ -79,7 +85,7 @@ public class BlackMarketView {
         Stage stage = (Stage) dices.getScene().getWindow();
         stage.close();
 
-        //volgens mij moet hier ook nog wat logica
+            //volgens mij moet hier ook nog wat logica
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket3.fxml"));
         Parent root = (Parent) fxmlloader.load();

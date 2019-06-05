@@ -31,24 +31,6 @@ public class LocationController {
             // BlackMarket Functie
             case 1: {
 
-                blackMarket.diceOne.DiceValue = setDiceValue();
-                blackMarket.diceTwo.DiceValue = setDiceValue();
-
-                DiceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
-
-
-                if (DiceResult < 7) {
-
-                } else if (DiceResult == 7 || DiceResult == 8) {
-
-
-                } else if (DiceResult == 9 || DiceResult == 10) {
-
-                } else if (DiceResult == 11 || DiceResult == 12) {
-
-                }
-
-
             }
             // Caravansary Functie
             case 2: {
@@ -100,4 +82,41 @@ public class LocationController {
         return DiceValue;
     }
 
-}
+    public void BlackMarketDice(){
+        blackMarket.diceOne.DiceValue = setDiceValue();
+        blackMarket.diceTwo.DiceValue = setDiceValue();
+
+        DiceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
+
+
+        if (DiceResult < 7) {
+
+            player.jewels = player.jewels;
+
+        } else if (DiceResult == 7 || DiceResult == 8) {
+            player.jewels += 1;
+
+        } else if (DiceResult == 9 || DiceResult == 10) {
+            player.jewels += 2;
+
+        } else if (DiceResult == 11 || DiceResult == 12) {
+            player.jewels+= 3;
+
+        }
+
+
+    }
+    public void BlackMarketChoice(int BlackMarketChoice){
+
+        if(BlackMarketChoice == 1){
+            player.spices += 1;
+        }else if(BlackMarketChoice == 2){
+            player.fruits += 1;
+        }else if(BlackMarketChoice == 3){
+            player.fabrics += 1;
+
+        }
+
+    }
+    }
+
