@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Stan, Joeri
  * @version 4 juni 2019
  */
-public class Player {
+public class    Player {
 
     public String name;
 

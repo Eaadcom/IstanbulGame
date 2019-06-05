@@ -3,6 +3,8 @@ package controllers;
 import models.Player;
 import views.GameView;
 
+import javax.smartcardio.Card;
+import java.util.Scanner;
 import java.io.IOException;
 
 public class PlayerController {
@@ -10,6 +12,7 @@ public class PlayerController {
     GameView game = new GameView();
 
     Player player = new Player("name");
+    Scanner scanner = new Scanner(System.in);
 
     ////
 
@@ -80,7 +83,12 @@ public class PlayerController {
             player.hasMoved = true;
             System.out.println("Position updated to: " + player.position);
         }}
+    public int PlayerChoosesCard(){
 
+        int CardChoice = scanner.nextInt();
+
+        return CardChoice;
+    }
 
 //    public void placeAssistant(Location l){
 //        if(assistants > 0){

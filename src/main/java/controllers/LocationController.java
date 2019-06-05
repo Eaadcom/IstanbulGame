@@ -9,7 +9,7 @@ import models.locations.Caravansary;
 import models.locations.TeaHouse;
 import java.util.Scanner;
 
-public class LocationController {
+public class LocationController{
     int location;
     int DiceResult;
     public int CardNumber1;
@@ -21,8 +21,6 @@ public class LocationController {
     CardController cardController = new CardController();
     models.Player player = new models.Player("Name");
     models.Board board = new models.Board();
-
-
     Scanner scanner = new Scanner(System.in);
 
     public void onUse() {
@@ -56,10 +54,12 @@ public class LocationController {
                 CardNumber1 = cardController.getRandomCard() - 1;
                 CardNumber2 = cardController.getRandomCard() - 1;
 
-                Boolean SameCard = cardController.CardChecker();
+                Boolean SameCard = true;
 
                 while(SameCard = true){
                     CardNumber2 = cardController.getRandomCard() - 1;
+                    SameCard = cardController.CardChecker();
+
                 }
 
                 board.PlayerCardChoice.add(board.BonusCards.get(CardNumber1));
@@ -69,7 +69,10 @@ public class LocationController {
 
 
 
-            }
+        }
+            case 3:
+
+
             case 15:
                 teaHouse.numberChoice = setNumberChoice();
 
