@@ -22,6 +22,7 @@ public class LocationView implements LocationViewObserver {
 
     // Variables
     private static LocationView locationView;
+    private LocationController locationController = LocationController.getInstance();
 
     // FXML variables
     @FXML
