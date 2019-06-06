@@ -9,12 +9,23 @@ import javafx.stage.Stage;
 import views.MenuView;
 
 public class Main extends Application {
+    LocationController locationController;
+
+    Main(LocationController locationController){
+        this.locationController = locationController;
+
+    }
 
     @Override
     public void start(Stage stage) throws Exception{
+        System.out.println("test4");
 
         MenuView menuView = new MenuView();
         menuView.start(stage);
+
+        locationController.BlackMarketChoice(3);
+        System.out.println("test4");
+
 
     }
 
