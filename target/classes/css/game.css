@@ -57,7 +57,7 @@
 
 #rulesPage{
     -fx-background-image: url('../img/rules.png');
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(255,255,255,0.5);
 }
 
 #askClose{
