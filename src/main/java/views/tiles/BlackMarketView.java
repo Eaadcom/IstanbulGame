@@ -40,7 +40,6 @@ public class BlackMarketView {
     }
 
     public void fabric() throws IOException {
-        //stuk code voor +1 fabric
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
     }
