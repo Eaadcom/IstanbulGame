@@ -20,7 +20,7 @@ public class BlackMarketView {
 
     //BlackMarket blackMarket = new BlackMarket();
 
-    LocationController locationController;
+    public LocationController locationController = new LocationController();
 
 
     @FXML
@@ -42,21 +42,27 @@ public class BlackMarketView {
     public void fabric() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
+        locationController.BlackMarketChoice(3);
     }
 
     public void fruit() throws IOException {
         //stuk code voor +1 fabric
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
+        locationController.BlackMarketChoice(2);
+
     }
 
     public void spice() throws IOException {
         //stuk code voor +1 fabric
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
+        locationController.BlackMarketChoice(1);
+
     }
 
     public void rollDice() throws IOException {
+        locationController.BlackMarketDice();
         //als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)

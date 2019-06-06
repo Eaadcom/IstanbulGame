@@ -16,27 +16,19 @@ public class LocationController{
     public int cardNumber1;
     public int cardNumber2;
 
-    public BlackMarket blackMarket;
+    public BlackMarket blackMarket = new BlackMarket();
     public TeaHouse teaHouse;
     public FruitWarehouse fruitWarehouse;
-    public Caravansary caravansary = new Caravansary();
     public CardController cardController;
-    public PlayerController playerController;
+    public PlayerController playerController = new PlayerController();
     public models.Player player = new models.Player("Name");
     public models.Board board = new models.Board();
 
 
     Scanner scanner = new Scanner(System.in);
 
-    LocationController(CardController cardController, PlayerController playerController, int location, TeaHouse teaHouse, BlackMarket blackMarket, FruitWarehouse fruitWarehouse, Caravansary caravansary){
-        this.cardController = cardController;
-        this.playerController = playerController;
-        this.location = location;
-        this.teaHouse = teaHouse;
-        this.blackMarket = blackMarket;
-        this.fruitWarehouse = fruitWarehouse;
 
-    }
+
 
     public void onUse() {
 
@@ -57,6 +49,8 @@ public class LocationController{
                 teaHouse.diceTwo = setDiceValue();
 
                 DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
+
+                System.out.println("Je hebt " + DiceResult + " gegooit");
 
                 if (teaHouse.numberChoice > DiceResult) {
 
@@ -86,10 +80,10 @@ public class LocationController{
 
         DiceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
 
+        System.out.println("Je hebt " + DiceResult + " gegooit");
 
         if (DiceResult < 7) {
             player.jewels = player.jewels;
-                teaHouse.numberChoice = setNumberChoice();
         } else if (DiceResult == 7 || DiceResult == 8) {
             if (playerController.CargoCheckJewels(1) == true) {
                 player.jewels += 1;
@@ -111,7 +105,7 @@ public class LocationController{
                 player.jewels += 1;
             }
         }
-
+        System.out.println("er zijn " + player.jewels + " Jewels toegevoegd!");
 
     }
 
@@ -120,24 +114,23 @@ public class LocationController{
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 player.spices += 1;
-                System.out.println(player.spices);
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
                 player.fruits += 1;
-                System.out.println(player.fruits);
 
             }
         } else if (BlackMarketChoice == 3) {
-            if (playerController.CargoCheckFabrics(1) == true) {
+            if (playerController.CargoCheckFabrics(1)) {
                 player.fabrics += 1;
-                System.out.println("test");
+                System.out.println("er zijn " + player.fabrics + " Fabrics");
 
+            }else{
             }
 
+        } else{
         }
-            System.out.println("test2");
     }
 
     public void CarravansaryCardSelector() {

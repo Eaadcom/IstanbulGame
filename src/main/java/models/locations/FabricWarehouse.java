@@ -8,6 +8,8 @@ import java.util.List;
 
 public class FabricWarehouse implements Location, FabricWarehouseObservable {
 
+    int location = 3;
+
     private List<GameViewObserver> observers = new ArrayList<>();
 
 

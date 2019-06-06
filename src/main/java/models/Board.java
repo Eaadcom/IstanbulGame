@@ -19,7 +19,6 @@ public class Board implements BoardObservable {
 
     }
 
-    Board board = new Board();
 
     @Override
     public void register(GameViewObserver observer) {

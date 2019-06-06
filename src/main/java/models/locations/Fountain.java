@@ -8,7 +8,9 @@ import java.util.List;
 
 public class Fountain implements Location, FountainObservable {
 
+    int Location = 4;
     private List<GameViewObserver> observers = new ArrayList<>();
+
 
 
     @Override
