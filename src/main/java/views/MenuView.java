@@ -108,8 +108,8 @@ public class MenuView implements Initializable, MenuViewObserver {
             }else{
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
-            String username = usernamefield.getText();
 
+            String username = usernamefield.getText();
             System.out.println(username);
     }}
 

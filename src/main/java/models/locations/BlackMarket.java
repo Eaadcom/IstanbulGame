@@ -13,7 +13,7 @@ public class BlackMarket implements Location, BlackMarketObservable {
    public models.Dice diceTwo = new models.Dice();
 
     public BlackMarket() {
-        this.blackMarket = blackMarket;
+        //this.blackMarket = blackMarket;
         this.diceOne = diceOne;
         this.diceTwo = diceTwo;
 
