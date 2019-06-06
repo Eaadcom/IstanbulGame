@@ -12,6 +12,9 @@
 #close{
      -fx-background-image: url('../img/close3.png');
  }
+#smallClose{
+    -fx-background-image: url('../img/close2.png');
+}
 #heirloomicon{
     -fx-background-image: url('../img/heirlooms.png');
 }
@@ -52,6 +55,11 @@
     -fx-background-color: transparent;
 }
 
+#rulesPage{
+    -fx-background-image: url('../img/rules.png');
+    -fx-background-color: transparent;
+}
+
 #askClose{
     -fx-background-image: url('../img/askclose.png');
 }
@@ -69,7 +77,7 @@
     -fx-border-radius: 70;
 }
 
-#player1:hover,#player2:hover,#player3:hover,#player4:hover,#player5:hover,#menubutton:hover,#rulesbutton:hover{
+#player1:hover,#player2:hover,#player3:hover,#player4:hover,#player5:hover,#menubutton:hover,#rulesbutton:hover,#smallClose:hover{
     -fx-scale-y: 1.02;
     -fx-scale-x: 1.02;
     -fx-cursor: hand;

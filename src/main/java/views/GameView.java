@@ -26,6 +26,9 @@ public class GameView implements GameViewObserver {
     public Button cac; // aanmaken fx:id
 
     @FXML
+    public Button cr; // aanmaken fx:id
+
+    @FXML
     public Button cpp; // aanmaken fx:id
 
     @FXML
@@ -87,6 +90,26 @@ public class GameView implements GameViewObserver {
         stage.show();
     }
 
+    /**
+     * This opens the rules so the player can take a look at them.
+     * @author Stan
+     * @version June 5th, 2019
+     * @throws IOException
+     */
+    public void rulesPage() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/rules.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void closeRulesPage() throws IOException {
+        Stage stage = (Stage) cr.getScene().getWindow();
+        stage.close();
+    }
 
     public void close(){
         System.exit(0);
