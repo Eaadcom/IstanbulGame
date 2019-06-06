@@ -12,15 +12,13 @@ public class   TeaHouse implements Location, TeaHouseObservable {
     public int diceTwo;
     public int Location = 15;
 
-    public TeaHouse(){
-        this.teahouse = teahouse;
+    public TeaHouse(int numberChoice, int diceOne, int diceTwo, int Location){
         this.numberChoice = numberChoice;
         this.diceOne = diceOne;
         this.diceTwo = diceTwo;
         this.Location = Location;
     }
 
-    TeaHouse teahouse = new TeaHouse();
 
     private List<GameViewObserver> observers = new ArrayList<>();
 
