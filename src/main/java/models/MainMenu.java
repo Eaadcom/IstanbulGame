@@ -13,11 +13,43 @@ public class MainMenu implements MainMenuObservable {
     private static MainMenu mainMenu;
     private List<MenuViewObserver> observers = new ArrayList<>();
     private String username;
+    private String difficulty;
+    private int playerTotal;
+    private String gameName;
 
-    // Verandert de username naar de string die hij doorkrijgt als argument + notified alle observers van de verandering
+    // Setters
     public void setUsername(String usr){
         this.username = usr;
-        notifyAllObservers();
+    }
+
+    public void setDifficulty(String diff){
+        this.difficulty = diff;
+    }
+
+    public void setPlayerTotal(int pt){
+        this.playerTotal = pt;
+    }
+
+    public void setGameName(String gmn){
+        this.gameName = gmn;
+    }
+
+    // Getters
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public String getDifficulty(){
+        return difficulty;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public int getPlayerTotal(){
+        return playerTotal;
     }
 
     // Observer pattern
@@ -31,12 +63,6 @@ public class MainMenu implements MainMenuObservable {
         for (MenuViewObserver mvo : observers){
             mvo.update(this);
         }
-    }
-
-    // Getter voor de username
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     // Singleton Pattern

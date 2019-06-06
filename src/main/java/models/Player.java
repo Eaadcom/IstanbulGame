@@ -15,9 +15,10 @@ import java.util.List;
  * @version 4 juni 2019
  */
 public class Player implements PlayerObservable {
+
+    // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
     public String name;
-
 
     public int rubies = 0;
     public int lira = 0;
@@ -35,10 +36,8 @@ public class Player implements PlayerObservable {
     public int maxSpices = 2;
     public int maxFabrics = 2;
 
-
-
-
-    public int assistants = 4;
+    private ArrayList<Assistant> assistants = new ArrayList<>();
+    private FamilyMember familyMember = new FamilyMember();
     public int position = 7;
 
     public boolean greenTile = false;
@@ -48,15 +47,12 @@ public class Player implements PlayerObservable {
 
     public boolean hasMoved = false;
 
-    ////
-
+    // Constructor
     public Player(String name){
         this.name = name;
     }
 
-    ////
-
-
+    // Setters
     public void setLira(int lira) {
         this.lira = lira;
     }
@@ -85,7 +81,7 @@ public class Player implements PlayerObservable {
         this.fabrics = fabrics;
     }
 
-
+    // Observer Pattern
     @Override
     public void register(GameViewObserver observer) {
         observers.add(observer);

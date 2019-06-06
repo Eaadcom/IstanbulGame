@@ -1,8 +1,8 @@
 package observers.cards;
 
-import observers.GameViewObserver;
+import observers.CardViewObserver;
 
 public interface BonusSmallMarketObservable {
-    public void register(GameViewObserver observer);
-    public void notifyAllObservers();
+    void register(CardViewObserver observer);
+    void notifyAllObservers();
 }

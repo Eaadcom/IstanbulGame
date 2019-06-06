@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Assistant implements AssistantObservable {
-    private int location;
 
+    // Variables
+    private int location;
     private List<GameViewObserver> observers = new ArrayList<>();
 
+    // Observer Pattern
     @Override
     public void register(GameViewObserver observer) {
         observers.add(observer);

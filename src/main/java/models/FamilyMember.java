@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyMember implements FamilyMemberObservable {
+
+    // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
 
-
+    // Observer pattern
     @Override
     public void register(GameViewObserver observer) {
         observers.add(observer);

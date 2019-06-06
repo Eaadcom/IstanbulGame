@@ -23,26 +23,21 @@ public class MenuView implements Initializable, MenuViewObserver {
     // variabelen
     private static MenuView menuView;
     private MenuViewController menuViewController;
-    private GameView gv;
 
     // FXML variabelen
     @FXML
-    ChoiceBox cb;
+    ChoiceBox cb = new ChoiceBox();
     @FXML
-    ChoiceBox cb2;
+    ChoiceBox cb2 = new ChoiceBox();
     @FXML
     private VBox rootPane; // aanmaken fx:id
     @FXML
     private Button startGame; // aanmaken fx:id
     @FXML
     private TextField usernamefield; // aanmaken fx:id
+    @FXML
+    private TextField roomName; //aanmaken fx:id
 
-    // Constructor
-    public MenuView(){
-        cb = new ChoiceBox();
-        cb2 = new ChoiceBox();
-        gv = new GameView();
-    }
 
     // Start het login deel van de MenuView
     public void start(Stage stage) throws Exception{
@@ -52,7 +47,6 @@ public class MenuView implements Initializable, MenuViewObserver {
         root.setId("pane");
         Scene scene = new Scene(root, 1920, 1080);
         stage.setFullScreen(true);
-
 
         stage.setScene(scene);
         stage.show();
@@ -81,9 +75,13 @@ public class MenuView implements Initializable, MenuViewObserver {
 
     // Back button
     @FXML
-    private void goBack() throws IOException {
-        VBox pane2 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
-        rootPane.getChildren().setAll(pane2);
+    private void goBack() {
+        try{
+            VBox pane2 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
+            rootPane.getChildren().setAll(pane2);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     // Settings
@@ -116,10 +114,21 @@ public class MenuView implements Initializable, MenuViewObserver {
 
     //Start game
     @FXML
-    private void startGame() throws IOException {
-        Stage stage = (Stage) startGame.getScene().getWindow();
-        stage.close();
-        gv.start();
+    private void startGame() {
+        try{
+            if (roomName.getText() != null && cb2.getSelectionModel().getSelectedItem() != null && cb.getSelectionModel().getSelectedItem() != null){
+                menuViewController = MenuViewController.getInstance();
+                menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem().toString(),
+                        Integer.parseInt(cb.getSelectionModel().getSelectedItem().toString()));
+
+                Stage stage = (Stage) startGame.getScene().getWindow();
+                stage.close();
+                GameView gv = GameView.getInstance();
+                gv.start();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     // Exit game
@@ -132,7 +141,6 @@ public class MenuView implements Initializable, MenuViewObserver {
     @Override
     public void update(MainMenuObservable mmo) {
         mmo.getUsername();
-        System.out.println(mmo.getUsername());
     }
 
     // Singleton Pattern

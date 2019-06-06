@@ -11,35 +11,27 @@ import models.locations.TeaHouse;
 import java.util.Scanner;
 
 public class LocationController{
-    int location;
-    int DiceResult;
+
+    // Variables
+    private static LocationController locationController;
+    private int location;
+    private int DiceResult;
     public int cardNumber1;
     public int cardNumber2;
 
-    public BlackMarket blackMarket;
-    public TeaHouse teaHouse;
+    private BlackMarket blackMarket;
+    private TeaHouse teaHouse;
     public FruitWarehouse fruitWarehouse;
     public Caravansary caravansary = new Caravansary();
-    public CardController cardController;
-    public PlayerController playerController;
-    public models.Player player = new models.Player("Name");
-    public models.Board board = new models.Board();
-
+    private CardController cardController;
+    private PlayerController playerController;
+    private models.Player player = new models.Player("Name");
+    private models.Board board = new models.Board();
 
     Scanner scanner = new Scanner(System.in);
 
-    LocationController(CardController cardController, PlayerController playerController, int location, TeaHouse teaHouse, BlackMarket blackMarket, FruitWarehouse fruitWarehouse, Caravansary caravansary){
-        this.cardController = cardController;
-        this.playerController = playerController;
-        this.location = location;
-        this.teaHouse = teaHouse;
-        this.blackMarket = blackMarket;
-        this.fruitWarehouse = fruitWarehouse;
-
-    }
-
+    // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
     public void onUse() {
-
         switch (location) {
             // BlackMarket Functie
             case 1: {
@@ -48,9 +40,9 @@ public class LocationController{
             // Caravansary Functie
             case 2: {
 
-
             }
-            case 15:
+            // Teahouse Functie
+            case 15: {
                 teaHouse.numberChoice = setNumberChoice();
 
                 teaHouse.diceOne = setDiceValue();
@@ -59,11 +51,9 @@ public class LocationController{
                 DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
 
                 if (teaHouse.numberChoice > DiceResult) {
-
                 }
-
+            }
         }
-
     }
 
 
@@ -158,26 +148,25 @@ public class LocationController{
     }
 
     public void FruitWarehouse() {
-
         playerController.MaxCargoUpdater();
         playerController.MaxGoods("fruit");
-
-
     }
 
     public void FabricWarehouse() {
-
         playerController.MaxCargoUpdater();
         playerController.MaxGoods("fabric");
-
-
     }
 
     public void spiceWarehouse() {
-
         playerController.MaxCargoUpdater();
         playerController.MaxGoods("spice");
+    }
 
-
+    // Singleton Pattern
+    public static LocationController getInstance() {
+        if (locationController == null) {
+            locationController = new LocationController();
+        }
+        return locationController;
     }
 }

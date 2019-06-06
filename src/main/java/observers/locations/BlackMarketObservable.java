@@ -1,8 +1,8 @@
 package observers.locations;
 
-import observers.GameViewObserver;
+import observers.LocationViewObserver;
 
 public interface BlackMarketObservable {
-    public void register(GameViewObserver observer);
-    public void notifyAllObservers();
+    void register(LocationViewObserver observer);
+    void notifyAllObservers();
 }

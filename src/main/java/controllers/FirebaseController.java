@@ -17,6 +17,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseController {
+
+    // Variables
+    private static FirebaseController firebaseController;
     private static Firestore db;
 
     public static void firebaseWriter(LinkedHashMap<String, String> variables){
@@ -98,5 +101,13 @@ public class FirebaseController {
         } finally {
             return db;
         }
+    }
+
+    // Singleton Pattern
+    public static FirebaseController getInstance() {
+        if (firebaseController == null) {
+            firebaseController = new FirebaseController();
+        }
+        return firebaseController;
     }
 }

@@ -2,16 +2,15 @@ package controllers;
 
 import models.Player;
 import views.GameView;
-
-import javax.smartcardio.Card;
 import java.util.Scanner;
 import java.io.IOException;
 
 public class PlayerController {
 
-    GameView game = new GameView();
-
-    Player player = new Player("name");
+    // Variables
+    private static PlayerController playerController;
+    private GameView game = GameView.getInstance();
+    private Player player = new Player("name");
     Scanner scanner = new Scanner(System.in);
 
     ////
@@ -179,4 +178,12 @@ public class PlayerController {
 //    public static void updateVariables(HashMap variables){
 //
 //    }
+
+    // Singleton Pattern
+    public static PlayerController getInstance() {
+        if (playerController == null) {
+            playerController = new PlayerController();
+        }
+        return playerController;
+    }
 }

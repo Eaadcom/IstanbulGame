@@ -1,39 +1,44 @@
 package models.locations;
 
 import observers.GameViewObserver;
+import observers.LocationViewObserver;
 import observers.locations.CaravansaryObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Caravansary implements Location, CaravansaryObservable {
-    private List<GameViewObserver> observers = new ArrayList<>();
 
-    int Location = 2;
-
-    int PlayerCardChoice;
-
+    // Variables
+    private List<LocationViewObserver> observers = new ArrayList<>();
+    private int Location = 2;
+    private int PlayerCardChoice;
     ArrayList usedBonusCards = new ArrayList();
+    private static Caravansary caravansary;
 
-    Caravansary caravansary = new Caravansary();
 
+    // Constructor
     public Caravansary(){
-        this.caravansary = caravansary;
-        this.usedBonusCards = usedBonusCards;
-        this.Location = Location;
-        this.PlayerCardChoice = PlayerCardChoice;
-
     }
 
+    // Observer Pattern
     @Override
-    public void register(GameViewObserver observer) {
+    public void register(LocationViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (GameViewObserver gvo : observers){
+        for (LocationViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    // Singleton Pattern
+    public static Caravansary getInstance() {
+        if (caravansary == null) {
+            caravansary = new Caravansary();
+        }
+        return caravansary;
     }
 }

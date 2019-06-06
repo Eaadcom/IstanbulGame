@@ -4,13 +4,9 @@ import javax.smartcardio.Card;
 
 public class CardController {
 
-    LocationController locationController;
-
-    CardController(LocationController locationController){
-        this.locationController = locationController;
-    }
-
-
+    //Variables
+    private static CardController cardController;
+    LocationController locationController = LocationController.getInstance();
 
     public int getRandomCard(){
         int RandCardInt = (int) (Math.random() * 20 + 1);
@@ -25,5 +21,13 @@ public class CardController {
         }else {
             return false;
         }
+    }
+
+    // Singleton Pattern
+    public static CardController getInstance() {
+        if (cardController == null) {
+            cardController = new CardController();
+        }
+        return cardController;
     }
 }

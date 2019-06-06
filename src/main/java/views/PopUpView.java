@@ -13,18 +13,20 @@ import java.io.IOException;
 
 public class PopUpView {
 
+    // Variables
+    private static PopUpView popUpView;
+
+    // FXML variables
     @FXML
     public Button cac; // aanmaken fx:id
-
     @FXML
     public Button cpp; // aanmaken fx:id
-
     @FXML
     public Button cr; // aanmaken fx:id
-
     @FXML
     public Button closeConfirmMovement; // aanmaken fx:id
 
+    // Function to close the popup
     public void askClose() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/askClose.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
@@ -35,6 +37,7 @@ public class PopUpView {
         stage.show();
     }
 
+    // Function to show the playerprogression popup
     public void playerProgression() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
@@ -45,6 +48,7 @@ public class PopUpView {
         stage.show();
     }
 
+    // Function to show the confirmmovement popup
     public void confirmMovement() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/confirmMovement.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
@@ -54,11 +58,14 @@ public class PopUpView {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
+
+    // Function to close the confirmmovement popup
     public void closeConfirmMovement() throws IOException {
         Stage stage = (Stage) closeConfirmMovement.getScene().getWindow();
         stage.close();
     }
 
+    // Function to show the game rules
     public void rulesButton() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/rules.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
@@ -69,6 +76,7 @@ public class PopUpView {
         stage.show();
     }
 
+    // Function to close the rules popup
     public void closeRulesPage(){
         try {
             Stage stage = (Stage) cr.getScene().getWindow();
@@ -79,17 +87,28 @@ public class PopUpView {
         }
     }
 
+    // ??????
     public void closeAskClose() throws IOException {
         Stage stage = (Stage) cac.getScene().getWindow();
         stage.close();
     }
 
+    // Function to close the player progression window
     public void closePlayerProg() throws IOException {
         Stage stage = (Stage) cpp.getScene().getWindow();
         stage.close();
     }
 
+    // Function to close the game
     public void close(){
         System.exit(0);
+    }
+
+    // Singleton Pattern
+    public static PopUpView getInstance() {
+        if (popUpView == null) {
+            popUpView = new PopUpView();
+        }
+        return popUpView;
     }
 }

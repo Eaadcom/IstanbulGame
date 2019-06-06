@@ -1,5 +1,7 @@
 package models.cards;
 
+import controllers.PlayerController;
+import observers.CardViewObserver;
 import observers.GameViewObserver;
 import observers.cards.BonusGainGoodObservable;
 
@@ -7,18 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BonusGainGood implements BonusGainGoodObservable {
-    private List<GameViewObserver> observers = new ArrayList<>();
 
+    // Variables
+    private List<CardViewObserver> observers = new ArrayList<>();
 
+    // Observer Pattern
     @Override
-    public void register(GameViewObserver observer) {
+    public void register(CardViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (GameViewObserver gvo : observers){
-            gvo.update(this);
+        for (CardViewObserver cvo : observers){
+            cvo.update(this);
         }
     }
 }

@@ -1,43 +1,40 @@
 package views;
 
+import controllers.GameController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import observers.*;
-import observers.cards.*;
-import observers.locations.*;
-import views.tiles.BlackMarketView;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class GameView implements GameViewObserver {
 
-    BlackMarketView blackMarketView = new BlackMarketView();
-    PopUpView popUpView = new PopUpView();
+    // Variables
+    private static GameView gameView;
+    private LocationView locationView = LocationView.getInstance();
+    private PopUpView popUpView = PopUpView.getInstance();
+    private GameController gameController = GameController.getInstance();
 
-    @FXML
-    public Pane playerblue, playerred, playergreen, playeryellow, playerwhite; // aanmaken fx:id
+    // FXML variables
+    @FXML public Pane playerblue, playerred, playergreen, playeryellow, playerwhite; // aanmaken fx:id
+    @FXML public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
+    @FXML public GridPane grid; // aanmaken fx:id
+    @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
 
-    @FXML
-    public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
+    // Starts the game
+    public void start() throws Exception {
+        //checkDifficulty();
 
-    @FXML
-    public GridPane grid; // aanmaken fx:id
-
-
-
-    public void start() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
@@ -55,35 +52,55 @@ public class GameView implements GameViewObserver {
         stage.show();
     }
 
+    // Work in progress
+    public String checkDifficulty() throws Exception{
+        String diff = gameController.getDifficulty();
+
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+
+        FileInputStream bg = new FileInputStream("C:\\Users\\eaadc\\Documents\\GitHub\\SENG_P1\\IstanbulGame\\src\\main\\resources\\img\\tiles\\fabric_warehouse.png");
+        Image image = new Image(bg);
+        BackgroundImage backgroundimage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundimage);
+        System.out.println(tile1);
+        tile1.setBackground(background); // WAAROM IS TILE1 NULL HELP
+        //tile1.relocate(2,1);
+        //tile2.relocate(1,1);
+
+        return "";
+    }
+
+    // Closes popups
     public void askClose() throws IOException {
         popUpView.askClose();
     }
 
+    // Popup to show the progression of an enemy player
     public void playerProgression() throws IOException {
         popUpView.playerProgression();
     }
 
+    // Popup to confirm if the player wants to move to the selected location
     public void confirmMovement() throws IOException {
         popUpView.confirmMovement();
     }
 
     //BLACK MARKET POP UP
     public void blackMarket() throws IOException {
-        blackMarketView.blackMarket();
+        locationView.blackMarket();
+    }
+
+    // Closes the game
+    public void close(){
+        System.exit(0);
+    }
+
     /**
      * This opens the rules so the player can take a look at them.
      * @author Stan
      * @version June 5th, 2019
      * @throws IOException
      */
-    }
-
-    public void close(){
-        System.exit(0);
-    }
-
-
-
     public void rulesPage() throws Exception{
         popUpView.rulesButton();
     }
@@ -100,23 +117,7 @@ public class GameView implements GameViewObserver {
          * @version      4 juni 2019
          */
         public void movePlayer(String player, int column, int row) {
-            switch(player){
-                case("red"):
-                    grid.setColumnIndex(playerred, column);
-                    grid.setRowIndex(playerred, row); break;
-                case("blue"):
-                    grid.setColumnIndex(playerblue, column);
-                    grid.setRowIndex(playerblue, row); break;
-                case("green"):
-                    grid.setColumnIndex(playergreen, column);
-                    grid.setRowIndex(playergreen, row); break;
-                case("yellow"):
-                    grid.setColumnIndex(playeryellow, column);
-                    grid.setRowIndex(playeryellow, row); break;
-                case("white"):
-                    grid.setColumnIndex(playerwhite, column);
-                    grid.setRowIndex(playerwhite, row); break;
-            }
+            move(player, column, row);
     }
 
     /**
@@ -131,7 +132,13 @@ public class GameView implements GameViewObserver {
      * @version            4 juni 2019
      */
     public void moveFamilyMember(String familyMember, int column, int row) {
-        switch(familyMember){
+        move(familyMember, column, row);
+    }
+
+    // Move code used by movePlayer() and moveFamilyMember()
+    // Put here to remove duplicate code
+    private void move(String target, int column, int row){
+        switch(target){
             case("red"):
                 grid.setColumnIndex(famred, column);
                 grid.setRowIndex(famred, row); break;
@@ -181,138 +188,15 @@ public class GameView implements GameViewObserver {
         return 17;
     }
 
-    // Dit is de hel, altijd onderaan deze klasse.
-    // Blijf weg voor behoud van breincel
-    @Override
-    public void update(BonusFourMovesObservable bfmo) {
-
+    // Singleton Pattern
+    public static GameView getInstance() {
+        if (gameView == null) {
+            gameView = new GameView();
+        }
+        return gameView;
     }
 
-    @Override
-    public void update(BonusGainGoodObservable bggo) {
-
-    }
-
-    @Override
-    public void update(BonusGemstoneDealerObservable bgdo) {
-
-    }
-
-    @Override
-    public void update(BonusGetLiraObservable bglo) {
-
-    }
-
-    @Override
-    public void update(BonusPostOfficeObservable bpoo) {
-
-    }
-
-    @Override
-    public void update(BonusReturnAssistantObservable brao) {
-
-    }
-
-    @Override
-    public void update(BonusReturnMemberObservable brmo) {
-
-    }
-
-    @Override
-    public void update(BonusSmallMarketObservable bsmo) {
-
-    }
-
-    @Override
-    public void update(BonusSultansPalaceObservable bspo) {
-
-    }
-
-    @Override
-    public void update(BonusZeroMovesObservable bzmo) {
-
-    }
-
-    @Override
-    public void update(BlackMarketObservable bmo) {
-
-    }
-
-    @Override
-    public void update(CaravansaryObservable co) {
-
-    }
-
-    @Override
-    public void update(FabricWarehouseObservable fwo) {
-
-    }
-
-    @Override
-    public void update(FountainObservable fo) {
-
-    }
-
-    @Override
-    public void update(FruitWarehouseObservable fwo) {
-
-    }
-
-    @Override
-    public void update(GemstoneDealerObservable gdo) {
-
-    }
-
-    @Override
-    public void update(GreatMosqueObservable gmo) {
-
-    }
-
-    @Override
-    public void update(LargeMarketObservable lmo) {
-
-    }
-
-    @Override
-    public void update(PoliceStationObservable pso) {
-
-    }
-
-    @Override
-    public void update(PostOfficeObservable poo) {
-
-    }
-
-    @Override
-    public void update(SmallMarketObservable smo) {
-
-    }
-
-    @Override
-    public void update(SmallMosqueObservable smo) {
-
-    }
-
-    @Override
-    public void update(SpiceWarehouseObservable swo) {
-
-    }
-
-    @Override
-    public void update(SultanPalaceObservable spo) {
-
-    }
-
-    @Override
-    public void update(TeaHouseObservable tho) {
-
-    }
-
-    @Override
-    public void update(WainwrightObservable wo) {
-
-    }
-
+    // Observer Pattern
     @Override
     public void update(AssistantObservable ao) {
 

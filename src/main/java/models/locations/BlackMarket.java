@@ -1,6 +1,7 @@
 package models.locations;
 
 import observers.GameViewObserver;
+import observers.LocationViewObserver;
 import observers.locations.BlackMarketObservable;
 
 import java.util.ArrayList;
@@ -8,30 +9,35 @@ import java.util.List;
 
 public class BlackMarket implements Location, BlackMarketObservable {
 
-   public int Location = 1;
-   public models.Dice diceOne;
-   public models.Dice diceTwo;
+    // Variables
+    private static BlackMarket blackMarket;
+    private List<LocationViewObserver> observers = new ArrayList<>();
+    public int Location = 1;
+    public models.Dice diceOne;
+    public models.Dice diceTwo;
 
-    public BlackMarket(models.Dice diceOne, models.Dice diceTwo) {
-        this.diceOne = diceOne;
-        this.diceTwo = diceTwo;
-
+    // Constructor
+    public BlackMarket() {
     }
 
-    //BlackMarket blackMarket = new BlackMarket();
-
-    private List<GameViewObserver> observers = new ArrayList<>();
-
-
+    // Observer Pattern
     @Override
-    public void register(GameViewObserver observer) {
+    public void register(LocationViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (GameViewObserver gvo : observers){
+        for (LocationViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    // Singleton Pattern
+    public static BlackMarket getInstance() {
+        if (blackMarket == null) {
+            blackMarket = new BlackMarket();
+        }
+        return blackMarket;
     }
 }

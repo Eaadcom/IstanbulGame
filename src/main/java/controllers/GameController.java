@@ -6,18 +6,25 @@
 
 package controllers;
 
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import views.GameView;
-import javafx.fxml.FXML;
-import models.Player;
-import java.io.IOException;
+import models.Game;
 
 public class GameController {
 
-    public PlayerController playerController;
+    // Variables
+    private MenuViewController menuViewController = MenuViewController.getInstance();
+    private static GameController gameController;
+    private Game game = new Game();
 
-    public Player playerOne;
+    // Get data from other controllers
+    public String getDifficulty(){
+        return menuViewController.getGameDifficulty();
+    }
 
-
+    // Singleton Pattern
+    public static GameController getInstance() {
+        if (gameController == null) {
+            gameController = new GameController();
+        }
+        return gameController;
+    }
 }

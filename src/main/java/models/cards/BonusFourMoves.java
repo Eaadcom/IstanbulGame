@@ -1,24 +1,26 @@
 package models.cards;
 
-import observers.GameViewObserver;
+import observers.CardViewObserver;;
 import observers.cards.BonusFourMovesObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BonusFourMoves implements BonusFourMovesObservable {
-    private List<GameViewObserver> observers = new ArrayList<>();
 
+    // Variables
+    private List<CardViewObserver> observers = new ArrayList<>();
 
+    // Observer pattern
     @Override
-    public void register(GameViewObserver observer) {
+    public void register(CardViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (GameViewObserver gvo : observers){
-            gvo.update(this);
+        for (CardViewObserver cvo : observers){
+            cvo.update(this);
         }
     }
 }
