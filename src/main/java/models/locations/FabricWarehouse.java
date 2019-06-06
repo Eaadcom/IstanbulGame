@@ -23,4 +23,5 @@ public class FabricWarehouse implements Location, FabricWarehouseObservable {
         }
     }
 
+
 }

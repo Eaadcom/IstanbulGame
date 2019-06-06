@@ -3,6 +3,8 @@ package controllers;
 import models.Player;
 import views.GameView;
 
+import javax.smartcardio.Card;
+import java.util.Scanner;
 import java.io.IOException;
 
 public class PlayerController {
@@ -10,9 +12,74 @@ public class PlayerController {
     GameView game = new GameView();
 
     Player player = new Player("name");
+    Scanner scanner = new Scanner(System.in);
 
     ////
 
+    public boolean CargoCheckSpices(int toAdd){
+        boolean CargoCheckSpices;
+        MaxCargoUpdater();
+
+        if(player.spices + toAdd < player.maxSpices || player.spices + toAdd == player.maxSpices){
+
+            CargoCheckSpices = true;
+
+        }else{
+            CargoCheckSpices = false;
+        }
+
+        return CargoCheckSpices;
+    }
+    public boolean CargoCheckFruits(int toAdd){
+        boolean CargoCheckFruits;
+        MaxCargoUpdater();
+
+        if(player.fruits + toAdd < player.maxFruits || player.fruits + toAdd == player.maxFruits){
+
+            CargoCheckFruits = true;
+
+        }else{
+            CargoCheckFruits = false;
+        }
+
+        return CargoCheckFruits;
+    }
+
+    public boolean CargoCheckFabrics(int toAdd){
+        boolean CargoCheckFabrics;
+        MaxCargoUpdater();
+
+        if(player.fabrics + toAdd < player.maxFabrics || player.fabrics + toAdd == player.maxFabrics){
+
+            CargoCheckFabrics = true;
+
+        }else{
+            CargoCheckFabrics = false;
+        }
+
+        return CargoCheckFabrics;
+    }
+
+    public boolean CargoCheckJewels(int toAdd){
+        boolean CargoCheckJewels;
+        MaxCargoUpdater();
+
+        if(player.jewels + toAdd < player.maxJewels || player.fabrics + toAdd == player.maxJewels){
+
+            CargoCheckJewels = true;
+
+        }else{
+            CargoCheckJewels = false;
+        }
+
+        return CargoCheckJewels;
+    }
+    public void MaxCargoUpdater(){
+        player.maxSpices = player.maxSpices + player.carUpgrades;
+        player.maxFabrics = player.maxFabrics + player.carUpgrades;
+        player.maxFruits = player.maxFruits + player.carUpgrades;
+        player.maxJewels = player.maxJewels + player.carUpgrades;
+    }
     public void pay(int amount, Player player){
         if (amount > player.lira){}else{
             player.lira -= amount;
@@ -31,23 +98,25 @@ public class PlayerController {
                 // code block
         }}
 
-    public void addGoods(String nameOfGoods){
+    public void MaxGoods(String nameOfGoods){
         switch(nameOfGoods) {
             case "spice":
-                player.spices = (player.carUpgrades);
+                player.spices = player.maxSpices;
                 break;
             case "fruit":
-                player.fruits = (player.carUpgrades);
+                player.fruits = player.maxFruits;
                 break;
             case "jewel":
-                player.jewels = (player.carUpgrades);
+                player.jewels = player.maxJewels;
                 break;
             case "fabric":
-                player.fabrics = (player.carUpgrades);
+                player.fabrics = player.maxFabrics;
                 break;
             default:
                 // code block
-        }}
+        }
+
+    }
 
     public void addMosqueTile(String colorOfTile){
         switch(colorOfTile) {
@@ -80,7 +149,12 @@ public class PlayerController {
             player.hasMoved = true;
             System.out.println("Position updated to: " + player.position);
         }}
+    public int PlayerChoosesCard(){
 
+        int CardChoice = scanner.nextInt();
+
+        return CardChoice;
+    }
 
 //    public void placeAssistant(Location l){
 //        if(assistants > 0){

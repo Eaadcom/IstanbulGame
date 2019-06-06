@@ -4,12 +4,11 @@ import javax.smartcardio.Card;
 
 public class CardController {
 
-    LocationController locationController = new LocationController();
+    LocationController locationController;
 
-    CardController(){
-
+    CardController(LocationController locationController){
+        this.locationController = locationController;
     }
-CardController cardController = new CardController();
 
 
 
@@ -20,7 +19,7 @@ CardController cardController = new CardController();
     }
 
     public boolean CardChecker(){
-        if(locationController.CardNumber1 == locationController.CardNumber2){
+        if(locationController.cardNumber1 == locationController.cardNumber2){
            return true;
 
         }else {
