@@ -8,4 +8,3 @@
       <Button id="smallClose" fx:id="cr" layoutX="454.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeRulesPage" prefHeight="43.0" prefWidth="43.0" stylesheets="@../css/game.css" />
    </children>
 </AnchorPane>
-r
