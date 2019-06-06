@@ -23,15 +23,6 @@ import java.io.IOException;
 
 public class GameView implements GameViewObserver {
 
-    @FXML
-    public Button cac; // aanmaken fx:id
-
-    @FXML
-    public Button cr; // aanmaken fx:id
-
-    @FXML
-    public Button cpp; // aanmaken fx:id
-
     BlackMarketView blackMarketView = new BlackMarketView();
     PopUpView popUpView = new PopUpView();
 
@@ -72,8 +63,8 @@ public class GameView implements GameViewObserver {
         popUpView.playerProgression();
     }
 
-    public void askConfirmMovement() throws IOException {
-        popUpView.askConfirmMovement();
+    public void confirmMovement() throws IOException {
+        popUpView.confirmMovement();
     }
 
     //BLACK MARKET POP UP
@@ -91,24 +82,10 @@ public class GameView implements GameViewObserver {
         System.exit(0);
     }
 
-    public void closeRulesPage(){
-        try {
-            Stage stage = (Stage) cr.getScene().getWindow();
-            stage.close();
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-    }
+
 
     public void rulesPage() throws Exception{
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/rules.fxml"));
-        Parent root2 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        popUpView.rulesButton();
     }
 
     /**

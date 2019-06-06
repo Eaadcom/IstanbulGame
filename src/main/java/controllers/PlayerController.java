@@ -144,7 +144,7 @@ public class PlayerController {
      */
     public void changePosition(int pos) throws IOException {
         if(player.position != pos && !player.hasMoved){
-            game.askConfirmMovement();
+            game.confirmMovement();
             player.position = pos;
             player.hasMoved = true;
             System.out.println("Position updated to: " + player.position);

@@ -46,9 +46,17 @@
 #confirmmovement{
     -fx-background-image: url('../img/confirmmovement.png');
 }
+#yes{
+    -fx-background-image: url('../img/yes.png');
+}
+
+#no{
+    -fx-background-image: url('../img/no.png');
+}
 
 
-#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth{
+
+#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no{
     -fx-effect: dropshadow(three-pass-box, #000, 3, 0.005 , 0, 0);
     -fx-border-width: 0;
     -fx-background-color:transparent;
@@ -57,12 +65,12 @@
 }
 
 
-#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover{
+#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover{
     -fx-scale-y: 1.08;
     -fx-scale-x: 1.08;
     -fx-cursor: hand;
 }
-#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed{
+#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed{
     -fx-scale-y: 0.96;
     -fx-scale-x: 0.96;
     -fx-cursor: hand;

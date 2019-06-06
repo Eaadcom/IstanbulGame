@@ -77,22 +77,22 @@
             <RowConstraints maxHeight="230.0" minHeight="230.0" prefHeight="230.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <Button id="tile1" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" />
-            <Button id="tile5" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="1" />
-            <Button id="tile9" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
-            <Button id="tile13" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="3" />
-            <Button id="tile2" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
-            <Button id="tile6" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button id="tile10" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button id="tile14" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button id="tile3" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
-            <Button id="tile7" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button id="tile11" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button id="tile15" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button id="tile4" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
-            <Button id="tile8" onAction="#blackMarket" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button id="tile12" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button id="tile16" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button id="tile1"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" />
+            <Button id="tile5"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="1" />
+            <Button id="tile9"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
+            <Button id="tile13" onAction="#confirmMovement"  mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="3" />
+            <Button id="tile2"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
+            <Button id="tile6"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button id="tile10" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button id="tile14" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button id="tile3"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
+            <Button id="tile7"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button id="tile11" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button id="tile15" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button id="tile4"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
+            <Button id="tile8"  onAction="#blackMarket" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button id="tile12" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button id="tile16" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Pane id="famred" fx:id="famred" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" top="110.0" />
