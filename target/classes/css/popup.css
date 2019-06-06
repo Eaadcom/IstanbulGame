@@ -43,7 +43,7 @@
 #rerollboth{
     -fx-background-image: url('../img/rerollboth.png');
 }
-#confirmmovement{
+#cm{
     -fx-background-image: url('../img/confirmmovement.png');
 }
 #yes{
