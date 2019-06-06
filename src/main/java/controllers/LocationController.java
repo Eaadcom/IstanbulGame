@@ -50,6 +50,8 @@ public class LocationController{
 
                 DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
 
+                System.out.println("Je hebt " + DiceResult + " gegooit");
+
                 if (teaHouse.numberChoice > DiceResult) {
                 }
             }
@@ -76,10 +78,10 @@ public class LocationController{
 
         DiceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
 
+        System.out.println("Je hebt " + DiceResult + " gegooit");
 
         if (DiceResult < 7) {
             player.jewels = player.jewels;
-                teaHouse.numberChoice = setNumberChoice();
         } else if (DiceResult == 7 || DiceResult == 8) {
             if (playerController.CargoCheckJewels(1) == true) {
                 player.jewels += 1;
@@ -101,7 +103,7 @@ public class LocationController{
                 player.jewels += 1;
             }
         }
-
+        System.out.println("er zijn " + player.jewels + " Jewels toegevoegd!");
 
     }
 
@@ -110,24 +112,23 @@ public class LocationController{
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 player.spices += 1;
-                System.out.println(player.spices);
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
                 player.fruits += 1;
-                System.out.println(player.fruits);
 
             }
         } else if (BlackMarketChoice == 3) {
-            if (playerController.CargoCheckFabrics(1) == true) {
+            if (playerController.CargoCheckFabrics(1)) {
                 player.fabrics += 1;
-                System.out.println("test");
+                System.out.println("er zijn " + player.fabrics + " Fabrics");
 
+            }else{
             }
 
+        } else{
         }
-            System.out.println("test2");
     }
 
     public void CarravansaryCardSelector() {

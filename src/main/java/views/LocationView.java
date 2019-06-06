@@ -45,22 +45,28 @@ public class LocationView implements LocationViewObserver {
     public void fabric() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
+        locationController.BlackMarketChoice(3);
     }
 
     // Stuk code voor +1 fruit
     public void fruit() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
+        locationController.BlackMarketChoice(2);
+
     }
 
     // Stuk code voor +1 spice
     public void spice() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
+        locationController.BlackMarketChoice(1);
+
     }
 
     // Function for rolling the dice
     public void rollDice() throws IOException {
+        locationController.BlackMarketDice();
         //als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)

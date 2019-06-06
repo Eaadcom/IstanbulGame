@@ -139,15 +139,9 @@ public class PlayerController {
      * Deze functie wordt aangeroepen als een speler aan het begin van zijn beurt op een tegel klikt waar hij naartoe wilt lopen.
      * @Author: Stan Hogenboom
      * @Version: 3 juni 2019
-     * @param pos
+     * @param
      */
-    public void changePosition(int pos) throws IOException {
-        if(player.position != pos && !player.hasMoved){
-            game.confirmMovement();
-            player.position = pos;
-            player.hasMoved = true;
-            System.out.println("Position updated to: " + player.position);
-        }}
+
     public int PlayerChoosesCard(){
 
         int CardChoice = scanner.nextInt();
