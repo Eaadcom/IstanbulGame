@@ -85,7 +85,23 @@ public class GameView implements GameViewObserver {
      * @version June 5th, 2019
      * @throws IOException
      */
-    public void rulesPage() throws IOException {
+    }
+
+    public void close(){
+        System.exit(0);
+    }
+
+    public void closeRulesPage(){
+        try {
+            Stage stage = (Stage) cr.getScene().getWindow();
+            stage.close();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void rulesPage() throws Exception{
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/rules.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
@@ -94,18 +110,6 @@ public class GameView implements GameViewObserver {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
-
-    public void closeRulesPage() throws IOException {
-        Stage stage = (Stage) cr.getScene().getWindow();
-        stage.close();
-    }
-
-    public void close(){
-        System.exit(0);
-    }
-
-    }
-
 
     /**
          * This is a method that visualizes the movement of the player.
