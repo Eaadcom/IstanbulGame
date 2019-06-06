@@ -1,5 +1,6 @@
 package application;
 
+import controllers.LocationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +9,6 @@ import javafx.stage.Stage;
 import views.MenuView;
 
 public class Main extends Application {
-
 
     @Override
     public void start(Stage stage) throws Exception{

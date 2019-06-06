@@ -16,17 +16,27 @@ public class LocationController {
     public int CardNumber1;
     public int CardNumber2;
 
-    BlackMarket blackMarket = new BlackMarket();
-    TeaHouse teaHouse = new TeaHouse();
-    FruitWarehouse fruitWarehouse = new FruitWarehouse();
-    Caravansary caravansary = new Caravansary();
-    CardController cardController = new CardController();
-    PlayerController playerController = new PlayerController();
-    models.Player player = new models.Player("Name");
-    models.Board board = new models.Board();
+    public BlackMarket blackMarket;
+    public TeaHouse teaHouse;
+    public FruitWarehouse fruitWarehouse;
+    public Caravansary caravansary = new Caravansary();
+    public CardController cardController;
+    public PlayerController playerController;
+    public models.Player player = new models.Player("Name");
+    public models.Board board = new models.Board();
 
 
     Scanner scanner = new Scanner(System.in);
+
+    LocationController(CardController cardController, PlayerController playerController, int location, TeaHouse teaHouse, BlackMarket blackMarket, FruitWarehouse fruitWarehouse, Caravansary caravansary){
+        this.cardController = cardController;
+        this.playerController = playerController;
+        this.location = location;
+        this.teaHouse = teaHouse;
+        this.blackMarket = blackMarket;
+        this.fruitWarehouse = fruitWarehouse;
+
+    }
 
     public void onUse() {
 
@@ -121,13 +131,14 @@ public class LocationController {
 
             }
         } else if (BlackMarketChoice == 3) {
-            if (playerController.CargoCheckFabrics(1) == true) {
+            //if (playerController.CargoCheckFabrics(1) == true) {
                 player.fabrics += 1;
-                System.out.println(player.fabrics);
+                System.out.println("test");
 
-            }
+            //}
+
         }
-
+            System.out.println("test2");
     }
 
     public void CarravansaryCardSelector() {

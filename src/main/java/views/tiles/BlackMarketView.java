@@ -19,8 +19,7 @@ public class BlackMarketView {
 
     //BlackMarket blackMarket = new BlackMarket();
 
-    LocationController locationController = new LocationController();
-
+    LocationController locationController;
 
 
     @FXML
@@ -37,8 +36,10 @@ public class BlackMarketView {
     }
 
     public void fabric() throws IOException {
+        System.out.println("test4");
         Stage stage = (Stage) fabric.getScene().getWindow();
         stage.close();
+        System.out.println("test3");
 
         //stuk code voor +1 fabric
         locationController.BlackMarketChoice(3);
@@ -55,6 +56,8 @@ public class BlackMarketView {
     public void fruit() throws IOException {
         Stage stage = (Stage) fruit.getScene().getWindow();
         stage.close();
+        System.out.println("test4");
+
 
         //stuk code voor +1 fruit
         locationController.BlackMarketChoice(2);
@@ -70,6 +73,8 @@ public class BlackMarketView {
     public void spice() throws IOException {
         Stage stage = (Stage) spice.getScene().getWindow();
         stage.close();
+        System.out.println("test4");
+
 
         //stuk code voor +1 spice
         locationController.BlackMarketChoice(1);

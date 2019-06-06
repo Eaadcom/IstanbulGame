@@ -15,11 +15,16 @@ import java.io.IOException;
 
 public class GameController {
 
-    PlayerController playerController = new PlayerController();
+    PlayerController playerController;
 
-    Player playerOne = new Player("yes");
+    Player playerOne;
 
     GameView game = new GameView();
+
+    GameController(PlayerController playerController, Player playerOne){
+        this.playerController = playerController;
+        this.playerOne = playerOne;
+    }
 
     public void start() throws IOException {
         game.start();

@@ -4,12 +4,11 @@ import javax.smartcardio.Card;
 
 public class CardController {
 
-    LocationController locationController = new LocationController();
+    LocationController locationController;
 
-    CardController(){
-
+    CardController(LocationController locationController){
+        this.locationController = locationController;
     }
-CardController cardController = new CardController();
 
 
 
