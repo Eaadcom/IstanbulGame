@@ -3,8 +3,6 @@ package views;
 import controllers.MenuViewController;
 import observers.MainMenuObservable;
 import observers.MenuViewObserver;
-
-import controllers.GameController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -23,8 +20,31 @@ import java.util.ResourceBundle;
 
 public class MenuView implements Initializable, MenuViewObserver {
 
-    MenuViewController menuViewController = new MenuViewController();
+    // variabelen
+    private static MenuView menuView;
+    private MenuViewController menuViewController;
+    private GameView gv;
 
+    // FXML variabelen
+    @FXML
+    ChoiceBox cb;
+    @FXML
+    ChoiceBox cb2;
+    @FXML
+    private VBox rootPane; // aanmaken fx:id
+    @FXML
+    private Button startGame; // aanmaken fx:id
+    @FXML
+    private TextField usernamefield; // aanmaken fx:id
+
+    // Constructor
+    public MenuView(){
+        cb = new ChoiceBox();
+        cb2 = new ChoiceBox();
+        gv = new GameView();
+    }
+
+    // Start het login deel van de MenuView
     public void start(Stage stage) throws Exception{
 
         stage.setTitle("Istanbul");
@@ -37,25 +57,8 @@ public class MenuView implements Initializable, MenuViewObserver {
         stage.setScene(scene);
         stage.show();
     }
-    
-    GameController gc = new GameController();
-    GameView gv = new GameView();
 
-    @FXML
-    ChoiceBox cb = new ChoiceBox();
-    @FXML
-    ChoiceBox cb2 = new ChoiceBox();
-
-
-
-
-    @FXML
-    private VBox rootPane; // aanmaken fx:id
-    @FXML
-    private FlowPane flowPane; // aanmaken fx:id
-    @FXML
-    private Button startGame; // aanmaken fx:id
-
+    // Start het game aanmaak deel van de MenuView
     @Override
     public void initialize(URL location, ResourceBundle resources){
         cb.getItems().add("2");
@@ -74,7 +77,6 @@ public class MenuView implements Initializable, MenuViewObserver {
     private void createRoom() throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("../fxml/makingroom.fxml"));
         rootPane.getChildren().setAll(pane);
-
     }
 
     // Back button
@@ -91,28 +93,26 @@ public class MenuView implements Initializable, MenuViewObserver {
         rootPane.getChildren().setAll(pane3);
     }
 
-    //available rooms
+    // Available rooms
     @FXML
     private void availablerooms() throws IOException {
         VBox pane4 = FXMLLoader.load(getClass().getResource("../fxml/availablerooms.fxml"));
         rootPane.getChildren().setAll(pane4);
     }
 
-    // Login
-    @FXML
-    private TextField usernamefield; // aanmaken fx:id
-
+    // Handelt de input van de Login
     @FXML
     private void login() throws IOException {
-        if (usernamefield.getText().equals("") || usernamefield.getText().contains(" ") || usernamefield.getText().contains("`") || usernamefield.getText().contains("+") || usernamefield.getText().contains("-") || usernamefield.getText().contains("]") || usernamefield.getText().contains("=") || usernamefield.getText().contains("/") || usernamefield.getText().contains("\\") || usernamefield.getText().contains("~") || usernamefield.getText().contains("'") || usernamefield.getText().contains(";") || usernamefield.getText().contains(":") || usernamefield.getText().contains(",") || usernamefield.getText().contains(".") || usernamefield.getText().contains("?") || usernamefield.getText().contains("!") || usernamefield.getText().contains("@") || usernamefield.getText().contains("#") || usernamefield.getText().contains("$") || usernamefield.getText().contains("%") || usernamefield.getText().contains("^") || usernamefield.getText().contains("&") || usernamefield.getText().contains("*") || usernamefield.getText().contains("(") || usernamefield.getText().contains(")") || usernamefield.getText().contains("''")|| usernamefield.getText().contains("_") || usernamefield.getText().contains("{") || usernamefield.getText().contains("}") || usernamefield.getText().contains("|") || usernamefield.getText().contains("\""))
-        { // doe niks
-            }else{
+        if (usernamefield.getText().equals("") || usernamefield.getText().contains(" ") || usernamefield.getText().contains("`") || usernamefield.getText().contains("+") || usernamefield.getText().contains("-") || usernamefield.getText().contains("]") || usernamefield.getText().contains("=") || usernamefield.getText().contains("/") || usernamefield.getText().contains("\\") || usernamefield.getText().contains("~") || usernamefield.getText().contains("'") || usernamefield.getText().contains(";") || usernamefield.getText().contains(":") || usernamefield.getText().contains(",") || usernamefield.getText().contains(".") || usernamefield.getText().contains("?") || usernamefield.getText().contains("!") || usernamefield.getText().contains("@") || usernamefield.getText().contains("#") || usernamefield.getText().contains("$") || usernamefield.getText().contains("%") || usernamefield.getText().contains("^") || usernamefield.getText().contains("&") || usernamefield.getText().contains("*") || usernamefield.getText().contains("(") || usernamefield.getText().contains(")") || usernamefield.getText().contains("''") || usernamefield.getText().contains("_") || usernamefield.getText().contains("{") || usernamefield.getText().contains("}") || usernamefield.getText().contains("|") || usernamefield.getText().contains("\"")) { // doe niks
+        } else {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
-
             String username = usernamefield.getText();
-            System.out.println(username);
-    }}
+
+            menuViewController = MenuViewController.getInstance();
+            menuViewController.throwUsername(username);
+        }
+    }
 
     //Start game
     @FXML
@@ -122,20 +122,25 @@ public class MenuView implements Initializable, MenuViewObserver {
         gv.start();
     }
 
-
-
-
-    //Exit game
+    // Exit game
     @FXML
     public void close(){
         System.exit(0);
     }
 
-    //Observer Pattern
+    // Observer Pattern
     @Override
     public void update(MainMenuObservable mmo) {
         mmo.getUsername();
         System.out.println(mmo.getUsername());
+    }
+
+    // Singleton Pattern
+    public static MenuView getInstance() {
+        if (menuView == null) {
+            menuView = new MenuView();
+        }
+        return menuView;
     }
 }
 

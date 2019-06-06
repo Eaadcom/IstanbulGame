@@ -2,19 +2,14 @@ package application;
 
 import controllers.LocationController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import views.MenuView;
 
 public class Main extends Application {
-    LocationController locationController;
 
     @Override
     public void start(Stage stage) throws Exception{
-
-        MenuView menuView = new MenuView();
+        MenuView menuView = MenuView.getInstance();
         menuView.start(stage);
     }
 
