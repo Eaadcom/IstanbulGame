@@ -6,6 +6,7 @@ import models.Dice;
 import models.Player;
 import models.locations.BlackMarket;
 import models.locations.Caravansary;
+import models.locations.FruitWarehouse;
 import models.locations.TeaHouse;
 import java.util.Scanner;
 
@@ -17,8 +18,10 @@ public class LocationController {
 
     BlackMarket blackMarket = new BlackMarket();
     TeaHouse teaHouse = new TeaHouse();
+    FruitWarehouse fruitWarehouse = new FruitWarehouse();
     Caravansary caravansary = new Caravansary();
     CardController cardController = new CardController();
+    PlayerController playerController = new PlayerController();
     models.Player player = new models.Player("Name");
     models.Board board = new models.Board();
 
@@ -34,21 +37,6 @@ public class LocationController {
             }
             // Caravansary Functie
             case 2: {
-
-                CardNumber1 = cardController.getRandomCard() - 1;
-                CardNumber2 = cardController.getRandomCard() - 1;
-
-                Boolean SameCard = cardController.CardChecker();
-
-                while(SameCard = true){
-                    CardNumber2 = cardController.getRandomCard() - 1;
-                }
-
-                board.PlayerCardChoice.add(board.BonusCards.get(CardNumber1));
-                board.PlayerCardChoice.add(board.BonusCards.get(CardNumber2));
-
-
-
 
 
             }
@@ -82,7 +70,7 @@ public class LocationController {
         return DiceValue;
     }
 
-    public void BlackMarketDice(){
+    public void BlackMarketDice() {
         blackMarket.diceOne.DiceValue = setDiceValue();
         blackMarket.diceTwo.DiceValue = setDiceValue();
 
@@ -94,29 +82,93 @@ public class LocationController {
             player.jewels = player.jewels;
 
         } else if (DiceResult == 7 || DiceResult == 8) {
-            player.jewels += 1;
+            if (playerController.CargoCheckJewels(1) == true) {
+                player.jewels += 1;
+            }
 
         } else if (DiceResult == 9 || DiceResult == 10) {
-            player.jewels += 2;
+            if (playerController.CargoCheckJewels(2)) {
+                player.jewels += 2;
+            } else if (playerController.CargoCheckJewels(1)) {
+                player.jewels += 1;
+            }
 
         } else if (DiceResult == 11 || DiceResult == 12) {
-            player.jewels+= 3;
-
+            if (playerController.CargoCheckJewels(3)) {
+                player.jewels += 3;
+            } else if (playerController.CargoCheckJewels(2)) {
+                player.jewels += 2;
+            } else if (playerController.CargoCheckJewels(1)) {
+                player.jewels += 1;
+            }
         }
 
 
     }
-    public void BlackMarketChoice(int BlackMarketChoice){
 
-        if(BlackMarketChoice == 1){
-            player.spices += 1;
-        }else if(BlackMarketChoice == 2){
-            player.fruits += 1;
-        }else if(BlackMarketChoice == 3){
-            player.fabrics += 1;
+    public void BlackMarketChoice(int BlackMarketChoice) {
 
+        if (BlackMarketChoice == 1) {
+            if (playerController.CargoCheckSpices(1) == true) {
+                player.spices += 1;
+                System.out.println(player.spices);
+
+            }
+        } else if (BlackMarketChoice == 2) {
+            if (playerController.CargoCheckFruits(1) == true) {
+                player.fruits += 1;
+                System.out.println(player.fruits);
+
+            }
+        } else if (BlackMarketChoice == 3) {
+            if (playerController.CargoCheckFabrics(1) == true) {
+                player.fabrics += 1;
+                System.out.println(player.fabrics);
+
+            }
         }
 
     }
+
+    public void CarravansaryCardSelector() {
+        // moet nog aff
+        CardNumber1 = cardController.getRandomCard() - 1;
+        CardNumber2 = cardController.getRandomCard() - 1;
+
+        Boolean SameCard = cardController.CardChecker();
+
+        while (SameCard = true) {
+            CardNumber2 = cardController.getRandomCard() - 1;
+        }
+
+        board.PlayerCardChoice.add(board.BonusCards.get(CardNumber1));
+        board.PlayerCardChoice.add(board.BonusCards.get(CardNumber2));
+
+
     }
+
+    public void FruitWarehouse() {
+
+        playerController.MaxCargoUpdater();
+        playerController.MaxGoods("fruit");
+
+
+    }
+
+    public void FabricWarehouse() {
+
+        playerController.MaxCargoUpdater();
+        playerController.MaxGoods("fabric");
+
+
+    }
+
+    public void spiceWarehouse() {
+
+        playerController.MaxCargoUpdater();
+        playerController.MaxGoods("spice");
+
+
+    }
+}
 

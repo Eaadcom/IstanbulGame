@@ -41,7 +41,7 @@ public class BlackMarketView {
         stage.close();
 
         //stuk code voor +1 fabric
-
+        locationController.BlackMarketChoice(3);
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -57,6 +57,7 @@ public class BlackMarketView {
         stage.close();
 
         //stuk code voor +1 fruit
+        locationController.BlackMarketChoice(2);
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage2 = new Stage();
@@ -71,6 +72,7 @@ public class BlackMarketView {
         stage.close();
 
         //stuk code voor +1 spice
+        locationController.BlackMarketChoice(1);
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -86,6 +88,7 @@ public class BlackMarketView {
         stage.close();
 
             //volgens mij moet hier ook nog wat logica
+        locationController.BlackMarketDice();
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket3.fxml"));
         Parent root = (Parent) fxmlloader.load();

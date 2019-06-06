@@ -6,7 +6,7 @@ import observers.locations.TeaHouseObservable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeaHouse implements Location, TeaHouseObservable {
+public class   TeaHouse implements Location, TeaHouseObservable {
     public int numberChoice;
     public int diceOne;
     public int diceTwo;
