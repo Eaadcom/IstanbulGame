@@ -19,7 +19,7 @@ public class CardController {
     }
 
     public boolean CardChecker(){
-        if(locationController.CardNumber1 == locationController.CardNumber2){
+        if(locationController.cardNumber1 == locationController.cardNumber2){
            return true;
 
         }else {

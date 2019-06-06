@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class LocationController{
     int location;
     int DiceResult;
-    public int CardNumber1;
-    public int CardNumber2;
+    public int cardNumber1;
+    public int cardNumber2;
 
     public BlackMarket blackMarket;
     public TeaHouse teaHouse;
@@ -73,13 +73,6 @@ public class LocationController{
         return Choice;
     }
 
-                Boolean SameCard = true;
-
-                while(SameCard = true){
-                    CardNumber2 = cardController.getRandomCard() - 1;
-                    SameCard = cardController.CardChecker();
-
-                }
     public int setDiceValue() {
 
         int DiceValue = (int) (Math.random() * 6 + 1);
@@ -95,14 +88,7 @@ public class LocationController{
 
 
         if (DiceResult < 7) {
-
             player.jewels = player.jewels;
-
-        }
-            case 3:
-
-
-            case 15:
                 teaHouse.numberChoice = setNumberChoice();
         } else if (DiceResult == 7 || DiceResult == 8) {
             if (playerController.CargoCheckJewels(1) == true) {
@@ -156,17 +142,17 @@ public class LocationController{
 
     public void CarravansaryCardSelector() {
         // moet nog aff
-        CardNumber1 = cardController.getRandomCard() - 1;
-        CardNumber2 = cardController.getRandomCard() - 1;
+        cardNumber1 = cardController.getRandomCard() - 1;
+        cardNumber2 = cardController.getRandomCard() - 1;
 
         Boolean SameCard = cardController.CardChecker();
 
         while (SameCard = true) {
-            CardNumber2 = cardController.getRandomCard() - 1;
+            cardNumber2 = cardController.getRandomCard() - 1;
         }
 
-        board.PlayerCardChoice.add(board.BonusCards.get(CardNumber1));
-        board.PlayerCardChoice.add(board.BonusCards.get(CardNumber2));
+        board.PlayerCardChoice.add(board.BonusCards.get(cardNumber1));
+        board.PlayerCardChoice.add(board.BonusCards.get(cardNumber2));
 
 
     }
