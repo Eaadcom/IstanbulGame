@@ -130,11 +130,11 @@ public class LocationController{
 
             }
         } else if (BlackMarketChoice == 3) {
-            //if (playerController.CargoCheckFabrics(1) == true) {
+            if (playerController.CargoCheckFabrics(1) == true) {
                 player.fabrics += 1;
                 System.out.println("test");
 
-            //}
+            }
 
         }
             System.out.println("test2");
