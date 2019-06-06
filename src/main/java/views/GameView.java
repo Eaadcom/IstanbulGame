@@ -3,10 +3,14 @@ package views;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -18,6 +22,15 @@ import views.tiles.BlackMarketView;
 import java.io.IOException;
 
 public class GameView implements GameViewObserver {
+
+    @FXML
+    public Button cac; // aanmaken fx:id
+
+    @FXML
+    public Button cr; // aanmaken fx:id
+
+    @FXML
+    public Button cpp; // aanmaken fx:id
 
     BlackMarketView blackMarketView = new BlackMarketView();
     PopUpView popUpView = new PopUpView();
@@ -66,9 +79,37 @@ public class GameView implements GameViewObserver {
     //BLACK MARKET POP UP
     public void blackMarket() throws IOException {
         blackMarketView.blackMarket();
-
+    /**
+     * This opens the rules so the player can take a look at them.
+     * @author Stan
+     * @version June 5th, 2019
+     * @throws IOException
+     */
     }
 
+    public void close(){
+        System.exit(0);
+    }
+
+    public void closeRulesPage(){
+        try {
+            Stage stage = (Stage) cr.getScene().getWindow();
+            stage.close();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void rulesPage() throws Exception{
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/rules.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
 
     /**
          * This is a method that visualizes the movement of the player.
