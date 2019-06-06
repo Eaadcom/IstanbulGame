@@ -9,17 +9,16 @@ import java.util.List;
 public class BlackMarket implements Location, BlackMarketObservable {
 
    public int Location = 1;
-   public models.Dice diceOne = new models.Dice();
-   public models.Dice diceTwo = new models.Dice();
+   public models.Dice diceOne;
+   public models.Dice diceTwo;
 
-    public BlackMarket() {
-        this.blackMarket = blackMarket;
+    public BlackMarket(models.Dice diceOne, models.Dice diceTwo) {
         this.diceOne = diceOne;
         this.diceTwo = diceTwo;
 
     }
 
-    BlackMarket blackMarket = new BlackMarket();
+    //BlackMarket blackMarket = new BlackMarket();
 
     private List<GameViewObserver> observers = new ArrayList<>();
 

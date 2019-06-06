@@ -6,21 +6,19 @@ import observers.locations.TeaHouseObservable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeaHouse implements Location, TeaHouseObservable {
+public class   TeaHouse implements Location, TeaHouseObservable {
     public int numberChoice;
     public int diceOne;
     public int diceTwo;
     public int Location = 15;
 
-    public TeaHouse(){
-        this.teahouse = teahouse;
+    public TeaHouse(int numberChoice, int diceOne, int diceTwo, int Location){
         this.numberChoice = numberChoice;
         this.diceOne = diceOne;
         this.diceTwo = diceTwo;
         this.Location = Location;
     }
 
-    TeaHouse teahouse = new TeaHouse();
 
     private List<GameViewObserver> observers = new ArrayList<>();
 

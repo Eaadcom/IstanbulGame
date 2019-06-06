@@ -3,30 +3,24 @@ package views;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import observers.*;
 import observers.cards.*;
 import observers.locations.*;
+import views.tiles.BlackMarketView;
 
 import java.io.IOException;
 
 public class GameView implements GameViewObserver {
 
-    @FXML
-    public Button cac; // aanmaken fx:id
-
-    @FXML
-    public Button cpp; // aanmaken fx:id
+    BlackMarketView blackMarketView = new BlackMarketView();
+    PopUpView popUpView = new PopUpView();
 
     @FXML
     public Pane playerblue, playerred, playergreen, playeryellow, playerwhite; // aanmaken fx:id
@@ -58,49 +52,21 @@ public class GameView implements GameViewObserver {
     }
 
     public void askClose() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/askClose.fxml"));
-        Parent root2 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        popUpView.askClose();
     }
 
     public void playerProgression() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
-        Parent root2 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        popUpView.playerProgression();
     }
 
     public void askConfirmMovement() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/confirmMovement.fxml"));
-        Parent root2 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        popUpView.askConfirmMovement();
     }
 
+    //BLACK MARKET POP UP
+    public void blackMarket() throws IOException {
+        blackMarketView.blackMarket();
 
-    public void close(){
-        System.exit(0);
-    }
-
-
-    public void closeAskClose() throws IOException {
-        Stage stage = (Stage) cac.getScene().getWindow();
-        stage.close();
-    }
-
-    public void closePlayerProg() throws IOException {
-        Stage stage = (Stage) cpp.getScene().getWindow();
-        stage.close();
     }
 
 

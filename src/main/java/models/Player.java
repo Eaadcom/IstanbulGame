@@ -30,6 +30,14 @@ public class Player implements PlayerObservable {
     public int jewels = 0;
     public int fabrics = 0;
 
+    public int maxJewels = 2;
+    public int maxFruits = 2;
+    public int maxSpices = 2;
+    public int maxFabrics = 2;
+
+
+
+
     public int assistants = 4;
     public int position = 7;
 
