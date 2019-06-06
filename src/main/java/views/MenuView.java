@@ -39,6 +39,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     }
     
     GameController gc = new GameController();
+    GameView gv = new GameView();
 
     @FXML
     ChoiceBox cb = new ChoiceBox();
@@ -118,7 +119,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     private void startGame() throws IOException {
         Stage stage = (Stage) startGame.getScene().getWindow();
         stage.close();
-        gc.start();
+        gv.start();
     }
 
 
