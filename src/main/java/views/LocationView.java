@@ -33,7 +33,7 @@ public class LocationView implements LocationViewObserver {
 
     // Creates blackmarket popup
     public void blackMarket() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/blackMarket/blackMarket.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -44,14 +44,14 @@ public class LocationView implements LocationViewObserver {
 
     // Code voor +1 fabric
     public void fabric() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
         locationController.BlackMarketChoice(3);
     }
 
     // Stuk code voor +1 fruit
     public void fruit() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
         locationController.BlackMarketChoice(2);
 
@@ -59,7 +59,7 @@ public class LocationView implements LocationViewObserver {
 
     // Stuk code voor +1 spice
     public void spice() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
         locationController.BlackMarketChoice(1);
 
@@ -71,17 +71,17 @@ public class LocationView implements LocationViewObserver {
         //als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket3.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
         rootPane.getChildren().setAll(pane);
 
         //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket4.fxml"));
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
         rootPane.getChildren().setAll(pane2);
     }
 
     // Function to do a reroll
     public void acceptReroll() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket3.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
@@ -92,7 +92,7 @@ public class LocationView implements LocationViewObserver {
 
     // Function to do a reroll
     public void rerollDices() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/blackMarket/blackMarket2.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 

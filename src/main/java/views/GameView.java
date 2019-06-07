@@ -8,7 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import java.util.Random;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -18,6 +18,7 @@ import observers.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GameView implements GameViewObserver, Initializable {
@@ -64,24 +65,80 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
-    // Work in progress
-    public String checkDifficulty() throws Exception{
+    // Builds the map based on difficulty
+    public void checkDifficulty() throws Exception{
         String diff = gameController.getDifficulty();
 
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+        if (diff == "easy") {
+            buildEasyMap();
+        }if (diff == "hard"){
+            buildHardMap();
+        }if (diff == "random"){
+            buildRandomMap();
+        }
+    }
 
-        FileInputStream bg = new FileInputStream("C:\\Users\\Thomas\\Desktop\\Eindproject P4\\IstanbulGame\\src\\main\\resources\\img\\tiles\\fabric_warehouse.png");
-        Image image = new Image(bg);
-        BackgroundImage backgroundimage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background background = new Background(backgroundimage);
-        System.out.println(tile1);
-        //tile1.setBackground(background); // WAAROM IS TILE1 NULL HELP
-        //tile1.relocate(2,1);
-        //tile2.relocate(1,1);
-        grid.setColumnIndex(tile1, 1);
-        grid.setColumnIndex(tile2, 0);
+    public void buildEasyMap(){
+        grid.setColumnIndex(tile1, 2);grid.setRowIndex(tile1, 3);
+        grid.setColumnIndex(tile2, 2);grid.setRowIndex(tile2, 0);
+        grid.setColumnIndex(tile3, 3);grid.setRowIndex(tile3, 1);
+        grid.setColumnIndex(tile4, 0);grid.setRowIndex(tile4, 1);
+        grid.setColumnIndex(tile5, 1);grid.setRowIndex(tile5, 0);
+        grid.setColumnIndex(tile6, 1);grid.setRowIndex(tile6, 2);
+        grid.setColumnIndex(tile7, 2);grid.setRowIndex(tile7, 1);
+        grid.setColumnIndex(tile8, 0);grid.setRowIndex(tile8, 2);
+        grid.setColumnIndex(tile9, 3);grid.setRowIndex(tile9, 2);
+        grid.setColumnIndex(tile10, 1);grid.setRowIndex(tile10, 3);
+        grid.setColumnIndex(tile11, 2);grid.setRowIndex(tile11, 2);
+        grid.setColumnIndex(tile12, 1);grid.setRowIndex(tile12, 1);
+        grid.setColumnIndex(tile13, 0);grid.setRowIndex(tile13, 3);
+        grid.setColumnIndex(tile14, 3);grid.setRowIndex(tile14, 0);
+        grid.setColumnIndex(tile15, 0);grid.setRowIndex(tile15, 0);
+        grid.setColumnIndex(tile16, 3);grid.setRowIndex(tile16, 3);
+    }
 
-        return "";
+    public void buildHardMap(){
+        grid.setColumnIndex(tile1, 3);grid.setRowIndex(tile1, 2);
+        grid.setColumnIndex(tile2, 1);grid.setRowIndex(tile2, 0);
+        grid.setColumnIndex(tile3, 0);grid.setRowIndex(tile3, 2);
+        grid.setColumnIndex(tile4, 3);grid.setRowIndex(tile4, 1);
+        grid.setColumnIndex(tile5, 1);grid.setRowIndex(tile5, 2);
+        grid.setColumnIndex(tile6, 2);grid.setRowIndex(tile6, 1);
+        grid.setColumnIndex(tile7, 1);grid.setRowIndex(tile7, 1);
+        grid.setColumnIndex(tile8, 2);grid.setRowIndex(tile8, 0);
+        grid.setColumnIndex(tile9, 1);grid.setRowIndex(tile9, 3);
+        grid.setColumnIndex(tile10, 0);grid.setRowIndex(tile10, 3);
+        grid.setColumnIndex(tile11, 3);grid.setRowIndex(tile11, 0);
+        grid.setColumnIndex(tile12, 2);grid.setRowIndex(tile12, 2);
+        grid.setColumnIndex(tile13, 3);grid.setRowIndex(tile13, 3);
+        grid.setColumnIndex(tile14, 2);grid.setRowIndex(tile14, 3);
+        grid.setColumnIndex(tile15, 0);grid.setRowIndex(tile15, 1);
+        grid.setColumnIndex(tile16, 0);grid.setRowIndex(tile16, 0);
+    }
+
+    public void buildRandomMap(){
+        int[][] locatiesCoordinaten = new int[][]{
+                {0, 0}, {1, 0}, {2, 0}, {3, 0},
+                {0, 1}, {1, 1}, {2, 1}, {3, 1},
+                {0, 2}, {1, 2}, {2, 2}, {3, 2},
+                {0, 3}, {1, 3}, {2, 3}, {3, 3}};
+        Button[] locatieVariabelen = new Button[]{
+                tile1, tile2, tile3, tile4,
+                tile5, tile6, tile7, tile8,
+                tile9, tile10, tile11, tile12,
+                tile13, tile14, tile15, tile16};
+        ArrayList<Integer> hadLocations = new ArrayList<>();
+
+        Random rand = new Random();
+        for (int i = 0; i < 15; i++){
+            int loc = rand.nextInt(15);
+            if (!hadLocations.contains(loc)){
+                grid.setColumnIndex(locatieVariabelen[i], locatiesCoordinaten[loc][0]);grid.setRowIndex(locatieVariabelen[i], locatiesCoordinaten[loc][1]);
+                hadLocations.add(loc);
+            } else{
+                i = i - 1;
+            }
+        }
     }
 
     // Closes popups
