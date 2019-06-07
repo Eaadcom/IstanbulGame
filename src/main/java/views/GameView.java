@@ -53,12 +53,14 @@ public class GameView implements GameViewObserver, Initializable {
         stage.setHeight(primaryScreenBounds.getHeight());
 
         stage.show();
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             checkDifficulty();
+            TurnManager();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,17 +71,12 @@ public class GameView implements GameViewObserver, Initializable {
         String diff = gameController.getDifficulty();
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-
-        FileInputStream bg = new FileInputStream("C:\\Users\\Thomas\\Desktop\\Eindproject P4\\IstanbulGame\\src\\main\\resources\\img\\tiles\\fabric_warehouse.png");
-        Image image = new Image(bg);
-        BackgroundImage backgroundimage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background background = new Background(backgroundimage);
         System.out.println(tile1);
-        //tile1.setBackground(background); // WAAROM IS TILE1 NULL HELP
         //tile1.relocate(2,1);
         //tile2.relocate(1,1);
         grid.setColumnIndex(tile1, 1);
         grid.setColumnIndex(tile2, 0);
+
 
         return "";
     }
@@ -200,6 +197,19 @@ public class GameView implements GameViewObserver, Initializable {
             default:break;
         }
         return 17;
+    }
+
+
+    //DISABELEN VAN KNOPPEN ALS HET NIET JE BEURJE IS!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void TurnManager() {
+            if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
+                tile1.setDisable(true);  tile2.setDisable(true);  tile3.setDisable(true);  tile4.setDisable(true);
+                tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);
+                tile9.setDisable(true);  tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
+                tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
+                //TURNCOUNTER++
+
+        }
     }
 
     // Singleton Pattern
