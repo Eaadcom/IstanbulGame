@@ -67,7 +67,7 @@ public class LocationView implements LocationViewObserver {
 
     // Function for rolling the dice
     public void rollDice() throws IOException {
-        locationController.BlackMarketDice();
+        //locationController.BlackMarketDice();
         //als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)

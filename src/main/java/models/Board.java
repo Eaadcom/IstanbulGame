@@ -13,7 +13,7 @@ public class Board implements BoardObservable {
     private List<GameViewObserver> observers = new ArrayList<>();
     public ArrayList<BonusCard> BonusCards =  new ArrayList<>();
     public ArrayList<BonusCard> PlayerCardChoice = new ArrayList<>();
-    private ArrayList<Player> Players = new ArrayList<>();
+    public ArrayList<Player> Players = new ArrayList<>();
     private ArrayList<Dice> dice = new ArrayList<>();
     private Governor governor = new Governor();
     private Smuggler smuggler = new Smuggler();

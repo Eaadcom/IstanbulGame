@@ -13,11 +13,19 @@ public class GameController {
     // Variables
     private MenuViewController menuViewController = MenuViewController.getInstance();
     private static GameController gameController;
-    private Game game = new Game();
+    public Game game = new Game();
 
     // Get data from other controllers
-    public String getDifficulty(){
+    public String getDifficulty() {
         return menuViewController.getGameDifficulty();
+    }
+
+    // Get game end
+    public boolean getGameEnd(){
+        return game.getGameEnd();
+    }
+    public int getMyPlayerID(){
+        return game.getMyPlayerID();
     }
 
     // Singleton Pattern
@@ -27,4 +35,23 @@ public class GameController {
         }
         return gameController;
     }
+
+    public int TurnManager() {
+            if (game.TURNCOUNTER % game.getPlayerTotal() == 0 && !game.gameEnd) {
+                return 1;
+            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 1 && !game.gameEnd) {
+                return 2;
+            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 2 && !game.gameEnd) {
+                return 3;
+            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 3 && !game.gameEnd) {
+                return 4;
+            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 4 && !game.gameEnd) {
+                return 5;
+            } else if (game.gameEnd){
+                //
+            }
+        return 6;
+    }
 }
+
+
