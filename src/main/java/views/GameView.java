@@ -3,6 +3,7 @@ package views;
 import controllers.GameController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,8 +17,10 @@ import observers.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class GameView implements GameViewObserver {
+public class GameView implements GameViewObserver, Initializable {
 
     // Variables
     private static GameView gameView;
@@ -33,7 +36,7 @@ public class GameView implements GameViewObserver {
 
     // Starts the game
     public void start() throws Exception {
-        //checkDifficulty();
+
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
@@ -52,20 +55,31 @@ public class GameView implements GameViewObserver {
         stage.show();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            checkDifficulty();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Work in progress
     public String checkDifficulty() throws Exception{
         String diff = gameController.getDifficulty();
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
 
-        FileInputStream bg = new FileInputStream("C:\\Users\\eaadc\\Documents\\GitHub\\SENG_P1\\IstanbulGame\\src\\main\\resources\\img\\tiles\\fabric_warehouse.png");
+        FileInputStream bg = new FileInputStream("C:\\Users\\Thomas\\Desktop\\Eindproject P4\\IstanbulGame\\src\\main\\resources\\img\\tiles\\fabric_warehouse.png");
         Image image = new Image(bg);
         BackgroundImage backgroundimage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundimage);
         System.out.println(tile1);
-        tile1.setBackground(background); // WAAROM IS TILE1 NULL HELP
+        //tile1.setBackground(background); // WAAROM IS TILE1 NULL HELP
         //tile1.relocate(2,1);
         //tile2.relocate(1,1);
+        grid.setColumnIndex(tile1, 1);
+        grid.setColumnIndex(tile2, 0);
 
         return "";
     }
@@ -236,6 +250,8 @@ public class GameView implements GameViewObserver {
     public void update(SmugglerObservable so) {
 
     }
+
+
 }
 
 
