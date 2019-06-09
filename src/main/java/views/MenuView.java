@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class MenuView implements Initializable, MenuViewObserver {
 
@@ -40,17 +41,17 @@ public class MenuView implements Initializable, MenuViewObserver {
 
 
     // Start het login deel van de MenuView
-    public void start(Stage stage) throws Exception{
-
-        stage.setTitle("Istanbul");
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-        root.setId("pane");
-        Scene scene = new Scene(root, 1920, 1080);
-        stage.setFullScreen(true);
-
-        stage.setScene(scene);
-        stage.show();
-    }
+//    public void start(Stage stage) throws Exception{
+//
+//        stage.setTitle("Istanbul");
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+//        root.setId("pane");
+//        Scene scene = new Scene(root, 1920, 1080);
+//        stage.setFullScreen(true);
+//
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     // Start het game aanmaak deel van de MenuView
     @Override
@@ -101,6 +102,9 @@ public class MenuView implements Initializable, MenuViewObserver {
     // Handelt de input van de Login
     @FXML
     private void login() throws IOException {
+        Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^~`*()%!-]");
+        boolean result = regex.matcher(usernamefield.getText()).matches();
+
         if (usernamefield.getText().equals("") || usernamefield.getText().contains(" ") || usernamefield.getText().contains("`") || usernamefield.getText().contains("+") || usernamefield.getText().contains("-") || usernamefield.getText().contains("]") || usernamefield.getText().contains("=") || usernamefield.getText().contains("/") || usernamefield.getText().contains("\\") || usernamefield.getText().contains("~") || usernamefield.getText().contains("'") || usernamefield.getText().contains(";") || usernamefield.getText().contains(":") || usernamefield.getText().contains(",") || usernamefield.getText().contains(".") || usernamefield.getText().contains("?") || usernamefield.getText().contains("!") || usernamefield.getText().contains("@") || usernamefield.getText().contains("#") || usernamefield.getText().contains("$") || usernamefield.getText().contains("%") || usernamefield.getText().contains("^") || usernamefield.getText().contains("&") || usernamefield.getText().contains("*") || usernamefield.getText().contains("(") || usernamefield.getText().contains(")") || usernamefield.getText().contains("''") || usernamefield.getText().contains("_") || usernamefield.getText().contains("{") || usernamefield.getText().contains("}") || usernamefield.getText().contains("|") || usernamefield.getText().contains("\"")) { // doe niks
         } else {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));

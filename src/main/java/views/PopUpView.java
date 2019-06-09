@@ -1,5 +1,6 @@
 package views;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +26,7 @@ public class PopUpView {
     public Button cr; // aanmaken fx:id
     @FXML
     public Button closeConfirmMovement; // aanmaken fx:id
+    public boolean move = true;
 
     // Function to close the popup
     public void askClose() throws IOException {
@@ -49,18 +51,30 @@ public class PopUpView {
     }
 
     // Function to show the confirmmovement popup
-    public void confirmMovement() throws IOException {
+    public boolean confirmMovement() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/confirmMovement.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root2));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        PopUpView controller = fxmlloader.getController();
+        stage.showAndWait();
+        return controller.move;
+    }
+
+    public void move() {
+        this.move = true;
+        closeConfirmMovement();
+    }
+
+    public void dontMove() {
+        this.move = false;
+        closeConfirmMovement();
     }
 
     // Function to close the confirmmovement popup
-    public void closeConfirmMovement() throws IOException {
+    public void closeConfirmMovement() {
         Stage stage = (Stage) closeConfirmMovement.getScene().getWindow();
         stage.close();
     }

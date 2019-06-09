@@ -1,5 +1,7 @@
 package models.locations;
 
+import models.Dice;
+import models.Player;
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
 import observers.locations.BlackMarketObservable;
@@ -13,8 +15,8 @@ public class BlackMarket implements Location, BlackMarketObservable {
     private static BlackMarket blackMarket;
     private List<LocationViewObserver> observers = new ArrayList<>();
     public int Location = 1;
-    public models.Dice diceOne;
-    public models.Dice diceTwo;
+    public models.Dice diceOne = new Dice();
+    public models.Dice diceTwo = new Dice();
 
     // Constructor
     public BlackMarket() {
@@ -33,7 +35,11 @@ public class BlackMarket implements Location, BlackMarketObservable {
         }
     }
 
-    // Singleton Pattern
+    public void onUse(Player player) {
+
+    }
+
+                      // Singleton Pattern
     public static BlackMarket getInstance() {
         if (blackMarket == null) {
             blackMarket = new BlackMarket();

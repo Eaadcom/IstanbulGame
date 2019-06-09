@@ -67,7 +67,7 @@ public class LocationView implements LocationViewObserver {
 
     // Function for rolling the dice
     public void rollDice() throws IOException {
-        //locationController.BlackMarketDice();
+        locationController.BlackMarketDice();
         //als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
@@ -75,8 +75,8 @@ public class LocationView implements LocationViewObserver {
         rootPane.getChildren().setAll(pane);
 
         //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
-        rootPane.getChildren().setAll(pane2);
+//        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
+//        rootPane.getChildren().setAll(pane2);
     }
 
     // Function to do a reroll

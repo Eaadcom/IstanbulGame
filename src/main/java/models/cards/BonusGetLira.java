@@ -14,10 +14,11 @@ import java.util.List;
  */
 
 public class BonusGetLira implements BonusGetLiraObservable {
+
     private List<CardViewObserver> observers = new ArrayList<>();
 
     int lira = 5;
-    int cardSupply = 10;
+    int cardSupply = 2;
 
 
     public BonusGetLira(int lira) {
