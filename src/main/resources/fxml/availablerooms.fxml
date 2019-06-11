@@ -37,7 +37,7 @@
     </HBox>
 
     <HBox alignment="CENTER" spacing="1">
-        <Button id="backButton" prefHeight="140" prefWidth="450" />
+        <Button id="backButton" onAction="#goBack" prefHeight="140" prefWidth="450" />
     </HBox>
 
 </VBox>

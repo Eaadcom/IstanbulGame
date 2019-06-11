@@ -5,11 +5,17 @@ import controllers.MenuViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -39,5 +45,19 @@ public class AvailableRooms implements Initializable {
             joinButtons.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("button"));
             lobbyTable.getItems().addAll(gi);
         }
+    }
+
+    public void goBack() throws IOException {
+        Stage stage2 = (Stage) lobbyTable.getScene().getWindow();
+        stage2.close();
+
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/mainmenu.fxml"));
+        Parent root1 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Istanbul");
+        stage.setScene(new Scene(root1));
+        stage.setMaximized(true);
+        stage.show();
     }
 }

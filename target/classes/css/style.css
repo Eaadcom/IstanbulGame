@@ -44,7 +44,7 @@
     -fx-effect: dropshadow(three-pass-box, black, 20, 0.03 , 0, 0);
 }
 
-#pane{
+#pane, #rootpane{
     -fx-background-image: url('../img/bg_img.png');
     -fx-background-repeat: stretch;
     -fx-background-size: 1920 1080;
