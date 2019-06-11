@@ -162,7 +162,7 @@ playerController = PlayerController.getInstance();
         playerController.MaxGoods("spice");
     }
 
-}
+
 
     public void TeaHouse() {
         teaHouse.numberChoice = setNumberChoice();
