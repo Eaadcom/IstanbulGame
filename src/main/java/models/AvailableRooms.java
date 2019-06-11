@@ -38,7 +38,6 @@ public class AvailableRooms implements Initializable {
         List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
 
         for (QueryDocumentSnapshot document : documents) {
-            System.out.println(document.getData().get("playerTotal"));
             ObservableList<GameInformation> gi = FXCollections.observableArrayList(new GameInformation(document.getId(), document.getData().get("playerTotal")  , "a"));
             roomname.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("roomname"));
             totalPlayers.setCellValueFactory(new PropertyValueFactory<GameInformation, Object>("totalPlayers"));

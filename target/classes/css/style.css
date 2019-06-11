@@ -32,6 +32,9 @@
 #startGame{
     -fx-background-image: url('../img/createtheroom.png');
 }
+#lobby{
+    -fx-background-image: url('../img/lobby.png');
+}
 
 
 #createRoom, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings, #startGame{

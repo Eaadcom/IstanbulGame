@@ -8,7 +8,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.annotations.Nullable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+import models.Firebase;
+import models.GameInformation;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -20,6 +26,7 @@ public class FirebaseController {
     private static FirebaseController firebaseController;
     private MenuViewController menuViewController;
     private Firestore db = firebaseLogin();
+    private Firebase firebase;
 
     // Write to Firebase
     public void firebaseWriter(LinkedHashMap<String, String> variables){
@@ -51,11 +58,23 @@ public class FirebaseController {
             //for (QueryDocumentSnapshot document : documents) {
             //    System.out.println(document.getData());
             //}
+            //saveLobbyInfo(documents);
+
+            firebase = Firebase.getInstance();
+            firebase.setLobbyInfo(documents);
             return documents;
         } catch (Exception e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void saveLobbyInfo(List<QueryDocumentSnapshot> documents){
+        ArrayList<Map> documentsList = new ArrayList<Map>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            documentsList.add(document.getData());
+        }
     }
 
     // Get data from Firebase
