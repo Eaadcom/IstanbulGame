@@ -180,4 +180,12 @@ public class PlayerController {
         }
         return playerController;
     }
+
+    /**
+     * deze functie houdt bij welke bonuskaarten de speler tot zijn beschikking heeft
+     * @AUTHOR Joeri van Duijkeren
+     * @VERSION 8 june 2019
+     */
+
+
 }

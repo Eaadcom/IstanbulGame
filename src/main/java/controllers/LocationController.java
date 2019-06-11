@@ -1,9 +1,6 @@
 package controllers;
 
 
-import java.util.Random;
-import models.Dice;
-import models.Player;
 import models.locations.BlackMarket;
 import models.locations.Caravansary;
 import models.locations.FruitWarehouse;
@@ -15,7 +12,7 @@ public class LocationController{
     // Variables
     private static LocationController locationController;
     private int location;
-    private int DiceResult;
+    private int diceResult;
     public int cardNumber1;
     public int cardNumber2;
 
@@ -48,11 +45,11 @@ public class LocationController{
                 teaHouse.diceOne = setDiceValue();
                 teaHouse.diceTwo = setDiceValue();
 
-                DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
+                diceResult = teaHouse.diceOne + teaHouse.diceTwo;
 
-                System.out.println("Je hebt " + DiceResult + " gegooit");
+                System.out.println("Je hebt " + diceResult + " gegooit");
 
-                if (teaHouse.numberChoice > DiceResult) {
+                if (teaHouse.numberChoice > diceResult) {
                 }
             }
         }
@@ -73,28 +70,30 @@ public class LocationController{
     }
 
     public void BlackMarketDice() {
+        playerController = PlayerController.getInstance();
+blackMarket = BlackMarket.getInstance();
         blackMarket.diceOne.DiceValue = setDiceValue();
         blackMarket.diceTwo.DiceValue = setDiceValue();
 
-        DiceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
+        diceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
+        diceResult = 8;
+        System.out.println("Je hebt " + diceResult + " gegooit");
 
-        System.out.println("Je hebt " + DiceResult + " gegooit");
-
-        if (DiceResult < 7) {
+        if (diceResult < 7) {
             player.jewels = player.jewels;
-        } else if (DiceResult == 7 || DiceResult == 8) {
+        } else if (diceResult == 7 || diceResult == 8) {
             if (playerController.CargoCheckJewels(1) == true) {
                 player.jewels += 1;
             }
 
-        } else if (DiceResult == 9 || DiceResult == 10) {
+        } else if (diceResult == 9 || diceResult == 10) {
             if (playerController.CargoCheckJewels(2)) {
                 player.jewels += 2;
             } else if (playerController.CargoCheckJewels(1)) {
                 player.jewels += 1;
             }
 
-        } else if (DiceResult == 11 || DiceResult == 12) {
+        } else if (diceResult == 11 || diceResult == 12) {
             if (playerController.CargoCheckJewels(3)) {
                 player.jewels += 3;
             } else if (playerController.CargoCheckJewels(2)) {
@@ -108,7 +107,7 @@ public class LocationController{
     }
 
     public void BlackMarketChoice(int BlackMarketChoice) {
-
+playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 player.spices += 1;

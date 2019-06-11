@@ -1,6 +1,7 @@
 package views;
 
 import controllers.GameController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +29,8 @@ public class GameView implements GameViewObserver, Initializable {
     private LocationView locationView = LocationView.getInstance();
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
+
+    private GameController gameController1 = new GameController();
 
     // FXML variables
     @FXML public Pane playerblue, playerred, playergreen, playeryellow, playerwhite; // aanmaken fx:id
@@ -154,8 +157,17 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     // Popup to confirm if the player wants to move to the selected location
-    public void confirmMovement() throws IOException {
-        popUpView.confirmMovement();
+    @FXML
+    public void confirmMovement(ActionEvent event) throws IOException {
+        if(popUpView.confirmMovement()) {
+            Button source = (Button) event.getSource();
+            Integer rowIndex = GridPane.getRowIndex(source);
+            Integer columnIndex = GridPane.getColumnIndex(source);
+            moveTile(playerred, columnIndex, rowIndex);
+            if(source.getId().equals("tile8")) {
+                blackMarket();
+            }
+        }
     }
 
     //BLACK MARKET POP UP
@@ -206,6 +218,11 @@ public class GameView implements GameViewObserver, Initializable {
      */
     public void moveFamilyMember(String familyMember, int column, int row) {
         move(familyMember, column, row);
+    }
+
+    private void moveTile(Pane pane, int columnm, int row) {
+        GridPane.setColumnIndex(pane, columnm);
+        GridPane.setRowIndex(pane, row);
     }
 
     // Move code used by movePlayer() and moveFamilyMember()
@@ -269,7 +286,7 @@ public class GameView implements GameViewObserver, Initializable {
                 tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);
                 tile9.setDisable(true);  tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
                 tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
-                //TURNCOUNTER++
+               // TURNCOUNTER++;
 
         }
     }

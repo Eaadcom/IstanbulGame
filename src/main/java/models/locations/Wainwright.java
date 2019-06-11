@@ -26,6 +26,11 @@ public class Wainwright implements Location, WainwrightObservable {
         }
     }
 
+
+    private void upgradeCar() {
+
+    }
+
     // Singleton Pattern
     public static Wainwright getInstance() {
         if (wainwright == null) {

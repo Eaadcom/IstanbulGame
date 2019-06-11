@@ -14,7 +14,7 @@ public class Game implements GameObservable {
     private int playerTotal = 3;
     public int TURNCOUNTER = playerTotal;
     public static boolean gameEnd = false;
-    public int myPlayerID = 2;
+    public int myPlayerID = 1;
 
     // Setters
     public void setPlayerTotal(int plt){
