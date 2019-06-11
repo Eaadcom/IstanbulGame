@@ -90,7 +90,7 @@
             <Button fx:id="tile11" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Button fx:id="tile15" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Button fx:id="tile4"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
-            <Button fx:id="tile8"  onAction="#blackMarket" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="tile8"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="tile12" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button fx:id="tile16" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Pane id="famred" fx:id="famred" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="3" GridPane.rowIndex="2">

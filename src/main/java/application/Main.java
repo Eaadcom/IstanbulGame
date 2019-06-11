@@ -13,9 +13,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+        stage.setTitle("Istanbul");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        root.setId("pane");
+        Scene scene = new Scene(root, 1920, 1080);
+        stage.setFullScreen(true);
 
-        MenuView menuView = MenuView.getInstance();
-        menuView.start(stage);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {

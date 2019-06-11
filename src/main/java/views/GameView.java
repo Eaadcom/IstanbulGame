@@ -161,8 +161,10 @@ public class GameView implements GameViewObserver, Initializable {
     public void confirmMovement(ActionEvent event) throws IOException {
         if(popUpView.confirmMovement()) {
             Button source = (Button) event.getSource();
-            Integer rowIndex = GridPane.getRowIndex(source);
-            Integer columnIndex = GridPane.getColumnIndex(source);
+            int rowIndex = 0;
+            int columnIndex = 0;
+            rowIndex = GridPane.getRowIndex(source);
+            columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
             if(source.getId().equals("tile8")) {
                 blackMarket();
