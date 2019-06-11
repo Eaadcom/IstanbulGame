@@ -156,7 +156,7 @@
             <Button fx:id="tile4" mnemonicParsing="false" onAction="#fruitWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
             <Button fx:id="tile8" mnemonicParsing="false" onAction="#blackMarket" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="tile12" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="tile16" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Button fx:id="tile16" mnemonicParsing="false" onAction="#gemstoneDealer" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>

@@ -195,6 +195,9 @@ public class GameView implements GameViewObserver, Initializable {
     public void smallMosque() throws IOException {
         locationView.smallMosque();
     }
+    public void gemstoneDealer() throws IOException {
+        locationView.gemstoneDealer();
+    }
 
     // Closes the game
     public void close(){

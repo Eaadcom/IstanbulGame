@@ -40,6 +40,9 @@
 #smallmosque{
     -fx-background-image: url('../img/tiles/popup/smallmosque.png');
 }
+#gemstonedealer{
+    -fx-background-image: url('../img/tiles/popup/gemstonedealer.png');
+}
 
 
 
