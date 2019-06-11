@@ -39,6 +39,7 @@ public class Player implements PlayerObservable {
 
 
     public int assistants = 4;
+    public int maxAssistants = 4;
     public int position = 7;
 
     public boolean greenTile = false;

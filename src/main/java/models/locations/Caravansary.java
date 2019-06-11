@@ -18,7 +18,7 @@ public class Caravansary implements Location, CaravansaryObservable {
 
     public Caravansary(){
         this.usedBonusCards = usedBonusCards;
-        this.Location = Location;
+        this.location = location;
         this.PlayerCardChoice = PlayerCardChoice;
 
     }

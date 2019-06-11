@@ -10,7 +10,7 @@ import models.locations.FruitWarehouse;
 import models.locations.TeaHouse;
 import java.util.Scanner;
 
-public class LocationController{
+public class LocationController {
     int location;
     int DiceResult;
     public int cardNumber1;
@@ -28,35 +28,8 @@ public class LocationController{
     Scanner scanner = new Scanner(System.in);
 
 
-
-
     public void onUse() {
 
-        switch (location) {
-            // BlackMarket Functie
-            case 1: {
-
-            }
-            // Caravansary Functie
-            case 2: {
-
-
-            }
-            case 15:
-                teaHouse.numberChoice = setNumberChoice();
-
-                teaHouse.diceOne = setDiceValue();
-                teaHouse.diceTwo = setDiceValue();
-
-                DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
-
-                System.out.println("Je hebt " + DiceResult + " gegooit");
-
-                if (teaHouse.numberChoice > DiceResult) {
-
-                }
-
-        }
 
     }
 
@@ -126,10 +99,10 @@ public class LocationController{
                 player.fabrics += 1;
                 System.out.println("er zijn " + player.fabrics + " Fabrics");
 
-            }else{
+            } else {
             }
 
-        } else{
+        } else {
         }
     }
 
@@ -172,5 +145,19 @@ public class LocationController{
         playerController.MaxGoods("spice");
 
 
+    }
+
+    public void TeaHouse() {
+        teaHouse.numberChoice = setNumberChoice();
+
+        teaHouse.diceOne = setDiceValue();
+        teaHouse.diceTwo = setDiceValue();
+
+        DiceResult = teaHouse.diceOne + teaHouse.diceTwo;
+
+        System.out.println("Je hebt " + DiceResult + " gegooit");
+
+        if (teaHouse.numberChoice > DiceResult) {
+        }
     }
 }
