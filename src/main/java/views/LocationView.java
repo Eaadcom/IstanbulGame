@@ -28,7 +28,7 @@ public class LocationView implements LocationViewObserver {
     @FXML
     public Button fabric, fruit, spice, dices, sweet; // aanmaken fx:id
     @FXML
-    private AnchorPane rootPane; // aanmaken fx:id
+    private AnchorPane rootPane, rootPane2; // aanmaken fx:id
 
 
     // Creates blackmarket popup
@@ -43,14 +43,14 @@ public class LocationView implements LocationViewObserver {
     }
 
     // Code voor +1 fabric
-    public void fabric() throws IOException {
+    public void blackMarketFabric() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
         locationController.BlackMarketChoice(3);
     }
 
     // Stuk code voor +1 fruit
-    public void fruit() throws IOException {
+    public void blackMarketFruit() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
         locationController.BlackMarketChoice(2);
@@ -58,7 +58,7 @@ public class LocationView implements LocationViewObserver {
     }
 
     // Stuk code voor +1 spice
-    public void spice() throws IOException {
+    public void blackMarketSpice() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
         locationController.BlackMarketChoice(1);
@@ -66,8 +66,8 @@ public class LocationView implements LocationViewObserver {
     }
 
     // Function for rolling the dice
-    public void rollDice() throws IOException {
-        locationController.BlackMarketDice();
+    public void blackMarketRollDice() throws IOException {
+        //locationController.BlackMarketDice();
         //als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
@@ -75,23 +75,23 @@ public class LocationView implements LocationViewObserver {
         rootPane.getChildren().setAll(pane);
 
         //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-//        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
-//        rootPane.getChildren().setAll(pane2);
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
+        rootPane.getChildren().setAll(pane2);
     }
 
     // Function to do a reroll
-    public void acceptReroll() throws IOException {
+    public void acceptRerollBlackMarket() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
     // Function to change one of your dice rolls to 4
-    public void turnToFour() {
+    public void turnToFourBlackMarket() {
         //stuk code om de laagste dice naar een 4 te veranderen
     }
 
     // Function to do a reroll
-    public void rerollDices() throws IOException {
+    public void blackMarketRerollDices() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
     }
@@ -101,6 +101,94 @@ public class LocationView implements LocationViewObserver {
         Stage stage = (Stage) sweet.getScene().getWindow();
         stage.close();
     }
+
+    public void fabricWarehouse() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fabricWarehouse.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void fruitWarehouse() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fruitWarehouse.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void spiceWarehouse() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/spiceWarehouse.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void teaHouse() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/teaHouse/teaHouse.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void teaHouseChooseNumber() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse2.fxml"));
+        rootPane2.getChildren().setAll(pane);
+    }
+
+    public void teaHouseRollDice() throws IOException {
+        // als je geen moskee tegel hebt
+        // OF wel een moskee tegel hebt en een reroll hebt gedaan
+        // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse3.fxml"));
+        rootPane2.getChildren().setAll(pane);
+
+        //als je wel een moskee tegel hebt (HIER MOET LOGICA)
+        /*
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse4.fxml"));
+        rootPane2.getChildren().setAll(pane2);*/
+    }
+    public void greatMosque() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/greatMosque.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void smallMosque() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/smallMosque.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void gemstoneDealer() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/gemstoneDealer.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+
+
+
+
+
+
 
     // Singleton Pattern
     public static LocationView getInstance() {

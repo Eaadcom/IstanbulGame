@@ -11,7 +11,7 @@ public class Game implements GameObservable {
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
     private Board board = new Board();
-    private int playerTotal = 3;
+    private int playerTotal = 2;
     public int TURNCOUNTER = playerTotal;
     public static boolean gameEnd = false;
     public int myPlayerID = 1;

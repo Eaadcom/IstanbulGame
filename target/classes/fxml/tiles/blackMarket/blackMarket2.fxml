@@ -12,7 +12,7 @@
          <children>
             <HBox prefHeight="79.0" prefWidth="315.0">
                <children>
-                  <Button onAction="#rollDice" fx:id="dices" id="dices" mnemonicParsing="false" prefHeight="80.0" prefWidth="142.0">
+                  <Button onAction="#blackMarketRollDice" fx:id="dices" id="dices" mnemonicParsing="false" prefHeight="80.0" prefWidth="142.0">
                      <HBox.margin>
                         <Insets left="90.0" top="5.0" />
                      </HBox.margin>

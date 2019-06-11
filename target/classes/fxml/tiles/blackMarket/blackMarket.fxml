@@ -12,17 +12,17 @@
          <children>
             <HBox prefHeight="79.0" prefWidth="315.0">
                <children>
-                  <Button fx:id="fabric" id="fabric" onAction="#fabric" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
+                  <Button fx:id="fabric" id="fabric" onAction="#blackMarketFabric" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="spice" id="spice" onAction="#spice" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
+                  <Button fx:id="spice" id="spice" onAction="#blackMarketSpice" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
                      <HBox.margin>
                         <Insets left="67.0" top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="fruit" id="fruit" onAction="#fruit" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
+                  <Button fx:id="fruit" id="fruit" onAction="#blackMarketFruit" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
                      <HBox.margin>
                         <Insets left="67.0" top="5.0" />
                      </HBox.margin>
