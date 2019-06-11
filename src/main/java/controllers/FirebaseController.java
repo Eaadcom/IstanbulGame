@@ -3,30 +3,28 @@ package controllers;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
+import com.google.cloud.firestore.EventListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.annotations.Nullable;
 
+import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseController {
 
     // Variables
     private static FirebaseController firebaseController;
-    private static Firestore db;
+    private MenuViewController menuViewController;
+    private Firestore db = firebaseLogin();
 
-    public static void firebaseWriter(LinkedHashMap<String, String> variables){
+    // Write to Firebase
+    public void firebaseWriter(LinkedHashMap<String, String> variables){
 
-        Firestore db = firebaseLogin();
-
-        System.out.println(variables);
+        //System.out.println(variables);
         ArrayList<String> variablesInput = new ArrayList<>(variables.values());
         ArrayList<String> keysInput = new ArrayList<>(variables.keySet());
 
@@ -45,16 +43,32 @@ public class FirebaseController {
         }
     }
 
-//    public static void firebaseReader(Map<String, Object> data){
-//        ArrayList<Object> variables = new ArrayList<>(data.values());
-//        ArrayList<String> keys = new ArrayList<>(data.keySet());
-//
-//        for (int i  = 0; i < variables.size(); i++){
-//            data.get("className").
-//        }
-//    }
+    // gets all game documents and returns them in a list
+    public List fillGameLobby(){
+        try{
+            ApiFuture<QuerySnapshot> future = db.collection("Games").get();
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+            //for (QueryDocumentSnapshot document : documents) {
+            //    System.out.println(document.getData());
+            //}
+            return documents;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    public static void firebaseListener(){
+    // Get data from Firebase
+    public void firebaseReader(Map<String, Object> data){
+        ArrayList<Object> variables = new ArrayList<>(data.values());
+        ArrayList<String> keys = new ArrayList<>(data.keySet());
+
+        for (int i  = 0; i < variables.size(); i++){
+        }
+    }
+
+    // Listen for changes to the Firebase
+    public void firebaseListener(){
 
         Firestore db = firebaseLogin();
 
@@ -85,7 +99,8 @@ public class FirebaseController {
         ListenerThread.start();
     }
 
-    public static Firestore firebaseLogin(){
+    // Outputs firestore token used to do operations with firebase
+    public Firestore firebaseLogin(){
         try{
             InputStream serviceAccount = new FileInputStream("src//main//resources//istanbulgame-c7958-firebase-adminsdk-gn1yc-811acdb682.json");
             GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
@@ -100,6 +115,25 @@ public class FirebaseController {
             System.out.println(e);
         } finally {
             return db;
+        }
+    }
+
+    // Create Online Game
+    public void createOnlineGame(){
+        try{
+            menuViewController = MenuViewController.getInstance();
+            DocumentReference docRef = db.collection("Games").document(menuViewController.getGameName());
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("gameName", menuViewController.getGameName());
+            data.put("playerTotal", menuViewController.getPlayerTotal());
+            data.put("gameDifficulty", menuViewController.getGameDifficulty());
+            data.put("dateCreated", new Date());
+
+            ApiFuture<WriteResult> result = docRef.set(data);
+            System.out.println("Update time : " + result.get().getUpdateTime());
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

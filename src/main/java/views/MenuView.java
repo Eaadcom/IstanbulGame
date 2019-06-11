@@ -1,6 +1,10 @@
 package views;
 
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import controllers.MenuViewController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
 import observers.MainMenuObservable;
 import observers.MenuViewObserver;
 import javafx.fxml.FXML;
@@ -8,14 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MenuView implements Initializable, MenuViewObserver {
@@ -25,19 +27,16 @@ public class MenuView implements Initializable, MenuViewObserver {
     private MenuViewController menuViewController;
 
     // FXML variabelen
-    @FXML
-    ChoiceBox cb = new ChoiceBox();
-    @FXML
-    ChoiceBox cb2 = new ChoiceBox();
-    @FXML
-    private VBox rootPane; // aanmaken fx:id
-    @FXML
-    private Button startGame; // aanmaken fx:id
-    @FXML
-    private TextField usernamefield; // aanmaken fx:id
-    @FXML
-    private TextField roomName; //aanmaken fx:id
-
+    @FXML ChoiceBox cb = new ChoiceBox();
+    @FXML ChoiceBox cb2 = new ChoiceBox();
+    @FXML private VBox rootPane;
+    @FXML private Button startGame;
+    @FXML private TextField usernamefield;
+    @FXML private TextField roomName;
+    @FXML private TableView lobbyTable;
+    @FXML private TableColumn roomname;
+    @FXML private TableColumn totalPlayers;
+    @FXML private TableColumn joinButtons;
 
     // Start het login deel van de MenuView
     public void start(Stage stage) throws Exception{
@@ -52,7 +51,6 @@ public class MenuView implements Initializable, MenuViewObserver {
         stage.show();
     }
 
-    // Start het game aanmaak deel van de MenuView
     @Override
     public void initialize(URL location, ResourceBundle resources){
         cb.getItems().add("2");
@@ -94,6 +92,23 @@ public class MenuView implements Initializable, MenuViewObserver {
     // Available rooms
     @FXML
     private void availablerooms() throws IOException {
+
+        menuViewController = MenuViewController.getInstance();
+        List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
+        //roomname.getColumns().add("test");
+
+        //System.out.println(roomname.getColumns());
+
+        //lobbyTable.getItems().add(0, "test");
+
+        //System.out.println(lobbyTable);
+
+        //for (QueryDocumentSnapshot document : documents) {
+        //    //roomname.setText(document.getId());
+        //    System.out.println(lobbyTable);
+        //    System.out.println(document.getId());
+        //}
+
         VBox pane4 = FXMLLoader.load(getClass().getResource("../fxml/availablerooms.fxml"));
         rootPane.getChildren().setAll(pane4);
     }
@@ -120,6 +135,8 @@ public class MenuView implements Initializable, MenuViewObserver {
                 menuViewController = MenuViewController.getInstance();
                 menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem().toString(),
                         Integer.parseInt(cb.getSelectionModel().getSelectedItem().toString()));
+
+                menuViewController.createOnlineGame();
 
                 Stage stage = (Stage) startGame.getScene().getWindow();
                 stage.close();

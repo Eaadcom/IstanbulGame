@@ -22,11 +22,11 @@
     <HBox alignment="CENTER" prefWidth="1920.0" spacing="10">
         <VBox id="availRoom" alignment="CENTER" prefHeight="550.0" prefWidth="600.0" spacing="80">
          <children>
-            <TableView maxWidth="475.0" prefHeight="340.0" prefWidth="475.0">
+            <TableView fx:id="lobbyTable" maxWidth="475.0" prefHeight="340.0" prefWidth="475.0">
               <columns>
-                <TableColumn editable="false" prefWidth="266.0" resizable="false" sortable="false" text="Roomname" />
-                <TableColumn editable="false" minWidth="0.0" prefWidth="103.0" resizable="false" sortable="false" text="Players" />
-                  <TableColumn editable="false" minWidth="0.0" prefWidth="103.0" resizable="false" sortable="false" text="Join" />
+                <TableColumn fx:id="roomname" editable="false" prefWidth="266.0" resizable="false" sortable="false" text="Roomname" />
+                <TableColumn fx:id="totalPlayers" editable="false" minWidth="0.0" prefWidth="103.0" resizable="false" sortable="false" text="Players" />
+                  <TableColumn fx:id="joinButtons" editable="false" minWidth="0.0" prefWidth="103.0" resizable="false" sortable="false" text="Join" />
               </columns>
                <VBox.margin>
                   <Insets top="55.0" />

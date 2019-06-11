@@ -1,5 +1,6 @@
 package application;
 
+import controllers.FirebaseController;
 import controllers.LocationController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -9,6 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+
         MenuView menuView = MenuView.getInstance();
         menuView.start(stage);
     }
