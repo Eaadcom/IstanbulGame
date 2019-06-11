@@ -5,6 +5,7 @@ import controllers.MenuViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import observers.MainMenuObservable;
 import observers.MenuViewObserver;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.GameInformation;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +27,8 @@ public class MenuView implements Initializable, MenuViewObserver {
     // variabelen
     private static MenuView menuView;
     private MenuViewController menuViewController;
+    GameInformation g = new GameInformation("game", 2 , "a");
+
 
     // FXML variabelen
     @FXML ChoiceBox cb = new ChoiceBox();
@@ -33,10 +37,6 @@ public class MenuView implements Initializable, MenuViewObserver {
     @FXML private Button startGame;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
-    @FXML private TableView lobbyTable;
-    @FXML private TableColumn roomname;
-    @FXML private TableColumn totalPlayers;
-    @FXML private TableColumn joinButtons;
 
     // Start het login deel van de MenuView
     public void start(Stage stage) throws Exception{
@@ -62,6 +62,8 @@ public class MenuView implements Initializable, MenuViewObserver {
         cb2.getItems().add("medium");
         cb2.getItems().add("hard");
         cb2.getItems().add("random");
+
+
     }
 
     // Create Room
@@ -93,8 +95,10 @@ public class MenuView implements Initializable, MenuViewObserver {
     @FXML
     private void availablerooms() throws IOException {
 
-        menuViewController = MenuViewController.getInstance();
-        List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
+        //menuViewController = MenuViewController.getInstance();
+        //List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
+        //GameInformation g = new GameInformation("game", 2);
+        //lobbyTable.getItems().add(g);
         //roomname.getColumns().add("test");
 
         //System.out.println(roomname.getColumns());
