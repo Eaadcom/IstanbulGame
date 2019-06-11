@@ -28,8 +28,6 @@ public class MenuView implements Initializable, MenuViewObserver {
     // variabelen
     private static MenuView menuView;
     private MenuViewController menuViewController;
-    GameInformation g = new GameInformation("game", 2 , "a");
-
 
     // FXML variabelen
     @FXML ChoiceBox cb = new ChoiceBox();
@@ -96,8 +94,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     @FXML
     private void availablerooms() throws IOException {
 
-        //menuViewController = MenuViewController.getInstance();
-        //List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
+
         //GameInformation g = new GameInformation("game", 2);
         //lobbyTable.getItems().add(g);
         //roomname.getColumns().add("test");

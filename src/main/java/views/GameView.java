@@ -183,23 +183,23 @@ public class GameView implements GameViewObserver, Initializable {
             moveTile(playerred, columnIndex, rowIndex);
             if(source.getId().equals("tile1")) {
                 blackMarket();
-            }else if(source.getId().equals("tile2"){
+            }else if(source.getId().equals("tile2")){
                 //code
-            }else if(source.getId().equals("tile3"){
+            }else if(source.getId().equals("tile3")){
                 //code
-            }else if(source.getId().equals("tile4"){
+            }else if(source.getId().equals("tile4")){
                 //code
-            }else if(source.getId().equals("tile5"){
+            }else if(source.getId().equals("tile5")){
                 //code
-            }else if(source.getId().equals("tile6"){
+            }else if(source.getId().equals("tile6")){
                 //code
-            }else if(source.getId().equals("tile7"){
+            }else if(source.getId().equals("tile7")){
                 //code
-            }else if(source.getId().equals("tile8"){
+            }else if(source.getId().equals("tile8")){
                 //code
-            }else if(source.getId().equals("tile9"){
+            }else if(source.getId().equals("tile9")){
                 //code
-            }else if(source.getId().equals("tile10"){
+            }else if(source.getId().equals("tile10")){
                 //code
             }
         }
