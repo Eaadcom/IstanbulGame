@@ -36,8 +36,11 @@ public class Player implements PlayerObservable {
     public int maxSpices = 2;
     public int maxFabrics = 2;
 
-    private ArrayList<Assistant> assistants = new ArrayList<>();
-    private FamilyMember familyMember = new FamilyMember();
+
+
+
+    public int assistants = 4;
+    public int maxAssistants = 4;
     public int position = 7;
 
     public boolean greenTile = false;

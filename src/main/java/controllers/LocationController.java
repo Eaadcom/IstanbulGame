@@ -123,10 +123,10 @@ playerController = PlayerController.getInstance();
                 player.fabrics += 1;
                 System.out.println("er zijn " + player.fabrics + " Fabrics");
 
-            }else{
+            } else {
             }
 
-        } else{
+        } else {
         }
     }
 
@@ -162,6 +162,22 @@ playerController = PlayerController.getInstance();
         playerController.MaxGoods("spice");
     }
 
+}
+
+    public void TeaHouse() {
+        teaHouse.numberChoice = setNumberChoice();
+
+        teaHouse.diceOne = setDiceValue();
+        teaHouse.diceTwo = setDiceValue();
+
+        diceResult = teaHouse.diceOne + teaHouse.diceTwo;
+
+        System.out.println("Je hebt " + diceResult + " gegooit");
+
+        if (teaHouse.numberChoice > diceResult) {
+        }
+    }
+
     // Singleton Pattern
     public static LocationController getInstance() {
         if (locationController == null) {
@@ -169,4 +185,5 @@ playerController = PlayerController.getInstance();
         }
         return locationController;
     }
+
 }

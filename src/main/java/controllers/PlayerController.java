@@ -14,6 +14,16 @@ public class PlayerController {
     Scanner scanner = new Scanner(System.in);
 
     ////
+    public void AssistantHandler(String todo){
+
+        if(todo == "Remove"){
+            player.assistants -= 1;
+        } else if(todo == "Add"){
+            player.assistants += 1;
+        } else if(todo == "Fountain"){
+            player.assistants = player.maxAssistants;
+        }
+    }
 
     public boolean CargoCheckSpices(int toAdd){
         boolean CargoCheckSpices;
