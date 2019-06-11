@@ -109,6 +109,7 @@ public class MenuView implements Initializable, MenuViewObserver {
 
             menuViewController = MenuViewController.getInstance();
             menuViewController.throwUsername(username);
+
         }
     }
 

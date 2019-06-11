@@ -13,6 +13,36 @@
 #blackmarket4{
     -fx-background-image: url('../img/tiles/popup/blackmarket4.png');
 }
+#fabricwarehouse{
+    -fx-background-image: url('../img/tiles/popup/fabricwarehouse.png');
+}
+#fruitwarehouse{
+    -fx-background-image: url('../img/tiles/popup/fruitwarehouse.png');
+}
+#spicewarehouse{
+    -fx-background-image: url('../img/tiles/popup/spicewarehouse.png');
+}
+#teahouse{
+    -fx-background-image: url('../img/tiles/popup/teahouse.png');
+}
+#teahouse2{
+    -fx-background-image: url('../img/tiles/popup/teahouse2.png');
+}
+#teahouse3{
+    -fx-background-image: url('../img/tiles/popup/teahouse3.png');
+}
+#teahouse4{
+    -fx-background-image: url('../img/tiles/popup/teahouse4.png');
+}
+#greatmosque{
+    -fx-background-image: url('../img/tiles/popup/greatmosque.png');
+}
+#smallmosque{
+    -fx-background-image: url('../img/tiles/popup/smallmosque.png');
+}
+
+
+
 
 
 #fabric{
@@ -53,10 +83,29 @@
 #no{
     -fx-background-image: url('../img/no.png');
 }
+#continue2{
+    -fx-background-image: url('../img/continue2.png');
+}
+#neither{
+    -fx-background-image: url('../img/neither.png');
+}
+#bluetile{
+    -fx-background-image: url('../img/bluemosque.png');
+}
+#yellowtile{
+    -fx-background-image: url('../img/yellowmosque.png');
+}
+#greentile{
+    -fx-background-image: url('../img/greenmosque.png');
+}
+#redtile{
+    -fx-background-image: url('../img/redmosque.png');
+}
 
 
 
-#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no{
+
+#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no, #continue2, #neither, #bluetile, #yellowtile, #redtile, #greentile{
     -fx-effect: dropshadow(three-pass-box, #000, 3, 0.005 , 0, 0);
     -fx-border-width: 0;
     -fx-background-color:transparent;
@@ -65,12 +114,12 @@
 }
 
 
-#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover{
+#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover, #continue2:hover, #neither:hover, #bluetile:hover, #yellowtile:hover, #redtile:hover, #greentile:hover{
     -fx-scale-y: 1.08;
     -fx-scale-x: 1.08;
     -fx-cursor: hand;
 }
-#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed{
+#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed, #continue2:pressed, #neither:pressed, #bluetile:pressed, #yellowtile:pressed, #redtile:pressed, #greentile:pressed{
     -fx-scale-y: 0.96;
     -fx-scale-x: 0.96;
     -fx-cursor: hand;

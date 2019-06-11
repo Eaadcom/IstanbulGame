@@ -65,6 +65,21 @@ public class GameView implements GameViewObserver, Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //Familieleden op de juiste plek zetten
+        grid.setColumnIndex(famred, grid.getColumnIndex(tile12));      grid.setRowIndex(famred, grid.getRowIndex(tile12));
+        grid.setColumnIndex(famyellow, grid.getColumnIndex(tile12));   grid.setRowIndex(famyellow, grid.getRowIndex(tile12));
+        grid.setColumnIndex(famgreen, grid.getColumnIndex(tile12));    grid.setRowIndex(famgreen, grid.getRowIndex(tile12));
+        grid.setColumnIndex(famblue, grid.getColumnIndex(tile12));     grid.setRowIndex(famblue, grid.getRowIndex(tile12));
+        grid.setColumnIndex(famwhite, grid.getColumnIndex(tile12));    grid.setRowIndex(famwhite, grid.getRowIndex(tile12));
+
+        //spelers op de juiste plek zetten
+        grid.setColumnIndex(playerred, grid.getColumnIndex(tile7));    grid.setRowIndex(playerred, grid.getRowIndex(tile7));
+        grid.setColumnIndex(playeryellow, grid.getColumnIndex(tile7)); grid.setRowIndex(playeryellow, grid.getRowIndex(tile7));
+        grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
+        grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
+        grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
+
     }
 
     // Builds the map based on difficulty
@@ -158,9 +173,27 @@ public class GameView implements GameViewObserver, Initializable {
         popUpView.confirmMovement();
     }
 
-    //BLACK MARKET POP UP
+    //TILE POP UPS
     public void blackMarket() throws IOException {
         locationView.blackMarket();
+    }
+    public void fabricWarehouse() throws IOException {
+        locationView.fabricWarehouse();
+    }
+    public void fruitWarehouse() throws IOException {
+        locationView.fruitWarehouse();
+    }
+    public void spiceWarehouse() throws IOException {
+        locationView.spiceWarehouse();
+    }
+    public void teaHouse() throws IOException {
+        locationView.teaHouse();
+    }
+    public void greatMosque() throws IOException {
+        locationView.greatMosque();
+    }
+    public void smallMosque() throws IOException {
+        locationView.smallMosque();
     }
 
     // Closes the game

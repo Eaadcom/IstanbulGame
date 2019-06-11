@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -63,7 +64,7 @@
       </VBox>
    </left>
    <center>
-      <GridPane fx:id="grid" hgap="10.0" vgap="10.0">
+      <GridPane fx:id="grid" hgap="8.0" vgap="8.0">
          <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" maxWidth="330.0" minWidth="330.0" prefWidth="330.0" />
             <ColumnConstraints hgrow="ALWAYS" maxWidth="330.0" minWidth="330.0" prefWidth="330.0" />
@@ -77,22 +78,96 @@
             <RowConstraints maxHeight="230.0" minHeight="230.0" prefHeight="230.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <Button fx:id="tile1"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" />
-            <Button fx:id="tile5"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="1" />
-            <Button fx:id="tile9"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
-            <Button fx:id="tile13" onAction="#confirmMovement"  mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="3" />
-            <Button fx:id="tile2"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
-            <Button fx:id="tile6"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="tile10" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="tile14" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="tile3"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
-            <Button fx:id="tile7"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="tile11" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="tile15" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button fx:id="tile4"  onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
-            <Button fx:id="tile8"  onAction="#blackMarket" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="tile12" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="tile16" onAction="#confirmMovement" mnemonicParsing="false" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button fx:id="tile1" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" />
+            <Button fx:id="tile5" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="1" />
+            <Button fx:id="tile9" mnemonicParsing="false" onAction="#teaHouse" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
+            <Button fx:id="tile13" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="3">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </graphic></Button>
+            <Button fx:id="tile2" mnemonicParsing="false" onAction="#fabricWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
+            <Button fx:id="tile6" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="tile10" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="tile14" mnemonicParsing="false" onAction="#smallMosque" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="78.0">
+                           <font>
+                              <Font name="Calisto MT" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="78.0">
+                           <font>
+                              <Font name="Calisto MT" size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </graphic></Button>
+            <Button fx:id="tile3" mnemonicParsing="false" onAction="#spiceWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
+            <Button fx:id="tile7" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="tile11" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="tile15" mnemonicParsing="false" onAction="#greatMosque" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="78.0">
+                           <font>
+                              <Font name="Calisto MT" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="78.0">
+                           <font>
+                              <Font name="Calisto MT" size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </graphic></Button>
+            <Button fx:id="tile4" mnemonicParsing="false" onAction="#fruitWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
+            <Button fx:id="tile8" mnemonicParsing="false" onAction="#blackMarket" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="tile12" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="tile16" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="122.0" AnchorPane.topAnchor="156.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </graphic></Button>
             <Pane id="famred" fx:id="famred" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" top="110.0" />
@@ -178,33 +253,6 @@
                            </VBox.margin></Pane>
                      </children>
                   </VBox>
-                  <VBox layoutX="70.0" prefHeight="237.0" prefWidth="110.0">
-                     <children>
-                        <Text strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="0 / 0" textAlignment="CENTER" wrappingWidth="64.3203125">
-                           <VBox.margin>
-                              <Insets left="20.0" top="35.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                        </Text>
-                        <Text strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="0 / 0" textAlignment="CENTER" wrappingWidth="64.3203125">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="40.0" />
-                           </VBox.margin>
-                        </Text>
-                        <Text strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="64.3203125">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" top="35.0" />
-                           </VBox.margin>
-                        </Text>
-                     </children></VBox>
                   <VBox layoutX="180.0" prefHeight="237.0" prefWidth="70.0">
                      <children>
                         <Pane id="heirloomicon" maxWidth="60.0" prefHeight="60.0" prefWidth="60.0">
@@ -221,33 +269,100 @@
                            </VBox.margin></Pane>
                      </children>
                   </VBox>
-                  <VBox layoutX="250.0" layoutY="1.0" prefHeight="230.0" prefWidth="110.0">
+                  <Pane layoutX="82.0" layoutY="14.0" prefHeight="214.0" prefWidth="88.0">
                      <children>
-                        <Text strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="0 / 0" textAlignment="CENTER" wrappingWidth="64.3203125">
+                        <Pane prefHeight="72.0" prefWidth="86.0">
+                           <children>
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="35.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="1.0" layoutY="71.0" prefHeight="72.0" prefWidth="86.0">
+                           <children>
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="35.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
-                              <Font size="28.0" />
+                              <Font size="34.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets left="15.0" top="35.0" />
-                           </VBox.margin>
                         </Text>
-                        <Text strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="0 / 0" textAlignment="CENTER" wrappingWidth="64.3203125">
+                     </children>
+                  </Pane>
+                  <Pane layoutX="250.0" layoutY="14.0" prefHeight="214.0" prefWidth="88.0">
+                     <children>
+                        <Pane prefHeight="72.0" prefWidth="86.0">
+                           <children>
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="35.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="1.0" layoutY="71.0" prefHeight="72.0" prefWidth="86.0">
+                           <children>
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="35.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
-                              <Font size="28.0" />
+                              <Font size="34.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets left="15.0" top="40.0" />
-                           </VBox.margin>
                         </Text>
-                        <Text strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="64.3203125">
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="15.0" top="35.0" />
-                           </VBox.margin>
-                        </Text>
-                     </children></VBox>
+                     </children>
+                  </Pane>
                </children></Pane>
          </children></VBox>
    </right>
