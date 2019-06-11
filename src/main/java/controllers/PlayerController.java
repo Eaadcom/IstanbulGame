@@ -9,7 +9,6 @@ public class PlayerController {
 
     // Variables
     private static PlayerController playerController;
-    private GameView game = GameView.getInstance();
     private Player player = new Player("name");
     Scanner scanner = new Scanner(System.in);
 

@@ -27,7 +27,7 @@
             </Button>
          </children>
       </HBox>
-      <Text fill="#ffd1ba" layoutX="347.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="JewelsBlackMarket" text="#">
+      <Text id="teaHouse3" fx:id="teaHouse3" fill="#ffd1ba" layoutX="347.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
          <font>
             <Font size="55.0" />
          </font>

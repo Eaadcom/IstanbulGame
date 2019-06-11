@@ -12,16 +12,19 @@ public class LocationController{
     // Variables
     private static LocationController locationController;
     private int location;
-    private int diceResult;
+    public int diceResult;
+    public String diceResultStr;
+    models.Dice diceOne = new models.Dice();
+    models.Dice diceTwo = new models.Dice();
     public int cardNumber1;
     public int cardNumber2;
 
     private BlackMarket blackMarket;
-    private TeaHouse teaHouse;
+    private TeaHouse teaHouse =  new TeaHouse();
     public FruitWarehouse fruitWarehouse;
     public Caravansary caravansary = new Caravansary();
     private CardController cardController;
-    private PlayerController playerController;
+    public PlayerController playerController = new PlayerController();
     private models.Player player = new models.Player("Name");
     private models.Board board = new models.Board();
 
@@ -39,21 +42,9 @@ public class LocationController{
 
             }
             // Teahouse Functie
-            case 15: {
-                teaHouse.numberChoice = setNumberChoice();
 
-                teaHouse.diceOne = setDiceValue();
-                teaHouse.diceTwo = setDiceValue();
-
-                diceResult = teaHouse.diceOne + teaHouse.diceTwo;
-
-                System.out.println("Je hebt " + diceResult + " gegooit");
-
-                if (teaHouse.numberChoice > diceResult) {
-                }
             }
         }
-    }
 
 
     public int setNumberChoice() {
@@ -157,27 +148,36 @@ playerController = PlayerController.getInstance();
         playerController.MaxGoods("fabric");
     }
 
-    public void spiceWarehouse() {
+    public void SpiceWarehouse() {
         playerController.MaxCargoUpdater();
         playerController.MaxGoods("spice");
     }
 
 
 
-    public void TeaHouse() {
-        teaHouse.numberChoice = setNumberChoice();
+    public void TeaHouseNumber(int number) {
+        teaHouse.teahouseNumberChoice = number;
 
-        teaHouse.diceOne = setDiceValue();
-        teaHouse.diceTwo = setDiceValue();
 
-        diceResult = teaHouse.diceOne + teaHouse.diceTwo;
 
-        System.out.println("Je hebt " + diceResult + " gegooit");
-
-        if (teaHouse.numberChoice > diceResult) {
-        }
     }
+    public void TeaHouseResult(){
+        diceOne.DiceValue = setDiceValue();
+        diceTwo.DiceValue = setDiceValue();
+        diceResult = diceOne.DiceValue + diceTwo.DiceValue;
+        diceResultStr = Integer.toString(diceResult);
 
+        if (teaHouse.teahouseNumberChoice > diceResult || teaHouse.teahouseNumberChoice == diceResult) {
+            playerController.addRubysLiras("lira", teaHouse.teahouseNumberChoice);
+            System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
+        } else if(teaHouse.teahouseNumberChoice < diceResult){
+            System.out.println("Helaas! je ligt eronder!");
+
+        }
+
+
+
+    }
     // Singleton Pattern
     public static LocationController getInstance() {
         if (locationController == null) {

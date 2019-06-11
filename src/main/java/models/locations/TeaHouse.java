@@ -11,10 +11,8 @@ public class TeaHouse implements Location, TeaHouseObservable {
 
     // Variables
     private static TeaHouse teaHouse;
-    public int numberChoice;
-    public int diceOne;
-    public int diceTwo;
     public int Location = 15;
+    public int teahouseNumberChoice;
     private List<LocationViewObserver> observers = new ArrayList<>();
 
     // Constructor
@@ -33,6 +31,7 @@ public class TeaHouse implements Location, TeaHouseObservable {
             gvo.update(this);
         }
     }
+
 
     // Singleton Pattern
     public static TeaHouse getInstance() {
