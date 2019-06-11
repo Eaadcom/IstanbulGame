@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import java.util.Random;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,6 +38,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
     @FXML public GridPane grid; // aanmaken fx:id
     @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
+    @FXML public Text gemprice;
 
     // Starts the game
     public void start() throws Exception {
@@ -82,6 +84,7 @@ public class GameView implements GameViewObserver, Initializable {
         grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
         grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
         grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
+
 
     }
 
@@ -181,27 +184,14 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
-            if(source.getId().equals("tile1")) {
-                blackMarket();
-            }else if(source.getId().equals("tile2"){
-                //code
-            }else if(source.getId().equals("tile3"){
-                //code
-            }else if(source.getId().equals("tile4"){
-                //code
-            }else if(source.getId().equals("tile5"){
-                //code
-            }else if(source.getId().equals("tile6"){
-                //code
-            }else if(source.getId().equals("tile7"){
-                //code
-            }else if(source.getId().equals("tile8"){
-                //code
-            }else if(source.getId().equals("tile9"){
-                //code
-            }else if(source.getId().equals("tile10"){
-                //code
-            }
+            if      (source.getId().equals("tile1")) {                   } else if (source.getId().equals("tile2")) { fabricWarehouse();}
+            else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
+            else if (source.getId().equals("tile5")) {                   } else if (source.getId().equals("tile6")) {                   }
+            else if (source.getId().equals("tile7")) {                   } else if (source.getId().equals("tile8")) { blackMarket();    }
+            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){                   }
+            else if (source.getId().equals("tile11")){                   } else if (source.getId().equals("tile12")){                   }
+            else if (source.getId().equals("tile13")){                   } else if (source.getId().equals("tile14")){ smallMosque();    }
+            else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
         }
     }
 
