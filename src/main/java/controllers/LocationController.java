@@ -155,12 +155,13 @@ playerController = PlayerController.getInstance();
 
 
 
-    public void TeaHouseNumber(int number) {
-        teaHouse.teahouseNumberChoice = number;
-
-
-
+    public void setTeaHouseNumber(int number) {
+        teaHouse.setTeahouseNumberChoice(number);
     }
+    public int getTeaHouseNumber() {
+        return teaHouse.getTeahouseNumberChoice();
+    }
+
     public void TeaHouseResult(){
         diceOne.DiceValue = setDiceValue();
         diceTwo.DiceValue = setDiceValue();

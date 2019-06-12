@@ -3,9 +3,11 @@ package views;
 import controllers.LocationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -16,23 +18,27 @@ import models.locations.*;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
+import views.tiles.TeaHouseView;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LocationView implements LocationViewObserver {
+public class LocationView implements LocationViewObserver, Initializable {
 
     // Variables
     private static LocationView locationView;
     private LocationController locationController = LocationController.getInstance();
-    private String teaHouseNumber;
+    private TeaHouseView thv = new TeaHouseView();
 
     // FXML variables
     @FXML
     public Button fabric, fruit, spice, dices, sweet; // aanmaken fx:id
     @FXML
     private AnchorPane rootPane, rootPane2; // aanmaken fx:id
+
     @FXML
-    private Text teaHouse3;
+    private TextField TeaHouseChoice;
 
 
     // Creates blackmarket popup
@@ -150,24 +156,25 @@ public class LocationView implements LocationViewObserver {
     public void teaHouseChooseNumber() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse2.fxml"));
         rootPane2.getChildren().setAll(pane);
-        teaHouseNumber = teaHouse3.getText();
 
-        locationController.TeaHouseNumber(Integer.parseInt(teaHouseNumber));
+        locationController.setTeaHouseNumber(Integer.parseInt(TeaHouseChoice.getText()));
     }
 
     public void teaHouseRollDice() throws IOException {
         // als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse3.fxml"));
-        rootPane2.getChildren().setAll(pane);
-        teaHouse3.setText("test");
+
+        thv.teaHouseResult();}
+
+        //System.out.println((locationController.getTeaHouseNumber()));
+
 
         //als je wel een moskee tegel hebt (HIER MOET LOGICA)
         /*
         AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse4.fxml"));
         rootPane2.getChildren().setAll(pane2);*/
-    }
+
     public void greatMosque() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/greatMosque.fxml"));
         Parent root = fxmlloader.load();
@@ -289,6 +296,11 @@ public class LocationView implements LocationViewObserver {
 
     @Override
     public void update(WainwrightObservable wo) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

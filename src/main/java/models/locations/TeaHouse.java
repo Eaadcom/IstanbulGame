@@ -12,11 +12,25 @@ public class TeaHouse implements Location, TeaHouseObservable {
     // Variables
     private static TeaHouse teaHouse;
     public int Location = 15;
+
+
+
+
     public int teahouseNumberChoice;
     private List<LocationViewObserver> observers = new ArrayList<>();
 
     // Constructor
     public TeaHouse(){
+    }
+
+    //setter
+    public void setTeahouseNumberChoice(int teahouseNumberChoice) {
+        this.teahouseNumberChoice = teahouseNumberChoice;
+    }
+
+    //getter
+    public int getTeahouseNumberChoice() {
+        return teahouseNumberChoice;
     }
 
     // Observer Pattern
