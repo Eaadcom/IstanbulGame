@@ -115,7 +115,33 @@
                </graphic></Button>
             <Button fx:id="tile2" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
             <Button fx:id="tile6" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="tile10" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="tile10" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <graphic>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </graphic></Button>
             <Button fx:id="tile14" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -135,7 +161,33 @@
                </graphic></Button>
             <Button fx:id="tile3" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
             <Button fx:id="tile7" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="tile11" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="tile11" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <graphic>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </graphic></Button>
             <Button fx:id="tile15" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">

@@ -184,11 +184,11 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
-            if      (source.getId().equals("tile1")) {                   } else if (source.getId().equals("tile2")) { fabricWarehouse();}
+            if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
             else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
             else if (source.getId().equals("tile5")) {                   } else if (source.getId().equals("tile6")) {                   }
             else if (source.getId().equals("tile7")) {                   } else if (source.getId().equals("tile8")) { blackMarket();    }
-            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){                   }
+            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){ largeMarket();    }
             else if (source.getId().equals("tile11")){                   } else if (source.getId().equals("tile12")){                   }
             else if (source.getId().equals("tile13")){                   } else if (source.getId().equals("tile14")){ smallMosque();    }
             else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
@@ -219,6 +219,12 @@ public class GameView implements GameViewObserver, Initializable {
     }
     public void gemstoneDealer() throws IOException {
         locationView.gemstoneDealer();
+    }
+    public void wainwright() throws IOException {
+        locationView.wainwright();
+    }
+    public void largeMarket() throws IOException {
+        locationView.largeMarket();
     }
 
     // Closes the game
