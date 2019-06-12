@@ -44,4 +44,12 @@ public class Game implements GameObservable {
             gvo.update(this);
         }
     }
+
+    public List<Player> getPlayers() {
+        return board.getPlayers();
+    }
+
+    public Player getCurrentPlayerTurn() {
+        return board.getCurrentPlayerTurn();
+    }
 }

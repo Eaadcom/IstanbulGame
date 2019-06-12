@@ -141,8 +141,8 @@ playerController = PlayerController.getInstance();
             cardNumber2 = cardController.getRandomCard() - 1;
         }
 
-        board.PlayerCardChoice.add(board.BonusCards.get(cardNumber1));
-        board.PlayerCardChoice.add(board.BonusCards.get(cardNumber2));
+        board.playerBonusCards.add(board.bonusCards.get(cardNumber1));
+        board.playerBonusCards.add(board.bonusCards.get(cardNumber2));
 
 
     }

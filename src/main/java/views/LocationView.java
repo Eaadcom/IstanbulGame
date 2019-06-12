@@ -98,7 +98,7 @@ public class LocationView implements LocationViewObserver {
 
     // Function to close the popup
     public void close(){
-        Stage stage = (Stage) sweet.getScene().getWindow();
+        Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
     }
 

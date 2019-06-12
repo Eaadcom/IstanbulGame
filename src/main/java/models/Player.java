@@ -2,6 +2,7 @@ package models;
 
 import javafx.scene.Node;
 import controllers.GameController;
+import models.cards.BonusCard;
 import observers.GameViewObserver;
 import observers.PlayerObservable;
 
@@ -24,7 +25,7 @@ public class Player implements PlayerObservable {
     public int lira = 0;
     public int carUpgrades = 2;
     public String teamColor;
-    public ArrayList PlayerBonusCards = new ArrayList();
+    public List<BonusCard> playerBonusCards = new ArrayList<>();
 
     public int spices = 0;
     public int fruits = 0;
@@ -95,5 +96,9 @@ public class Player implements PlayerObservable {
         for (GameViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    public List<BonusCard> getBonusKaartenInBezit() {
+        return playerBonusCards;
     }
 }

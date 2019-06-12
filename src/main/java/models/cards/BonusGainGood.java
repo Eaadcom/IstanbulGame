@@ -8,7 +8,7 @@ import observers.cards.BonusGainGoodObservable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusGainGood implements BonusGainGoodObservable {
+public class BonusGainGood implements BonusCard, BonusGainGoodObservable {
 
     // Variables
     private List<CardViewObserver> observers = new ArrayList<>();
@@ -24,5 +24,10 @@ public class BonusGainGood implements BonusGainGoodObservable {
         for (CardViewObserver cvo : observers){
             cvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse() {
+
     }
 }
