@@ -11,7 +11,7 @@
       <Pane layoutX="100.0" layoutY="486.0" prefHeight="124.0" prefWidth="315.0">
          <children>
             <Button id="continue2" fx:id="continue2" layoutX="71.0" layoutY="62.0" mnemonicParsing="false" onAction="#teaHouseChooseNumber" prefHeight="30.0" prefWidth="173.0" />
-            <TextField alignment="CENTER" layoutX="129.0" layoutY="-1.0" prefHeight="30.0" prefWidth="57.0">
+            <TextField fx:id="TeaHouseChoice" alignment="CENTER" layoutX="129.0" layoutY="-1.0" prefHeight="30.0" prefWidth="57.0">
                <font>
                   <Font size="15.0" />
                </font>
