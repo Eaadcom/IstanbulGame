@@ -11,16 +11,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import java.util.Random;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import observers.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import views.tiles.*;
 
 public class GameView implements GameViewObserver, Initializable {
 
@@ -30,6 +31,16 @@ public class GameView implements GameViewObserver, Initializable {
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
 
+    // Locatie views
+    private SmallMarketView smallMarketView = SmallMarketView.getInstance();
+    private LargeMarketView largeMarketView = LargeMarketView.getInstance();
+    private GemstoneDealerView gemstoneDealerView = GemstoneDealerView.getInstance();
+    private SmallMosqueView smallMosqueView = SmallMosqueView.getInstance();
+    private GreatMosqueView greatMosqueView = GreatMosqueView.getInstance();
+    private SultansPalaceView sultansPalaceView = SultansPalaceView.getInstance();
+    private PostOfficeView postOfficeView = PostOfficeView.getInstance();
+
+    // Waarom wordt hier een tweede gamecontroller aangemaakt ???
     private GameController gameController1 = new GameController();
 
     // FXML variables
@@ -37,6 +48,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
     @FXML public GridPane grid; // aanmaken fx:id
     @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
+    @FXML public Text gemprice;
 
     // Starts the game
     public void start() throws Exception {
@@ -82,6 +94,7 @@ public class GameView implements GameViewObserver, Initializable {
         grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
         grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
         grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
+
 
     }
 
@@ -171,6 +184,11 @@ public class GameView implements GameViewObserver, Initializable {
         popUpView.playerProgression();
     }
 
+    // Popup to show the progression of an enemy player
+    public void endTurn() throws IOException {
+        popUpView.endTurn();
+    }
+
     // Popup to confirm if the player wants to move to the selected location
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
@@ -181,9 +199,14 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
-            if(source.getId().equals("tile8")) {
-                blackMarket();
-            }
+            if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
+            else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
+            else if (source.getId().equals("tile5")) { postOffice();     } else if (source.getId().equals("tile6")) {                   }
+            else if (source.getId().equals("tile7")) { fountain();       } else if (source.getId().equals("tile8")) { blackMarket();    }
+            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){ largeMarket();    }
+            else if (source.getId().equals("tile11")){ smallMarket();    } else if (source.getId().equals("tile12")){ policeStation();  }
+            else if (source.getId().equals("tile13")){ sultansPalace();  } else if (source.getId().equals("tile14")){ smallMosque();    }
+            else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
         }
     }
 
@@ -203,14 +226,36 @@ public class GameView implements GameViewObserver, Initializable {
     public void teaHouse() throws IOException {
         locationView.teaHouse();
     }
+    public void wainwright() throws IOException {
+        locationView.wainwright();
+    }
+    public void policeStation() throws IOException {
+        locationView.policeStation();
+    }
+    public void fountain() throws IOException {
+        locationView.fountain();
+    }
+
     public void greatMosque() throws IOException {
-        locationView.greatMosque();
+        greatMosqueView.greatMosque();
     }
     public void smallMosque() throws IOException {
-        locationView.smallMosque();
+        smallMosqueView.smallMosque();
     }
     public void gemstoneDealer() throws IOException {
-        locationView.gemstoneDealer();
+        gemstoneDealerView.gemstoneDealer();
+    }
+    public void largeMarket() throws IOException {
+        largeMarketView.largeMarket();
+    }
+    public void smallMarket() throws IOException {
+        smallMarketView.smallMarket();
+    }
+    public void sultansPalace() throws IOException {
+        sultansPalaceView.sultansPalace();
+    }
+    public void postOffice() throws IOException {
+        postOfficeView.postOffice();
     }
 
     // Closes the game

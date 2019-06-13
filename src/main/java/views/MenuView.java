@@ -28,7 +28,6 @@ public class MenuView implements Initializable, MenuViewObserver {
     // variabelen
     private static MenuView menuView;
     private MenuViewController menuViewController;
-    GameInformation g = new GameInformation("game", 2 , "a");
 
 
     // FXML variabelen

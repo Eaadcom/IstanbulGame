@@ -17,14 +17,14 @@ public class AvailableRooms implements Initializable {
     @FXML private TableView<GameInformation> lobbyTable;
     @FXML private TableColumn<GameInformation,String> roomname;
     @FXML private TableColumn<GameInformation,Integer> totalPlayers;
-    @FXML private TableColumn<GameInformation,String> joinButtons;
+    @FXML TableColumn joinButtons = new TableColumn("Action");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<GameInformation> gi = FXCollections.observableArrayList(new GameInformation("game", 2 , "a"));
+        ObservableList<GameInformation> gi = FXCollections.observableArrayList(new GameInformation("game", 2));
         roomname.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("roomname"));
         totalPlayers.setCellValueFactory(new PropertyValueFactory<GameInformation, Integer>("totalPlayers"));
-        joinButtons.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("joinButtons"));
+        joinButtons.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("button"));
         lobbyTable.getItems().addAll(gi);
     }
 }

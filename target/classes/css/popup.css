@@ -43,6 +43,36 @@
 #gemstonedealer{
     -fx-background-image: url('../img/tiles/popup/gemstonedealer.png');
 }
+#wainwright{
+    -fx-background-image: url('../img/tiles/popup/wainwright.png');
+}
+#largemarket{
+    -fx-background-image: url('../img/tiles/popup/largemarket.png');
+}
+#smallmarket{
+    -fx-background-image: url('../img/tiles/popup/smallmarket.png');
+}
+#policestation{
+    -fx-background-image: url('../img/tiles/popup/policestation.png');
+}
+#fountain{
+    -fx-background-image: url('../img/tiles/popup/fountain.png');
+}
+#sultanspalace{
+    -fx-background-image: url('../img/tiles/popup/sultanspalace.png');
+}
+#postoffice{
+    -fx-background-image: url('../img/tiles/popup/postoffice.png');
+}
+#endturn{
+    -fx-background-image: url('../img/endturn.png');
+}
+#youwon{
+    -fx-background-image: url('../img/youwon.png');
+}
+#youlost{
+    -fx-background-image: url('../img/youlost.png');
+}
 
 
 
@@ -104,11 +134,26 @@
 #redtile{
     -fx-background-image: url('../img/redmosque.png');
 }
+#sell{
+    -fx-background-image: url('../img/sell.png');
+}
+#none{
+    -fx-background-image: url('../img/none.png');
+}
+#info{
+    -fx-background-image: url('../img/info.png');
+}
+#tilenumbers{
+    -fx-background-image: url('../img/tilenumbers.png');
+}
+#closetn{
+    -fx-background-image: url('../img/close2.png');
+}
 
 
 
 
-#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no, #continue2, #neither, #bluetile, #yellowtile, #redtile, #greentile{
+#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no, #continue2, #neither, #bluetile, #yellowtile, #redtile, #greentile, #sell, #none, #info, #closetn{
     -fx-effect: dropshadow(three-pass-box, #000, 3, 0.005 , 0, 0);
     -fx-border-width: 0;
     -fx-background-color:transparent;
@@ -117,12 +162,12 @@
 }
 
 
-#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover, #continue2:hover, #neither:hover, #bluetile:hover, #yellowtile:hover, #redtile:hover, #greentile:hover{
+#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover, #continue2:hover, #neither:hover, #bluetile:hover, #yellowtile:hover, #redtile:hover, #greentile:hover, #sell:hover, #none:hover, #info#hover, #closetn:hover{
     -fx-scale-y: 1.08;
     -fx-scale-x: 1.08;
     -fx-cursor: hand;
 }
-#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed, #continue2:pressed, #neither:pressed, #bluetile:pressed, #yellowtile:pressed, #redtile:pressed, #greentile:pressed{
+#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed, #continue2:pressed, #neither:pressed, #bluetile:pressed, #yellowtile:pressed, #redtile:pressed, #greentile:pressed, #sell:pressed, #none:pressed, #info:pressed, #closetn:pressed{
     -fx-scale-y: 0.96;
     -fx-scale-x: 0.96;
     -fx-cursor: hand;

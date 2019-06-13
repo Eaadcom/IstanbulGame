@@ -26,7 +26,7 @@ public class LocationView implements LocationViewObserver {
 
     // FXML variables
     @FXML
-    public Button fabric, fruit, spice, dices, sweet; // aanmaken fx:id
+    public Button fabric, fruit, spice, dices, sweet, closetn; // aanmaken fx:id
     @FXML
     private AnchorPane rootPane, rootPane2; // aanmaken fx:id
 
@@ -155,26 +155,8 @@ public class LocationView implements LocationViewObserver {
         AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse4.fxml"));
         rootPane2.getChildren().setAll(pane2);*/
     }
-    public void greatMosque() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/greatMosque.fxml"));
-        Parent root = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-    }
-    public void smallMosque() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/smallMosque.fxml"));
-        Parent root = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-    }
-    public void gemstoneDealer() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/gemstoneDealer.fxml"));
+    public void wainwright() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/wainwright.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -183,6 +165,40 @@ public class LocationView implements LocationViewObserver {
         stage.show();
     }
 
+    public void policeStation() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/policeStation.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void policeStationTileNumbers() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tileNumbers.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+    public void ClosePoliceStationTileNumbers(){
+        Stage stage = (Stage) closetn.getScene().getWindow();
+        stage.close();
+    }
+
+
+    public void fountain() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fountain.fxml"));
+        Parent root = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
 
 
 

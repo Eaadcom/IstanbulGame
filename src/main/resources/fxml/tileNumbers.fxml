@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="tilenumbers" maxHeight="300.0" prefHeight="300.0" prefWidth="620.0" style="-fx-background-color: transparent;" stylesheets="@../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LocationView">
+   <children>
+      <Pane id="askClose" prefHeight="300.0" prefWidth="524.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="closetn" id="closetn" onAction="#ClosePoliceStationTileNumbers" layoutX="545.0" layoutY="25.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="43.0" />
+   </children>
+</AnchorPane>
