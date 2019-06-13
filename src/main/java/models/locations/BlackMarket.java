@@ -9,7 +9,7 @@ import observers.locations.BlackMarketObservable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlackMarket implements Location, BlackMarketObservable {
+public class    BlackMarket implements Location, BlackMarketObservable {
 
     // Variables
     private static BlackMarket blackMarket;
