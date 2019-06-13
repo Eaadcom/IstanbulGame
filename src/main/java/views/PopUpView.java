@@ -19,13 +19,14 @@ public class PopUpView {
 
     // FXML variables
     @FXML
-    public Button cac; // aanmaken fx:id
+    public Button cac, endturn; // aanmaken fx:id
     @FXML
     public Button cpp; // aanmaken fx:id
     @FXML
     public Button cr; // aanmaken fx:id
     @FXML
     public Button closeConfirmMovement; // aanmaken fx:id
+
     public boolean move = true;
 
     // Function to close the popup
@@ -61,6 +62,21 @@ public class PopUpView {
         PopUpView controller = fxmlloader.getController();
         stage.showAndWait();
         return controller.move;
+    }
+
+    public void endTurn() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/endTurn.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void closeEndTurn() {
+        Stage stage = (Stage) endturn.getScene().getWindow();
+        stage.close();
     }
 
     public void move() {

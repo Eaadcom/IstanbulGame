@@ -25,12 +25,17 @@
                   <Font size="33.0" />
                </font>
             </Text>
-            <Text layoutX="14.0" layoutY="68.0" stroke="WHITE" strokeType="OUTSIDE" text="#">
+            <Text layoutX="14.0" layoutY="69.0" stroke="WHITE" strokeType="OUTSIDE" text="#">
                <font>
                   <Font size="33.0" />
                </font>
             </Text>
-            <Text stroke="WHITE" strokeType="OUTSIDE" text="#">
+            <Text layoutX="51.0" layoutY="35.0" stroke="WHITE" strokeType="OUTSIDE" text="#">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+            <Text layoutX="51.0" layoutY="69.0" stroke="WHITE" strokeType="OUTSIDE" text="#">
                <font>
                   <Font size="33.0" />
                </font>
