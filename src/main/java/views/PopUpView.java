@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.cards.BonusCard;
 
 import java.io.IOException;
 
@@ -19,14 +20,17 @@ public class PopUpView {
 
     // FXML variables
     @FXML
-    public Button cac; // aanmaken fx:id
+    public Button cac, endturn, closebc; // aanmaken fx:id
     @FXML
     public Button cpp; // aanmaken fx:id
     @FXML
     public Button cr; // aanmaken fx:id
     @FXML
     public Button closeConfirmMovement; // aanmaken fx:id
+
     public boolean move = true;
+    public BonusCard gekozenBonusKaart;
+    private boolean bonusKaartGebruiken = false;
 
     // Function to close the popup
     public void askClose() throws IOException {
@@ -61,6 +65,54 @@ public class PopUpView {
         PopUpView controller = fxmlloader.getController();
         stage.showAndWait();
         return controller.move;
+    }
+
+    public boolean bonusKaartGebruiken() {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("")); // fxml van popup met bonuskaart gebruiken ja/nee
+        Parent root2 = null;
+        try {
+            root2 = fxmlloader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        PopUpView controller = fxmlloader.getController();
+        stage.showAndWait();
+//        return controller.bonusKaartGebruiken;
+        return true;
+    }
+
+    public void endTurn() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/endTurn.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void closeEndTurn() {
+        Stage stage = (Stage) endturn.getScene().getWindow();
+        stage.close();
+    }
+
+    public void bonusCards() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/bonusCards.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void closeBonusCards() {
+        Stage stage = (Stage) closebc.getScene().getWindow();
+        stage.close();
     }
 
     public void move() {
@@ -111,6 +163,26 @@ public class PopUpView {
     public void closePlayerProg() throws IOException {
         Stage stage = (Stage) cpp.getScene().getWindow();
         stage.close();
+    }
+
+    public void winnerScreen() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/winnerScreen.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void loserScreen() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/loserScreen.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
     }
 
     // Function to close the game

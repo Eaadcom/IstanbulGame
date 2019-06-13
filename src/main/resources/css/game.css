@@ -64,6 +64,14 @@
     -fx-background-image: url('../img/askclose.png');
 }
 
+#loserScreen{
+    -fx-background-image: url('../img/loserScreen.png');
+}
+
+#winnerScreen{
+    -fx-background-image: url('../img/winnerScreen.png');
+}
+
 #playerProg{
     -fx-background-image: url('../img/playerprogression.png');
 }
@@ -118,10 +126,10 @@
     -fx-background-image: url('../img/tiles/tea_house.png');
 }
 #tile10{
-    -fx-background-image: url('../img/tiles/large_market.png');
+    -fx-background-image: url('../img/tiles/largemarket.png');
 }
 #tile11{
-    -fx-background-image: url('../img/tiles/small_market.png');
+    -fx-background-image: url('../img/tiles/smallmarket.png');
 }
 #tile12{
     -fx-background-image: url('../img/tiles/policestation.png');

@@ -11,16 +11,24 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import java.util.Random;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.Player;
+import models.cards.BonusCard;
+import models.cards.BonusFourMoves;
+import models.cards.BonusGainGood;
 import observers.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import views.tiles.*;
 
 public class GameView implements GameViewObserver, Initializable {
 
@@ -30,6 +38,16 @@ public class GameView implements GameViewObserver, Initializable {
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
 
+    // Locatie views
+    private SmallMarketView smallMarketView = SmallMarketView.getInstance();
+    private LargeMarketView largeMarketView = LargeMarketView.getInstance();
+    private GemstoneDealerView gemstoneDealerView = GemstoneDealerView.getInstance();
+    private SmallMosqueView smallMosqueView = SmallMosqueView.getInstance();
+    private GreatMosqueView greatMosqueView = GreatMosqueView.getInstance();
+    private SultansPalaceView sultansPalaceView = SultansPalaceView.getInstance();
+    private PostOfficeView postOfficeView = PostOfficeView.getInstance();
+
+    // Waarom wordt hier een tweede gamecontroller aangemaakt ???
     private GameController gameController1 = new GameController();
 
     // FXML variables
@@ -37,10 +55,13 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
     @FXML public GridPane grid; // aanmaken fx:id
     @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
+    @FXML public Text gemprice;
+
+    private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
+    private boolean endTurn = false;
 
     // Starts the game
     public void start() throws Exception {
-
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
@@ -58,17 +79,46 @@ public class GameView implements GameViewObserver, Initializable {
 
         stage.show();
 
+        //        while (!gameController.getGameEnd()) {
+//
+//            Player currentPlayerTurn = gameController.getCurrentPlayerTurn();
+//            manageGameFieldIconen(currentPlayerTurn);
+//
+////            while (!endTurn) { //
+////
+////            }
+//
+//
+//            if (!gameController.getGameEnd()) {
+//                gameController.setNextTurn();
+//            }
+//        }
+
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
             checkDifficulty();
-            TurnManager();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        setPlayersEnFamily();
+        turnManager();
+    }
 
+    /**
+     * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
+     * van de grid enabled of disabled moeten worden
+     * @param currentPlayerTurn Player
+     */
+    private void manageGameFieldIconen(Player currentPlayerTurn) {
+
+    }
+
+    private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
         grid.setColumnIndex(famred, grid.getColumnIndex(tile12));      grid.setRowIndex(famred, grid.getRowIndex(tile12));
         grid.setColumnIndex(famyellow, grid.getColumnIndex(tile12));   grid.setRowIndex(famyellow, grid.getRowIndex(tile12));
@@ -171,6 +221,15 @@ public class GameView implements GameViewObserver, Initializable {
         popUpView.playerProgression();
     }
 
+    // Popup to show the progression of an enemy player
+    public void endTurn() throws IOException {
+        popUpView.endTurn();
+    }
+
+    public void bonusCards() throws IOException {
+        popUpView.bonusCards();
+    }
+
     // Popup to confirm if the player wants to move to the selected location
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
@@ -181,28 +240,51 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
-            if(source.getId().equals("tile1")) {
-                blackMarket();
-            }else if(source.getId().equals("tile2")){
-                //code
-            }else if(source.getId().equals("tile3")){
-                //code
-            }else if(source.getId().equals("tile4")){
-                //code
-            }else if(source.getId().equals("tile5")){
-                //code
-            }else if(source.getId().equals("tile6")){
-                //code
-            }else if(source.getId().equals("tile7")){
-                //code
-            }else if(source.getId().equals("tile8")){
-                //code
-            }else if(source.getId().equals("tile9")){
-                //code
-            }else if(source.getId().equals("tile10")){
-                //code
-            }
+
+            //showPopupBonusKaarten();
+
+            // moveTile(getCurrentPlayer, columnIndex, rowIndex);
+            if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
+            else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
+            else if (source.getId().equals("tile5")) { postOffice();     } else if (source.getId().equals("tile6")) {                   }
+            else if (source.getId().equals("tile7")) { fountain();       } else if (source.getId().equals("tile8")) { blackMarket();    }
+            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){ largeMarket();    }
+            else if (source.getId().equals("tile11")){ smallMarket();    } else if (source.getId().equals("tile12")){ policeStation();  }
+            else if (source.getId().equals("tile13")){ sultansPalace();  } else if (source.getId().equals("tile14")){ smallMosque();    }
+            else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
+
+            gameController.setNextPlayer();
+
         }
+    }
+
+    private void showPopupBonusKaarten() {
+        if (popUpView.bonusKaartGebruiken()) {
+            showBonusKaartenVanSpeler();
+        }
+    }
+
+    private void showBonusKaartenVanSpeler() {
+        List<BonusCard> bonusCards = gameController.getBonusKaartenVanHuidigeSpeler();
+        bonusCardsHuidigeSpeler = Arrays.asList(new BonusFourMoves(), new BonusGainGood());
+
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("")); // fxml met daarin kaarten van speler
+        Parent root2 = null;
+        try {
+            root2 = fxmlloader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        PopUpView controller = fxmlloader.getController(); // hier misschien andere controller van de bonuskaart fxml (ligt eraan wat je daar aan geeft)
+        stage.showAndWait();
+
+        BonusCard bonusCard = controller.gekozenBonusKaart; // gekozenBonusKaart zit nu in PopUpView
+
+        bonusCard.onUse();
     }
 
     //TILE POP UPS
@@ -221,14 +303,36 @@ public class GameView implements GameViewObserver, Initializable {
     public void teaHouse() throws IOException {
         locationView.teaHouse();
     }
+    public void wainwright() throws IOException {
+        locationView.wainwright();
+    }
+    public void policeStation() throws IOException {
+        locationView.policeStation();
+    }
+    public void fountain() throws IOException {
+        locationView.fountain();
+    }
+
     public void greatMosque() throws IOException {
-        locationView.greatMosque();
+        greatMosqueView.greatMosque();
     }
     public void smallMosque() throws IOException {
-        locationView.smallMosque();
+        smallMosqueView.smallMosque();
     }
     public void gemstoneDealer() throws IOException {
-        locationView.gemstoneDealer();
+        gemstoneDealerView.gemstoneDealer();
+    }
+    public void largeMarket() throws IOException {
+        largeMarketView.largeMarket();
+    }
+    public void smallMarket() throws IOException {
+        smallMarketView.smallMarket();
+    }
+    public void sultansPalace() throws IOException {
+        sultansPalaceView.sultansPalace();
+    }
+    public void postOffice() throws IOException {
+        postOfficeView.postOffice();
     }
 
     // Closes the game
@@ -252,14 +356,14 @@ public class GameView implements GameViewObserver, Initializable {
          * @param player Specify the team color of the player who moved. ex: "red" or "green".
          *               Since the node is only visible and reachable via this class
          *               I made the parameter a String and used a switch case to reach the right node.
+     *                   This function also checks if the player has moved already.
+     *                   If that's the case the player is not able to move again.
          * @param column This specifies the column the user moved to.
          * @param row    This specifies the row the user moved to.
-         * @author       Thomas van Velzen
+         * @author       Thomas van Velzen, Stan Hogenboom
          * @version      4 juni 2019
          */
-        public void movePlayer(String player, int column, int row) {
-            move(player, column, row);
-    }
+
 
     /**
      * This is a method that visualizes the movement of the player.
@@ -276,9 +380,15 @@ public class GameView implements GameViewObserver, Initializable {
         move(familyMember, column, row);
     }
 
-    private void moveTile(Pane pane, int columnm, int row) {
-        GridPane.setColumnIndex(pane, columnm);
-        GridPane.setRowIndex(pane, row);
+    private void moveTile(Pane pane, int columnm, int row) throws IOException {
+        if (!gameController.movementDone()){
+            GridPane.setColumnIndex(pane, columnm);
+            GridPane.setRowIndex(pane, row);
+            gameController.setMoved(true);
+        }
+        else {
+            popUpView.winnerScreen();
+        }
     }
 
     // Move code used by movePlayer() and moveFamilyMember()
@@ -336,7 +446,7 @@ public class GameView implements GameViewObserver, Initializable {
 
 
     //DISABELEN VAN KNOPPEN ALS HET NIET JE BEURJE IS!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void TurnManager() {
+    public void turnManager() {
             if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
                 tile1.setDisable(true);  tile2.setDisable(true);  tile3.setDisable(true);  tile4.setDisable(true);
                 tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);

@@ -7,6 +7,10 @@
 package controllers;
 
 import models.Game;
+import models.Player;
+import models.cards.BonusCard;
+
+import java.util.List;
 
 public class GameController {
 
@@ -36,6 +40,30 @@ public class GameController {
         return gameController;
     }
 
+    /**
+     *Check in the game model if player has moves already
+     * @author Stan Hogenboom
+     * @return
+     */
+    public boolean movementDone() {
+        if (!game.hasMoved) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public void setMoved(Boolean b) {
+        game.setHasMoved(b);
+    }
+
+
+    public Player getPlayerCurrentTurn() {
+        int playerTurn = TurnManager();
+        return game.getPlayers().get(playerTurn);
+    }
+
     public int TurnManager() {
             if (game.TURNCOUNTER % game.getPlayerTotal() == 0 && !game.gameEnd) {
                 return 1;
@@ -51,6 +79,22 @@ public class GameController {
                 //
             }
         return 6;
+    }
+
+    public void setNextTurn() {
+        game.TURNCOUNTER ++; // beter met methode aanroep in game (game.nextTurn() ofzo)
+    }
+
+    public Player getCurrentPlayerTurn() {
+        return game.getCurrentPlayerTurn();
+    }
+
+    public void setNextPlayer() {
+
+    }
+
+    public List<BonusCard> getBonusKaartenVanHuidigeSpeler() {
+        return getCurrentPlayerTurn().getBonusKaartenInBezit();
     }
 }
 

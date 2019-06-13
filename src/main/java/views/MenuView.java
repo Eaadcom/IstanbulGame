@@ -4,8 +4,11 @@ import com.google.cloud.firestore.QueryDocumentSnapshot;
 import controllers.MenuViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Screen;
+import javafx.stage.StageStyle;
 import observers.MainMenuObservable;
 import observers.MenuViewObserver;
 import javafx.fxml.FXML;
@@ -146,12 +149,39 @@ public class MenuView implements Initializable, MenuViewObserver {
 
                 Stage stage = (Stage) startGame.getScene().getWindow();
                 stage.close();
-                GameView gv = GameView.getInstance();
-                gv.start();
+                showGameView();
             }
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void showGameView() {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+            Parent root1 = fxmlloader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root1));
+            stage.setMaximized(true);
+
+            GameView gameView = fxmlloader.getController();
+
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(primaryScreenBounds.getMinX());
+            stage.setY(primaryScreenBounds.getMinY());
+            stage.setWidth(primaryScreenBounds.getWidth());
+            stage.setHeight(primaryScreenBounds.getHeight());
+            stage.show();
+            gameView.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     // Exit game
@@ -174,4 +204,3 @@ public class MenuView implements Initializable, MenuViewObserver {
         return menuView;
     }
 }
-

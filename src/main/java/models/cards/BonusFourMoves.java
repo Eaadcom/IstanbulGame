@@ -12,7 +12,7 @@ import java.util.List;
  * @author Joeri van Duijkeren
  * @version 6 june 2019
  */
-public class BonusFourMoves implements BonusFourMovesObservable {
+public class BonusFourMoves implements BonusCard, BonusFourMovesObservable {
 
     // Variables
     private List<CardViewObserver> observers = new ArrayList<>();
@@ -32,5 +32,10 @@ public class BonusFourMoves implements BonusFourMovesObservable {
         for (CardViewObserver cvo : observers){
             cvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse() {
+
     }
 }

@@ -80,7 +80,7 @@
          <children>
             <Button fx:id="tile1" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" />
             <Button fx:id="tile5" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="1" />
-            <Button fx:id="tile9" mnemonicParsing="false" onAction="#teaHouse" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
+            <Button fx:id="tile9" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
             <Button fx:id="tile13" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -113,10 +113,36 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="tile2" mnemonicParsing="false" onAction="#fabricWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
+            <Button fx:id="tile2" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
             <Button fx:id="tile6" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="tile10" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="tile14" mnemonicParsing="false" onAction="#smallMosque" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="tile10" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <graphic>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </graphic></Button>
+            <Button fx:id="tile14" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -133,10 +159,36 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="tile3" mnemonicParsing="false" onAction="#spiceWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
+            <Button fx:id="tile3" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
             <Button fx:id="tile7" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="tile11" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="tile15" mnemonicParsing="false" onAction="#greatMosque" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="tile11" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <graphic>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </graphic></Button>
+            <Button fx:id="tile15" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -153,14 +205,14 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="tile4" mnemonicParsing="false" onAction="#fruitWarehouse" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
-            <Button fx:id="tile8" mnemonicParsing="false" onAction="#blackMarket" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="tile4" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
+            <Button fx:id="tile8" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="tile12" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="tile16" mnemonicParsing="false" onAction="#gemstoneDealer" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Button fx:id="tile16" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="122.0" AnchorPane.topAnchor="156.0">
+                        <Text fx:id="gemprice" fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="122.0" AnchorPane.topAnchor="156.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
@@ -234,7 +286,11 @@
                      </padding>
                   </Button>
                </children></Pane>
-            <Pane prefHeight="297.0" prefWidth="360.0" />
+            <Pane prefHeight="297.0" prefWidth="360.0">
+               <children>
+                  <Button fx:id="endturn" onAction="#endTurn" layoutX="149.0" layoutY="233.0" mnemonicParsing="false" text="end turn" />
+                  <Button fx:id="bonuscard" onAction="#bonusCards" layoutX="134.0" layoutY="189.0" mnemonicParsing="false" text="bonus kaarten" />
+               </children></Pane>
             <Pane id="goodsback" prefHeight="240.0" prefWidth="360.0">
                <children>
                   <VBox prefHeight="237.0" prefWidth="70.0">
@@ -273,7 +329,7 @@
                      <children>
                         <Pane prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -283,7 +339,7 @@
                                     <Font size="34.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -292,7 +348,7 @@
                         </Pane>
                         <Pane layoutX="1.0" layoutY="71.0" prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -302,14 +358,14 @@
                                     <Font size="34.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                            <font>
                               <Font size="34.0" />
                            </font>
@@ -320,7 +376,7 @@
                      <children>
                         <Pane prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -330,7 +386,7 @@
                                     <Font size="34.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -339,7 +395,7 @@
                         </Pane>
                         <Pane layoutX="1.0" layoutY="71.0" prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -349,14 +405,14 @@
                                     <Font size="34.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                              <Text layoutX="58.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                            <font>
                               <Font size="34.0" />
                            </font>

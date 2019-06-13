@@ -15,11 +15,15 @@ public class Game implements GameObservable {
     public int TURNCOUNTER = playerTotal;
     public static boolean gameEnd = false;
     public int myPlayerID = 1;
+    public boolean hasMoved = false;
 
     // Setters
     public void setPlayerTotal(int plt){
         playerTotal = plt;
     }
+    public void setHasMoved(Boolean b) {
+        hasMoved = b;
+    } //ik was hier gebleven
 
     //Getters
     public int getPlayerTotal(){
@@ -43,5 +47,13 @@ public class Game implements GameObservable {
         for (GameViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    public List<Player> getPlayers() {
+        return board.getPlayers();
+    }
+
+    public Player getCurrentPlayerTurn() {
+        return board.getCurrentPlayerTurn();
     }
 }
