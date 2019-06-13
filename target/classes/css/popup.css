@@ -73,6 +73,9 @@
 #youlost{
     -fx-background-image: url('../img/youlost.png');
 }
+#cantmove{
+    -fx-background-image: url('../img/cantmove.png');
+}
 
 
 
