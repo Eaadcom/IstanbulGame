@@ -189,7 +189,7 @@
 
 
 
-#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no, #continue2, #neither, #bluetile, #yellowtile, #redtile, #greentile, #sell, #none, #info, #closetn, #card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10 {
+#fabric, #spice, #fruit, #dices, #sweet, #turnto4, #accept, #rerollboth, #yes, #no, #continue2, #neither, #bluetile, #yellowtile, #redtile, #greentile, #sell, #none, #info, #closetn, #card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10{
     -fx-effect: dropshadow(three-pass-box, #000, 3, 0.005 , 0, 0);
     -fx-border-width: 0;
     -fx-background-color:transparent;
@@ -198,13 +198,22 @@
 }
 
 
-#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover, #continue2:hover, #neither:hover, #bluetile:hover, #yellowtile:hover, #redtile:hover, #greentile:hover, #sell:hover, #none:hover, #info#hover, #closetn:hover, #card1:hover, #card2:hover, #card3:hover, #card4:hover, #card5:hover, #card6:hover, #card7:hover, #card8:hover, #card9:hover, #card10:hover{
+#fabric:hover, #spice:hover, #fruit:hover, #dices:hover, #sweet:hover, #turnto4:hover, #accept:hover, #rerollboth:hover, #yes:hover, #no:hover, #continue2:hover, #neither:hover, #bluetile:hover, #yellowtile:hover, #redtile:hover, #greentile:hover, #sell:hover, #none:hover, #info#hover, #closetn:hover{
     -fx-scale-y: 1.08;
     -fx-scale-x: 1.08;
     -fx-cursor: hand;
+    -fx-rotate: 2;
 }
-#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed, #continue2:pressed, #neither:pressed, #bluetile:pressed, #yellowtile:pressed, #redtile:pressed, #greentile:pressed, #sell:pressed, #none:pressed, #info:pressed, #closetn:pressed, #card1:pressed, #card2:pressed, #card3:pressed, #card4:pressed, #card5:pressed, #card6:pressed, #card7:pressed, #card8:pressed, #card9:pressed, #card10:pressed{
+#card1:hover, #card2:hover, #card3:hover, #card4:hover, #card5:hover, #card6:hover, #card7:hover, #card8:hover, #card9:hover, #card10:hover, #bc:hover{
+    -fx-scale-y: 1.04;
+    -fx-scale-x: 1.04;
+    -fx-cursor: hand;
+    -fx-rotate: 2;
+}
+
+#fabric:pressed, #spice:pressed, #fruit:pressed, #dices:pressed, #sweet:pressed, #turnto4:pressed, #accept:pressed, #rerollboth:pressed, #yes:pressed, #no:pressed, #continue2:pressed, #neither:pressed, #bluetile:pressed, #yellowtile:pressed, #redtile:pressed, #greentile:pressed, #sell:pressed, #none:pressed, #info:pressed, #closetn:pressed, #card1:pressed, #card2:pressed, #card3:pressed, #card4:pressed, #card5:pressed, #card6:pressed, #card7:pressed, #card8:pressed, #card9:pressed, #card10:pressed,#bc:pressed{
     -fx-scale-y: 0.96;
     -fx-scale-x: 0.96;
     -fx-cursor: hand;
+    -fx-rotate: 0;
 }

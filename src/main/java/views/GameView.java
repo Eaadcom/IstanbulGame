@@ -63,7 +63,7 @@ public class GameView implements GameViewObserver, Initializable {
     // Starts the game
     public void start() throws Exception {
 
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+        /*FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -77,7 +77,7 @@ public class GameView implements GameViewObserver, Initializable {
         stage.setWidth(primaryScreenBounds.getWidth());
         stage.setHeight(primaryScreenBounds.getHeight());
 
-        stage.show();
+        stage.show();*/
 
         //        while (!gameController.getGameEnd()) {
 //
@@ -241,8 +241,6 @@ public class GameView implements GameViewObserver, Initializable {
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
 
-            showPopupBonusKaarten();
-
             // moveTile(getCurrentPlayer, columnIndex, rowIndex);
             if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
             else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
@@ -256,35 +254,6 @@ public class GameView implements GameViewObserver, Initializable {
             gameController.setNextPlayer();
 
         }
-    }
-
-    private void showPopupBonusKaarten() {
-        if (popUpView.bonusKaartGebruiken()) {
-            showBonusKaartenVanSpeler();
-        }
-    }
-
-    private void showBonusKaartenVanSpeler() {
-        List<BonusCard> bonusCards = gameController.getBonusKaartenVanHuidigeSpeler();
-        bonusCardsHuidigeSpeler = Arrays.asList(new BonusFourMoves(), new BonusGainGood());
-
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("")); // fxml met daarin kaarten van speler
-        Parent root2 = null;
-        try {
-            root2 = fxmlloader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        PopUpView controller = fxmlloader.getController(); // hier misschien andere controller van de bonuskaart fxml (ligt eraan wat je daar aan geeft)
-        stage.showAndWait();
-
-        BonusCard bonusCard = controller.gekozenBonusKaart; // gekozenBonusKaart zit nu in PopUpView
-
-        bonusCard.onUse();
     }
 
     //TILE POP UPS
