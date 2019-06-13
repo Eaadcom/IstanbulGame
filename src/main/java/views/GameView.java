@@ -237,7 +237,7 @@ public class GameView implements GameViewObserver, Initializable {
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
 
-            showPopupBonusKaarten();
+            //showPopupBonusKaarten();
 
             // moveTile(getCurrentPlayer, columnIndex, rowIndex);
             if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
