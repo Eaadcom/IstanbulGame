@@ -241,7 +241,7 @@ public class GameView implements GameViewObserver, Initializable {
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
 
-            showPopupBonusKaarten();
+            //showPopupBonusKaarten();
 
             // moveTile(getCurrentPlayer, columnIndex, rowIndex);
             if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
@@ -363,14 +363,7 @@ public class GameView implements GameViewObserver, Initializable {
          * @author       Thomas van Velzen, Stan Hogenboom
          * @version      4 juni 2019
          */
-    public void movePlayer(String player, int column, int row) throws IOException {
-        if (gameController.movementDone()){
-            move(player, column, row);
-        }
-        else {
-            popUpView.winnerScreen();
-        }
-    }
+
 
     /**
      * This is a method that visualizes the movement of the player.
