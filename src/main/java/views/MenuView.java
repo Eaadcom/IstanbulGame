@@ -179,6 +179,8 @@ public class MenuView implements Initializable, MenuViewObserver {
             gameView.start();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 

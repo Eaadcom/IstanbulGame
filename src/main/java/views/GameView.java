@@ -25,6 +25,8 @@ import observers.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import views.tiles.*;
 
@@ -98,7 +100,11 @@ public class GameView implements GameViewObserver, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        checkDifficulty();
+        try {
+            checkDifficulty();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setPlayersEnFamily();
         turnManager();
     }
