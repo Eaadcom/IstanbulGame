@@ -20,7 +20,7 @@ public class PopUpView {
 
     // FXML variables
     @FXML
-    public Button cac, endturn; // aanmaken fx:id
+    public Button cac, endturn, closebc; // aanmaken fx:id
     @FXML
     public Button cpp; // aanmaken fx:id
     @FXML
@@ -97,6 +97,21 @@ public class PopUpView {
 
     public void closeEndTurn() {
         Stage stage = (Stage) endturn.getScene().getWindow();
+        stage.close();
+    }
+
+    public void bonusCards() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/bonusCards.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void closeBonusCards() {
+        Stage stage = (Stage) closebc.getScene().getWindow();
         stage.close();
     }
 
