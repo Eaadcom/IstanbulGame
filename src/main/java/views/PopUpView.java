@@ -153,7 +153,7 @@ public class PopUpView {
         }
     }
 
-    // ??????
+    // Asks if you want to close the game
     public void closeAskClose() throws IOException {
         Stage stage = (Stage) cac.getScene().getWindow();
         stage.close();
@@ -166,7 +166,7 @@ public class PopUpView {
     }
 
     public void winnerScreen() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/winnerScreen.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/youWon.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -176,7 +176,7 @@ public class PopUpView {
     }
 
     public void loserScreen() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/loserScreen.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/youLost.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);

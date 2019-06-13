@@ -380,14 +380,24 @@ public class GameView implements GameViewObserver, Initializable {
         move(familyMember, column, row);
     }
 
+    /**
+     * This functions changes the X and Y position of the player on the board.
+     * It also checks if the player has moved already
+     * @author Stan Hogenboom
+     * @param pane
+     * @param columnm
+     * @param row
+     * @throws IOException
+     */
     private void moveTile(Pane pane, int columnm, int row) throws IOException {
         if (!gameController.movementDone()){
             GridPane.setColumnIndex(pane, columnm);
             GridPane.setRowIndex(pane, row);
             gameController.setMoved(true);
+            disableAllTiles();
         }
         else {
-            popUpView.winnerScreen();
+            popUpView.dontMove();
         }
     }
 
@@ -445,16 +455,26 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
 
-    //DISABELEN VAN KNOPPEN ALS HET NIET JE BEURJE IS!!!!!!!!!!!!!!!!!!!!!!!!!
+    /**
+     * Checks if it's your turn and disbales tiles acordingly.
+     */
     public void turnManager() {
             if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
-                tile1.setDisable(true);  tile2.setDisable(true);  tile3.setDisable(true);  tile4.setDisable(true);
-                tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);
-                tile9.setDisable(true);  tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
-                tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
+                disableAllTiles();
                // TURNCOUNTER++;
 
         }
+    }
+
+    /**
+     * Disables all tiles so you can't click on them anymore.
+     * @author: Stan Hogenboom
+     */
+    public void disableAllTiles() {
+        tile1.setDisable(true);  tile2.setDisable(true);  tile3.setDisable(true);  tile4.setDisable(true);
+        tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);
+        tile9.setDisable(true);  tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
+        tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
     }
 
     // Singleton Pattern
