@@ -36,9 +36,6 @@ public class Player implements PlayerObservable {
     public int maxSpices = 2;
     public int maxFabrics = 2;
 
-
-
-
     public int assistants = 4;
     public int maxAssistants = 4;
     public int position = 7;

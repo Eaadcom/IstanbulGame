@@ -64,6 +64,14 @@
     -fx-background-image: url('../img/askclose.png');
 }
 
+#loserScreen{
+    -fx-background-image: url('../img/loserScreen.png');
+}
+
+#winnerScreen{
+    -fx-background-image: url('../img/winnerScreen.png');
+}
+
 #playerProg{
     -fx-background-image: url('../img/playerprogression.png');
 }

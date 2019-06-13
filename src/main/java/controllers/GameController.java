@@ -36,6 +36,25 @@ public class GameController {
         return gameController;
     }
 
+    /**
+     *Check in the game model if player has moves already
+     * @author Stan Hogenboom
+     * @return
+     */
+    public boolean movementDone() {
+        if (!game.hasMoved) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public void setMoved(Boolean b) {
+        game.setHasMoved(b);
+    }
+
+
     public int TurnManager() {
             if (game.TURNCOUNTER % game.getPlayerTotal() == 0 && !game.gameEnd) {
                 return 1;

@@ -2,6 +2,8 @@ package controllers;
 
 import models.Player;
 import views.GameView;
+import views.PopUpView;
+
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -12,6 +14,7 @@ public class PlayerController {
     private GameView game = GameView.getInstance();
     private Player player = new Player("name");
     Scanner scanner = new Scanner(System.in);
+    private PopUpView pv = new PopUpView();
 
     ////
     public void AssistantHandler(String todo){
@@ -95,10 +98,13 @@ public class PlayerController {
             addRubysLiras("lira", amount);
         }}
 
-    public void addRubysLiras(String g, int amount){
+    public void addRubysLiras(String g, int amount) {
         switch(g) {
             case "ruby":
                 player.rubies += amount;
+                if (player.rubies == 5) {
+                    winCondition();
+                }
                 break;
             case "lira":
                 player.lira += amount;
@@ -106,6 +112,21 @@ public class PlayerController {
             default:
                 // code block
         }}
+
+    /**
+     * This function opens a pop-up when a player wins. This is the win screen if the currentplayer wins, or the lose screen if another players wins.
+     * The requiredment for winning is obtaining 5 rubies.
+     * @author Stan Hogenboom
+     * @version June 11th, 2019
+      */
+    public void winCondition() {
+        try {
+            pv.winnerScreen();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public void MaxGoods(String nameOfGoods){
         switch(nameOfGoods) {

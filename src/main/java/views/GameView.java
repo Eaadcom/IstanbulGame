@@ -234,13 +234,20 @@ public class GameView implements GameViewObserver, Initializable {
          * @param player Specify the team color of the player who moved. ex: "red" or "green".
          *               Since the node is only visible and reachable via this class
          *               I made the parameter a String and used a switch case to reach the right node.
+     *                   This function also checks if the player has moved already.
+     *                   If that's the case the player is not able to move again.
          * @param column This specifies the column the user moved to.
          * @param row    This specifies the row the user moved to.
-         * @author       Thomas van Velzen
+         * @author       Thomas van Velzen, Stan Hogenboom
          * @version      4 juni 2019
          */
-        public void movePlayer(String player, int column, int row) {
+    public void movePlayer(String player, int column, int row) throws IOException {
+        if (gameController.movementDone()){
             move(player, column, row);
+        }
+        else {
+            popUpView.winnerScreen();
+        }
     }
 
     /**
@@ -258,9 +265,15 @@ public class GameView implements GameViewObserver, Initializable {
         move(familyMember, column, row);
     }
 
-    private void moveTile(Pane pane, int columnm, int row) {
-        GridPane.setColumnIndex(pane, columnm);
-        GridPane.setRowIndex(pane, row);
+    private void moveTile(Pane pane, int columnm, int row) throws IOException {
+        if (!gameController.movementDone()){
+            GridPane.setColumnIndex(pane, columnm);
+            GridPane.setRowIndex(pane, row);
+            gameController.setMoved(true);
+        }
+        else {
+            popUpView.winnerScreen();
+        }
     }
 
     // Move code used by movePlayer() and moveFamilyMember()

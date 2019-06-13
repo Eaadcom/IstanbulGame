@@ -113,6 +113,26 @@ public class PopUpView {
         stage.close();
     }
 
+    public void winnerScreen() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/winnerScreen.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void loserScreen() throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/loserScreen.fxml"));
+        Parent root2 = (Parent) fxmlloader.load();
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
     // Function to close the game
     public void close(){
         System.exit(0);
@@ -125,4 +145,6 @@ public class PopUpView {
         }
         return popUpView;
     }
+
+
 }
