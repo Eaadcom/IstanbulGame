@@ -12,9 +12,14 @@ import javafx.scene.control.Button;
 import java.util.Random;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.Player;
+import models.cards.BonusCard;
+import models.cards.BonusFourMoves;
+import models.cards.BonusGainGood;
 import observers.*;
 
 import java.io.IOException;
@@ -50,9 +55,11 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
     @FXML public Text gemprice;
 
+    private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
+    private boolean endTurn = false;
+
     // Starts the game
     public void start() throws Exception {
-
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
@@ -70,17 +77,42 @@ public class GameView implements GameViewObserver, Initializable {
 
         stage.show();
 
+        //        while (!gameController.getGameEnd()) {
+//
+//            Player currentPlayerTurn = gameController.getCurrentPlayerTurn();
+//            manageGameFieldIconen(currentPlayerTurn);
+//
+////            while (!endTurn) { //
+////
+////            }
+//
+//
+//            if (!gameController.getGameEnd()) {
+//                gameController.setNextTurn();
+//            }
+//        }
+
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            checkDifficulty();
-            TurnManager();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+        checkDifficulty();
+        setPlayersEnFamily();
+        turnManager();
+    }
+
+    /**
+     * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
+     * van de grid enabled of disabled moeten worden
+     * @param currentPlayerTurn Player
+     */
+    private void manageGameFieldIconen(Player currentPlayerTurn) {
+
+    }
+
+    private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
         grid.setColumnIndex(famred, grid.getColumnIndex(tile12));      grid.setRowIndex(famred, grid.getRowIndex(tile12));
         grid.setColumnIndex(famyellow, grid.getColumnIndex(tile12));   grid.setRowIndex(famyellow, grid.getRowIndex(tile12));
@@ -94,7 +126,6 @@ public class GameView implements GameViewObserver, Initializable {
         grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
         grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
         grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
-
 
     }
 
@@ -199,6 +230,10 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
+
+            showPopupBonusKaarten();
+
+            // moveTile(getCurrentPlayer, columnIndex, rowIndex);
             if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
             else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
             else if (source.getId().equals("tile5")) { postOffice();     } else if (source.getId().equals("tile6")) {                   }
@@ -207,7 +242,39 @@ public class GameView implements GameViewObserver, Initializable {
             else if (source.getId().equals("tile11")){ smallMarket();    } else if (source.getId().equals("tile12")){ policeStation();  }
             else if (source.getId().equals("tile13")){ sultansPalace();  } else if (source.getId().equals("tile14")){ smallMosque();    }
             else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
+
+            gameController.setNextPlayer();
+
         }
+    }
+
+    private void showPopupBonusKaarten() {
+        if (popUpView.bonusKaartGebruiken()) {
+            showBonusKaartenVanSpeler();
+        }
+    }
+
+    private void showBonusKaartenVanSpeler() {
+        List<BonusCard> bonusCards = gameController.getBonusKaartenVanHuidigeSpeler();
+        bonusCardsHuidigeSpeler = Arrays.asList(new BonusFourMoves(), new BonusGainGood());
+
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("")); // fxml met daarin kaarten van speler
+        Parent root2 = null;
+        try {
+            root2 = fxmlloader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        PopUpView controller = fxmlloader.getController(); // hier misschien andere controller van de bonuskaart fxml (ligt eraan wat je daar aan geeft)
+        stage.showAndWait();
+
+        BonusCard bonusCard = controller.gekozenBonusKaart; // gekozenBonusKaart zit nu in PopUpView
+
+        bonusCard.onUse();
     }
 
     //TILE POP UPS
@@ -376,7 +443,7 @@ public class GameView implements GameViewObserver, Initializable {
 
 
     //DISABELEN VAN KNOPPEN ALS HET NIET JE BEURJE IS!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void TurnManager() {
+    public void turnManager() {
             if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
                 tile1.setDisable(true);  tile2.setDisable(true);  tile3.setDisable(true);  tile4.setDisable(true);
                 tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);

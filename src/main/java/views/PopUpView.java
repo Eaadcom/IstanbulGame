@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.cards.BonusCard;
 
 import java.io.IOException;
 
@@ -28,6 +29,8 @@ public class PopUpView {
     public Button closeConfirmMovement; // aanmaken fx:id
 
     public boolean move = true;
+    public BonusCard gekozenBonusKaart;
+    private boolean bonusKaartGebruiken = false;
 
     // Function to close the popup
     public void askClose() throws IOException {
@@ -62,6 +65,24 @@ public class PopUpView {
         PopUpView controller = fxmlloader.getController();
         stage.showAndWait();
         return controller.move;
+    }
+
+    public boolean bonusKaartGebruiken() {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("")); // fxml van popup met bonuskaart gebruiken ja/nee
+        Parent root2 = null;
+        try {
+            root2 = fxmlloader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root2));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        PopUpView controller = fxmlloader.getController();
+        stage.showAndWait();
+//        return controller.bonusKaartGebruiken;
+        return true;
     }
 
     public void endTurn() throws IOException {
@@ -161,6 +182,4 @@ public class PopUpView {
         }
         return popUpView;
     }
-
-
 }
