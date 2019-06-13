@@ -189,6 +189,10 @@ public class GameView implements GameViewObserver, Initializable {
         popUpView.endTurn();
     }
 
+    public void bonusCards() throws IOException {
+        popUpView.bonusCards();
+    }
+
     // Popup to confirm if the player wants to move to the selected location
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
