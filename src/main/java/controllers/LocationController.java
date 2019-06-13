@@ -97,7 +97,7 @@ blackMarket = BlackMarket.getInstance();
 
     }
 
-    public void BlackMarketChoice(int BlackMarketChoice) {
+        public void BlackMarketChoice(int BlackMarketChoice) {
 playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
@@ -162,6 +162,13 @@ playerController = PlayerController.getInstance();
         return teaHouse.getTeahouseNumberChoice();
     }
 
+    public void setTeaHouseDice(int number){
+        teaHouse.setTeahouseDiceNumber(number);
+    }
+    public int getTeaHouseDiceNumber(){
+        return teaHouse.getTeahouseDiceNumber();
+    }
+
     public void TeaHouseResult(){
         diceOne.DiceValue = setDiceValue();
         diceTwo.DiceValue = setDiceValue();
@@ -172,6 +179,7 @@ playerController = PlayerController.getInstance();
             playerController.addRubysLiras("lira", teaHouse.teahouseNumberChoice);
             System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
         } else if(teaHouse.teahouseNumberChoice < diceResult){
+            setTeaHouseNumber(0);
             System.out.println("Helaas! je ligt eronder!");
 
         }

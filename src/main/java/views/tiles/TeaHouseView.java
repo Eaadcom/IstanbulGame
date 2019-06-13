@@ -35,5 +35,6 @@ public class TeaHouseView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rollNumber.setText(String.valueOf(locationController.getTeaHouseNumber()));
+        liraNumber.setText(String.valueOf(locationController.getTeaHouseDiceNumber()));
     }
 }

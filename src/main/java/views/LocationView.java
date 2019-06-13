@@ -40,6 +40,9 @@ public class LocationView implements LocationViewObserver, Initializable {
     @FXML
     private TextField TeaHouseChoice;
 
+    @FXML
+    private TextField TeaHouseDice;
+
 
     // Creates blackmarket popup
     public void blackMarket() throws IOException {
@@ -164,8 +167,10 @@ public class LocationView implements LocationViewObserver, Initializable {
         // als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
-
+        locationController.TeaHouseResult();
+        locationController.setTeaHouseDice(Integer.parseInt(locationController.diceResultStr));
         thv.teaHouseResult();}
+
 
         //System.out.println((locationController.getTeaHouseNumber()));
 
