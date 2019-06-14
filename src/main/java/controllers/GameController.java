@@ -9,6 +9,7 @@ package controllers;
 import models.Game;
 import models.Player;
 import models.cards.BonusCard;
+import views.GameView;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class GameController {
     // Variables
     private MenuViewController menuViewController = MenuViewController.getInstance();
     private static GameController gameController;
+    private static CardController cardController = CardController.getInstance();
     public Game game = new Game();
 
     // Get data from other controllers
@@ -38,6 +40,21 @@ public class GameController {
             gameController = new GameController();
         }
         return gameController;
+    }
+
+    public void setDifficulty(String difficulty) {
+
+    }
+
+    public void setPlayerTotal(int playerAmount) {
+        game.setPlayerTotal(playerAmount);
+    }
+
+    public void setGameName(String gameName) {
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     /**
@@ -65,15 +82,15 @@ public class GameController {
     }
 
     public int TurnManager() {
-            if (game.TURNCOUNTER % game.getPlayerTotal() == 0 && !game.gameEnd) {
+            if (game.turnCounter % game.getPlayerTotal() == 0 && !game.gameEnd) {
                 return 1;
-            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 1 && !game.gameEnd) {
+            } else if (game.turnCounter % game.getPlayerTotal() == 1 && !game.gameEnd) {
                 return 2;
-            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 2 && !game.gameEnd) {
+            } else if (game.turnCounter % game.getPlayerTotal() == 2 && !game.gameEnd) {
                 return 3;
-            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 3 && !game.gameEnd) {
+            } else if (game.turnCounter % game.getPlayerTotal() == 3 && !game.gameEnd) {
                 return 4;
-            } else if (game.TURNCOUNTER % game.getPlayerTotal() == 4 && !game.gameEnd) {
+            } else if (game.turnCounter % game.getPlayerTotal() == 4 && !game.gameEnd) {
                 return 5;
             } else if (game.gameEnd){
                 //
@@ -82,7 +99,7 @@ public class GameController {
     }
 
     public void setNextTurn() {
-        game.TURNCOUNTER ++; // beter met methode aanroep in game (game.nextTurn() ofzo)
+        game.turnCounter++; // beter met methode aanroep in game (game.nextTurn() ofzo)
     }
 
     public Player getCurrentPlayerTurn() {
@@ -95,6 +112,28 @@ public class GameController {
 
     public List<BonusCard> getBonusKaartenVanHuidigeSpeler() {
         return getCurrentPlayerTurn().getBonusKaartenInBezit();
+    }
+
+
+
+    public void addGekozenKaart(String gekozenKaartId) {
+        BonusCard gekozenKaart = cardController.getGekozenKaart(gekozenKaartId);
+        gekozenKaart.onUse(game.getPlayer());
+
+    }
+
+    public void endTurn() {
+        game.increaseTurnCounter();
+    }
+
+    public void registerObservers(GameView gameView) {
+        game.register(gameView);
+        game.getPlayer().register(gameView);
+
+    }
+
+    public void addPlayer(Player player) {
+        game.addPlayer(player);
     }
 }
 

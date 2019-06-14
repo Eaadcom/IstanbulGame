@@ -1,6 +1,7 @@
 package views;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +32,9 @@ public class PopUpView {
     public boolean move = true;
     public BonusCard gekozenBonusKaart;
     private boolean bonusKaartGebruiken = false;
+    private boolean endTurn = false;
+
+    private String gekozenKaart = "";
 
     // Function to close the popup
     public void askClose() throws IOException {
@@ -85,14 +89,28 @@ public class PopUpView {
         return true;
     }
 
-    public void endTurn() throws IOException {
+    /**
+     * Methoden om de beurt te beeindigen
+     * @author Joeri
+     * @version 12 june 2019
+     * @throws IOException
+     */
+    public boolean endTurn() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/endTurn.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root2));
         stage.initModality(Modality.APPLICATION_MODAL);
+        PopUpView controller = fxmlloader.getController();
         stage.show();
+        return controller.endTurn;
+    }
+
+    public void confirmEndTurn() {
+        this.endTurn = true;
+        Stage stage = (Stage) endturn.getScene().getWindow();
+        stage.close();
     }
 
     public void closeEndTurn() {
@@ -100,21 +118,48 @@ public class PopUpView {
         stage.close();
     }
 
-    public void bonusCards() throws IOException {
+    /**
+     * Fxml bekijken van je bonuskaarten
+     * @author Joeri
+     * @version 12 june
+     * @throws IOException
+     */
+
+    public String bonusCards() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/bonusCards.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root2));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        PopUpView controller = fxmlloader.getController();
+
+        stage.showAndWait();
+        return controller.gekozenKaart;
     }
 
+    @FXML
+    public void chooseBonusCard(ActionEvent event) {
+        Button source = (Button) event.getSource();
+        this.gekozenKaart = source.getId();
+        closeBonusCards();
+    }
+
+    /**
+     * Popup van beschikbare bonuskaarten
+     * @author Joeri
+     * @version 12 june
+     */
     public void closeBonusCards() {
         Stage stage = (Stage) closebc.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Popup of je wil bewegen naar de tile die je aanklikt
+     * @Author Joeri
+     * @Version 11 june
+     */
     public void move() {
         this.move = true;
         closeConfirmMovement();
@@ -197,4 +242,5 @@ public class PopUpView {
         }
         return popUpView;
     }
+
 }

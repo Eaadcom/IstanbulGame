@@ -11,6 +11,7 @@ public class MenuViewController {
     private MainMenu mainMenu;
     private FirebaseController firebaseController;
     private static MenuViewController menuViewController;
+    private static GameController gameController = GameController.getInstance();
 
     // Constructor waarin het MainMenu object wordt opgehaald
     public MenuViewController(){
@@ -23,6 +24,10 @@ public class MenuViewController {
         mainMenu.setPlayerTotal(totP);
         mainMenu.setDifficulty(diff);
         mainMenu.setGameName(gmn);
+
+        gameController.setDifficulty(diff);
+        gameController.setPlayerTotal(totP);
+        gameController.setGameName(gmn);
     }
 
     // Get data from models

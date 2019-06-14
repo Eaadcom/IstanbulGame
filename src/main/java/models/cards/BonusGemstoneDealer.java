@@ -1,13 +1,13 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusGemstoneDealerObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusGemstoneDealer implements BonusGemstoneDealerObservable {
+public class BonusGemstoneDealer implements BonusCard, BonusGemstoneDealerObservable {
     private List<CardViewObserver> observers = new ArrayList<>();
 
 
@@ -21,5 +21,10 @@ public class BonusGemstoneDealer implements BonusGemstoneDealerObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+
     }
 }

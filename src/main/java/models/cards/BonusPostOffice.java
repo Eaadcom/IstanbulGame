@@ -1,13 +1,13 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusPostOfficeObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusPostOffice implements BonusPostOfficeObservable {
+public class BonusPostOffice implements BonusCard, BonusPostOfficeObservable {
     private List<CardViewObserver> observers = new ArrayList<>();
 
 
@@ -21,5 +21,10 @@ public class BonusPostOffice implements BonusPostOfficeObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+
     }
 }

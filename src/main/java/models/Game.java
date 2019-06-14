@@ -12,7 +12,7 @@ public class Game implements GameObservable {
     private List<GameViewObserver> observers = new ArrayList<>();
     private Board board = new Board();
     private int playerTotal = 2;
-    public int TURNCOUNTER = playerTotal;
+    public int turnCounter = playerTotal;
     public static boolean gameEnd = false;
     public int myPlayerID = 1;
     public boolean hasMoved = false;
@@ -49,11 +49,24 @@ public class Game implements GameObservable {
         }
     }
 
+    public void increaseTurnCounter() {
+        turnCounter++;
+        notifyAllObservers();
+    }
+
     public List<Player> getPlayers() {
         return board.getPlayers();
     }
 
     public Player getCurrentPlayerTurn() {
         return board.getCurrentPlayerTurn();
+    }
+
+    public void addPlayer(Player player) {
+        board.addPlayer(player);
+    }
+
+    public Player getPlayer() {
+        return board.getPlayer();
     }
 }

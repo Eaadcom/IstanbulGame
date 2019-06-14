@@ -1,13 +1,13 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusReturnMemberObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusReturnMember implements BonusReturnMemberObservable {
+public class BonusReturnMember implements BonusCard, BonusReturnMemberObservable {
     private List<CardViewObserver> observers = new ArrayList<>();
 
 
@@ -21,5 +21,10 @@ public class BonusReturnMember implements BonusReturnMemberObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+
     }
 }

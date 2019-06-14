@@ -3,30 +3,20 @@ package views;
 import controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import java.util.Random;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import models.Game;
 import models.Player;
 import models.cards.BonusCard;
-import models.cards.BonusFourMoves;
-import models.cards.BonusGainGood;
 import observers.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import views.tiles.*;
 
@@ -56,6 +46,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML public GridPane grid; // aanmaken fx:id
     @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
     @FXML public Text gemprice;
+    @FXML public Text playerLira;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
@@ -100,6 +91,8 @@ public class GameView implements GameViewObserver, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
         try {
             checkDifficulty();
         } catch (Exception e) {
@@ -107,6 +100,13 @@ public class GameView implements GameViewObserver, Initializable {
         }
         setPlayersEnFamily();
         turnManager();
+
+        Player player = new Player("Joeri");
+        // nemen aan dat joeri speler 1 is
+        player.setLira(2);
+        gameController.addPlayer(player);
+
+        gameController.registerObservers(this);
     }
 
     /**
@@ -223,11 +223,15 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Popup to show the progression of an enemy player
     public void endTurn() throws IOException {
-        popUpView.endTurn();
+        if (popUpView.endTurn()) {
+            gameController.endTurn();
+        }
     }
 
     public void bonusCards() throws IOException {
-        popUpView.bonusCards();
+        String gekozenKaart = popUpView.bonusCards();
+        System.out.println(gekozenKaart);
+        gameController.addGekozenKaart(gekozenKaart);
     }
 
     // Popup to confirm if the player wants to move to the selected location
@@ -423,7 +427,7 @@ public class GameView implements GameViewObserver, Initializable {
                 tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);
                 tile9.setDisable(true);  tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
                 tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
-               // TURNCOUNTER++;
+               // turnCounter++;
 
         }
     }
@@ -459,7 +463,16 @@ public class GameView implements GameViewObserver, Initializable {
 
     @Override
     public void update(GameObservable go) {
+        if (go instanceof Game) {
+            Game game = (Game) go;
+            updateGameView(game);
+        }
+    }
 
+    private void updateGameView(Game game) {
+//        if (game.isMyTurn()) {
+//            // update view (enable disable knoppen)
+//        }
     }
 
     @Override
@@ -469,7 +482,14 @@ public class GameView implements GameViewObserver, Initializable {
 
     @Override
     public void update(PlayerObservable po) {
+        if (po instanceof Player) {
+            Player player = (Player) po;
+            updatePlayerResources(player);
+        }
+    }
 
+    private void updatePlayerResources(Player player) {
+        playerLira.setText(String.valueOf(player.getLira()));
     }
 
     @Override

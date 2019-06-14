@@ -95,7 +95,24 @@ public class Player implements PlayerObservable {
         }
     }
 
+    public void increaseLira(int amount) {
+        lira += amount;
+        notifyAllObservers();
+    }
+
+    public int getLira() {
+        return lira;
+    }
+
+    public void addBonusCard(BonusCard bonusCard) {
+        this.playerBonusCards.add(bonusCard);
+    }
+
     public List<BonusCard> getBonusKaartenInBezit() {
         return playerBonusCards;
+    }
+
+    public String getName() {
+        return name;
     }
 }
