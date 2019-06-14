@@ -412,7 +412,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <Text fx:id="playerLira" layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                            <font>
                               <Font size="34.0" />
                            </font>
