@@ -240,22 +240,26 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
-
             //showPopupBonusKaarten();
-
-            // moveTile(getCurrentPlayer, columnIndex, rowIndex);
-            if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
-            else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
-            else if (source.getId().equals("tile5")) { postOffice();     } else if (source.getId().equals("tile6")) {                   }
-            else if (source.getId().equals("tile7")) { fountain();       } else if (source.getId().equals("tile8")) { blackMarket();    }
-            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){ largeMarket();    }
-            else if (source.getId().equals("tile11")){ smallMarket();    } else if (source.getId().equals("tile12")){ policeStation();  }
-            else if (source.getId().equals("tile13")){ sultansPalace();  } else if (source.getId().equals("tile14")){ smallMosque();    }
-            else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
-
+            tileAction(source);
             gameController.setNextPlayer();
-
         }
+    }
+
+    /**
+     * Activates the tile action that corresponds with the tile clicked on
+     * @param source
+     * @throws IOException
+     */
+    public void tileAction(Button source) throws IOException {
+        if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
+        else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
+        else if (source.getId().equals("tile5")) { postOffice();     } else if (source.getId().equals("tile6")) {                   }
+        else if (source.getId().equals("tile7")) { fountain();       } else if (source.getId().equals("tile8")) { blackMarket();    }
+        else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){ largeMarket();    }
+        else if (source.getId().equals("tile11")){ smallMarket();    } else if (source.getId().equals("tile12")){ policeStation();  }
+        else if (source.getId().equals("tile13")){ sultansPalace();  } else if (source.getId().equals("tile14")){ smallMosque();    }
+        else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
     }
 
     private void showPopupBonusKaarten() {
@@ -275,16 +279,16 @@ public class GameView implements GameViewObserver, Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        PopUpView controller = fxmlloader.getController(); // hier misschien andere controller van de bonuskaart fxml (ligt eraan wat je daar aan geeft)
-        stage.showAndWait();
-
-        BonusCard bonusCard = controller.gekozenBonusKaart; // gekozenBonusKaart zit nu in PopUpView
-
-        bonusCard.onUse();
+//        Stage stage = new Stage();
+//        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.setScene(new Scene(root2));
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        PopUpView controller = fxmlloader.getController(); // hier misschien andere controller van de bonuskaart fxml (ligt eraan wat je daar aan geeft)
+//        stage.showAndWait();
+//
+//        BonusCard bonusCard = controller.gekozenBonusKaart; // gekozenBonusKaart zit nu in PopUpView
+//
+//        bonusCard.onUse();
     }
 
     //TILE POP UPS
@@ -312,7 +316,6 @@ public class GameView implements GameViewObserver, Initializable {
     public void fountain() throws IOException {
         locationView.fountain();
     }
-
     public void greatMosque() throws IOException {
         greatMosqueView.greatMosque();
     }
@@ -351,21 +354,6 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     /**
-         * This is a method that visualizes the movement of the player.
-         *
-         * @param player Specify the team color of the player who moved. ex: "red" or "green".
-         *               Since the node is only visible and reachable via this class
-         *               I made the parameter a String and used a switch case to reach the right node.
-     *                   This function also checks if the player has moved already.
-     *                   If that's the case the player is not able to move again.
-         * @param column This specifies the column the user moved to.
-         * @param row    This specifies the row the user moved to.
-         * @author       Thomas van Velzen, Stan Hogenboom
-         * @version      4 juni 2019
-         */
-
-
-    /**
      * This is a method that visualizes the movement of the player.
      *
      * @param familyMember Specify the team color of the player who moved. ex: "red" or "green".
@@ -401,8 +389,15 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
-    // Move code used by movePlayer() and moveFamilyMember()
-    // Put here to remove duplicate code
+    /**
+     * Move code used by moveTile() and moveFamilyMember()
+     * authoe: Stan Hogenboom
+     * Version: 14-6-2019
+     * @param target
+     * @param column
+     * @param row
+     */
+
     private void move(String target, int column, int row){
         switch(target){
             case("red"):
@@ -462,7 +457,6 @@ public class GameView implements GameViewObserver, Initializable {
             if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
                 disableAllTiles();
                // TURNCOUNTER++;
-
         }
     }
 

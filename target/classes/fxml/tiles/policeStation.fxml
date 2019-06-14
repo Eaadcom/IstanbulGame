@@ -9,9 +9,9 @@
    <children>
       <Pane layoutX="24.0" layoutY="344.0" prefHeight="274.0" prefWidth="465.0">
          <children>
-            <Button id="sell" fx:id="sell" layoutX="183.0" layoutY="211.0" mnemonicParsing="false" onAction="#close" prefHeight="42.0" prefWidth="100.0" />
-            <TextField layoutX="199.0" layoutY="156.0" prefHeight="27.0" prefWidth="68.0" />
-            <Button id="info" onAction="#policeStationTileNumbers" layoutX="276.0" layoutY="157.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" />
+            <Button id="sell" fx:id="sell" layoutX="183.0" layoutY="211.0" mnemonicParsing="false" onAction="#policeStationAction" prefHeight="42.0" prefWidth="100.0" />
+            <TextField fx:id="policeStationChoice" layoutX="199.0" layoutY="156.0" prefHeight="27.0" prefWidth="68.0" />
+            <Button id="info" layoutX="276.0" layoutY="157.0" mnemonicParsing="false" onAction="#policeStationTileNumbers" prefHeight="26.0" prefWidth="26.0" />
          </children></Pane>
    </children>
 </AnchorPane>

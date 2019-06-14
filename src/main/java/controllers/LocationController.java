@@ -1,10 +1,17 @@
 package controllers;
 
 
+import javafx.stage.Stage;
 import models.locations.BlackMarket;
 import models.locations.Caravansary;
 import models.locations.FruitWarehouse;
 import models.locations.TeaHouse;
+import javafx.scene.control.TextField;
+import views.GameView;
+import views.LocationView;
+
+import java.awt.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class LocationController{
@@ -28,9 +35,14 @@ public class LocationController{
     private models.Player player = new models.Player("Name");
     private models.Board board = new models.Board();
 
+    private GameView gameView;
+
+
+
     Scanner scanner = new Scanner(System.in);
 
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
+    // Volgensmij is deze functie inmiddels overbodig, kan iemand dat bevestigen?
     public void onUse() {
         switch (location) {
             // BlackMarket Functie
@@ -62,7 +74,7 @@ public class LocationController{
 
     public void BlackMarketDice() {
         playerController = PlayerController.getInstance();
-blackMarket = BlackMarket.getInstance();
+        blackMarket = BlackMarket.getInstance();
         blackMarket.diceOne.DiceValue = setDiceValue();
         blackMarket.diceTwo.DiceValue = setDiceValue();
 
@@ -98,7 +110,7 @@ blackMarket = BlackMarket.getInstance();
     }
 
         public void BlackMarketChoice(int BlackMarketChoice) {
-playerController = PlayerController.getInstance();
+        playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 player.spices += 1;
@@ -154,7 +166,6 @@ playerController = PlayerController.getInstance();
     }
 
 
-
     public void setTeaHouseNumber(int number) {
         teaHouse.setTeahouseNumberChoice(number);
     }
@@ -181,12 +192,69 @@ playerController = PlayerController.getInstance();
         } else if(teaHouse.teahouseNumberChoice < diceResult){
             setTeaHouseNumber(0);
             System.out.println("Helaas! je ligt eronder!");
+        }
+    }
+
+    /**
+     * Checks if the player has entered a valid number at the police station and acts accoringly
+     * @author Stan Hogenboom
+     * @param usernamefield
+     */
+    public void policeStation(String usernamefield) throws IOException {
+        if (usernamefield.equals("1")) {
+            GameView.getInstance().blackMarket();
+            GameView.getInstance().moveFamilyMember("famred", 0, 0);
+        }
+        else if (usernamefield.contains("2")) {
 
         }
+        else if (usernamefield.contains("3")) {
 
+        }
+        else if (usernamefield.contains("4")) {
 
+        }
+        else if (usernamefield.contains("5")) {
 
+        }
+        else if (usernamefield.contains("6")) {
+
+        }
+        else if (usernamefield.contains("7")) {
+
+        }
+        else if (usernamefield.contains("8")) {
+
+        }
+        else if (usernamefield.contains("9")) {
+
+        }
+        else if (usernamefield.contains("10")) {
+
+        }
+        else if (usernamefield.contains("11")) {
+
+        }
+        else if (usernamefield.contains("12")) {
+
+        }
+        else if (usernamefield.contains("13")) {
+
+        }
+        else if (usernamefield.contains("14")) {
+
+        }
+        else if (usernamefield.contains("15")) {
+
+        }
+        else if (usernamefield.contains("16")) {
+
+        }
+        else {
+
+        }
     }
+
     // Singleton Pattern
     public static LocationController getInstance() {
         if (locationController == null) {
