@@ -127,6 +127,15 @@ public class PlayerController {
         }
     }
 
+    public void loseCondition() {
+        try {
+            pv.loserScreen();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public void MaxGoods(String nameOfGoods){
         switch(nameOfGoods) {
             case "spice":

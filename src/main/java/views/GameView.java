@@ -4,6 +4,11 @@ import controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import java.util.Random;
 import javafx.scene.layout.*;
@@ -27,6 +32,8 @@ public class GameView implements GameViewObserver, Initializable {
     private LocationView locationView = LocationView.getInstance();
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
+    ArrayList<Button> tiles = new ArrayList<Button>();
+
 
     // Locatie views
     private SmallMarketView smallMarketView = SmallMarketView.getInstance();
@@ -50,6 +57,8 @@ public class GameView implements GameViewObserver, Initializable {
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
+
+
 
     // Starts the game
     public void start() throws Exception {
@@ -100,6 +109,12 @@ public class GameView implements GameViewObserver, Initializable {
         }
         setPlayersEnFamily();
         turnManager();
+
+        tiles.add(tile1);tiles.add(tile2);tiles.add(tile3);tiles.add(tile4);
+        tiles.add(tile5);tiles.add(tile6);tiles.add(tile7);tiles.add(tile8);
+        tiles.add(tile9);tiles.add(tile10);tiles.add(tile11);tiles.add(tile12);
+        tiles.add(tile13);tiles.add(tile14);tiles.add(tile15);tiles.add(tile16);
+        possibleMoves(playerred);
 
         Player player = new Player("Joeri");
         // nemen aan dat joeri speler 1 is
@@ -355,14 +370,24 @@ public class GameView implements GameViewObserver, Initializable {
         move(familyMember, column, row);
     }
 
+    /**
+     * This functions changes the X and Y position of the player on the board.
+     * It also checks if the player has moved already
+     * @author Stan Hogenboom
+     * @param pane
+     * @param columnm
+     * @param row
+     * @throws IOException
+     */
     private void moveTile(Pane pane, int columnm, int row) throws IOException {
         if (!gameController.movementDone()){
             GridPane.setColumnIndex(pane, columnm);
             GridPane.setRowIndex(pane, row);
             gameController.setMoved(true);
+            disableAllTiles();
         }
         else {
-            popUpView.winnerScreen();
+            popUpView.dontMove();
         }
     }
 
@@ -420,16 +445,70 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
 
-    //DISABELEN VAN KNOPPEN ALS HET NIET JE BEURJE IS!!!!!!!!!!!!!!!!!!!!!!!!!
+    /**
+     * Checks if it's your turn and disbales tiles acordingly.
+     */
     public void turnManager() {
             if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
-                tile1.setDisable(true);  tile2.setDisable(true);  tile3.setDisable(true);  tile4.setDisable(true);
-                tile5.setDisable(true);  tile6.setDisable(true);  tile7.setDisable(true);  tile8.setDisable(true);
-                tile9.setDisable(true);  tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
-                tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
-               // turnCounter++;
+                disableAllTiles();
+               // TURNCOUNTER++;
 
         }
+    }
+
+    /**
+     * Disables all tiles so you can't click on them anymore.
+     * @author: Stan Hogenboom
+     */
+    public void disableAllTiles() {
+        tile1 .setDisable(true); tile2 .setDisable(true); tile3 .setDisable(true); tile4 .setDisable(true);
+        tile5 .setDisable(true); tile6 .setDisable(true); tile7 .setDisable(true); tile8 .setDisable(true);
+        tile9 .setDisable(true); tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
+        tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
+    }
+
+    public void possibleMoves(Node node){
+        int playerrow = grid.getRowIndex(node);
+        int playercol = grid.getColumnIndex(node);
+
+        // [1,0] [-1,0] [0,1] [0,-1]
+
+        for(int i = 0; i<tiles.size(); i++){
+
+            int tilecol = grid.getColumnIndex(tiles.get(i));
+            int tilerow = grid.getRowIndex(tiles.get(i));
+
+            int deltaC = tilecol - playercol;
+            int deltaR = tilerow - playerrow;
+
+            if(tilecol == playercol && tilerow == playerrow){
+                    tiles.get(i).setDisable(true);
+            }
+
+            else if((-1 <= deltaC && deltaC <=1) && (-1 <= deltaR && deltaR <= 1)) {
+                tiles.get(i).setDisable(false);
+            }
+
+            else if((tilecol == playercol && deltaR <= 1) || (tilecol == playercol && -1 <=  deltaR)) {
+                tiles.get(i).setDisable(false);
+            }
+
+            else if((tilerow == playerrow && deltaC <= 1) || (tilerow == playerrow && -1 <=  deltaC)) {
+                tiles.get(i).setDisable(false);
+            }
+
+            else{
+                tiles.get(i).setDisable(true);
+            }
+        }
+    }
+
+    /**
+     * Gives an int based on the node coordinarions.
+     * @author: Thomas van Velzen
+     */
+    public int getNodeLocation(Node node){
+        return ((grid.getRowIndex(node)*4)+grid.getColumnIndex(node))+1;
     }
 
     // Singleton Pattern
