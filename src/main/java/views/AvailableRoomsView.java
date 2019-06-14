@@ -1,4 +1,4 @@
-package models;
+package views;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import controllers.MenuViewController;
@@ -14,13 +14,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import util.GameInformation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AvailableRooms implements Initializable {
+public class AvailableRoomsView implements Initializable {
 
     // Variables
     MenuViewController menuViewController;

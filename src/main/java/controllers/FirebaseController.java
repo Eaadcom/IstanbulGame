@@ -8,17 +8,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.annotations.Nullable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
 import models.Firebase;
-import models.GameInformation;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
 
 public class FirebaseController {
 
@@ -87,13 +81,10 @@ public class FirebaseController {
     }
 
     // Listen for changes to the Firebase
-    public void firebaseListener(){
-
-        Firestore db = firebaseLogin();
-
+    public void firebaseListener(String game){
         Runnable runnable = () -> {
 
-            DocumentReference docRef = db.collection("Classes").document("Player");
+            DocumentReference docRef = db.collection("Games").document(game);
             docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -144,10 +135,13 @@ public class FirebaseController {
             DocumentReference docRef = db.collection("Games").document(menuViewController.getGameName());
 
             Map<String, Object> data = new HashMap<>();
+            ArrayList<String> userNames = new ArrayList<>();
+            userNames.add(0, "FUCK");userNames.add(1, "");userNames.add(2, "");userNames.add(3, "");userNames.add(4, "");
             data.put("gameName", menuViewController.getGameName());
             data.put("playerTotal", menuViewController.getPlayerTotal());
             data.put("gameDifficulty", menuViewController.getGameDifficulty());
             data.put("dateCreated", new Date());
+            data.put("PlayerNames", userNames);
 
             ApiFuture<WriteResult> result = docRef.set(data);
             System.out.println("Update time : " + result.get().getUpdateTime());

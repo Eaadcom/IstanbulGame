@@ -1,10 +1,14 @@
-package models;
+package util;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import models.Firebase;
+import views.LobbyView;
+import views.MenuView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class GameInformation {
@@ -22,11 +26,15 @@ public class GameInformation {
         buttonAmount++;
         this.button.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-
-                firebase = Firebase.getInstance();
-                List<QueryDocumentSnapshot> data = firebase.getLobbyInfo();
-                Object gameInfo = data.get(Integer.parseInt(button.getId())).getData().get("gameName");
-                System.out.println(gameInfo);
+                try{
+                    firebase = Firebase.getInstance();
+                    List<QueryDocumentSnapshot> data = firebase.getLobbyInfo();
+                    String gameName = data.get(Integer.parseInt(button.getId())).getData().get("gameName").toString();
+                    String playerTotal = data.get(Integer.parseInt(button.getId())).getData().get("playerTotal").toString();
+                    LobbyView.getInstance().start(gameName, playerTotal, Integer.parseInt(button.getId()));
+                } catch (Exception ee){
+                    ee.printStackTrace();
+                }
             }
         });
     }

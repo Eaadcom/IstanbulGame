@@ -1,12 +1,8 @@
 package views;
 
-import com.google.cloud.firestore.QueryDocumentSnapshot;
 import controllers.MenuViewController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
 import observers.MainMenuObservable;
@@ -18,11 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import models.GameInformation;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -35,7 +29,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     // FXML variabelen
     @FXML ChoiceBox cb = new ChoiceBox();
     @FXML ChoiceBox cb2 = new ChoiceBox();
-    @FXML private VBox rootPane;
+    @FXML private VBox rootPane, rootPane2;
     @FXML private Button startGame;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
@@ -64,8 +58,6 @@ public class MenuView implements Initializable, MenuViewObserver {
         cb2.getItems().add("medium");
         cb2.getItems().add("hard");
         cb2.getItems().add("random");
-
-
     }
 
     // Create Room
@@ -129,10 +121,10 @@ public class MenuView implements Initializable, MenuViewObserver {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
             String username = usernamefield.getText();
+            MenuViewController.getInstance().throwUsername(username);
 
             menuViewController = MenuViewController.getInstance();
             menuViewController.throwUsername(username);
-
         }
     }
 
@@ -180,8 +172,6 @@ public class MenuView implements Initializable, MenuViewObserver {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     // Exit game
