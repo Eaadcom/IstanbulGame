@@ -43,6 +43,10 @@ public class MenuViewController {
         return mainMenu.getPlayerTotal();
     }
 
+    public String getUserName(){
+        return mainMenu.getUsername();
+    }
+
     // Stuurt de username die hij doorkrijgt als argument naar de mainMenu model
     public void throwUsername(String username){
         mainMenu.setUsername(username);

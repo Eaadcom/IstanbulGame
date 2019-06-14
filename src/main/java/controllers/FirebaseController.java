@@ -8,11 +8,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.annotations.Nullable;
+import models.Firebase;
 
 import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
 
 public class FirebaseController {
 
@@ -20,6 +20,7 @@ public class FirebaseController {
     private static FirebaseController firebaseController;
     private MenuViewController menuViewController;
     private Firestore db = firebaseLogin();
+    private Firebase firebase;
 
     // Write to Firebase
     public void firebaseWriter(LinkedHashMap<String, String> variables){
@@ -51,11 +52,23 @@ public class FirebaseController {
             //for (QueryDocumentSnapshot document : documents) {
             //    System.out.println(document.getData());
             //}
+            //saveLobbyInfo(documents);
+
+            firebase = Firebase.getInstance();
+            firebase.setLobbyInfo(documents);
             return documents;
         } catch (Exception e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void saveLobbyInfo(List<QueryDocumentSnapshot> documents){
+        ArrayList<Map> documentsList = new ArrayList<Map>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            documentsList.add(document.getData());
+        }
     }
 
     // Get data from Firebase
@@ -68,13 +81,10 @@ public class FirebaseController {
     }
 
     // Listen for changes to the Firebase
-    public void firebaseListener(){
-
-        Firestore db = firebaseLogin();
-
+    public void firebaseListener(String game){
         Runnable runnable = () -> {
 
-            DocumentReference docRef = db.collection("Classes").document("Player");
+            DocumentReference docRef = db.collection("Games").document(game);
             docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -125,10 +135,13 @@ public class FirebaseController {
             DocumentReference docRef = db.collection("Games").document(menuViewController.getGameName());
 
             Map<String, Object> data = new HashMap<>();
+            ArrayList<String> userNames = new ArrayList<>();
+            userNames.add(0, "FUCK");userNames.add(1, "");userNames.add(2, "");userNames.add(3, "");userNames.add(4, "");
             data.put("gameName", menuViewController.getGameName());
             data.put("playerTotal", menuViewController.getPlayerTotal());
             data.put("gameDifficulty", menuViewController.getGameDifficulty());
             data.put("dateCreated", new Date());
+            data.put("PlayerNames", userNames);
 
             ApiFuture<WriteResult> result = docRef.set(data);
             System.out.println("Update time : " + result.get().getUpdateTime());
