@@ -101,14 +101,11 @@ public class GameView implements GameViewObserver, Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+        checkDifficulty();
 
-        try {
-            checkDifficulty();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         setPlayersEnFamily();
         turnManager();
+        enableAllTiles();
 
         tiles.add(tile1);tiles.add(tile2);tiles.add(tile3);tiles.add(tile4);
         tiles.add(tile5);tiles.add(tile6);tiles.add(tile7);tiles.add(tile8);
@@ -124,6 +121,10 @@ public class GameView implements GameViewObserver, Initializable {
         gameController.registerObservers(this);
     }
 
+    private void enableAllTiles() {
+        tiles.forEach(button -> button.setDisable(false));
+    }
+
     /**
      * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
      * van de grid enabled of disabled moeten worden
@@ -135,23 +136,39 @@ public class GameView implements GameViewObserver, Initializable {
 
     private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
-        grid.setColumnIndex(famred, grid.getColumnIndex(tile12));      grid.setRowIndex(famred, grid.getRowIndex(tile12));
-        grid.setColumnIndex(famyellow, grid.getColumnIndex(tile12));   grid.setRowIndex(famyellow, grid.getRowIndex(tile12));
-        grid.setColumnIndex(famgreen, grid.getColumnIndex(tile12));    grid.setRowIndex(famgreen, grid.getRowIndex(tile12));
-        grid.setColumnIndex(famblue, grid.getColumnIndex(tile12));     grid.setRowIndex(famblue, grid.getRowIndex(tile12));
-        grid.setColumnIndex(famwhite, grid.getColumnIndex(tile12));    grid.setRowIndex(famwhite, grid.getRowIndex(tile12));
+
+        grid.add(famred, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
+        grid.add(famyellow, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
+        grid.add(famgreen, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
+        grid.add(famblue, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
+        grid.add(famwhite, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
+
+//
+//        grid.setColumnIndex(famred, grid.getColumnIndex(tile12));      grid.setRowIndex(famred, grid.getRowIndex(tile12));
+//        grid.setColumnIndex(famyellow, grid.getColumnIndex(tile12));   grid.setRowIndex(famyellow, grid.getRowIndex(tile12));
+//        grid.setColumnIndex(famgreen, grid.getColumnIndex(tile12));    grid.setRowIndex(famgreen, grid.getRowIndex(tile12));
+//        grid.setColumnIndex(famblue, grid.getColumnIndex(tile12));     grid.setRowIndex(famblue, grid.getRowIndex(tile12));
+//        grid.setColumnIndex(famwhite, grid.getColumnIndex(tile12));    grid.setRowIndex(famwhite, grid.getRowIndex(tile12));
 
         //spelers op de juiste plek zetten
-        grid.setColumnIndex(playerred, grid.getColumnIndex(tile7));    grid.setRowIndex(playerred, grid.getRowIndex(tile7));
-        grid.setColumnIndex(playeryellow, grid.getColumnIndex(tile7)); grid.setRowIndex(playeryellow, grid.getRowIndex(tile7));
-        grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
-        grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
-        grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
+
+
+        grid.add(playerred, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
+        grid.add(playeryellow, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
+        grid.add(playergreen, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
+        grid.add(playerblue, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
+        grid.add(playerwhite, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
+
+//        grid.setColumnIndex(playerred, grid.getColumnIndex(tile7));    grid.setRowIndex(playerred, grid.getRowIndex(tile7));
+//        grid.setColumnIndex(playeryellow, grid.getColumnIndex(tile7)); grid.setRowIndex(playeryellow, grid.getRowIndex(tile7));
+//        grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
+//        grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
+//        grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
 
     }
 
     // Builds the map based on difficulty
-    public void checkDifficulty() throws Exception{
+    public void checkDifficulty() {
         String diff = gameController.getDifficulty();
 
         if (diff == "easy") {
@@ -164,25 +181,72 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     public void buildEasyMap(){
-        grid.setColumnIndex(tile1, 2);grid.setRowIndex(tile1, 3);
-        grid.setColumnIndex(tile2, 2);grid.setRowIndex(tile2, 0);
-        grid.setColumnIndex(tile3, 3);grid.setRowIndex(tile3, 1);
-        grid.setColumnIndex(tile4, 0);grid.setRowIndex(tile4, 1);
-        grid.setColumnIndex(tile5, 1);grid.setRowIndex(tile5, 0);
-        grid.setColumnIndex(tile6, 1);grid.setRowIndex(tile6, 2);
-        grid.setColumnIndex(tile7, 2);grid.setRowIndex(tile7, 1);
-        grid.setColumnIndex(tile8, 0);grid.setRowIndex(tile8, 2);
-        grid.setColumnIndex(tile9, 3);grid.setRowIndex(tile9, 2);
-        grid.setColumnIndex(tile10, 1);grid.setRowIndex(tile10, 3);
-        grid.setColumnIndex(tile11, 2);grid.setRowIndex(tile11, 2);
-        grid.setColumnIndex(tile12, 1);grid.setRowIndex(tile12, 1);
-        grid.setColumnIndex(tile13, 0);grid.setRowIndex(tile13, 3);
-        grid.setColumnIndex(tile14, 3);grid.setRowIndex(tile14, 0);
-        grid.setColumnIndex(tile15, 0);grid.setRowIndex(tile15, 0);
-        grid.setColumnIndex(tile16, 3);grid.setRowIndex(tile16, 3);
+        Button[][] buttonArray = {{tile15, tile4, tile8, tile13},
+                {tile5, tile12, tile6, tile10},
+                {tile2, tile7, tile11, tile1},
+                {tile14, tile3, tile9, tile16}};
+        grid.getChildren().clear();
+        for (int y = 0; y < buttonArray.length; y++) {
+            for (int x = 0; x < buttonArray[y].length; x++) {
+                grid.add(buttonArray[y][x], y, x);
+            }
+        }
+
+//        grid.getChildren().clear();
+//        grid.add(tile15, 0, 0);
+//        grid.add(tile4, 0, 1);
+//        grid.add(tile8, 0, 2);
+//        grid.add(tile13, 0, 3);
+//        grid.add(tile5, 1, 0);
+//        grid.add(tile12, 1, 1);
+//        grid.add(tile6, 1, 2);
+//        grid.add(tile10, 1, 3);
+//        grid.add(tile2, 2, 0);
+//        grid.add(tile7, 2, 1);
+//        grid.add(tile11, 2, 2);
+//        grid.add(tile1, 2, 3);
+//        grid.add(tile14, 3, 0);
+//        grid.add(tile3, 3, 1);
+//        grid.add(tile9, 3, 2);
+//        grid.add(tile16, 3, 3);
+//
+//        grid.setColumnIndex(tile1, 2);grid.setRowIndex(tile1, 3);
+//        grid.setColumnIndex(tile2, 2);grid.setRowIndex(tile2, 0);
+//        grid.setColumnIndex(tile3, 3);grid.setRowIndex(tile3, 1);
+//        grid.setColumnIndex(tile4, 0);grid.setRowIndex(tile4, 1);
+//        grid.setColumnIndex(tile5, 1);grid.setRowIndex(tile5, 0);
+//        grid.setColumnIndex(tile6, 1);grid.setRowIndex(tile6, 2);
+//        grid.setColumnIndex(tile7, 2);grid.setRowIndex(tile7, 1);
+//        grid.setColumnIndex(tile8, 0);grid.setRowIndex(tile8, 2);
+//        grid.setColumnIndex(tile9, 3);grid.setRowIndex(tile9, 2);
+//        grid.setColumnIndex(tile10, 1);grid.setRowIndex(tile10, 3);
+//        grid.setColumnIndex(tile11, 2);grid.setRowIndex(tile11, 2);
+//        grid.setColumnIndex(tile12, 1);grid.setRowIndex(tile12, 1);
+//        grid.setColumnIndex(tile13, 0);grid.setRowIndex(tile13, 3);
+//        grid.setColumnIndex(tile14, 3);grid.setRowIndex(tile14, 0);
+//        grid.setColumnIndex(tile15, 0);grid.setRowIndex(tile15, 0);
+//        grid.setColumnIndex(tile16, 3);grid.setRowIndex(tile16, 3);
     }
 
     public void buildHardMap(){
+        grid.getChildren().clear();
+        grid.add(tile16, 0, 0);
+        grid.add(tile15, 0, 1);
+        grid.add(tile3, 0, 2);
+        grid.add(tile10, 0, 3);
+        grid.add(tile2, 1, 0);
+        grid.add(tile7, 1, 1);
+        grid.add(tile5, 1, 2);
+        grid.add(tile9, 1, 3);
+        grid.add(tile8, 2, 0);
+        grid.add(tile6, 2, 1);
+        grid.add(tile12, 2, 2);
+        grid.add(tile14, 2, 3);
+        grid.add(tile11, 3, 0);
+        grid.add(tile4, 3,  1);
+        grid.add(tile1, 3, 2);
+        grid.add(tile13, 3, 3);
+
         grid.setColumnIndex(tile1, 3);grid.setRowIndex(tile1, 2);
         grid.setColumnIndex(tile2, 1);grid.setRowIndex(tile2, 0);
         grid.setColumnIndex(tile3, 0);grid.setRowIndex(tile3, 2);
@@ -273,7 +337,7 @@ public class GameView implements GameViewObserver, Initializable {
             else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
 
             gameController.setNextPlayer();
-
+            possibleMoves(playerred);
         }
     }
 
@@ -383,8 +447,8 @@ public class GameView implements GameViewObserver, Initializable {
         if (!gameController.movementDone()){
             GridPane.setColumnIndex(pane, columnm);
             GridPane.setRowIndex(pane, row);
-            gameController.setMoved(true);
-            disableAllTiles();
+//            gameController.setMoved(true);
+//            disableAllTiles();
         }
         else {
             popUpView.dontMove();
@@ -467,40 +531,66 @@ public class GameView implements GameViewObserver, Initializable {
         tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
     }
 
+    private int getDifferenceBetweenNumbers(int value1, int value2) {
+        return Math.abs(value1 - value2);
+    }
+
     public void possibleMoves(Node node){
         int playerrow = grid.getRowIndex(node);
         int playercol = grid.getColumnIndex(node);
 
         // [1,0] [-1,0] [0,1] [0,-1]
 
-        for(int i = 0; i<tiles.size(); i++){
 
-            int tilecol = grid.getColumnIndex(tiles.get(i));
-            int tilerow = grid.getRowIndex(tiles.get(i));
+        final int moves = 2;
 
-            int deltaC = tilecol - playercol;
-            int deltaR = tilerow - playerrow;
+        for(int i = 0; i< tiles.size(); i++) {
+            Button button = tiles.get(i);
+            int tilecol = grid.getColumnIndex(button);
+            int tilerow = grid.getRowIndex(button);
 
-            if(tilecol == playercol && tilerow == playerrow){
-                    tiles.get(i).setDisable(true);
+            int colDifference = getDifferenceBetweenNumbers(tilecol, playercol);
+            int rowDifference = getDifferenceBetweenNumbers(tilerow, playerrow);
+
+            int totalDifference = colDifference + rowDifference;
+            if (totalDifference == 0) {
+                button.setDisable(true);
+            }
+            else if(totalDifference <= moves) {
+                button.setDisable(false);
+            } else {
+                button.setDisable(true);
             }
 
-            else if((-1 <= deltaC && deltaC <=1) && (-1 <= deltaR && deltaR <= 1)) {
-                tiles.get(i).setDisable(false);
-            }
-
-            else if((tilecol == playercol && deltaR <= 1) || (tilecol == playercol && -1 <=  deltaR)) {
-                tiles.get(i).setDisable(false);
-            }
-
-            else if((tilerow == playerrow && deltaC <= 1) || (tilerow == playerrow && -1 <=  deltaC)) {
-                tiles.get(i).setDisable(false);
-            }
-
-            else{
-                tiles.get(i).setDisable(true);
-            }
         }
+
+//        for(int i = 0; i<tiles.size(); i++){
+//            int tilecol = grid.getColumnIndex(tiles.get(i));
+//            int tilerow = grid.getRowIndex(tiles.get(i));
+//
+//            int deltaC = tilecol - playercol;
+//            int deltaR = tilerow - playerrow;
+//
+//            if(tilecol == playercol && tilerow == playerrow){
+//                    tiles.get(i).setDisable(true);
+//            }
+//
+//            else if((-1 <= deltaC && deltaC <=1) && (-1 <= deltaR && deltaR <= 1)) {
+//                tiles.get(i).setDisable(false);
+//            }
+//
+//            else if((tilecol == playercol && deltaR <= 1) || (tilecol == playercol && -1 <=  deltaR)) {
+//                tiles.get(i).setDisable(false);
+//            }
+//
+//            else if((tilerow == playerrow && deltaC <= 1) || (tilerow == playerrow && -1 <=  deltaC)) {
+//                tiles.get(i).setDisable(false);
+//            }
+//
+//            else{
+//                tiles.get(i).setDisable(true);
+//            }
+//        }
     }
 
     /**
@@ -577,4 +667,7 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
 
+    public void useTile(ActionEvent actionEvent) {
+
+    }
 }

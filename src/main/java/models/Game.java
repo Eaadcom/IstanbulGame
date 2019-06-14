@@ -10,12 +10,15 @@ public class Game implements GameObservable {
 
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
+
+
     private Board board = new Board();
     private int playerTotal = 2;
     public int turnCounter = playerTotal;
     public static boolean gameEnd = false;
     public int myPlayerID = 1;
     public boolean hasMoved = false;
+    private Difficulty difficulty;
 
     // Setters
     public void setPlayerTotal(int plt){
@@ -52,6 +55,10 @@ public class Game implements GameObservable {
     public void increaseTurnCounter() {
         turnCounter++;
         notifyAllObservers();
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public List<Player> getPlayers() {
