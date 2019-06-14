@@ -23,6 +23,7 @@ import java.net.URL;
 import views.tiles.*;
 
 import static models.Difficulty.EASY;
+import static models.Difficulty.MEDIUM;
 
 public class GameView implements GameViewObserver, Initializable {
 
@@ -78,8 +79,9 @@ public class GameView implements GameViewObserver, Initializable {
 
         gameController.initializeGameData();
         checkDifficulty();
-
-        setPlayersEnFamily();
+        if (!gameController.getDifficulty().equals(MEDIUM)) {
+            setPlayersEnFamily();
+        }
         turnManager();
         enableAllTiles();
 
