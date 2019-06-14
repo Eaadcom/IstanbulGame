@@ -24,28 +24,17 @@ public class MenuView implements Initializable, MenuViewObserver {
 
     // variabelen
     private static MenuView menuView;
-    private MenuViewController menuViewController;
+    private MenuViewController menuViewController = MenuViewController.getInstance();
 
     // FXML variabelen
-    @FXML ChoiceBox cb = new ChoiceBox();
-    @FXML ChoiceBox cb2 = new ChoiceBox();
+    @FXML
+    private ChoiceBox<String> cb = new ChoiceBox<>();
+    @FXML
+    private ChoiceBox<String> cb2 = new ChoiceBox<>();
     @FXML private VBox rootPane, rootPane2;
     @FXML private Button startGame;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
-
-    // Start het login deel van de MenuView
-//    public void start(Stage stage) throws Exception{
-//
-//        stage.setTitle("Istanbul");
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-//        root.setId("pane");
-//        Scene scene = new Scene(root, 1920, 1080);
-//        stage.setFullScreen(true);
-//
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -113,17 +102,14 @@ public class MenuView implements Initializable, MenuViewObserver {
     // Handelt de input van de Login
     @FXML
     private void login() throws IOException {
-        Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^~`*()%!-]");
-        boolean result = regex.matcher(usernamefield.getText()).matches();
+        Pattern loginPattern = Pattern.compile("[$&+,:;=\\\\?@#|/'{}<>.^~_`*()%!-]");
+        String usernamefieldText = usernamefield.getText();
 
-        if (usernamefield.getText().equals("") || usernamefield.getText().contains(" ") || usernamefield.getText().contains("`") || usernamefield.getText().contains("+") || usernamefield.getText().contains("-") || usernamefield.getText().contains("]") || usernamefield.getText().contains("=") || usernamefield.getText().contains("/") || usernamefield.getText().contains("\\") || usernamefield.getText().contains("~") || usernamefield.getText().contains("'") || usernamefield.getText().contains(";") || usernamefield.getText().contains(":") || usernamefield.getText().contains(",") || usernamefield.getText().contains(".") || usernamefield.getText().contains("?") || usernamefield.getText().contains("!") || usernamefield.getText().contains("@") || usernamefield.getText().contains("#") || usernamefield.getText().contains("$") || usernamefield.getText().contains("%") || usernamefield.getText().contains("^") || usernamefield.getText().contains("&") || usernamefield.getText().contains("*") || usernamefield.getText().contains("(") || usernamefield.getText().contains(")") || usernamefield.getText().contains("''") || usernamefield.getText().contains("_") || usernamefield.getText().contains("{") || usernamefield.getText().contains("}") || usernamefield.getText().contains("|") || usernamefield.getText().contains("\"")) { // doe niks
-        } else {
+        if (!usernamefieldText.equals("") && !usernamefieldText.contains(" ") && !loginPattern.matcher(usernamefieldText).find()) {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
             String username = usernamefield.getText();
-            MenuViewController.getInstance().throwUsername(username);
 
-            menuViewController = MenuViewController.getInstance();
             menuViewController.throwUsername(username);
         }
     }
@@ -134,10 +120,8 @@ public class MenuView implements Initializable, MenuViewObserver {
         try{
             if (roomName.getText() != null && cb2.getSelectionModel().getSelectedItem() != null && cb.getSelectionModel().getSelectedItem() != null){
                 menuViewController = MenuViewController.getInstance();
-                menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem().toString(),
-                        Integer.parseInt(cb.getSelectionModel().getSelectedItem().toString()));
-
-                menuViewController.createOnlineGame();
+                menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem(),
+                        Integer.parseInt(cb.getSelectionModel().getSelectedItem()));
 
                 Stage stage = (Stage) startGame.getScene().getWindow();
                 stage.close();

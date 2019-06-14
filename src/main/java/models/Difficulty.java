@@ -13,7 +13,6 @@ public enum Difficulty {
     private String value;
     private static final Map<String, Difficulty> difficultyMap = new HashMap<>();
 
-
     Difficulty(String value) {
         this.value = value;
     }
@@ -23,7 +22,7 @@ public enum Difficulty {
     }
 
     static {
-        for(Difficulty difficulty : values()) {
+        for (Difficulty difficulty : values()) {
             difficultyMap.put(difficulty.getValue(), difficulty);
         }
     }

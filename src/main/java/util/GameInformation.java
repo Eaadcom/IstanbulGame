@@ -13,14 +13,14 @@ import java.util.List;
 
 public class GameInformation {
     private String roomname;
-    private java.lang.Object totalPlayers;
+    private Integer totalPlayers;
     private Button button;
     private static int buttonAmount = 0;
     private Firebase firebase;
 
-    public GameInformation(String r, java.lang.Object p, String q){
-        this.roomname = r;
-        this.totalPlayers = p;
+    public GameInformation(String roomName, Integer totalPlayers, String q){
+        this.roomname = roomName;
+        this.totalPlayers = totalPlayers;
         this.button = new Button("Join");
         this.button.setId(Integer.toString(buttonAmount));
         buttonAmount++;

@@ -4,15 +4,14 @@ import controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import java.util.Random;
+
+import java.util.*;
+
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import models.Difficulty;
 import models.Game;
 import models.Player;
 import models.cards.BonusCard;
@@ -20,10 +19,10 @@ import observers.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+
 import views.tiles.*;
+
+import static models.Difficulty.EASY;
 
 public class GameView implements GameViewObserver, Initializable {
 
@@ -32,7 +31,7 @@ public class GameView implements GameViewObserver, Initializable {
     private LocationView locationView = LocationView.getInstance();
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
-    ArrayList<Button> tiles = new ArrayList<Button>();
+    List<Button> tiles = new ArrayList<>();
 
 
     // Locatie views
@@ -48,77 +47,62 @@ public class GameView implements GameViewObserver, Initializable {
     private GameController gameController1 = new GameController();
 
     // FXML variables
-    @FXML public Pane playerblue, playerred, playergreen, playeryellow, playerwhite; // aanmaken fx:id
-    @FXML public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
-    @FXML public GridPane grid; // aanmaken fx:id
-    @FXML public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
-    @FXML public Text gemprice;
-    @FXML public Text playerLira;
+    @FXML
+    public Pane playerblue, playerred, playergreen, playerYellow, playerwhite; // aanmaken fx:id
+    @FXML
+    public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
+    @FXML
+    public GridPane grid; // aanmaken fx:id
+    @FXML
+    public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
+    @FXML
+    public Text gemprice;
+    @FXML
+    public Text playerLira;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
 
-
+    private Button[][] easyMap;
+    private Button[][] hardMap;
 
     // Starts the game
     public void start() throws Exception {
-
-        /*FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-        Parent root1 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Istanbul");
-        stage.setScene(new Scene(root1));
-        stage.setMaximized(true);
-
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
-        stage.setWidth(primaryScreenBounds.getWidth());
-        stage.setHeight(primaryScreenBounds.getHeight());
-
-        stage.show();*/
-
-        //        while (!gameController.getGameEnd()) {
-//
-//            Player currentPlayerTurn = gameController.getCurrentPlayerTurn();
-//            manageGameFieldIconen(currentPlayerTurn);
-//
-////            while (!endTurn) { //
-////
-////            }
-//
-//
-//            if (!gameController.getGameEnd()) {
-//                gameController.setNextTurn();
-//            }
-//        }
 
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeMaps();
 
-
+        gameController.initializeGameData();
         checkDifficulty();
 
         setPlayersEnFamily();
         turnManager();
         enableAllTiles();
 
-        tiles.add(tile1);tiles.add(tile2);tiles.add(tile3);tiles.add(tile4);
-        tiles.add(tile5);tiles.add(tile6);tiles.add(tile7);tiles.add(tile8);
-        tiles.add(tile9);tiles.add(tile10);tiles.add(tile11);tiles.add(tile12);
-        tiles.add(tile13);tiles.add(tile14);tiles.add(tile15);tiles.add(tile16);
+        tiles.addAll(Arrays.asList(tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11,
+                tile12, tile13, tile14, tile15, tile16
+        ));
+
         possibleMoves(playerred);
 
-        Player player = new Player("Joeri");
-        // nemen aan dat joeri speler 1 is
-        player.setLira(2);
-        gameController.addPlayer(player);
 
         gameController.registerObservers(this);
+    }
+
+    private void initializeMaps() {
+        easyMap = new Button[][]{{tile15, tile4, tile8, tile13},
+            {tile5, tile12, tile6, tile10},
+            {tile2, tile7, tile11, tile1},
+            {tile14, tile3, tile9, tile16}};
+
+        hardMap = new Button[][]{{tile16, tile15, tile3, tile10},
+            {tile2, tile7, tile5, tile9},
+            {tile8, tile6, tile12, tile14},
+            {tile11, tile4, tile1, tile13}};
     }
 
     private void enableAllTiles() {
@@ -128,6 +112,7 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
      * van de grid enabled of disabled moeten worden
+     *
      * @param currentPlayerTurn Player
      */
     private void manageGameFieldIconen(Player currentPlayerTurn) {
@@ -136,157 +121,71 @@ public class GameView implements GameViewObserver, Initializable {
 
     private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
-
-        grid.add(famred, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
-        grid.add(famyellow, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
-        grid.add(famgreen, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
-        grid.add(famblue, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
-        grid.add(famwhite, GridPane.getColumnIndex(tile12), GridPane.getRowIndex(tile12));
-
-//
-//        grid.setColumnIndex(famred, grid.getColumnIndex(tile12));      grid.setRowIndex(famred, grid.getRowIndex(tile12));
-//        grid.setColumnIndex(famyellow, grid.getColumnIndex(tile12));   grid.setRowIndex(famyellow, grid.getRowIndex(tile12));
-//        grid.setColumnIndex(famgreen, grid.getColumnIndex(tile12));    grid.setRowIndex(famgreen, grid.getRowIndex(tile12));
-//        grid.setColumnIndex(famblue, grid.getColumnIndex(tile12));     grid.setRowIndex(famblue, grid.getRowIndex(tile12));
-//        grid.setColumnIndex(famwhite, grid.getColumnIndex(tile12));    grid.setRowIndex(famwhite, grid.getRowIndex(tile12));
+        addToGrid(famred, tile12);
+        addToGrid(famyellow, tile12);
+        addToGrid(famgreen, tile12);
+        addToGrid(famwhite, tile12);
+        addToGrid(famblue, tile12);
 
         //spelers op de juiste plek zetten
+        addToGrid(playerred, tile7);
+        addToGrid(playerYellow, tile7);
+        addToGrid(playergreen, tile7);
+        addToGrid(playerblue, tile7);
+        addToGrid(playerwhite, tile7);
+    }
 
-
-        grid.add(playerred, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
-        grid.add(playeryellow, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
-        grid.add(playergreen, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
-        grid.add(playerblue, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
-        grid.add(playerwhite, GridPane.getColumnIndex(tile7), GridPane.getRowIndex(tile7));
-
-//        grid.setColumnIndex(playerred, grid.getColumnIndex(tile7));    grid.setRowIndex(playerred, grid.getRowIndex(tile7));
-//        grid.setColumnIndex(playeryellow, grid.getColumnIndex(tile7)); grid.setRowIndex(playeryellow, grid.getRowIndex(tile7));
-//        grid.setColumnIndex(playergreen, grid.getColumnIndex(tile7));  grid.setRowIndex(playergreen, grid.getRowIndex(tile7));
-//        grid.setColumnIndex(playerblue, grid.getColumnIndex(tile7));   grid.setRowIndex(playerblue, grid.getRowIndex(tile7));
-//        grid.setColumnIndex(playerwhite, grid.getColumnIndex(tile7));  grid.setRowIndex(playerwhite, grid.getRowIndex(tile7));
-
+    private void addToGrid(Node node, Node ofNodeIndex) {
+        grid.add(node, GridPane.getColumnIndex(ofNodeIndex), GridPane.getRowIndex(ofNodeIndex));
     }
 
     // Builds the map based on difficulty
     public void checkDifficulty() {
-        String diff = gameController.getDifficulty();
+        Difficulty difficulty = gameController.getDifficulty();
 
-        if (diff == "easy") {
+        if (difficulty.equals(EASY)) {
             buildEasyMap();
-        }if (diff == "hard"){
+        }
+        if (difficulty.equals(Difficulty.HARD)) {
             buildHardMap();
-        }if (diff == "random"){
+        }
+        if (difficulty.equals(Difficulty.RANDOM)) {
             buildRandomMap();
         }
     }
 
-    public void buildEasyMap(){
-        Button[][] buttonArray = {{tile15, tile4, tile8, tile13},
-                {tile5, tile12, tile6, tile10},
-                {tile2, tile7, tile11, tile1},
-                {tile14, tile3, tile9, tile16}};
+    public void buildEasyMap() {
+        buildMapForDifficulty(easyMap);
+    }
+
+    public void buildHardMap() {
+        buildMapForDifficulty(hardMap);
+    }
+
+    private void buildMapForDifficulty(final Button[][] buttonMap) {
         grid.getChildren().clear();
-        for (int y = 0; y < buttonArray.length; y++) {
-            for (int x = 0; x < buttonArray[y].length; x++) {
-                grid.add(buttonArray[y][x], y, x);
+        for (int y = 0; y < buttonMap.length; y++) {
+            for (int x = 0; x < buttonMap[y].length; x++) {
+                grid.add(buttonMap[y][x], y, x);
             }
         }
-
-//        grid.getChildren().clear();
-//        grid.add(tile15, 0, 0);
-//        grid.add(tile4, 0, 1);
-//        grid.add(tile8, 0, 2);
-//        grid.add(tile13, 0, 3);
-//        grid.add(tile5, 1, 0);
-//        grid.add(tile12, 1, 1);
-//        grid.add(tile6, 1, 2);
-//        grid.add(tile10, 1, 3);
-//        grid.add(tile2, 2, 0);
-//        grid.add(tile7, 2, 1);
-//        grid.add(tile11, 2, 2);
-//        grid.add(tile1, 2, 3);
-//        grid.add(tile14, 3, 0);
-//        grid.add(tile3, 3, 1);
-//        grid.add(tile9, 3, 2);
-//        grid.add(tile16, 3, 3);
-//
-//        grid.setColumnIndex(tile1, 2);grid.setRowIndex(tile1, 3);
-//        grid.setColumnIndex(tile2, 2);grid.setRowIndex(tile2, 0);
-//        grid.setColumnIndex(tile3, 3);grid.setRowIndex(tile3, 1);
-//        grid.setColumnIndex(tile4, 0);grid.setRowIndex(tile4, 1);
-//        grid.setColumnIndex(tile5, 1);grid.setRowIndex(tile5, 0);
-//        grid.setColumnIndex(tile6, 1);grid.setRowIndex(tile6, 2);
-//        grid.setColumnIndex(tile7, 2);grid.setRowIndex(tile7, 1);
-//        grid.setColumnIndex(tile8, 0);grid.setRowIndex(tile8, 2);
-//        grid.setColumnIndex(tile9, 3);grid.setRowIndex(tile9, 2);
-//        grid.setColumnIndex(tile10, 1);grid.setRowIndex(tile10, 3);
-//        grid.setColumnIndex(tile11, 2);grid.setRowIndex(tile11, 2);
-//        grid.setColumnIndex(tile12, 1);grid.setRowIndex(tile12, 1);
-//        grid.setColumnIndex(tile13, 0);grid.setRowIndex(tile13, 3);
-//        grid.setColumnIndex(tile14, 3);grid.setRowIndex(tile14, 0);
-//        grid.setColumnIndex(tile15, 0);grid.setRowIndex(tile15, 0);
-//        grid.setColumnIndex(tile16, 3);grid.setRowIndex(tile16, 3);
     }
 
-    public void buildHardMap(){
+    public void buildRandomMap() {
         grid.getChildren().clear();
-        grid.add(tile16, 0, 0);
-        grid.add(tile15, 0, 1);
-        grid.add(tile3, 0, 2);
-        grid.add(tile10, 0, 3);
-        grid.add(tile2, 1, 0);
-        grid.add(tile7, 1, 1);
-        grid.add(tile5, 1, 2);
-        grid.add(tile9, 1, 3);
-        grid.add(tile8, 2, 0);
-        grid.add(tile6, 2, 1);
-        grid.add(tile12, 2, 2);
-        grid.add(tile14, 2, 3);
-        grid.add(tile11, 3, 0);
-        grid.add(tile4, 3,  1);
-        grid.add(tile1, 3, 2);
-        grid.add(tile13, 3, 3);
+        List<Button> buttons = Arrays.asList(tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16);
+        Collections.shuffle(buttons);
 
-        grid.setColumnIndex(tile1, 3);grid.setRowIndex(tile1, 2);
-        grid.setColumnIndex(tile2, 1);grid.setRowIndex(tile2, 0);
-        grid.setColumnIndex(tile3, 0);grid.setRowIndex(tile3, 2);
-        grid.setColumnIndex(tile4, 3);grid.setRowIndex(tile4, 1);
-        grid.setColumnIndex(tile5, 1);grid.setRowIndex(tile5, 2);
-        grid.setColumnIndex(tile6, 2);grid.setRowIndex(tile6, 1);
-        grid.setColumnIndex(tile7, 1);grid.setRowIndex(tile7, 1);
-        grid.setColumnIndex(tile8, 2);grid.setRowIndex(tile8, 0);
-        grid.setColumnIndex(tile9, 1);grid.setRowIndex(tile9, 3);
-        grid.setColumnIndex(tile10, 0);grid.setRowIndex(tile10, 3);
-        grid.setColumnIndex(tile11, 3);grid.setRowIndex(tile11, 0);
-        grid.setColumnIndex(tile12, 2);grid.setRowIndex(tile12, 2);
-        grid.setColumnIndex(tile13, 3);grid.setRowIndex(tile13, 3);
-        grid.setColumnIndex(tile14, 2);grid.setRowIndex(tile14, 3);
-        grid.setColumnIndex(tile15, 0);grid.setRowIndex(tile15, 1);
-        grid.setColumnIndex(tile16, 0);grid.setRowIndex(tile16, 0);
-    }
+        Button[] buttonArray = buttons.toArray(new Button[buttons.size()]);
 
-    public void buildRandomMap(){
         int[][] locatiesCoordinaten = new int[][]{
                 {0, 0}, {1, 0}, {2, 0}, {3, 0},
                 {0, 1}, {1, 1}, {2, 1}, {3, 1},
                 {0, 2}, {1, 2}, {2, 2}, {3, 2},
                 {0, 3}, {1, 3}, {2, 3}, {3, 3}};
-        Button[] locatieVariabelen = new Button[]{
-                tile1, tile2, tile3, tile4,
-                tile5, tile6, tile7, tile8,
-                tile9, tile10, tile11, tile12,
-                tile13, tile14, tile15, tile16};
-        ArrayList<Integer> hadLocations = new ArrayList<>();
 
-        Random rand = new Random();
-        for (int i = 0; i < 15; i++){
-            int loc = rand.nextInt(15);
-            if (!hadLocations.contains(loc)){
-                grid.setColumnIndex(locatieVariabelen[i], locatiesCoordinaten[loc][0]);grid.setRowIndex(locatieVariabelen[i], locatiesCoordinaten[loc][1]);
-                hadLocations.add(loc);
-            } else{
-                i = i - 1;
-            }
+        for (int i = 0; i < 16; i++) {
+            grid.add(buttonArray[i], locatiesCoordinaten[i][0], locatiesCoordinaten[i][1]);
         }
     }
 
@@ -309,14 +208,13 @@ public class GameView implements GameViewObserver, Initializable {
 
     public void bonusCards() throws IOException {
         String gekozenKaart = popUpView.bonusCards();
-        System.out.println(gekozenKaart);
         gameController.addGekozenKaart(gekozenKaart);
     }
 
     // Popup to confirm if the player wants to move to the selected location
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
-        if(popUpView.confirmMovement()) {
+        if (popUpView.confirmMovement()) {
             Button source = (Button) event.getSource();
             int rowIndex = 0;
             int columnIndex = 0;
@@ -327,14 +225,38 @@ public class GameView implements GameViewObserver, Initializable {
             //showPopupBonusKaarten();
 
             // moveTile(getCurrentPlayer, columnIndex, rowIndex);
-            if      (source.getId().equals("tile1")) { wainwright();     } else if (source.getId().equals("tile2")) { fabricWarehouse();}
-            else if (source.getId().equals("tile3")) { spiceWarehouse(); } else if (source.getId().equals("tile4")) { fruitWarehouse(); }
-            else if (source.getId().equals("tile5")) { postOffice();     } else if (source.getId().equals("tile6")) {                   }
-            else if (source.getId().equals("tile7")) { fountain();       } else if (source.getId().equals("tile8")) { blackMarket();    }
-            else if (source.getId().equals("tile9")) { teaHouse();       } else if (source.getId().equals("tile10")){ largeMarket();    }
-            else if (source.getId().equals("tile11")){ smallMarket();    } else if (source.getId().equals("tile12")){ policeStation();  }
-            else if (source.getId().equals("tile13")){ sultansPalace();  } else if (source.getId().equals("tile14")){ smallMosque();    }
-            else if (source.getId().equals("tile15")){ greatMosque();    } else if (source.getId().equals("tile16")){ gemstoneDealer(); }
+            if (source.getId().equals("tile1")) {
+                wainwright();
+            } else if (source.getId().equals("tile2")) {
+                fabricWarehouse();
+            } else if (source.getId().equals("tile3")) {
+                spiceWarehouse();
+            } else if (source.getId().equals("tile4")) {
+                fruitWarehouse();
+            } else if (source.getId().equals("tile5")) {
+                postOffice();
+            } else if (source.getId().equals("tile6")) {
+            } else if (source.getId().equals("tile7")) {
+                fountain();
+            } else if (source.getId().equals("tile8")) {
+                blackMarket();
+            } else if (source.getId().equals("tile9")) {
+                teaHouse();
+            } else if (source.getId().equals("tile10")) {
+                largeMarket();
+            } else if (source.getId().equals("tile11")) {
+                smallMarket();
+            } else if (source.getId().equals("tile12")) {
+                policeStation();
+            } else if (source.getId().equals("tile13")) {
+                sultansPalace();
+            } else if (source.getId().equals("tile14")) {
+                smallMosque();
+            } else if (source.getId().equals("tile15")) {
+                greatMosque();
+            } else if (source.getId().equals("tile16")) {
+                gemstoneDealer();
+            }
 
             gameController.setNextPlayer();
             possibleMoves(playerred);
@@ -345,24 +267,31 @@ public class GameView implements GameViewObserver, Initializable {
     public void blackMarket() throws IOException {
         locationView.blackMarket();
     }
+
     public void fabricWarehouse() throws IOException {
         locationView.fabricWarehouse();
     }
+
     public void fruitWarehouse() throws IOException {
         locationView.fruitWarehouse();
     }
+
     public void spiceWarehouse() throws IOException {
         locationView.spiceWarehouse();
     }
+
     public void teaHouse() throws IOException {
         locationView.teaHouse();
     }
+
     public void wainwright() throws IOException {
         locationView.wainwright();
     }
+
     public void policeStation() throws IOException {
         locationView.policeStation();
     }
+
     public void fountain() throws IOException {
         locationView.fountain();
     }
@@ -370,53 +299,60 @@ public class GameView implements GameViewObserver, Initializable {
     public void greatMosque() throws IOException {
         greatMosqueView.greatMosque();
     }
+
     public void smallMosque() throws IOException {
         smallMosqueView.smallMosque();
     }
+
     public void gemstoneDealer() throws IOException {
         gemstoneDealerView.gemstoneDealer();
     }
+
     public void largeMarket() throws IOException {
         largeMarketView.largeMarket();
     }
+
     public void smallMarket() throws IOException {
         smallMarketView.smallMarket();
     }
+
     public void sultansPalace() throws IOException {
         sultansPalaceView.sultansPalace();
     }
+
     public void postOffice() throws IOException {
         postOfficeView.postOffice();
     }
 
     // Closes the game
-    public void close(){
+    public void close() {
         System.exit(0);
     }
 
     /**
      * This opens the rules so the player can take a look at them.
+     *
+     * @throws IOException
      * @author Stan
      * @version June 5th, 2019
-     * @throws IOException
      */
-    public void rulesPage() throws Exception{
+    public void rulesPage() throws Exception {
         popUpView.rulesButton();
     }
 
     /**
-         * This is a method that visualizes the movement of the player.
-         *
-         * @param player Specify the team color of the player who moved. ex: "red" or "green".
-         *               Since the node is only visible and reachable via this class
-         *               I made the parameter a String and used a switch case to reach the right node.
+     * This is a method that visualizes the movement of the player.
+     *
+     * @param player Specify the team color of the player who moved. ex: "red" or "green".
+     *               Since the node is only visible and reachable via this class
+     *               I made the parameter a String and used a switch case to reach the right node.
      *                   This function also checks if the player has moved already.
      *                   If that's the case the player is not able to move again.
-         * @param column This specifies the column the user moved to.
-         * @param row    This specifies the row the user moved to.
-         * @author       Thomas van Velzen, Stan Hogenboom
-         * @version      4 juni 2019
-         */
+     * @param column This specifies the column the user moved to.
+     * @param row    This specifies the row the user moved to.
+     * @author Thomas van Velzen, Stan Hogenboom
+     * @version 4 juni 2019
+     */
 
 
     /**
@@ -427,8 +363,8 @@ public class GameView implements GameViewObserver, Initializable {
      *                     I made the parameter a String and used a switch case to reach the right node.
      * @param column       This specifies the column the user moved to.
      * @param row          This specifies the row the user moved to.
-     * @author             Thomas van Velzen
-     * @version            4 juni 2019
+     * @author Thomas van Velzen
+     * @version 4 juni 2019
      */
     public void moveFamilyMember(String familyMember, int column, int row) {
         move(familyMember, column, row);
@@ -437,73 +373,84 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * This functions changes the X and Y position of the player on the board.
      * It also checks if the player has moved already
-     * @author Stan Hogenboom
+     *
      * @param pane
      * @param columnm
      * @param row
      * @throws IOException
+     * @author Stan Hogenboom
      */
     private void moveTile(Pane pane, int columnm, int row) throws IOException {
-        if (!gameController.movementDone()){
+        if (!gameController.movementDone()) {
             GridPane.setColumnIndex(pane, columnm);
             GridPane.setRowIndex(pane, row);
 //            gameController.setMoved(true);
 //            disableAllTiles();
-        }
-        else {
+        } else {
             popUpView.dontMove();
         }
     }
 
     // Move code used by movePlayer() and moveFamilyMember()
     // Put here to remove duplicate code
-    private void move(String target, int column, int row){
-        switch(target){
-            case("red"):
+    private void move(String target, int column, int row) {
+        switch (target) {
+            case ("red"):
                 grid.setColumnIndex(famred, column);
-                grid.setRowIndex(famred, row); break;
-            case("blue"):
+                grid.setRowIndex(famred, row);
+                break;
+            case ("blue"):
                 grid.setColumnIndex(famblue, column);
-                grid.setRowIndex(famblue, row); break;
-            case("green"):
+                grid.setRowIndex(famblue, row);
+                break;
+            case ("green"):
                 grid.setColumnIndex(famgreen, column);
-                grid.setRowIndex(famgreen, row); break;
-            case("yellow"):
+                grid.setRowIndex(famgreen, row);
+                break;
+            case ("yellow"):
                 grid.setColumnIndex(famyellow, column);
-                grid.setRowIndex(famyellow, row); break;
-            case("white"):
+                grid.setRowIndex(famyellow, row);
+                break;
+            case ("white"):
                 grid.setColumnIndex(famwhite, column);
-                grid.setRowIndex(famwhite, row); break;
+                grid.setRowIndex(famwhite, row);
+                break;
         }
     }
 
     /**
      * This is a method returns the location value of the player.
      *
-     * @param player       Specify the team color of the player you want to know the location of. ex: "red" or "green".
-     *                     The method returns a location integer -1 which you can convert back into coordinates.
-     *                     Example with return value 14: '13 % 4 = 3r1' results in a row/column index of: 3,1 .
-     * @author             Thomas van Velzen
-     * @version            4 juni 2019
+     * @param player Specify the team color of the player you want to know the location of. ex: "red" or "green".
+     *               The method returns a location integer -1 which you can convert back into coordinates.
+     *               Example with return value 14: '13 % 4 = 3r1' results in a row/column index of: 3,1 .
+     * @author Thomas van Velzen
+     * @version 4 juni 2019
      */
     public int getPlayerPosition(String player) {
-        switch(player){
-            case("red"):
+        switch (player) {
+            case ("red"):
                 int red1 = grid.getColumnIndex(playerred);
-                int red2 = grid.getRowIndex(playerred); return red1+red2-1;
-            case("yellow"):
-                int yel1 = grid.getColumnIndex(playeryellow);
-                int yel2 = grid.getRowIndex(playeryellow); return yel1+yel2-1;
-            case("green"):
+                int red2 = grid.getRowIndex(playerred);
+                return red1 + red2 - 1;
+            case ("yellow"):
+                int yel1 = grid.getColumnIndex(playerYellow);
+                int yel2 = grid.getRowIndex(playerYellow);
+                return yel1 + yel2 - 1;
+            case ("green"):
                 int gre1 = grid.getColumnIndex(playergreen);
-                int gre2 = grid.getRowIndex(playergreen); return gre1+gre2-1;
-            case("blue"):
+                int gre2 = grid.getRowIndex(playergreen);
+                return gre1 + gre2 - 1;
+            case ("blue"):
                 int blu1 = grid.getColumnIndex(playerblue);
-                int blu2 = grid.getRowIndex(playerblue); return blu1+blu2-1;
-            case("white"):
+                int blu2 = grid.getRowIndex(playerblue);
+                return blu1 + blu2 - 1;
+            case ("white"):
                 int whi1 = grid.getColumnIndex(playerwhite);
-                int whi2 = grid.getRowIndex(playerwhite); return whi1+whi2-1;
-            default:break;
+                int whi2 = grid.getRowIndex(playerwhite);
+                return whi1 + whi2 - 1;
+            default:
+                break;
         }
         return 17;
     }
@@ -513,38 +460,37 @@ public class GameView implements GameViewObserver, Initializable {
      * Checks if it's your turn and disbales tiles acordingly.
      */
     public void turnManager() {
-            if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()){
-                disableAllTiles();
-               // TURNCOUNTER++;
+        if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()) {
+            disableAllTiles();
+            // TURNCOUNTER++;
 
         }
     }
 
     /**
      * Disables all tiles so you can't click on them anymore.
+     *
      * @author: Stan Hogenboom
      */
     public void disableAllTiles() {
-        tile1 .setDisable(true); tile2 .setDisable(true); tile3 .setDisable(true); tile4 .setDisable(true);
-        tile5 .setDisable(true); tile6 .setDisable(true); tile7 .setDisable(true); tile8 .setDisable(true);
-        tile9 .setDisable(true); tile10.setDisable(true); tile11.setDisable(true); tile12.setDisable(true);
-        tile13.setDisable(true); tile14.setDisable(true); tile15.setDisable(true); tile16.setDisable(true);
+        for (Button button : tiles) {
+            button.setDisable(true);
+        }
     }
 
     private int getDifferenceBetweenNumbers(int value1, int value2) {
         return Math.abs(value1 - value2);
     }
 
-    public void possibleMoves(Node node){
+    public void possibleMoves(Node node) {
         int playerrow = grid.getRowIndex(node);
         int playercol = grid.getColumnIndex(node);
 
         // [1,0] [-1,0] [0,1] [0,-1]
 
-
         final int moves = 2;
 
-        for(int i = 0; i< tiles.size(); i++) {
+        for (int i = 0; i < tiles.size(); i++) {
             Button button = tiles.get(i);
             int tilecol = grid.getColumnIndex(button);
             int tilerow = grid.getRowIndex(button);
@@ -555,8 +501,7 @@ public class GameView implements GameViewObserver, Initializable {
             int totalDifference = colDifference + rowDifference;
             if (totalDifference == 0) {
                 button.setDisable(true);
-            }
-            else if(totalDifference <= moves) {
+            } else if (totalDifference <= moves) {
                 button.setDisable(false);
             } else {
                 button.setDisable(true);
@@ -595,10 +540,11 @@ public class GameView implements GameViewObserver, Initializable {
 
     /**
      * Gives an int based on the node coordinarions.
+     *
      * @author: Thomas van Velzen
      */
-    public int getNodeLocation(Node node){
-        return ((grid.getRowIndex(node)*4)+grid.getColumnIndex(node))+1;
+    public int getNodeLocation(Node node) {
+        return ((grid.getRowIndex(node) * 4) + grid.getColumnIndex(node)) + 1;
     }
 
     // Singleton Pattern

@@ -11,12 +11,10 @@ public class MenuViewController {
     private MainMenu mainMenu;
     private FirebaseController firebaseController;
     private static MenuViewController menuViewController;
-    private static GameController gameController = GameController.getInstance();
 
     // Constructor waarin het MainMenu object wordt opgehaald
     public MenuViewController(){
-        mainMenu = MainMenu.getInstance();
-        mainMenu.register(MenuView.getInstance());
+        mainMenu = new MainMenu();
     }
 
     // write data to models
@@ -24,10 +22,6 @@ public class MenuViewController {
         mainMenu.setPlayerTotal(totP);
         mainMenu.setDifficulty(diff);
         mainMenu.setGameName(gmn);
-
-        gameController.setDifficulty(diff);
-        gameController.setPlayerTotal(totP);
-        gameController.setGameName(gmn);
     }
 
     // Get data from models
@@ -37,6 +31,10 @@ public class MenuViewController {
 
     public String getGameName(){
         return mainMenu.getGameName();
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
     }
 
     public int getPlayerTotal(){
@@ -50,12 +48,6 @@ public class MenuViewController {
     // Stuurt de username die hij doorkrijgt als argument naar de mainMenu model
     public void throwUsername(String username){
         mainMenu.setUsername(username);
-    }
-
-    // Roept de functie aan in de FirebaseController om een game aan te maken
-    public void createOnlineGame(){
-        firebaseController = FirebaseController.getInstance();
-        firebaseController.createOnlineGame();
     }
 
     // Pakt de aangemaakt lobbies uit de Firebase

@@ -61,24 +61,24 @@ public class LobbyView implements Initializable {
     }
 
     private void setNameByFirebase(Parent root8, int gameNum){
-        List namesList = (ArrayList) Firebase.getInstance().getLobbyInfo().get(gameNum).getData().get("PlayerNames");
+        List namesList = (ArrayList) Firebase.getInstance().getLobbyInfo().get(gameNum).getData().get("playerNames");
         p1 = (Text) root8.lookup("#p1");
         p2 = (Text) root8.lookup("#p2");
         p3 = (Text) root8.lookup("#p3");
         p4 = (Text) root8.lookup("#p4");
         p5 = (Text) root8.lookup("#p5");
 
-        if (namesList.get(0) == "") {
-            p1.setText(MenuViewController.getInstance().getUserName());
-        } else if (namesList.get(1) == ""){
-
-        } else if (namesList.get(2) == ""){
-
-        } else if (namesList.get(3) == ""){
-
-        } else if (namesList.get(4) == ""){
-
-        }
+//        if (namesList.get(0) == "") {
+//            p1.setText(MenuViewController.getInstance().getUserName());
+//        } else if (namesList.get(1) == ""){
+//
+//        } else if (namesList.get(2) == ""){
+//
+//        } else if (namesList.get(3) == ""){
+//
+//        } else if (namesList.get(4) == ""){
+//
+//        }
     }
 
     private void playerAmount(Parent root8, int playerTotal){

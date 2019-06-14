@@ -9,6 +9,8 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.annotations.Nullable;
 import models.Firebase;
+import models.Game;
+import models.Player;
 
 import java.util.*;
 import java.io.FileInputStream;
@@ -54,8 +56,16 @@ public class FirebaseController {
             //}
             //saveLobbyInfo(documents);
 
+            QueryDocumentSnapshot result = null;
+            for (QueryDocumentSnapshot queryDocumentSnapshot : documents) {
+                if(queryDocumentSnapshot.getId().equals("_A_Test2")) {
+                    result = queryDocumentSnapshot;
+                    break;
+                }
+            }
+
             firebase = Firebase.getInstance();
-            firebase.setLobbyInfo(documents);
+            firebase.setLobbyInfo(Collections.singletonList(result));
             return documents;
         } catch (Exception e){
             e.printStackTrace();
@@ -129,19 +139,24 @@ public class FirebaseController {
     }
 
     // Create Online Game
-    public void createOnlineGame(){
+    public void createOnlineGame(Game game){
         try{
             menuViewController = MenuViewController.getInstance();
-            DocumentReference docRef = db.collection("Games").document(menuViewController.getGameName());
+            DocumentReference docRef = db.collection("Games").document(game.getName());
 
             Map<String, Object> data = new HashMap<>();
             ArrayList<String> userNames = new ArrayList<>();
-            userNames.add(0, "FUCK");userNames.add(1, "");userNames.add(2, "");userNames.add(3, "");userNames.add(4, "");
-            data.put("gameName", menuViewController.getGameName());
-            data.put("playerTotal", menuViewController.getPlayerTotal());
-            data.put("gameDifficulty", menuViewController.getGameDifficulty());
+            for (Player player : game.getPlayers()) {
+                userNames.add(player.getName());
+            }
+
+            data.put("gameName", game.getName());
+            data.put("playerTotal", game.getPlayerTotal());
+            data.put("gameDifficulty", game.getDifficulty().getValue());
             data.put("dateCreated", new Date());
-            data.put("PlayerNames", userNames);
+            data.put("playerNames", userNames);
+
+            System.out.println("inserting data: " + data.toString() + " for game with name: " + game.getName());
 
             ApiFuture<WriteResult> result = docRef.set(data);
             System.out.println("Update time : " + result.get().getUpdateTime());

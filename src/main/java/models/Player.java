@@ -48,6 +48,8 @@ public class Player implements PlayerObservable {
 
     public boolean hasMoved = false;
 
+    private int bonusMoves = 0;
+
     // Constructor
     public Player(String name){
         this.name = name;
@@ -114,5 +116,9 @@ public class Player implements PlayerObservable {
 
     public String getName() {
         return name;
+    }
+
+    public int getTotaalAantalMoves() {
+        return 0;
     }
 }

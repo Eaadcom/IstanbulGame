@@ -64,7 +64,7 @@
                   <Insets left="260.0" top="110.0" />
                </GridPane.margin>
             </Pane>
-            <Pane id="playeryellow" fx:id="playeryellow" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" opacity="0.9" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Pane id="playeryellow" fx:id="playerYellow" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" opacity="0.9" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="80.0" />
                </GridPane.margin>

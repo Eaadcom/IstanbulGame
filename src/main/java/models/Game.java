@@ -10,7 +10,7 @@ public class Game implements GameObservable {
 
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
-
+    private String name;
 
     private Board board = new Board();
     private int playerTotal = 2;
@@ -20,16 +20,23 @@ public class Game implements GameObservable {
     public boolean hasMoved = false;
     private Difficulty difficulty;
 
-    // Setters
-    public void setPlayerTotal(int plt){
-        playerTotal = plt;
+    public Game(String name, int playerTotal, Difficulty difficulty) {
+        this.name = name;
+        this.playerTotal = playerTotal;
+        this.difficulty = difficulty;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    // Setters
     public void setHasMoved(Boolean b) {
         hasMoved = b;
     } //ik was hier gebleven
 
     //Getters
-    public int getPlayerTotal(){
+    public Integer getPlayerTotal(){
         return playerTotal;
     }
     public boolean getGameEnd(){
@@ -57,10 +64,6 @@ public class Game implements GameObservable {
         notifyAllObservers();
     }
 
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
-
     public List<Player> getPlayers() {
         return board.getPlayers();
     }
@@ -75,5 +78,9 @@ public class Game implements GameObservable {
 
     public Player getPlayer() {
         return board.getPlayer();
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 }

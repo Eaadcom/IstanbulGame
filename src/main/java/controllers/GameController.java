@@ -6,7 +6,9 @@
 
 package controllers;
 
+import models.Difficulty;
 import models.Game;
+import models.MainMenu;
 import models.Player;
 import models.cards.BonusCard;
 import views.GameView;
@@ -19,12 +21,15 @@ public class GameController {
     private MenuViewController menuViewController = MenuViewController.getInstance();
     private static GameController gameController;
     private static CardController cardController = CardController.getInstance();
-    public Game game = new Game();
+    private static FirebaseController firebaseController = FirebaseController.getInstance();
+    public Game game;
 
     // Get data from other controllers
-    public String getDifficulty() {
-        return menuViewController.getGameDifficulty();
+    public Difficulty getDifficulty() {
+        return game.getDifficulty();
+//        return menuViewController.getGameDifficulty();
     }
+
 
     // Get game end
     public boolean getGameEnd(){
@@ -40,14 +45,6 @@ public class GameController {
             gameController = new GameController();
         }
         return gameController;
-    }
-
-    public void setDifficulty(String difficulty) {
-
-    }
-
-    public void setPlayerTotal(int playerAmount) {
-        game.setPlayerTotal(playerAmount);
     }
 
     public void setGameName(String gameName) {
@@ -134,6 +131,16 @@ public class GameController {
 
     public void addPlayer(Player player) {
         game.addPlayer(player);
+    }
+
+    public void initializeGameData() {
+        MainMenu mainMenu = menuViewController.getMainMenu();
+        game = new Game(mainMenu.getGameName(), mainMenu.getPlayerTotal(), Difficulty.fromString(mainMenu.getDifficulty()));
+        Player player = new Player(mainMenu.getUsername());
+        // nemen aan dat joeri speler 1 is
+        player.setLira(2);
+        gameController.addPlayer(player);
+        firebaseController.createOnlineGame(game);
     }
 }
 

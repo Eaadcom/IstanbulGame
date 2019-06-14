@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,8 +30,8 @@ public class AvailableRoomsView implements Initializable {
     // FXML Variables
     @FXML private TableView<GameInformation> lobbyTable;
     @FXML private TableColumn<GameInformation,String> roomname;
-    @FXML private TableColumn<GameInformation,java.lang.Object> totalPlayers;
-    @FXML private TableColumn joinButtons = new TableColumn("Action");
+    @FXML private TableColumn<GameInformation,Integer> totalPlayers;
+    @FXML private TableColumn<GameInformation, Button> joinButtons;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,11 +40,13 @@ public class AvailableRoomsView implements Initializable {
         List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
 
         for (QueryDocumentSnapshot document : documents) {
-            ObservableList<GameInformation> gi = FXCollections.observableArrayList(new GameInformation(document.getId(), document.getData().get("playerTotal")  , "a"));
-            roomname.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("roomname"));
-            totalPlayers.setCellValueFactory(new PropertyValueFactory<GameInformation, Object>("totalPlayers"));
-            joinButtons.setCellValueFactory(new PropertyValueFactory<GameInformation, String>("button"));
-            lobbyTable.getItems().addAll(gi);
+            if (document.getId().equals("_A_Test2")) {
+                ObservableList<GameInformation> gi = FXCollections.observableArrayList(new GameInformation(document.getId(), new Long((long) document.getData().get("playerTotal")).intValue(), "a"));
+                roomname.setCellValueFactory(new PropertyValueFactory<>("roomname"));
+                totalPlayers.setCellValueFactory(new PropertyValueFactory<>("totalPlayers"));
+                joinButtons.setCellValueFactory(new PropertyValueFactory<>("button"));
+                lobbyTable.getItems().addAll(gi);
+            }
         }
     }
 
