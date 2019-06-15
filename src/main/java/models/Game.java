@@ -42,7 +42,16 @@ public class Game implements GameObservable {
     public void updateFromSnapShot(DocumentSnapshot documentSnapshot) {
         this.name = documentSnapshot.getId();
         Map<String, Object> data = documentSnapshot.getData();
+        setPlayers(data.get("playerNames"));
         setGameData(data);
+        notifyAllObservers();
+    }
+
+    private void setPlayers(Object playerNames) {
+        List<String> names = (List<String>) playerNames;
+        for(String name : names) {
+            board.addPlayer(new Player(name));
+        }
     }
 
     private void setGameData(Map<String, Object> data) {
