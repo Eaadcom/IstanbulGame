@@ -152,6 +152,7 @@ public class GameController {
         this.game = new Game(document);
         Player player = new Player(mainMenu.getUsername());
         gameController.addPlayer(player);
+        firebaseController.updateGame(game);
     }
 
     public void startWatchForChanges() {
