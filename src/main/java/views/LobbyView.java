@@ -47,6 +47,8 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 //        if (document != null) {
 //            setFromDocumentData(document);
 //        } else if (game != null) {
+        gameController.registerGameOrLobbyObserverToGame(this);
+
         setFromGameData(gameController.getGame());
         disablePlayerTexts(gameController.getGame().getPlayerTotal());
 //        } else {
@@ -70,7 +72,6 @@ public class LobbyView implements LobbyViewObserver, Initializable {
         setRoomName(document.getId());
         disablePlayerTexts(Integer.parseInt(data.get("playerTotal").toString()));
         gameController.joinGame(document);
-        gameController.registerGameOrLobbyObserverToGame(this);
     }
 
     private void setPlayerNames(List<String> playersNames) {
@@ -161,6 +162,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
     @Override
     public void update(GameObservable go) {
         if (go instanceof Game) {
+            System.out.println("received update as observer");
             Game game = (Game) go;
             List<String> names = new ArrayList<>();
             for (Player player : game.getPlayers()) {
