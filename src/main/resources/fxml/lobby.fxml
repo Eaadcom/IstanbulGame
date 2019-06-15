@@ -59,7 +59,7 @@
                         <Font size="22.0" />
                      </font>
                   </Text>
-                  <Button layoutX="280.0" layoutY="454.0" mnemonicParsing="false" text="start" />
+                  <Button onAction="#startGame" layoutX="280.0" layoutY="454.0" mnemonicParsing="false" text="start" />
                </children>
             </Pane>
       </children>

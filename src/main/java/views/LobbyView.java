@@ -3,13 +3,21 @@ package views;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import controllers.GameController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Game;
 import models.Player;
 import observers.GameObservable;
 import observers.LobbyViewObserver;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
@@ -55,6 +63,28 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 //            throw new IllegalStateException("geen game of document, kan game niet starten");
 //        }
         gameController.startWatchForChanges();
+    }
+
+    public void startGame() {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+            Parent root1 = fxmlloader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root1));
+            stage.setMaximized(true);
+
+
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(primaryScreenBounds.getMinX());
+            stage.setY(primaryScreenBounds.getMinY());
+            stage.setWidth(primaryScreenBounds.getWidth());
+            stage.setHeight(primaryScreenBounds.getHeight());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setFromGameData(Game game) {
