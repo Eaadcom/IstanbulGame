@@ -52,4 +52,8 @@ public class Board implements BoardObservable {
     public Player getPlayer() {
         return players.get(0);
     }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 }

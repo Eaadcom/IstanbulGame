@@ -50,9 +50,11 @@ public class Game implements GameObservable {
 
     private void setPlayers(Object playerNames) {
         List<String> names = (List<String>) playerNames;
+        List<Player> players = new ArrayList<>();
         for(String name : names) {
-            board.addPlayer(new Player(name));
+            players.add(new Player(name));
         }
+        board.setPlayers(players);
     }
 
     private void setGameData(Map<String, Object> data) {
