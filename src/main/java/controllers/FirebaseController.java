@@ -220,7 +220,7 @@ public class FirebaseController {
                     if (snapshot != null && snapshot.exists()) {
                         Map<String, Object> newData = snapshot.getData();
                         System.out.println("Current data: " + newData);
-
+                        gameController.updateGameData(snapshot);
                     } else {
                         System.out.print("Current data: null");
                     }
