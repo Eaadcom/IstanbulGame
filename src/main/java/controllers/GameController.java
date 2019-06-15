@@ -143,7 +143,7 @@ public class GameController {
         MainMenu mainMenu = menuViewController.getMainMenu();
         game = new Game(mainMenu.getGameName(), mainMenu.getPlayerTotal(), Difficulty.fromString(mainMenu.getDifficulty()));
         Player player = new Player(mainMenu.getUsername());
-        gameController.addPlayer(player);
+        game.addInitialPlayer(player);
         firebaseController.createOnlineGame(game);
     }
 
@@ -151,7 +151,7 @@ public class GameController {
         MainMenu mainMenu = menuViewController.getMainMenu();
         this.game = new Game(document);
         Player player = new Player(mainMenu.getUsername());
-        gameController.addPlayer(player);
+        game.addPlayer(player);
         firebaseController.updateGame(game);
     }
 

@@ -123,6 +123,10 @@ public class Game implements GameObservable {
         return board.getCurrentPlayerTurn();
     }
 
+    public void addInitialPlayer(Player player) {
+        board.addPlayer(player);
+    }
+
     public void addPlayer(Player player) {
         board.addPlayer(player);
         notifyAllObservers();
