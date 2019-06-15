@@ -20,9 +20,13 @@ public class FirebaseController {
 
     // Variables
     private static FirebaseController firebaseController;
-    private MenuViewController menuViewController;
-    private Firestore db = firebaseLogin();
+    private static GameController gameController = GameController.getInstance();
+    private Firestore db;
     private Firebase firebase;
+
+    public void initialize() {
+        db = firebaseLogin();
+    }
 
     // Write to Firebase
     public void firebaseWriter(LinkedHashMap<String, String> variables){
@@ -46,8 +50,10 @@ public class FirebaseController {
         }
     }
 
+
+
     // gets all game documents and returns them in a list
-    public List fillGameLobby(){
+    public List<QueryDocumentSnapshot> fillGameLobby(){
         try{
             ApiFuture<QuerySnapshot> future = db.collection("Games").get();
             List<QueryDocumentSnapshot> documents = future.get().getDocuments();
@@ -64,8 +70,6 @@ public class FirebaseController {
                 }
             }
 
-            firebase = Firebase.getInstance();
-            firebase.setLobbyInfo(Collections.singletonList(result));
             return documents;
         } catch (Exception e){
             e.printStackTrace();
@@ -107,7 +111,7 @@ public class FirebaseController {
                     if (snapshot != null && snapshot.exists()) {
                         Map<String, Object> newData = snapshot.getData();
                         System.out.println("Current data: " + newData);
-//                        firebaseReader(newData);
+                        gameController.updateGameData(snapshot);
                     } else {
                         System.out.print("Current data: null");
                     }
@@ -138,28 +142,54 @@ public class FirebaseController {
         }
     }
 
+    public void updateGame(Game game) {
+        try {
+            DocumentReference docRef = db.collection("Games").document(game.getName());
+            Map<String, Object> data = createKeyValueMapForGame(game);
+            System.out.println("updating data: " + data.toString() + " for game with name: " + game.getName());
+
+
+            ApiFuture<WriteResult> result = docRef.update(data);
+            WriteResult writeResult = result.get();
+            System.out.println("Update result: " + writeResult);
+            System.out.println("Update time : " + writeResult.getUpdateTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Map<String, Object> createKeyValueMapForGame(Game game) {
+        Map<String, Object> data = new HashMap<>();
+        ArrayList<String> userNames = new ArrayList<>();
+        for (Player player : game.getPlayers()) {
+            userNames.add(player.getName());
+        }
+
+        data.put("gameName", game.getName());
+        data.put("playerTotal", game.getPlayerTotal());
+        data.put("gameDifficulty", game.getDifficulty().getValue());
+        data.put("dateCreated", new Date());
+        data.put("gameStarted", game.isGameStarted());
+        data.put("gameEnded", game.isGameEnded());
+        data.put("turnCounter", game.getTurnCounter());
+        data.put("playerNames", userNames);
+        return data;
+    }
+
+
     // Create Online Game
     public void createOnlineGame(Game game){
         try{
-            menuViewController = MenuViewController.getInstance();
             DocumentReference docRef = db.collection("Games").document(game.getName());
 
-            Map<String, Object> data = new HashMap<>();
-            ArrayList<String> userNames = new ArrayList<>();
-            for (Player player : game.getPlayers()) {
-                userNames.add(player.getName());
-            }
-
-            data.put("gameName", game.getName());
-            data.put("playerTotal", game.getPlayerTotal());
-            data.put("gameDifficulty", game.getDifficulty().getValue());
-            data.put("dateCreated", new Date());
-            data.put("playerNames", userNames);
+            Map<String, Object> data = createKeyValueMapForGame(game);
 
             System.out.println("inserting data: " + data.toString() + " for game with name: " + game.getName());
 
             ApiFuture<WriteResult> result = docRef.set(data);
-            System.out.println("Update time : " + result.get().getUpdateTime());
+            WriteResult writeResult = result.get();
+            System.out.println("Update result: " + writeResult);
+            System.out.println("Update time : " + writeResult.getUpdateTime());
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -171,5 +201,34 @@ public class FirebaseController {
             firebaseController = new FirebaseController();
         }
         return firebaseController;
+    }
+
+    public void startWatchForChangesForGame(Game game) {
+        System.out.println("Start watching for changes for game: " + game.getName());
+        Runnable runnable = () -> {
+
+            DocumentReference docRef = db.collection("Games").document(game.getName());
+            docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                    @Nullable FirestoreException e) {
+                    if (e != null) {
+                        System.err.println("Listen failed: " + e);
+                        return;
+                    }
+
+                    if (snapshot != null && snapshot.exists()) {
+                        Map<String, Object> newData = snapshot.getData();
+                        System.out.println("Current data: " + newData);
+
+                    } else {
+                        System.out.print("Current data: null");
+                    }
+                }
+            });
+        };
+
+        Thread ListenerThread = new Thread(runnable);
+        ListenerThread.start();
     }
 }

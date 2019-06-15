@@ -16,7 +16,7 @@
     <HBox alignment="CENTER" prefHeight="350" spacing="1000" />
 
     <HBox alignment="CENTER" spacing="1">
-        <Button id="createRoom" onAction="#createRoom" prefHeight="140" prefWidth="450" />
+        <Button id="createLobby" onAction="#createLobby" prefHeight="140" prefWidth="450" />
     </HBox>
 
     <HBox alignment="CENTER" spacing="1">

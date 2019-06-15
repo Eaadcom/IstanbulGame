@@ -1,98 +1,143 @@
 package views;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.firebase.database.annotations.Nullable;
-import controllers.MenuViewController;
+import controllers.GameController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import models.Firebase;
+import models.Game;
+import models.Player;
+import observers.GameObservable;
+import observers.LobbyViewObserver;
 
-import java.awt.*;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class LobbyView implements Initializable {
+public class LobbyView implements LobbyViewObserver, Initializable {
 
     // Variables
     private static LobbyView lobbyView;
 
+    private static final GameController gameController = GameController.getInstance();
+
     // FXML Variables
-    @FXML Text roomName;
-    @FXML Text p1;
-    @FXML Text p2;
-    @FXML Text p3;
-    @FXML Text p4;
-    @FXML Text p5;
+    @FXML
+    Text roomName;
+    @FXML
+    Text p1;
+    @FXML
+    Text p2;
+    @FXML
+    Text p3;
+    @FXML
+    Text p4;
+    @FXML
+    Text p5;
+
+    private QueryDocumentSnapshot document;
+
+    private List<Text> playerTexts;
+    private Game game;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        roomName.setText("TEST");
+        playerTexts = Arrays.asList(p1, p2, p3, p4, p5);
+
+//        if (document != null) {
+//            setFromDocumentData(document);
+//        } else if (game != null) {
+        setFromGameData(gameController.getGame());
+        disablePlayerTexts(gameController.getGame().getPlayerTotal());
+//        } else {
+//            throw new IllegalStateException("geen game of document, kan game niet starten");
+//        }
+        gameController.startWatchForChanges();
     }
 
-    @FXML
-    public void start(String gameName, String playerTotal, int gameNum){
-        try{
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
-            Parent root8 = (Parent) fxmlloader.load();
+    private void setFromGameData(Game game) {
+        setRoomName(game.getName());
+        List<String> playerNames = new ArrayList<>();
+        for (Player player : game.getPlayers()) {
+            playerNames.add(player.getName());
+        }
+        setPlayerNames(playerNames);
+    }
 
-            roomName = (Text) root8.lookup("#roomName");
-            roomName.setText(gameName);
+    private void setFromDocumentData(QueryDocumentSnapshot document) {
+        Map<String, Object> data = document.getData();
+        setPlayerNames((List<String>) data.get("playerNames"));
+        setRoomName(document.getId());
+        disablePlayerTexts(Integer.parseInt(data.get("playerTotal").toString()));
+        gameController.joinGame(document);
+        gameController.registerGameOrLobbyObserverToGame(this);
+    }
 
-            playerAmount(root8, Integer.parseInt(playerTotal));
-            setNameByFirebase(root8, gameNum);
-
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root8));
-            stage.setMaximized(true);
-            stage.show();
-        } catch (Exception e){
-            e.printStackTrace();
+    private void setPlayerNames(List<String> playersNames) {
+        for (int i = 0; i < playersNames.size(); i++) {
+            playerTexts.get(i).setText(playersNames.get(i));
         }
     }
 
-    private void setNameByFirebase(Parent root8, int gameNum){
-        List namesList = (ArrayList) Firebase.getInstance().getLobbyInfo().get(gameNum).getData().get("playerNames");
-        p1 = (Text) root8.lookup("#p1");
-        p2 = (Text) root8.lookup("#p2");
-        p3 = (Text) root8.lookup("#p3");
-        p4 = (Text) root8.lookup("#p4");
-        p5 = (Text) root8.lookup("#p5");
-
-//        if (namesList.get(0) == "") {
-//            p1.setText(MenuViewController.getInstance().getUserName());
-//        } else if (namesList.get(1) == ""){
-//
-//        } else if (namesList.get(2) == ""){
-//
-//        } else if (namesList.get(3) == ""){
-//
-//        } else if (namesList.get(4) == ""){
-//
-//        }
+    private void setRoomName(String roomName) {
+        this.roomName.setText(roomName);
     }
+//
+//    @FXML
+//    public void start(String gameName, String playerTotal, int gameNum){
+//        try{
+//            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
+//            Parent root8 = (Parent) fxmlloader.load();
+//
+//            roomName = (Text) root8.lookup("#roomName");
+//            roomName.setText(gameName);
+//
+//            disablePlayerTexts(root8, Integer.parseInt(playerTotal));
+//            setNameByFirebase(root8, gameNum);
+//
+//            Stage stage = new Stage();
+//            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.setTitle("Istanbul");
+//            stage.setScene(new Scene(root8));
+//            stage.setMaximized(true);
+//            stage.show();
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
-    private void playerAmount(Parent root8, int playerTotal){
-        p1 = (Text) root8.lookup("#p1");
-        p2 = (Text) root8.lookup("#p2");
-        p3 = (Text) root8.lookup("#p3");
-        p4 = (Text) root8.lookup("#p4");
-        p5 = (Text) root8.lookup("#p5");
+//    private void setNameByFirebase(Parent root8, int gameNum){
+//        List namesList = (ArrayList) Firebase.getInstance().getLobbyInfo().get(gameNum).getData().get("playerNames");
+//        p1 = (Text) root8.lookup("#p1");
+//        p2 = (Text) root8.lookup("#p2");
+//        p3 = (Text) root8.lookup("#p3");
+//        p4 = (Text) root8.lookup("#p4");
+//        p5 = (Text) root8.lookup("#p5");
+//
+////        if (namesList.get(0) == "") {
+////            p1.setText(MenuViewController.getInstance().getUserName());
+////        } else if (namesList.get(1) == ""){
+////
+////        } else if (namesList.get(2) == ""){
+////
+////        } else if (namesList.get(3) == ""){
+////
+////        } else if (namesList.get(4) == ""){
+////
+////        }
+//    }
 
-        if (playerTotal == 2){
-            p3.setText("-----"); p4.setText("-----"); p5.setText("-----");
-        } if (playerTotal == 3){
-            p4.setText("-----"); p5.setText("-----");
-        } if (playerTotal == 4){
+    private void disablePlayerTexts(int playerTotal) {
+        if (playerTotal == 2) {
+            p3.setText("-----");
+            p4.setText("-----");
+            p5.setText("-----");
+        }
+        if (playerTotal == 3) {
+            p4.setText("-----");
+            p5.setText("-----");
+        }
+        if (playerTotal == 4) {
             p5.setText("-----");
         }
     }
@@ -103,5 +148,27 @@ public class LobbyView implements Initializable {
             lobbyView = new LobbyView();
         }
         return lobbyView;
+    }
+
+    public void setDocument(QueryDocumentSnapshot document) {
+        this.document = document;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    @Override
+    public void update(GameObservable go) {
+        if (go instanceof Game) {
+            Game game = (Game) go;
+            List<String> names = new ArrayList<>();
+            for (Player player : game.getPlayers()) {
+                names.add(player.getName());
+            }
+            setRoomName(game.getName());
+            setPlayerNames(names);
+            disablePlayerTexts(game.getPlayerTotal());
+        }
     }
 }

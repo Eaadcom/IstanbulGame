@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import models.MainMenu;
 import views.MenuView;
 
@@ -51,7 +52,7 @@ public class MenuViewController {
     }
 
     // Pakt de aangemaakt lobbies uit de Firebase
-    public List getLobbies(){
+    public List<QueryDocumentSnapshot> getLobbies(){
         firebaseController = FirebaseController.getInstance();
         return firebaseController.fillGameLobby();
     }

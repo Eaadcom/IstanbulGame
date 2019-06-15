@@ -28,10 +28,14 @@ public class AvailableRoomsView implements Initializable {
     MenuViewController menuViewController;
 
     // FXML Variables
-    @FXML private TableView<GameInformation> lobbyTable;
-    @FXML private TableColumn<GameInformation,String> roomname;
-    @FXML private TableColumn<GameInformation,Integer> totalPlayers;
-    @FXML private TableColumn<GameInformation, Button> joinButtons;
+    @FXML
+    private TableView<GameInformation> lobbyTable;
+    @FXML
+    private TableColumn<GameInformation, String> roomname;
+    @FXML
+    private TableColumn<GameInformation, Integer> totalPlayers;
+    @FXML
+    private TableColumn<GameInformation, Button> joinButtons;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,14 +43,15 @@ public class AvailableRoomsView implements Initializable {
         menuViewController = MenuViewController.getInstance();
         List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
 
+
         for (QueryDocumentSnapshot document : documents) {
-            if (document.getId().equals("_A_Test2")) {
-                ObservableList<GameInformation> gi = FXCollections.observableArrayList(new GameInformation(document.getId(), new Long((long) document.getData().get("playerTotal")).intValue(), "a"));
-                roomname.setCellValueFactory(new PropertyValueFactory<>("roomname"));
-                totalPlayers.setCellValueFactory(new PropertyValueFactory<>("totalPlayers"));
-                joinButtons.setCellValueFactory(new PropertyValueFactory<>("button"));
-                lobbyTable.getItems().addAll(gi);
-            }
+//            if (document.getId().equals("_A_Test2")) {
+            ObservableList<GameInformation> gameInformations = FXCollections.observableArrayList(new GameInformation(document));
+            roomname.setCellValueFactory(new PropertyValueFactory<>("roomname"));
+            totalPlayers.setCellValueFactory(new PropertyValueFactory<>("totalPlayers"));
+            joinButtons.setCellValueFactory(new PropertyValueFactory<>("button"));
+            lobbyTable.getItems().addAll(gameInformations);
+//            }
         }
     }
 

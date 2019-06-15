@@ -77,7 +77,6 @@ public class GameView implements GameViewObserver, Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initializeMaps();
 
-        gameController.initializeGameData();
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
             setPlayersEnFamily();
@@ -92,7 +91,8 @@ public class GameView implements GameViewObserver, Initializable {
         possibleMoves(playerred);
 
 
-        gameController.registerObservers(this);
+        gameController.registerGameOrLobbyObserverToGame(this);
+        gameController.registerGameViewObserverToPlayer(this);
     }
 
     private void initializeMaps() {
@@ -462,7 +462,7 @@ public class GameView implements GameViewObserver, Initializable {
      * Checks if it's your turn and disbales tiles acordingly.
      */
     public void turnManager() {
-        if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.getGameEnd()) {
+        if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.isGameEnded()) {
             disableAllTiles();
             // TURNCOUNTER++;
 

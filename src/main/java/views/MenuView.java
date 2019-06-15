@@ -1,10 +1,12 @@
 package views;
 
+import controllers.GameController;
 import controllers.MenuViewController;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
+import models.Game;
 import observers.MainMenuObservable;
 import observers.MenuViewObserver;
 import javafx.fxml.FXML;
@@ -25,6 +27,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     // variabelen
     private static MenuView menuView;
     private MenuViewController menuViewController = MenuViewController.getInstance();
+    private GameController gameController = GameController.getInstance();
 
     // FXML variabelen
     @FXML
@@ -32,7 +35,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     @FXML
     private ChoiceBox<String> cb2 = new ChoiceBox<>();
     @FXML private VBox rootPane, rootPane2;
-    @FXML private Button startGame;
+    @FXML private Button createRoom;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
 
@@ -49,9 +52,9 @@ public class MenuView implements Initializable, MenuViewObserver {
         cb2.getItems().add("random");
     }
 
-    // Create Room
+    // Create Lobby
     @FXML
-    private void createRoom() throws IOException {
+    private void createLobby() throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("../fxml/makingroom.fxml"));
         rootPane.getChildren().setAll(pane);
     }
@@ -116,18 +119,35 @@ public class MenuView implements Initializable, MenuViewObserver {
 
     //Start game
     @FXML
-    private void startGame() {
+    private void createRoom() {
         try{
             if (roomName.getText() != null && cb2.getSelectionModel().getSelectedItem() != null && cb.getSelectionModel().getSelectedItem() != null){
                 menuViewController = MenuViewController.getInstance();
                 menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem(),
                         Integer.parseInt(cb.getSelectionModel().getSelectedItem()));
 
-                Stage stage = (Stage) startGame.getScene().getWindow();
+                Stage stage = (Stage) createRoom.getScene().getWindow();
                 stage.close();
-                showGameView();
+                gameController.initializeGameData();
+                showLobbyView();
             }
         } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void showLobbyView() {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
+            Parent root8 = fxmlloader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root8));
+            stage.setMaximized(true);
+            stage.show();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

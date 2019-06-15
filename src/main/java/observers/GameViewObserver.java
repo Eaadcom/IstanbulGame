@@ -1,24 +1,19 @@
 package observers;
 
-import observers.cards.*;
-import observers.locations.*;
-
-public interface GameViewObserver {
+public interface GameViewObserver extends GameViewLobbyViewObserver {
 
     // Rest
-    public void update(AssistantObservable ao);
+    void update(AssistantObservable ao);
 
-    public void update(BoardObservable bo);
+    void update(BoardObservable bo);
 
-    public void update(DiceObservable dO);
+    void update(DiceObservable dO);
 
-    public void update(FamilyMemberObservable fmo);
+    void update(FamilyMemberObservable fmo);
 
-    public void update(GameObservable go);
+    void update(GovernorObservable go);
 
-    public void update(GovernorObservable go);
+    void update(PlayerObservable po);
 
-    public void update(PlayerObservable po);
-
-    public void update(SmugglerObservable so);
+    void update(SmugglerObservable so);
 }
