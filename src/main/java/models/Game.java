@@ -36,6 +36,7 @@ public class Game implements GameObservable {
     public Game(QueryDocumentSnapshot document) {
         Map<String, Object> data = document.getData();
         this.name = document.getId();
+        setPlayers(data.get("playerNames"));
         setGameData(data);
     }
 
