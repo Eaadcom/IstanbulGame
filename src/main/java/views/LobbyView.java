@@ -123,6 +123,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
             setRoomName(game.getName());
             setPlayerNames(names);
             disablePlayerTexts(game.getPlayerTotal());
+            System.out.println(game.isGameStarted());
             if (game.isGameStarted()) {
                 loadGameScreen();
             }

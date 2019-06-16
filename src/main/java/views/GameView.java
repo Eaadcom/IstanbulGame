@@ -95,6 +95,8 @@ public class GameView implements GameViewObserver, Initializable {
 
         if(isMyTurn()) {
             enableLocationsForMyPlayer();
+        } else {
+            disableTiles(true);
         }
 
 //        turnManager();
