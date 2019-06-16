@@ -6,6 +6,7 @@ import observers.GameObservable;
 import observers.GameViewLobbyViewObserver;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class Game implements GameObservable {
 
     private void setPlayers(Object playerNames) {
         List<String> names = (List<String>) playerNames;
-        List<Player> players = new ArrayList<>();
+        List<Player> players = new LinkedList<>();
         for(String name : names) {
             players.add(new Player(name));
         }
@@ -97,6 +98,7 @@ public class Game implements GameObservable {
 
     public void startGame() {
         gameStarted = true;
+        board.shufflePlayers();
         notifyAllObservers();
     }
 

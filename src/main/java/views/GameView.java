@@ -66,6 +66,8 @@ public class GameView implements GameViewObserver, Initializable {
 
     private Button[][] easyMap;
     private Button[][] hardMap;
+    private Pane[] players;
+    private Pane[] family;
 
     // Starts the game
     public void start() throws Exception {
@@ -73,26 +75,71 @@ public class GameView implements GameViewObserver, Initializable {
 
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeMaps();
+        initializePlayers();
+        initializeFamily();
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
             setPlayersEnFamily();
         }
-        turnManager();
-        enableAllTiles();
+
+        checkAmountOfPlayers();
 
         tiles.addAll(Arrays.asList(tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11,
                 tile12, tile13, tile14, tile15, tile16
         ));
 
-        possibleMoves(playerred);
+        if(isMyTurn()) {
+            enableLocationsForMyPlayer();
+        }
 
+//        turnManager();
 
         gameController.registerGameOrLobbyObserverToGame(this);
         gameController.registerGameViewObserverToPlayer(this);
+    }
+
+    private Pane enableLocationsForMyPlayer() {
+        Pane myPane = null;
+        List<Player> players = gameController.getGame().getPlayers();
+        String myPlayerName = gameController.getMyPlayer().getName();
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getName().equals(myPlayerName)) {
+                myPane = this.players[i];
+                possibleMoves(myPane);
+            }
+        }
+        return myPane;
+    }
+
+    private boolean isMyTurn() {
+        return gameController.getMyPlayer().getName().equals(gameController.getCurrentPlayerTurn().getName());
+    }
+
+    private void checkAmountOfPlayers() {
+        for (Pane playerPane : players) {
+            playerPane.setVisible(false);
+        }
+        for (Pane familyPane : family) {
+            familyPane.setVisible(false);
+        }
+        int amountOfPlayers = gameController.getGame().getPlayers().size();
+        for (int i = 0; i < amountOfPlayers; i++) {
+            players[i].setVisible(true);
+            family[i].setVisible(true);
+        }
+    }
+
+    private void initializeFamily() {
+        family = new Pane[]{famred, famyellow, famgreen, famblue, famwhite};
+    }
+
+    private void initializePlayers() {
+        players = new Pane[]{playerred, playerYellow, playergreen, playerblue, playerwhite};
     }
 
     private void initializeMaps() {
@@ -107,7 +154,7 @@ public class GameView implements GameViewObserver, Initializable {
             {tile11, tile4, tile1, tile13}};
     }
 
-    private void enableAllTiles() {
+    private void disableAllTiles() {
         tiles.forEach(button -> button.setDisable(false));
     }
 
@@ -387,7 +434,7 @@ public class GameView implements GameViewObserver, Initializable {
             GridPane.setColumnIndex(pane, columnm);
             GridPane.setRowIndex(pane, row);
 //            gameController.setMoved(true);
-//            disableAllTiles();
+//            disableTiles();
         } else {
             popUpView.dontMove();
         }
@@ -463,7 +510,7 @@ public class GameView implements GameViewObserver, Initializable {
      */
     public void turnManager() {
         if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.isGameEnded()) {
-            disableAllTiles();
+            disableTiles(false);
             // TURNCOUNTER++;
 
         }
@@ -474,9 +521,9 @@ public class GameView implements GameViewObserver, Initializable {
      *
      * @author: Stan Hogenboom
      */
-    public void disableAllTiles() {
+    public void disableTiles(boolean disabled) {
         for (Button button : tiles) {
-            button.setDisable(true);
+            button.setDisable(disabled);
         }
     }
 
@@ -587,9 +634,9 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     private void updateGameView(Game game) {
-//        if (game.isMyTurn()) {
-//            // update view (enable disable knoppen)
-//        }
+        if (isMyTurn()) {
+            enableLocationsForMyPlayer();
+        }
     }
 
     @Override

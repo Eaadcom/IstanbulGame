@@ -15,10 +15,8 @@ import models.Player;
 import models.cards.BonusCard;
 import observers.GameViewLobbyViewObserver;
 import observers.GameViewObserver;
-import views.GameView;
 
 import java.util.List;
-import java.util.Map;
 
 public class GameController {
 
@@ -27,6 +25,7 @@ public class GameController {
     private static GameController gameController;
     private static CardController cardController = CardController.getInstance();
     private static FirebaseController firebaseController = FirebaseController.getInstance();
+    private static PlayerController playerController = PlayerController.getInstance();
     public Game game;
 
     // Get data from other controllers
@@ -116,7 +115,6 @@ public class GameController {
     }
 
 
-
     public void addGekozenKaart(String gekozenKaartId) {
         BonusCard gekozenKaart = cardController.getGekozenKaart(gekozenKaartId);
         gekozenKaart.onUse(game.getPlayer());
@@ -125,6 +123,7 @@ public class GameController {
 
     public void endTurn() {
         game.increaseTurnCounter();
+        firebaseController.updateGame(game);
     }
 
     public void registerGameOrLobbyObserverToGame(GameViewLobbyViewObserver gameView) {
@@ -142,17 +141,21 @@ public class GameController {
     public void initializeGameData() {
         MainMenu mainMenu = menuViewController.getMainMenu();
         game = new Game(mainMenu.getGameName(), mainMenu.getPlayerTotal(), Difficulty.fromString(mainMenu.getDifficulty()));
-        Player player = new Player(mainMenu.getUsername());
+        Player player = playerController.createNewPlayer(mainMenu.getUsername());
         game.addInitialPlayer(player);
-        firebaseController.createOnlineGame(game);
+        firebaseController.createNewGame(game);
     }
 
     public void joinGame(QueryDocumentSnapshot document) {
         MainMenu mainMenu = menuViewController.getMainMenu();
         this.game = new Game(document);
-        Player player = new Player(mainMenu.getUsername());
-        game.addPlayer(player);
+        Player newPlayer = playerController.createNewPlayer(mainMenu.getUsername());
+        game.addPlayer(newPlayer);
         firebaseController.updateGame(game);
+    }
+
+    public Player getMyPlayer() {
+        return playerController.getMyPlayer();
     }
 
     public void startWatchForChanges() {
@@ -164,6 +167,9 @@ public class GameController {
     }
 
 
+    public void startGame() {
+        game.startGame();
+    }
 }
 
 

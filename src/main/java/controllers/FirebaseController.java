@@ -55,7 +55,7 @@ public class FirebaseController {
     // gets all game documents and returns them in a list
     public List<QueryDocumentSnapshot> fillGameLobby(){
         try{
-            ApiFuture<QuerySnapshot> future = db.collection("Games").get();
+                       ApiFuture<QuerySnapshot> future = db.collection("Games").get();
             List<QueryDocumentSnapshot> documents = future.get().getDocuments();
             //for (QueryDocumentSnapshot document : documents) {
             //    System.out.println(document.getData());
@@ -176,20 +176,60 @@ public class FirebaseController {
         return data;
     }
 
+    private void create(String collection, String documentName, Map<String, Object> data) {
+        try {
+            DocumentReference docRef = db.collection(collection).document(documentName);
 
-    // Create Online Game
-    public void createOnlineGame(Game game){
-        try{
-            DocumentReference docRef = db.collection("Games").document(game.getName());
-
-            Map<String, Object> data = createKeyValueMapForGame(game);
-
-            System.out.println("inserting data: " + data.toString() + " for game with name: " + game.getName());
+            System.out.println("inserting into collection: " + collection + " document: " + documentName + " data: " + data.toString());
 
             ApiFuture<WriteResult> result = docRef.set(data);
             WriteResult writeResult = result.get();
-            System.out.println("Update result: " + writeResult);
-            System.out.println("Update time : " + writeResult.getUpdateTime());
+            System.out.println("create result: " + writeResult);
+            System.out.println("create time : " + writeResult.getUpdateTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createFromObject(String collection, String documentName, Object object) {
+        try {
+            DocumentReference docRef = db.collection(collection).document(documentName);
+
+            System.out.println("inserting into collection: " + collection + " document: " + documentName + " object: " + object);
+
+            ApiFuture<WriteResult> result = docRef.set(object);
+            WriteResult writeResult = result.get();
+            System.out.println("create result: " + writeResult);
+            System.out.println("create time : " + writeResult.getUpdateTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private <T> T getAsObject(String collection, String documentName, Class<T> clazz) {
+        try{
+            ApiFuture<DocumentSnapshot> future = db.collection(collection).document(documentName).get();
+            DocumentSnapshot documentSnapshot = future.get();
+            return documentSnapshot.toObject(clazz);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void createNewPlayer(Player player) {
+        createFromObject("Players", player.getName(), player);
+    }
+
+    public Player getPlayer(String name) {
+        return getAsObject("Players", name, Player.class);
+    }
+
+    // Create Online Game
+    public void createNewGame(Game game){
+        try{
+            Map<String, Object> data = createKeyValueMapForGame(game);
+            create("Games", game.getName(), data);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -231,4 +271,6 @@ public class FirebaseController {
         Thread ListenerThread = new Thread(runnable);
         ListenerThread.start();
     }
+
+
 }

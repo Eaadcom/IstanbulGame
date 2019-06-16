@@ -5,6 +5,7 @@ import observers.BoardObservable;
 import observers.GameViewObserver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,5 +56,9 @@ public class Board implements BoardObservable {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public void shufflePlayers() {
+        Collections.shuffle(players);
     }
 }
