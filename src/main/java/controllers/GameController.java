@@ -82,20 +82,22 @@ public class GameController {
     }
 
     public int TurnManager() {
-            if (game.getTurnCounter() % game.getPlayerTotal() == 0 && !game.isGameEnded()) {
-                return 1;
-            } else if (game.getTurnCounter() % game.getPlayerTotal() == 1 && !game.isGameEnded()) {
-                return 2;
-            } else if (game.getTurnCounter() % game.getPlayerTotal() == 2 && !game.isGameEnded()) {
-                return 3;
-            } else if (game.getTurnCounter() % game.getPlayerTotal() == 3 && !game.isGameEnded()) {
-                return 4;
-            } else if (game.getTurnCounter() % game.getPlayerTotal() == 4 && !game.isGameEnded()) {
-                return 5;
-            } else if (game.isGameEnded()){
-                //
-            }
-        return 6;
+        int turn = (game.getTurnCounter() + game.getPlayerTotal()) % game.getPlayerTotal();
+        return turn;
+//        if (game.getTurnCounter() % game.getPlayerTotal() == 0 && !game.isGameEnded()) {
+//                return 1;
+//            } else if (game.getTurnCounter() % game.getPlayerTotal() == 1 && !game.isGameEnded()) {
+//                return 2;
+//            } else if (game.getTurnCounter() % game.getPlayerTotal() == 2 && !game.isGameEnded()) {
+//                return 3;
+//            } else if (game.getTurnCounter() % game.getPlayerTotal() == 3 && !game.isGameEnded()) {
+//                return 4;
+//            } else if (game.getTurnCounter() % game.getPlayerTotal() == 4 && !game.isGameEnded()) {
+//                return 5;
+//            } else if (game.isGameEnded()){
+//                //
+//            }
+//        return 6;
     }
 
     public void setNextTurn() {
@@ -169,6 +171,7 @@ public class GameController {
 
     public void startGame() {
         game.startGame();
+        firebaseController.updateGame(game);
     }
 }
 

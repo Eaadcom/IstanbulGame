@@ -117,7 +117,7 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     private boolean isMyTurn() {
-        return gameController.getMyPlayer().getName().equals(gameController.getCurrentPlayerTurn().getName());
+        return gameController.getMyPlayer().getName().equals(gameController.getPlayerCurrentTurn().getName());
     }
 
     private void checkAmountOfPlayers() {
