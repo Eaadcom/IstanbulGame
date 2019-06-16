@@ -53,7 +53,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     public void startGame() {
         gameController.startGame();
-        loadGameScreen();
+//        loadGameScreen();
     }
 
     private void loadGameScreen() {

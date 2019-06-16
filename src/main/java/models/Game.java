@@ -91,7 +91,7 @@ public class Game implements GameObservable {
 
     @Override
     public void notifyAllObservers() {
-        for (GameViewLobbyViewObserver gvo : observers){
+        for (GameViewLobbyViewObserver gvo : new ArrayList<>(observers)){
             gvo.update(this);
         }
     }

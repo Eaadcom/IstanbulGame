@@ -251,6 +251,7 @@ public class GameView implements GameViewObserver, Initializable {
     // Popup to show the progression of an enemy player
     public void endTurn() throws IOException {
         if (popUpView.endTurn()) {
+            System.out.println("end turn");
             gameController.endTurn();
         }
     }

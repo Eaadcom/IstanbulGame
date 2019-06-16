@@ -103,7 +103,7 @@ public class PopUpView {
         stage.setScene(new Scene(root2));
         stage.initModality(Modality.APPLICATION_MODAL);
         PopUpView controller = fxmlloader.getController();
-        stage.show();
+        stage.showAndWait();
         return controller.endTurn;
     }
 
