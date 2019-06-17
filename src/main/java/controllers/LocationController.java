@@ -2,10 +2,8 @@ package controllers;
 
 
 import models.Player;
-import models.locations.BlackMarket;
-import models.locations.Caravansary;
-import models.locations.FruitWarehouse;
-import models.locations.TeaHouse;
+import models.locations.*;
+
 import java.util.Scanner;
 
 public class LocationController{
@@ -30,12 +28,27 @@ public class LocationController{
     public PlayerController playerController = PlayerController.getInstance();
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
+    private Wainwright wainwright = Wainwright.getInstance();
 
     Scanner scanner = new Scanner(System.in);
 
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
 
+    public void wainrightBuyer(){
+        if(myPlayer.lira > 7 || myPlayer.lira == 7) {
+            if (myPlayer.carUpgrades < 3) {
+                playerController.addRubysLiras("lira", -7);
+                playerController.CarUpgrader();
 
+                System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+            }
+            System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+
+        }
+        System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+
+
+    }
 
     public int setDiceValue() {
 

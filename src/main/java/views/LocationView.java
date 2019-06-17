@@ -188,6 +188,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+        locationController.wainrightBuyer();
     }
 
     public void policeStation() throws IOException {

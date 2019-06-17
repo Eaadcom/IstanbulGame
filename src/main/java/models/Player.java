@@ -23,7 +23,7 @@ public class Player implements PlayerObservable {
 
     public int rubies = 0;
     public int lira = 0;
-    public int carUpgrades = 2;
+    public int carUpgrades = 0;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
 
     public int spices = 0;
