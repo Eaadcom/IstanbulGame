@@ -13,6 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+        FirebaseController.getInstance().initialize();
         stage.setTitle("Istanbul");
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         root.setId("pane");

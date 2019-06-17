@@ -75,6 +75,9 @@
 #playerProg{
     -fx-background-image: url('../img/playerprogression.png');
 }
+#bc{
+    -fx-background-image: url('../img/bc.png');
+}
 
 
 #player1, #player2, #player3, #player4, #player5{
@@ -85,16 +88,18 @@
     -fx-border-radius: 70;
 }
 
-#player1:hover,#player2:hover,#player3:hover,#player4:hover,#player5:hover,#menubutton:hover,#rulesbutton:hover,#smallClose:hover{
+#player1:hover,#player2:hover,#player3:hover,#player4:hover,#player5:hover,#menubutton:hover,#rulesbutton:hover,#smallClose:hover, #bc:hover{
     -fx-scale-y: 1.02;
     -fx-scale-x: 1.02;
     -fx-cursor: hand;
+    -fx-rotate: 2;
 }
 
-#player1:pressed,#player2:pressed,#player3:pressed,#player4:pressed,#player5:pressed,#menubutton:pressed,#rulesbutton:pressed{
+#player1:pressed,#player2:pressed,#player3:pressed,#player4:pressed,#player5:pressed,#menubutton:pressed,#rulesbutton:pressed, #bc:pressed{
     -fx-scale-y: 0.98;
     -fx-scale-x: 0.98;
     -fx-cursor: hand;
+    -fx-rotate: 0;
 }
 
 
@@ -243,7 +248,7 @@
     -fx-border-radius: 14;
 }
 
-#close{
+#close, #bc {
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90%;
     -fx-border-width: 0;
@@ -264,24 +269,28 @@
      -fx-scale-y: 1.05;
      -fx-scale-x: 1.05;
      -fx-cursor: hand;
+    -fx-rotate: 2;
 }
 
 #tile1:hover, #tile2:hover, #tile3:hover, #tile4:hover, #tile5:hover, #tile6:hover, #tile7:hover, #tile8:hover, #tile9:hover, #tile10:hover, #tile11:hover, #tile12:hover, #tile13:hover, #tile14:hover, #tile15:hover, #tile16:hover{
     -fx-scale-y: 1.01;
     -fx-scale-x: 1.01;
     -fx-cursor: hand;
+    -fx-rotate: 0.5;
 }
 
 #close:pressed, #cac:pressed, #cpp:pressed, #closegame:pressed, #arrowleft:pressed, #arrowright:pressed{
      -fx-scale-y: 0.97;
      -fx-scale-x: 0.97;
      -fx-cursor: hand;
+    -fx-rotate: 0;
 }
 
 #tile1:pressed, #tile2:pressed, #tile3:pressed, #tile4:pressed, #tile5:pressed, #tile6:pressed, #tile7:pressed, #tile8:pressed, #tile9:pressed, #tile10:pressed, #tile11:pressed, #tile12:pressed, #tile13:pressed, #tile14:pressed, #tile15:pressed, #tile16:pressed{
     -fx-scale-y: 0.99;
     -fx-scale-x: 0.99;
     -fx-cursor: hand;
+    -fx-rotate: 0;
 }
 
 #playerblue, #playerred, #playerwhite, #playeryellow, #playergreen{

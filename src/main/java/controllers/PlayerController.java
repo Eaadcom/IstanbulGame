@@ -1,7 +1,6 @@
 package controllers;
 
 import models.Player;
-import views.GameView;
 import views.PopUpView;
 
 import java.util.Scanner;
@@ -11,6 +10,23 @@ public class PlayerController {
 
     // Variables
     private static PlayerController playerController;
+    private FirebaseController firebaseController = FirebaseController.getInstance();
+
+    private Player myPlayer;
+
+    public Player createNewPlayer(String name) {
+        Player player = new Player(name);
+        firebaseController.createNewPlayer(player);
+        myPlayer = player;
+        return player;
+    }
+
+    public Player getMyPlayer() {
+        return myPlayer;
+    }
+
+
+
     private Player player = new Player("name");
     Scanner scanner = new Scanner(System.in);
     private PopUpView pv = new PopUpView();

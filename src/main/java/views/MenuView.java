@@ -1,14 +1,12 @@
 package views;
 
-import com.google.cloud.firestore.QueryDocumentSnapshot;
+import controllers.GameController;
 import controllers.MenuViewController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
+import models.Game;
 import observers.MainMenuObservable;
 import observers.MenuViewObserver;
 import javafx.fxml.FXML;
@@ -18,11 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import models.GameInformation;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -30,29 +26,18 @@ public class MenuView implements Initializable, MenuViewObserver {
 
     // variabelen
     private static MenuView menuView;
-    private MenuViewController menuViewController;
-
+    private MenuViewController menuViewController = MenuViewController.getInstance();
+    private GameController gameController = GameController.getInstance();
 
     // FXML variabelen
-    @FXML ChoiceBox cb = new ChoiceBox();
-    @FXML ChoiceBox cb2 = new ChoiceBox();
-    @FXML private VBox rootPane;
-    @FXML private Button startGame;
+    @FXML
+    private ChoiceBox<String> cb = new ChoiceBox<>();
+    @FXML
+    private ChoiceBox<String> cb2 = new ChoiceBox<>();
+    @FXML private VBox rootPane, rootPane2;
+    @FXML private Button createRoom;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
-
-    // Start het login deel van de MenuView
-//    public void start(Stage stage) throws Exception{
-//
-//        stage.setTitle("Istanbul");
-//        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-//        root.setId("pane");
-//        Scene scene = new Scene(root, 1920, 1080);
-//        stage.setFullScreen(true);
-//
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -65,13 +50,11 @@ public class MenuView implements Initializable, MenuViewObserver {
         cb2.getItems().add("medium");
         cb2.getItems().add("hard");
         cb2.getItems().add("random");
-
-
     }
 
-    // Create Room
+    // Create Lobby
     @FXML
-    private void createRoom() throws IOException {
+    private void createLobby() throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("../fxml/makingroom.fxml"));
         rootPane.getChildren().setAll(pane);
     }
@@ -98,8 +81,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     @FXML
     private void availablerooms() throws IOException {
 
-        //menuViewController = MenuViewController.getInstance();
-        //List<QueryDocumentSnapshot> documents = menuViewController.getLobbies();
+
         //GameInformation g = new GameInformation("game", 2);
         //lobbyTable.getItems().add(g);
         //roomname.getColumns().add("test");
@@ -123,68 +105,75 @@ public class MenuView implements Initializable, MenuViewObserver {
     // Handelt de input van de Login
     @FXML
     private void login() throws IOException {
-        Pattern regex = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^~`*()%!-]");
-        boolean result = regex.matcher(usernamefield.getText()).matches();
+        Pattern loginPattern = Pattern.compile("[$&+,:;=\\\\?@#|/'{}<>.^~_`*()%!-]");
+        String usernamefieldText = usernamefield.getText();
 
-        if (usernamefield.getText().equals("") || usernamefield.getText().contains(" ") || usernamefield.getText().contains("`") || usernamefield.getText().contains("+") || usernamefield.getText().contains("-") || usernamefield.getText().contains("]") || usernamefield.getText().contains("=") || usernamefield.getText().contains("/") || usernamefield.getText().contains("\\") || usernamefield.getText().contains("~") || usernamefield.getText().contains("'") || usernamefield.getText().contains(";") || usernamefield.getText().contains(":") || usernamefield.getText().contains(",") || usernamefield.getText().contains(".") || usernamefield.getText().contains("?") || usernamefield.getText().contains("!") || usernamefield.getText().contains("@") || usernamefield.getText().contains("#") || usernamefield.getText().contains("$") || usernamefield.getText().contains("%") || usernamefield.getText().contains("^") || usernamefield.getText().contains("&") || usernamefield.getText().contains("*") || usernamefield.getText().contains("(") || usernamefield.getText().contains(")") || usernamefield.getText().contains("''") || usernamefield.getText().contains("_") || usernamefield.getText().contains("{") || usernamefield.getText().contains("}") || usernamefield.getText().contains("|") || usernamefield.getText().contains("\"")) { // doe niks
-        } else {
+        if (!usernamefieldText.equals("") && !usernamefieldText.contains(" ") && !loginPattern.matcher(usernamefieldText).find()) {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
             String username = usernamefield.getText();
 
-            menuViewController = MenuViewController.getInstance();
             menuViewController.throwUsername(username);
-
         }
     }
 
     //Start game
     @FXML
-    private void startGame() {
+    private void createRoom() {
         try{
             if (roomName.getText() != null && cb2.getSelectionModel().getSelectedItem() != null && cb.getSelectionModel().getSelectedItem() != null){
                 menuViewController = MenuViewController.getInstance();
-                menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem().toString(),
-                        Integer.parseInt(cb.getSelectionModel().getSelectedItem().toString()));
+                menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem(),
+                        Integer.parseInt(cb.getSelectionModel().getSelectedItem()));
 
-                menuViewController.createOnlineGame();
-
-                Stage stage = (Stage) startGame.getScene().getWindow();
+                Stage stage = (Stage) createRoom.getScene().getWindow();
                 stage.close();
-                showGameView();
+                gameController.initializeGameData();
+                showLobbyView();
             }
         } catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private void showGameView() {
+    private void showLobbyView() {
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-            Parent root1 = fxmlloader.load();
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
+            Parent root8 = fxmlloader.load();
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root1));
+            stage.setScene(new Scene(root8));
             stage.setMaximized(true);
-
-            GameView gameView = fxmlloader.getController();
-
-            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX(primaryScreenBounds.getMinX());
-            stage.setY(primaryScreenBounds.getMinY());
-            stage.setWidth(primaryScreenBounds.getWidth());
-            stage.setHeight(primaryScreenBounds.getHeight());
             stage.show();
-            gameView.start();
-        } catch (IOException e) {
-            e.printStackTrace();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
+//    private void showGameView() {
+//        try {
+//            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+//            Parent root1 = fxmlloader.load();
+//            Stage stage = new Stage();
+//            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.setTitle("Istanbul");
+//            stage.setScene(new Scene(root1));
+//            stage.setMaximized(true);
+//
+//            GameView gameView = fxmlloader.getController();
+//
+//            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+//            stage.setX(primaryScreenBounds.getMinX());
+//            stage.setY(primaryScreenBounds.getMinY());
+//            stage.setWidth(primaryScreenBounds.getWidth());
+//            stage.setHeight(primaryScreenBounds.getHeight());
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // Exit game
     @FXML
@@ -206,4 +195,3 @@ public class MenuView implements Initializable, MenuViewObserver {
         return menuView;
     }
 }
-

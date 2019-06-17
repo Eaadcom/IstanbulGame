@@ -1,13 +1,13 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusZeroMovesObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusZeroMoves implements BonusZeroMovesObservable {
+public class BonusZeroMoves implements BonusCard, BonusZeroMovesObservable {
     private List<CardViewObserver> observers = new ArrayList<>();
 
 
@@ -21,5 +21,10 @@ public class BonusZeroMoves implements BonusZeroMovesObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+
     }
 }

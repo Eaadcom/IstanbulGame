@@ -24,7 +24,6 @@ public class Player implements PlayerObservable {
     public int rubies = 0;
     public int lira = 0;
     public int carUpgrades = 2;
-    public String teamColor;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
 
     public int spices = 0;
@@ -39,7 +38,6 @@ public class Player implements PlayerObservable {
 
     public int assistants = 4;
     public int maxAssistants = 4;
-    public int position = 7;
 
     public boolean greenTile = false;
     public boolean redTile = false;
@@ -47,6 +45,8 @@ public class Player implements PlayerObservable {
     public boolean yellowTile = false;
 
     public boolean hasMoved = false;
+
+    private int bonusMoves = 0;
 
     // Constructor
     public Player(String name){
@@ -95,7 +95,28 @@ public class Player implements PlayerObservable {
         }
     }
 
+    public void increaseLira(int amount) {
+        lira += amount;
+        notifyAllObservers();
+    }
+
+    public int getLira() {
+        return lira;
+    }
+
+    public void addBonusCard(BonusCard bonusCard) {
+        this.playerBonusCards.add(bonusCard);
+    }
+
     public List<BonusCard> getBonusKaartenInBezit() {
         return playerBonusCards;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getTotaalAantalMoves() {
+        return 0;
     }
 }

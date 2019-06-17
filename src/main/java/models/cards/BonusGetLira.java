@@ -1,7 +1,7 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusGetLiraObservable;
 
 import java.util.ArrayList;
@@ -13,19 +13,16 @@ import java.util.List;
  * @version 4 june 2019
  */
 
-public class BonusGetLira implements BonusGetLiraObservable {
+public class BonusGetLira implements BonusCard, BonusGetLiraObservable {
 
     private List<CardViewObserver> observers = new ArrayList<>();
 
-    int lira = 5;
+    private final int lira = 5;
     int cardSupply = 2;
 
-
-    public BonusGetLira(int lira) {
-        this.lira = lira;
+    public BonusGetLira() {
 
     }
-
 
     @Override
     public void register(CardViewObserver observer) {
@@ -37,5 +34,11 @@ public class BonusGetLira implements BonusGetLiraObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+        System.out.println("updating lira for player: " + player.getName());
+        player.increaseLira(lira);
     }
 }

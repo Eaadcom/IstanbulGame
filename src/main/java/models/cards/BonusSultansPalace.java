@@ -1,13 +1,13 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusSultansPalaceObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusSultansPalace implements BonusSultansPalaceObservable {
+public class BonusSultansPalace implements BonusCard, BonusSultansPalaceObservable {
     private List<CardViewObserver> observers = new ArrayList<>();
 
 
@@ -21,5 +21,10 @@ public class BonusSultansPalace implements BonusSultansPalaceObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+
     }
 }

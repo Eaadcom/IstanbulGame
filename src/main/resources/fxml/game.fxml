@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="gameback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080" prefWidth="1920" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
+<BorderPane id="gameback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080" prefWidth="1920" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
    <left>
       <VBox id="playerscroll" alignment="TOP_CENTER" prefHeight="1033.0" prefWidth="200.0">
          <children>
@@ -78,10 +78,10 @@
             <RowConstraints maxHeight="230.0" minHeight="230.0" prefHeight="230.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <Button fx:id="tile1" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" />
-            <Button fx:id="tile5" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="1" />
-            <Button fx:id="tile9" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="2" />
-            <Button fx:id="tile13" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.rowIndex="3">
+            <Button fx:id="tile1" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button fx:id="tile5" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button fx:id="tile9" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button fx:id="tile13" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -113,7 +113,7 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="tile2" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" />
+            <Button fx:id="tile2" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             <Button fx:id="tile6" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="tile10" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <graphic>
@@ -159,7 +159,7 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="tile3" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" />
+            <Button fx:id="tile3" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
             <Button fx:id="tile7" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Button fx:id="tile11" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <graphic>
@@ -205,7 +205,7 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="tile4" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" />
+            <Button fx:id="tile4" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             <Button fx:id="tile8" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="tile12" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button fx:id="tile16" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -245,7 +245,7 @@
                   <Insets left="260.0" top="110.0" />
                </GridPane.margin>
             </Pane>
-            <Pane id="playeryellow" fx:id="playeryellow" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" opacity="0.9" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Pane id="playeryellow" fx:id="playerYellow" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" opacity="0.9" prefHeight="50.0" prefWidth="50.0" style="-fx-background-repeat: no-repeat;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="80.0" />
                </GridPane.margin>
@@ -285,11 +285,12 @@
                         <Insets right="5.0" top="5.0" />
                      </padding>
                   </Button>
+                  <Button onAction="#useTile" layoutX="148.0" layoutY="451.0" mnemonicParsing="false" text="Use tile" />
                </children></Pane>
             <Pane prefHeight="297.0" prefWidth="360.0">
                <children>
-                  <Button fx:id="endturn" onAction="#endTurn" layoutX="149.0" layoutY="233.0" mnemonicParsing="false" text="end turn" />
-                  <Button fx:id="bonuscard" onAction="#bonusCards" layoutX="134.0" layoutY="189.0" mnemonicParsing="false" text="bonus kaarten" />
+                  <Button fx:id="endturn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#endTurn" text="end turn" />
+                  <Button id="bc" fx:id="bonuscard" layoutX="50.0" layoutY="14.0" mnemonicParsing="false" onAction="#bonusCards" prefHeight="203.0" prefWidth="260.0" />
                </children></Pane>
             <Pane id="goodsback" prefHeight="240.0" prefWidth="360.0">
                <children>
@@ -412,7 +413,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <Text fx:id="playerLira" layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                            <font>
                               <Font size="34.0" />
                            </font>

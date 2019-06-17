@@ -8,36 +8,42 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootPane" alignment="CENTER" prefHeight="1080" prefWidth="1920" spacing="15" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="models.AvailableRooms">
+<VBox fx:id="rootPane2" alignment="CENTER" prefHeight="1080" prefWidth="1920" spacing="15"
+      xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="views.AvailableRoomsView">
 
     <stylesheets>
-        <URL value="@../css/style.css" />
+        <URL value="@../css/style.css"/>
     </stylesheets>
 
     <VBox alignment="BOTTOM_CENTER" prefHeight="100" spacing="10">
-      <VBox.margin>
-         <Insets top="80.0" />
-      </VBox.margin></VBox>
+        <VBox.margin>
+            <Insets top="80.0"/>
+        </VBox.margin>
+    </VBox>
 
     <HBox alignment="CENTER" prefWidth="1920.0" spacing="10">
         <VBox id="availRoom" alignment="CENTER" prefHeight="550.0" prefWidth="600.0" spacing="80">
-         <children>
-            <TableView fx:id="lobbyTable" maxWidth="475.0" prefHeight="340.0" prefWidth="475.0">
-              <columns>
-                <TableColumn fx:id="roomname" editable="false" prefWidth="266.0" resizable="false" sortable="false" text="Roomname" />
-                <TableColumn fx:id="totalPlayers" editable="false" minWidth="0.0" prefWidth="103.0" resizable="false" sortable="false" text="Players" />
-                  <TableColumn fx:id="joinButtons" editable="false" minWidth="0.0" prefWidth="103.0" resizable="false" sortable="false" text="Join" />
-              </columns>
-               <VBox.margin>
-                  <Insets top="55.0" />
-               </VBox.margin>
-            </TableView>
-         </children>
+            <children>
+                <TableView fx:id="lobbyTable" maxWidth="475.0" prefHeight="340.0" prefWidth="475.0">
+                    <columns>
+                        <TableColumn fx:id="roomname" editable="false" prefWidth="266.0" resizable="false"
+                                     sortable="false" text="Roomname"/>
+                        <TableColumn fx:id="totalPlayers" editable="false" minWidth="0.0" prefWidth="103.0"
+                                     resizable="false" sortable="false" text="Players"/>
+                        <TableColumn fx:id="joinButtons" editable="false" minWidth="0.0" prefWidth="103.0"
+                                     resizable="false" sortable="false" text="Join"/>
+                    </columns>
+                    <VBox.margin>
+                        <Insets top="55.0"/>
+                    </VBox.margin>
+                </TableView>
+            </children>
         </VBox>
     </HBox>
 
     <HBox alignment="CENTER" spacing="1">
-        <Button id="backButton" prefHeight="140" prefWidth="450" />
+        <Button id="backButton" onAction="#goBack" prefHeight="140" prefWidth="450"/>
     </HBox>
 
 </VBox>

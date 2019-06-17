@@ -5,6 +5,7 @@ import observers.BoardObservable;
 import observers.GameViewObserver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,10 +13,10 @@ public class Board implements BoardObservable {
 
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
-    public ArrayList<BonusCard> bonusCards =  new ArrayList<>();
-    public ArrayList<BonusCard> playerBonusCards = new ArrayList<>();
+    public List<BonusCard> bonusCards =  new ArrayList<>();
+    public List<BonusCard> playerBonusCards = new ArrayList<>();
     public List<Player> players = new LinkedList<>();
-    private ArrayList<Dice> dice = new ArrayList<>();
+    private List<Dice> dice = new ArrayList<>();
     private Governor governor = new Governor();
     private Smuggler smuggler = new Smuggler();
 
@@ -43,5 +44,21 @@ public class Board implements BoardObservable {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public Player getPlayer() {
+        return players.get(0);
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public void shufflePlayers() {
+        Collections.shuffle(players);
     }
 }

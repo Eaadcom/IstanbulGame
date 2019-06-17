@@ -26,6 +26,8 @@ public class LocationController{
     public int cardNumber1;
     public int cardNumber2;
 
+    public int teahouseNumberChoice;
+
     private BlackMarket blackMarket;
     private TeaHouse teaHouse =  new TeaHouse();
     public FruitWarehouse fruitWarehouse;
@@ -166,6 +168,7 @@ public class LocationController{
     }
 
 
+
     public void setTeaHouseNumber(int number) {
         teaHouse.setTeahouseNumberChoice(number);
     }
@@ -185,15 +188,14 @@ public class LocationController{
         diceTwo.DiceValue = setDiceValue();
         diceResult = diceOne.DiceValue + diceTwo.DiceValue;
         diceResultStr = Integer.toString(diceResult);
+        teahouseNumberChoice = teaHouse.teahouseNumberChoice;
 
-        if (teaHouse.teahouseNumberChoice > diceResult || teaHouse.teahouseNumberChoice == diceResult) {
+        if (teaHouse.teahouseNumberChoice < diceResult || teaHouse.teahouseNumberChoice == diceResult) {
             playerController.addRubysLiras("lira", teaHouse.teahouseNumberChoice);
             System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
         } else if(teaHouse.teahouseNumberChoice < diceResult){
-            setTeaHouseNumber(0);
-            System.out.println("Helaas! je ligt eronder!");
-        }
-    }
+            playerController.addRubysLiras("lira", 2);
+                System.out.println("Helaas! je ligt eronder!");
 
     /**
      * Checks if the player has entered a valid number at the police station and acts accoringly

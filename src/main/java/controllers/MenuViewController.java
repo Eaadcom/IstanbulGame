@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import models.MainMenu;
 import views.MenuView;
 
@@ -14,8 +15,7 @@ public class MenuViewController {
 
     // Constructor waarin het MainMenu object wordt opgehaald
     public MenuViewController(){
-        mainMenu = MainMenu.getInstance();
-        mainMenu.register(MenuView.getInstance());
+        mainMenu = new MainMenu();
     }
 
     // write data to models
@@ -34,8 +34,16 @@ public class MenuViewController {
         return mainMenu.getGameName();
     }
 
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+
     public int getPlayerTotal(){
         return mainMenu.getPlayerTotal();
+    }
+
+    public String getUserName(){
+        return mainMenu.getUsername();
     }
 
     // Stuurt de username die hij doorkrijgt als argument naar de mainMenu model
@@ -43,14 +51,8 @@ public class MenuViewController {
         mainMenu.setUsername(username);
     }
 
-    // Roept de functie aan in de FirebaseController om een game aan te maken
-    public void createOnlineGame(){
-        firebaseController = FirebaseController.getInstance();
-        firebaseController.createOnlineGame();
-    }
-
     // Pakt de aangemaakt lobbies uit de Firebase
-    public List getLobbies(){
+    public List<QueryDocumentSnapshot> getLobbies(){
         firebaseController = FirebaseController.getInstance();
         return firebaseController.fillGameLobby();
     }

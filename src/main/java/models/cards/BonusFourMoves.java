@@ -1,6 +1,6 @@
 package models.cards;
 
-import models.locations.Location;
+import models.Player;
 import observers.CardViewObserver;;
 import observers.cards.BonusFourMovesObservable;
 
@@ -35,7 +35,7 @@ public class BonusFourMoves implements BonusCard, BonusFourMovesObservable {
     }
 
     @Override
-    public void onUse() {
+    public void onUse(Player player) {
 
     }
 }

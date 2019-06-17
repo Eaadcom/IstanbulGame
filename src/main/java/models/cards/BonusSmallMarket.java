@@ -1,13 +1,13 @@
 package models.cards;
 
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusSmallMarketObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusSmallMarket implements BonusSmallMarketObservable {
+public class BonusSmallMarket implements BonusCard, BonusSmallMarketObservable {
     private List<CardViewObserver> observers = new ArrayList<>();
 
 
@@ -21,5 +21,10 @@ public class BonusSmallMarket implements BonusSmallMarketObservable {
         for (CardViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    @Override
+    public void onUse(Player player) {
+
     }
 }

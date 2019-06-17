@@ -1,6 +1,8 @@
 package models.cards;
 
+import models.Player;
+
 public interface BonusCard {
 
-    void onUse();
+    void onUse(Player player);
 }

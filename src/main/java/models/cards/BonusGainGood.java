@@ -1,8 +1,7 @@
 package models.cards;
 
-import controllers.PlayerController;
+import models.Player;
 import observers.CardViewObserver;
-import observers.GameViewObserver;
 import observers.cards.BonusGainGoodObservable;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class BonusGainGood implements BonusCard, BonusGainGoodObservable {
     }
 
     @Override
-    public void onUse() {
+    public void onUse(Player player) {
 
     }
 }

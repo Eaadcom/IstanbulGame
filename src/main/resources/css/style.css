@@ -7,7 +7,7 @@
 #makingRoom{
     -fx-background-image: url('../img/enterroom.png');
 }
-#createRoom{
+#createLobby{
     -fx-background-image: url('../img/createroom.png');
 }
 #backButton{
@@ -29,12 +29,15 @@
     -fx-background-image: url('../img/availableroomspane.png');
 }
 
-#startGame{
+#createRoom{
     -fx-background-image: url('../img/createtheroom.png');
+}
+#lobby{
+    -fx-background-image: url('../img/lobby.png');
 }
 
 
-#createRoom, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings, #startGame{
+#createLobby, #availableRoom, #exitGame, #makingRoom, #backButton, #cog, #enterUsername, #login, #settings, #createRoom{
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90%;
     -fx-border-width: 0;
@@ -44,7 +47,7 @@
     -fx-effect: dropshadow(three-pass-box, black, 20, 0.03 , 0, 0);
 }
 
-#pane{
+#pane, #rootpane{
     -fx-background-image: url('../img/bg_img.png');
     -fx-background-repeat: stretch;
     -fx-background-size: 1920 1080;
@@ -52,13 +55,13 @@
 }
 
 
-#createRoom:hover, #availableRoom:hover, #exitGame:hover, #backButton:hover, #cog:hover, #login:hover, #startGame:hover {
+#createLobby:hover, #availableRoom:hover, #exitGame:hover, #backButton:hover, #cog:hover, #login:hover, #createRoom:hover {
      -fx-scale-y: 1.03;
      -fx-scale-x: 1.03;
      -fx-cursor: hand;
 }
 
-#createRoom:pressed, #availableRoom:pressed, #exitGame:pressed, #backButton:pressed, #cog:pressed, #login:pressed, #startGame:pressed {
+#createLobby:pressed, #availableRoom:pressed, #exitGame:pressed, #backButton:pressed, #cog:pressed, #login:pressed, #createRoom:pressed {
      -fx-scale-y: 0.97;
      -fx-scale-x: 0.97;
      -fx-cursor: hand;
@@ -68,6 +71,6 @@
  -fx-background-color:white;
 }
 
-#login, #login:hover, #login:pressed, #startGame{
+#login, #login:hover, #login:pressed, #createRoom{
     -fx-effect: dropshadow(three-pass-box, black, 0, 0.001 , 0, 0);
 }
