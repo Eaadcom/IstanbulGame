@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Firebase;
+import views.AvailableRoomsView;
 import views.LobbyView;
 import views.MenuView;
 
@@ -19,7 +20,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class GameInformation {
-    private static GameController gameController;
+    private GameController gameController;
+    private static GameInformation gameInformation;
     private String roomname;
     private Integer totalPlayers;
     private Button button;
@@ -40,22 +42,12 @@ public class GameInformation {
         return event -> {
             try {
                 gameController.joinGame(document);
-                FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
-                Parent root8 = fxmlloader.load();
-//                LobbyView controller = fxmlloader.getController();
-//
-//                controller.setDocument(document);
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setTitle("Istanbul");
-                stage.setScene(new Scene(root8));
-                stage.setMaximized(true);
-                stage.show();
-
+                gameInformation = this;
+                LobbyView.getInstance().showLobbyView();
+                MenuView.getInstance().getStage2().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         };
     }
 
@@ -79,6 +71,7 @@ public class GameInformation {
         });
     }
 
+    // Setters
     public void setRoomname(String roomname){
         this.roomname = roomname;
     }
@@ -97,6 +90,11 @@ public class GameInformation {
     }
     public Button getButton(){
         return button;
+    }
+
+    // Getters
+    public static GameInformation getGameInfo(){
+        return gameInformation;
     }
 
 }

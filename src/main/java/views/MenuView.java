@@ -1,5 +1,6 @@
 package views;
 
+import controllers.FirebaseController;
 import controllers.GameController;
 import controllers.MenuViewController;
 import javafx.geometry.Rectangle2D;
@@ -28,16 +29,30 @@ public class MenuView implements Initializable, MenuViewObserver {
     private static MenuView menuView;
     private MenuViewController menuViewController = MenuViewController.getInstance();
     private GameController gameController = GameController.getInstance();
+    private Stage stage;
 
     // FXML variabelen
     @FXML
     private ChoiceBox<String> cb = new ChoiceBox<>();
     @FXML
     private ChoiceBox<String> cb2 = new ChoiceBox<>();
-    @FXML private VBox rootPane, rootPane2;
+    @FXML private VBox rootPane;
     @FXML private Button createRoom;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
+
+    public void start(Stage stager) throws Exception{
+        stage = stager;
+        FirebaseController.getInstance().initialize();
+        stage.setTitle("Istanbul");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        root.setId("pane");
+        Scene scene = new Scene(root, 1920, 1080);
+        stage.setFullScreen(true);
+
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -109,11 +124,19 @@ public class MenuView implements Initializable, MenuViewObserver {
         String usernamefieldText = usernamefield.getText();
 
         if (!usernamefieldText.equals("") && !usernamefieldText.contains(" ") && !loginPattern.matcher(usernamefieldText).find()) {
+            createMainMenu();
+            String username = usernamefield.getText();
+            menuViewController.throwUsername(username);
+        }
+    }
+
+    @FXML
+    public void createMainMenu(){
+        try{
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getChildren().setAll(pane3);
-            String username = usernamefield.getText();
-
-            menuViewController.throwUsername(username);
+        } catch ( Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -126,30 +149,18 @@ public class MenuView implements Initializable, MenuViewObserver {
                 menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem(),
                         Integer.parseInt(cb.getSelectionModel().getSelectedItem()));
 
-                Stage stage = (Stage) createRoom.getScene().getWindow();
+                stage = (Stage) createRoom.getScene().getWindow();
                 stage.close();
                 gameController.initializeGameData();
-                showLobbyView();
+                LobbyView.getInstance().showLobbyView();
             }
         } catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private void showLobbyView() {
-        try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
-            Parent root8 = fxmlloader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root8));
-            stage.setMaximized(true);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Stage getStage2(){
+        return stage;
     }
 
 //    private void showGameView() {

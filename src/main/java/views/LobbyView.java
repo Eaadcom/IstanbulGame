@@ -16,6 +16,7 @@ import models.Game;
 import models.Player;
 import observers.GameObservable;
 import observers.LobbyViewObserver;
+import util.GameInformation;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,21 +25,18 @@ import java.util.List;
 
 public class LobbyView implements LobbyViewObserver, Initializable {
 
-    private static final GameController gameController = GameController.getInstance();
+    // Variables
+    private GameController gameController = GameController.getInstance();
+    private static LobbyView lobbyView;
+    private static Stage stage;
 
     // FXML Variables
-    @FXML
-    Text roomName;
-    @FXML
-    Text p1;
-    @FXML
-    Text p2;
-    @FXML
-    Text p3;
-    @FXML
-    Text p4;
-    @FXML
-    Text p5;
+    @FXML Text roomName;
+    @FXML Text p1;
+    @FXML Text p2;
+    @FXML Text p3;
+    @FXML Text p4;
+    @FXML Text p5;
 
     private List<Text> playerTexts;
 
@@ -53,6 +51,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     public void startGame() {
         gameController.startGame();
+        closeStage();
 //        loadGameScreen();
     }
 
@@ -73,6 +72,22 @@ public class LobbyView implements LobbyViewObserver, Initializable {
             stage.setHeight(primaryScreenBounds.getHeight());
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showLobbyView() {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
+            Parent root8 = fxmlloader.load();
+            stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root8));
+            stage.setMaximized(true);
+            stage.show();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -111,6 +126,15 @@ public class LobbyView implements LobbyViewObserver, Initializable {
         }
     }
 
+    private void closeStage(){
+        stage.close();
+    }
+
+    @FXML
+    private void goBack(){
+        MenuView.getInstance().createMainMenu();
+    }
+
     @Override
     public void update(GameObservable go) {
         if (go instanceof Game) {
@@ -128,5 +152,13 @@ public class LobbyView implements LobbyViewObserver, Initializable {
                 loadGameScreen();
             }
         }
+    }
+
+    // Singleton Pattern
+    public static LobbyView getInstance() {
+        if (lobbyView == null) {
+            lobbyView = new LobbyView();
+        }
+        return lobbyView;
     }
 }
