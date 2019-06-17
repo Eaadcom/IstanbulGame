@@ -26,13 +26,20 @@ public class WainwrightView {
 
 
     public void wainwright() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/wainwright.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/wainwright.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-        locationController.wainrightBuyer();
+        locationController.AssistantLocation(16);
+        if(locationController.hasAssistants == true) {
+            locationController.wainrightBuyer();
+        } else{
+            System.out.println("Nope");
+        }
+
+
     }
 }

@@ -17,11 +17,23 @@ public class LocationController{
     models.Dice diceTwo = new models.Dice();
     public int cardNumber1;
     public int cardNumber2;
+    public boolean hasAssistants;
 
     public int teahouseNumberChoice;
 
     private BlackMarket blackMarket = BlackMarket.getInstance();
     private TeaHouse teaHouse = TeaHouse.getInstance();
+    private FabricWarehouse fabricWarehouse = FabricWarehouse.getInstance();
+    private Fountain fountain = Fountain.getInstance();
+    private GemstoneDealer gemstoneDealer = GemstoneDealer.getInstance();
+    private GreatMosque greatMosque = GreatMosque.getInstance();
+    private LargeMarket largeMarket = LargeMarket.getInstance();
+    private PoliceStation policeStation = PoliceStation.getInstance();
+    private PostOffice postOffice = PostOffice.getInstance();
+    private SmallMarket smallMarket = SmallMarket.getInstance();
+    private SmallMosque smallMosque = SmallMosque.getInstance();
+    private SpiceWarehouse spiceWarehouse = SpiceWarehouse.getInstance();
+    private SultanPalace sultanPalace = SultanPalace.getInstance();
     private FruitWarehouse fruitWarehouse = FruitWarehouse.getInstance();
     private Caravansary caravansary = Caravansary.getInstance();
     private CardController cardController = CardController.getInstance();
@@ -30,10 +42,191 @@ public class LocationController{
     private models.Board board = new models.Board();
     private Wainwright wainwright = Wainwright.getInstance();
 
-    Scanner scanner = new Scanner(System.in);
-
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
 
+    public void AssistantLocation(int location){
+        if (myPlayer.assistants > 0) {
+            hasAssistants = true;
+
+
+
+            switch (location) {
+
+                case 1:
+                    if (blackMarket.color(myPlayer.color)) {
+                        blackMarket.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (blackMarket.color(myPlayer.color) == false) {
+                        blackMarket.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 2:
+                    if (caravansary.color(myPlayer.color)) {
+                        caravansary.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (caravansary.color(myPlayer.color) == false) {
+                        caravansary.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 3:
+                    if (fabricWarehouse.color(myPlayer.color)) {
+                        fabricWarehouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (fabricWarehouse.color(myPlayer.color) == false) {
+                        fabricWarehouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 4:
+                    Fountain();
+                    break;
+
+                case 5:
+                    if (fruitWarehouse.color(myPlayer.color)) {
+                        fabricWarehouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (fruitWarehouse.color(myPlayer.color) == false) {
+                        fabricWarehouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 6:
+                    if (gemstoneDealer.color(myPlayer.color)) {
+                        gemstoneDealer.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (gemstoneDealer.color(myPlayer.color) == false) {
+                        gemstoneDealer.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 7:
+                    if (greatMosque.color(myPlayer.color)) {
+                        greatMosque.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (greatMosque.color(myPlayer.color) == false) {
+                        greatMosque.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 8:
+                    if (largeMarket.color(myPlayer.color)) {
+                        largeMarket.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (largeMarket.color(myPlayer.color) == false) {
+                        largeMarket.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 9:
+                    if (policeStation.color(myPlayer.color)) {
+                        policeStation.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (policeStation.color(myPlayer.color) == false) {
+                        policeStation.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 10:
+                    if (postOffice.color(myPlayer.color)) {
+                        postOffice.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (postOffice.color(myPlayer.color) == false) {
+                        postOffice.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 11:
+                    if (smallMarket.color(myPlayer.color)) {
+                        smallMarket.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (smallMarket.color(myPlayer.color) == false) {
+                        smallMarket.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 12:
+                    if (smallMosque.color(myPlayer.color)) {
+                        smallMosque.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (smallMosque.color(myPlayer.color) == false) {
+                        smallMosque.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 13:
+                    if (spiceWarehouse.color(myPlayer.color)) {
+                        spiceWarehouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (spiceWarehouse.color(myPlayer.color) == false) {
+                        spiceWarehouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 14:
+                    if (sultanPalace.color(myPlayer.color)) {
+                        sultanPalace.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (sultanPalace.color(myPlayer.color) == false) {
+                        sultanPalace.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 15:
+                    if (teaHouse.color(myPlayer.color)){
+                        teaHouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (blackMarket.color(myPlayer.color) == false){
+                        teaHouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -=1;
+                    }
+
+                    break;
+                case 16:
+                    if (wainwright.color(myPlayer.color)){
+                        wainwright.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if(wainwright.color(myPlayer.color) == false){
+                        wainwright.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    System.out.println("Er zijn " + myPlayer.assistants + " assistants.");
+                    break;
+
+
+            }
+        } else{
+             hasAssistants = false;
+        }
+
+
+    }
+    public void Fountain(){
+        blackMarket.setColor(myPlayer.color, false);
+        caravansary.setColor(myPlayer.color, false);
+        fabricWarehouse.setColor(myPlayer.color, false);
+        fruitWarehouse.setColor(myPlayer.color, false);
+        teaHouse.setColor(myPlayer.color, false);
+        gemstoneDealer.setColor(myPlayer.color, false);
+        greatMosque.setColor(myPlayer.color, false);
+        largeMarket.setColor(myPlayer.color, false);
+        policeStation.setColor(myPlayer.color, false);
+        postOffice.setColor(myPlayer.color, false);
+        smallMarket.setColor(myPlayer.color, false);
+        smallMosque.setColor(myPlayer.color, false);
+        spiceWarehouse.setColor(myPlayer.color, false);
+        sultanPalace.setColor(myPlayer.color, false);
+        wainwright.setColor(myPlayer.color, false);
+
+        myPlayer.assistants = myPlayer.maxAssistants;
+    }
     public void wainrightBuyer(){
         if(myPlayer.lira > 7 || myPlayer.lira == 7) {
             if (myPlayer.carUpgrades < 3) {

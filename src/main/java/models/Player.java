@@ -26,6 +26,8 @@ public class Player implements PlayerObservable {
     public int carUpgrades = 0;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
 
+    public String color = "red";
+
     public int spices = 0;
     public int fruits = 0;
     public int jewels = 0;

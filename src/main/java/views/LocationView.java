@@ -19,6 +19,7 @@ import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
 import views.tiles.TeaHouseView;
+import views.tiles.WainwrightView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,7 @@ public class LocationView implements LocationViewObserver, Initializable {
     private static LocationView locationView;
     private LocationController locationController = LocationController.getInstance();
     private TeaHouseView thv = new TeaHouseView();
+    private WainwrightView wwv = new WainwrightView();
 
     // FXML variables
     @FXML
@@ -181,14 +183,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         rootPane2.getChildren().setAll(pane2);*/
 
     public void wainwright() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/wainwright.fxml"));
-        Parent root = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        locationController.wainrightBuyer();
+        wwv.wainwright();
     }
 
     public void policeStation() throws IOException {
