@@ -65,6 +65,9 @@ public class GameView implements GameViewObserver, Initializable {
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
+
+        famred = (Pane) root1.lookup("#famred");
+
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Istanbul");
@@ -88,13 +91,10 @@ public class GameView implements GameViewObserver, Initializable {
 ////
 ////            }
 //
-//
 //            if (!gameController.getGameEnd()) {
 //                gameController.setNextTurn();
 //            }
 //        }
-
-
     }
 
     @Override
@@ -345,7 +345,7 @@ public class GameView implements GameViewObserver, Initializable {
 
     /**
      * This opens the rules so the player can take a look at them.
-     * @author Stan
+     * @author Stan Hogenboom
      * @version June 5th, 2019
      * @throws IOException
      */
@@ -354,55 +354,39 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     /**
-     * This is a method that visualizes the movement of the player.
-     *
-     * @param familyMember Specify the team color of the player who moved. ex: "red" or "green".
-     *                     Since the node is only visible and reachable via this class
-     *                     I made the parameter a String and used a switch case to reach the right node.
-     * @param column       This specifies the column the user moved to.
-     * @param row          This specifies the row the user moved to.
-     * @author             Thomas van Velzen
-     * @version            4 juni 2019
-     */
-    public void moveFamilyMember(String familyMember, int column, int row) {
-        move(familyMember, column, row);
-    }
-
-    /**
      * This functions changes the X and Y position of the player on the board.
      * It also checks if the player has moved already
      * @author Stan Hogenboom
      * @param pane
-     * @param columnm
+     * @param column
      * @param row
      * @throws IOException
      */
-    private void moveTile(Pane pane, int columnm, int row) throws IOException {
-        if (!gameController.movementDone()){
-            GridPane.setColumnIndex(pane, columnm);
-            GridPane.setRowIndex(pane, row);
-            gameController.setMoved(true);
-            disableAllTiles();
-        }
-        else {
-            popUpView.dontMove();
-        }
+    private void moveTile(Pane pane, int column, int row) throws IOException {
+        GridPane.setColumnIndex(pane, column);
+        GridPane.setRowIndex(pane, row);
+        disableAllTiles();
+    }
+
+    public void moveFamilyTile(int column, int row) throws IOException {
+        //famred = (Pane) root1.lookup("#famred");
+        System.out.println(famred);
+//        grid.setColumnIndex(famred, grid.getColumnIndex(tile1));      grid.setRowIndex(famred, grid.getRowIndex(tile1));
+        Pane pane = playerblue;
+        moveTile(pane, column, row);
     }
 
     /**
      * Move code used by moveTile() and moveFamilyMember()
-     * authoe: Stan Hogenboom
-     * Version: 14-6-2019
      * @param target
      * @param column
      * @param row
      */
-
     private void move(String target, int column, int row){
         switch(target){
             case("red"):
-                grid.setColumnIndex(famred, column);
-                grid.setRowIndex(famred, row); break;
+                GridPane.setColumnIndex(famred, column);
+                GridPane.setRowIndex(famred, row);
             case("blue"):
                 grid.setColumnIndex(famblue, column);
                 grid.setRowIndex(famblue, row); break;

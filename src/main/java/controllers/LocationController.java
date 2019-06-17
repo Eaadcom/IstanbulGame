@@ -202,53 +202,53 @@ public class LocationController{
      */
     public void policeStation(String usernamefield) throws IOException {
         if (usernamefield.equals("1")) {
-            GameView.getInstance().blackMarket();
-            GameView.getInstance().moveFamilyMember("famred", 0, 0);
+            GameView.getInstance().wainwright();
+            //GameView.getInstance().moveFamilyTile(0,0);
         }
         else if (usernamefield.contains("2")) {
-
+            GameView.getInstance().fabricWarehouse();
         }
         else if (usernamefield.contains("3")) {
-
+            GameView.getInstance().spiceWarehouse();
         }
         else if (usernamefield.contains("4")) {
-
+            GameView.getInstance().fruitWarehouse();
         }
         else if (usernamefield.contains("5")) {
-
+            GameView.getInstance().postOffice();
         }
         else if (usernamefield.contains("6")) {
-
+            //GameView.getInstance().caravansary;
         }
         else if (usernamefield.contains("7")) {
-
+            GameView.getInstance().fountain();
         }
         else if (usernamefield.contains("8")) {
-
+            GameView.getInstance().blackMarket();
         }
         else if (usernamefield.contains("9")) {
-
+            GameView.getInstance().teaHouse();
         }
         else if (usernamefield.contains("10")) {
-
+            GameView.getInstance().largeMarket();
         }
         else if (usernamefield.contains("11")) {
-
+            GameView.getInstance().smallMarket();
         }
         else if (usernamefield.contains("12")) {
-
+            // This is the policesttion itself, probably shouldn't be included
         }
         else if (usernamefield.contains("13")) {
-
+            GameView.getInstance().sultansPalace();
         }
         else if (usernamefield.contains("14")) {
-
+            GameView.getInstance().smallMosque();
         }
         else if (usernamefield.contains("15")) {
-
+            GameView.getInstance().greatMosque();
         }
         else if (usernamefield.contains("16")) {
-
+            GameView.getInstance().gemstoneDealer();
         }
         else {
 
