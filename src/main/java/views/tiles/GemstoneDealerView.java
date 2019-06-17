@@ -1,5 +1,6 @@
 package views.tiles;
 
+import controllers.LocationController;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -13,6 +14,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GemstoneDealerView implements Initializable {
+
+    private LocationController locationController = LocationController.getInstance();
 
     //Singleton
     private static GemstoneDealerView gemstoneDealerView;

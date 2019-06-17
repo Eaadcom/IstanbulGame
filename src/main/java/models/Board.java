@@ -13,15 +13,13 @@ public class Board implements BoardObservable {
 
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
-    public List<BonusCard> bonusCards =  new ArrayList<>();
-    public List<BonusCard> playerBonusCards = new ArrayList<>();
     public List<Player> players = new LinkedList<>();
     private List<Dice> dice = new ArrayList<>();
     private Governor governor = new Governor();
     private Smuggler smuggler = new Smuggler();
 
     // Constructor
-    public Board(){
+    public Board() {
 
     }
 
@@ -33,7 +31,7 @@ public class Board implements BoardObservable {
 
     @Override
     public void notifyAllObservers() {
-        for (GameViewObserver gvo : observers){
+        for (GameViewObserver gvo : observers) {
             gvo.update(this);
         }
     }
@@ -60,5 +58,14 @@ public class Board implements BoardObservable {
 
     public void shufflePlayers() {
         Collections.shuffle(players);
+    }
+
+    // singleton pattern
+    private static Board board;
+    public static Board getInstance() {
+        if (board == null) {
+            board = new Board();
+        }
+        return board;
     }
 }
