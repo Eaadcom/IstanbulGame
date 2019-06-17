@@ -29,7 +29,7 @@ public class MenuView implements Initializable, MenuViewObserver {
     private static MenuView menuView;
     private MenuViewController menuViewController = MenuViewController.getInstance();
     private GameController gameController = GameController.getInstance();
-    private Stage stage;
+    private static Stage stage;
 
     // FXML variabelen
     @FXML
@@ -46,10 +46,10 @@ public class MenuView implements Initializable, MenuViewObserver {
         FirebaseController.getInstance().initialize();
         stage.setTitle("Istanbul");
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        rootPane = (VBox) root.lookup("#rootPane");
         root.setId("pane");
         Scene scene = new Scene(root, 1920, 1080);
         stage.setFullScreen(true);
-
         stage.setScene(scene);
         stage.show();
     }
@@ -124,7 +124,9 @@ public class MenuView implements Initializable, MenuViewObserver {
         String usernamefieldText = usernamefield.getText();
 
         if (!usernamefieldText.equals("") && !usernamefieldText.contains(" ") && !loginPattern.matcher(usernamefieldText).find()) {
-            createMainMenu();
+            VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
+            rootPane.getScene().setRoot(pane3);
+            //createMainMenu();
             String username = usernamefield.getText();
             menuViewController.throwUsername(username);
         }
@@ -134,7 +136,9 @@ public class MenuView implements Initializable, MenuViewObserver {
     public void createMainMenu(){
         try{
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
-            rootPane.getChildren().setAll(pane3);
+            stage.setScene(new Scene(pane3));
+            stage.setFullScreen(true);
+            stage.show();
         } catch ( Exception e){
             e.printStackTrace();
         }

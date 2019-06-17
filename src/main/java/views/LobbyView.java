@@ -80,10 +80,13 @@ public class LobbyView implements LobbyViewObserver, Initializable {
         try {
             FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
             Parent root8 = fxmlloader.load();
+            root8.setId("pane");
             stage = new Stage();
+            Scene scene = new Scene(root8);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root8));
+            scene.getStylesheets().add("css/style.css");
+            stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
 
@@ -133,6 +136,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
     @FXML
     private void goBack(){
         MenuView.getInstance().createMainMenu();
+        closeStage();
     }
 
     @Override

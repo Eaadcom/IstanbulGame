@@ -13,6 +13,9 @@
 #backButton{
     -fx-background-image: url('../img/back.png');
 }
+#lobby{
+
+}
 #cog{
     -fx-background-image: url('../img/cog.png');
 }
