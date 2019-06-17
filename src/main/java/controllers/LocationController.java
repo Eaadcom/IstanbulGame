@@ -3,10 +3,7 @@ package controllers;
 
 import models.Player;
 import javafx.stage.Stage;
-import models.locations.BlackMarket;
-import models.locations.Caravansary;
-import models.locations.FruitWarehouse;
-import models.locations.TeaHouse;
+import models.locations.*;
 import javafx.scene.control.TextField;
 import views.GameView;
 import views.LocationView;
@@ -229,14 +226,32 @@ public class LocationController{
         }
     }
 
-    public void gemstoneDealer() {
-        int gemstonePrice = 12;
-        increasePrice(gemstonePrice);
 
-    }
+    /**
+     * This function is used when the player lands on the gemstone dealer tile and clicks "yes".
+     * It checks if the player has enough Lira to purchase a ruby.
+     * If that's the case, the player recieves a ruby and a number of lira is withdrawn.
+     * The price of a ruby goes up by one every time someone buys a ruby.
+     * @author Stan Hogenboom
+     * @version 17-6-2019
+     */
+    public void gemstoneDealerAction() {
+        GemstoneDealer gsd = GemstoneDealer.getInstance();
+        int price = gsd.getGemstonePrice();
+        //LocationView lcv = LocationView.getInstance();
 
-    private void increasePrice(int price) {
-        price++;
+        if(myPlayer.lira > price){
+            playerController.addRubysLiras("ruby", 1);
+            playerController.addRubysLiras("lira", -price);
+            gsd.updatePrice(price + 1);
+            System.out.println("De nieuwe prijs is: " + gsd.getGemstonePrice());
+            //lcv.close(); <- werkt niet
+        }
+        else {
+            System.out.println("Niet genoeg Lira");
+            //lcv.close(); <- werkt niet
+            //hier moet een scherm met de tekst [je hebt niet genoeg lira]
+        }
     }
 
     // Singleton Pattern

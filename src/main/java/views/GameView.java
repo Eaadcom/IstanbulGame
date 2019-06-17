@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 
 import java.util.*;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -22,6 +23,7 @@ import models.Difficulty;
 import models.Game;
 import models.Player;
 import models.cards.BonusCard;
+import models.locations.GemstoneDealer;
 import observers.*;
 
 import java.io.IOException;
@@ -64,7 +66,8 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
     @FXML
-    public Text gemprice;
+    public Label gemprice;
+    //gemprice.setText(Integer.toString(GemstoneDealer.getInstance().getGemstonePrice()));
     @FXML
     public Text playerLira;
 

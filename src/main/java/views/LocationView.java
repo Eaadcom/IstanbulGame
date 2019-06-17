@@ -18,6 +18,7 @@ import models.locations.*;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
+import views.tiles.GemstoneDealerView;
 import views.tiles.TeaHouseView;
 
 import java.io.IOException;
@@ -221,6 +222,10 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.close();
     }
 
+    public void gemstoneDealerAction() {
+        GemstoneDealerView.getInstance().gemstoneDealerYes();
+        close();
+    }
 
     public void fountain() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fountain.fxml"));
@@ -231,7 +236,6 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
-
 
     // Singleton Pattern
     public static LocationView getInstance() {
