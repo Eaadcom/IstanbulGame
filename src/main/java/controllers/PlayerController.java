@@ -1,8 +1,10 @@
 package controllers;
 
+import models.Board;
 import models.Player;
 import views.PopUpView;
 
+import java.io.Console;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -11,6 +13,7 @@ public class PlayerController {
     // Variables
     private static PlayerController playerController;
     private FirebaseController firebaseController = FirebaseController.getInstance();
+    private models.Board board = models.Board.getInstance();
 
     private Player myPlayer;
 
@@ -25,9 +28,6 @@ public class PlayerController {
         return myPlayer;
     }
 
-
-
-    private Player player = new Player("name");
     Scanner scanner = new Scanner(System.in);
     private PopUpView pv = new PopUpView();
 
@@ -35,11 +35,11 @@ public class PlayerController {
     public void AssistantHandler(String todo){
 
         if(todo == "Remove"){
-            player.assistants -= 1;
+            myPlayer.assistants -= 1;
         } else if(todo == "Add"){
-            player.assistants += 1;
+            myPlayer.assistants += 1;
         } else if(todo == "Fountain"){
-            player.assistants = player.maxAssistants;
+            myPlayer.assistants = myPlayer.maxAssistants;
         }
     }
 
@@ -47,7 +47,7 @@ public class PlayerController {
         boolean CargoCheckSpices;
         MaxCargoUpdater();
 
-        if(player.spices + toAdd < player.maxSpices || player.spices + toAdd == player.maxSpices){
+        if(myPlayer.spices + toAdd < myPlayer.maxSpices || myPlayer.spices + toAdd == myPlayer.maxSpices){
 
             CargoCheckSpices = true;
 
@@ -61,7 +61,7 @@ public class PlayerController {
         boolean CargoCheckFruits;
         MaxCargoUpdater();
 
-        if(player.fruits + toAdd < player.maxFruits || player.fruits + toAdd == player.maxFruits){
+        if(myPlayer.fruits + toAdd < myPlayer.maxFruits || myPlayer.fruits + toAdd == myPlayer.maxFruits){
 
             CargoCheckFruits = true;
 
@@ -76,7 +76,7 @@ public class PlayerController {
         boolean CargoCheckFabrics;
         MaxCargoUpdater();
 
-        if(player.fabrics + toAdd < player.maxFabrics || player.fabrics + toAdd == player.maxFabrics){
+        if(myPlayer.fabrics + toAdd < myPlayer.maxFabrics || myPlayer.fabrics + toAdd == myPlayer.maxFabrics){
 
             CargoCheckFabrics = true;
 
@@ -91,7 +91,7 @@ public class PlayerController {
         boolean CargoCheckJewels;
         MaxCargoUpdater();
 
-        if(player.jewels + toAdd < player.maxJewels || player.fabrics + toAdd == player.maxJewels){
+        if(myPlayer.jewels + toAdd < myPlayer.maxJewels || myPlayer.fabrics + toAdd == myPlayer.maxJewels){
 
             CargoCheckJewels = true;
 
@@ -102,10 +102,10 @@ public class PlayerController {
         return CargoCheckJewels;
     }
     public void MaxCargoUpdater(){
-        player.maxSpices = player.maxSpices + player.carUpgrades;
-        player.maxFabrics = player.maxFabrics + player.carUpgrades;
-        player.maxFruits = player.maxFruits + player.carUpgrades;
-        player.maxJewels = player.maxJewels + player.carUpgrades;
+        myPlayer.maxSpices = myPlayer.maxSpices + myPlayer.carUpgrades;
+        myPlayer.maxFabrics = myPlayer.maxFabrics + myPlayer.carUpgrades;
+        myPlayer.maxFruits = myPlayer.maxFruits + myPlayer.carUpgrades;
+        myPlayer.maxJewels = myPlayer.maxJewels + myPlayer.carUpgrades;
     }
     public void pay(int amount, Player player){
         if (amount > player.lira){}else{
@@ -116,13 +116,13 @@ public class PlayerController {
     public void addRubysLiras(String g, int amount) {
         switch(g) {
             case "ruby":
-                player.rubies += amount;
-                if (player.rubies == 5) {
+                myPlayer.rubies += amount;
+                if (myPlayer.rubies == 5) {
                     winCondition();
                 }
                 break;
             case "lira":
-                player.lira += amount;
+                myPlayer.lira += amount;
                 break;
             default:
                 // code block
@@ -155,16 +155,18 @@ public class PlayerController {
     public void MaxGoods(String nameOfGoods){
         switch(nameOfGoods) {
             case "spice":
-                player.spices = player.maxSpices;
+                myPlayer.spices = myPlayer.maxSpices;
+                System.out.println(myPlayer.maxSpices);
+                System.out.println(myPlayer.spices);
                 break;
             case "fruit":
-                player.fruits = player.maxFruits;
+                myPlayer.fruits = myPlayer.maxFruits;
                 break;
             case "jewel":
-                player.jewels = player.maxJewels;
+                myPlayer.jewels = myPlayer.maxJewels;
                 break;
             case "fabric":
-                player.fabrics = player.maxFabrics;
+                myPlayer.fabrics = myPlayer.maxFabrics;
                 break;
             default:
                 // code block
@@ -175,16 +177,16 @@ public class PlayerController {
     public void addMosqueTile(String colorOfTile){
         switch(colorOfTile) {
             case "green":
-                player.greenTile = true;
+                myPlayer.greenTile = true;
                 break;
             case "blue":
-                player.blueTile = true;
+                myPlayer.blueTile = true;
                 break;
             case "red":
-                player.redTile = true;
+                myPlayer.redTile = true;
                 break;
             case "yellow":
-                player.yellowTile = true;
+                myPlayer.yellowTile = true;
                 break;
             default:
                 // code block
@@ -212,7 +214,7 @@ public class PlayerController {
 //    }}
 
     public void setName(String name){
-        player.name = name;
+        myPlayer.name = name;
     }
 
     //    public static void getVariables() {

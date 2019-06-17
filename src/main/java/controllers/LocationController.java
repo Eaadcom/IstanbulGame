@@ -1,6 +1,7 @@
 package controllers;
 
 
+import models.Player;
 import models.locations.BlackMarket;
 import models.locations.Caravansary;
 import models.locations.FruitWarehouse;
@@ -21,39 +22,20 @@ public class LocationController{
 
     public int teahouseNumberChoice;
 
-    private BlackMarket blackMarket;
-    private TeaHouse teaHouse =  new TeaHouse();
-    public FruitWarehouse fruitWarehouse;
-    public Caravansary caravansary = new Caravansary();
-    private CardController cardController;
-    public PlayerController playerController = new PlayerController();
-    private models.Player player = new models.Player("Name");
+    private BlackMarket blackMarket = BlackMarket.getInstance();
+    private TeaHouse teaHouse = TeaHouse.getInstance();
+    private FruitWarehouse fruitWarehouse = FruitWarehouse.getInstance();
+    private Caravansary caravansary = Caravansary.getInstance();
+    private CardController cardController = CardController.getInstance();
+    public PlayerController playerController = PlayerController.getInstance();
+    private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
 
     Scanner scanner = new Scanner(System.in);
 
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
-    public void onUse() {
-        switch (location) {
-            // BlackMarket Functie
-            case 1: {
-
-            }
-            // Caravansary Functie
-            case 2: {
-
-            }
-            // Teahouse Functie
-
-            }
-        }
 
 
-    public int setNumberChoice() {
-
-        int Choice = scanner.nextInt();
-        return Choice;
-    }
 
     public int setDiceValue() {
 
@@ -64,7 +46,7 @@ public class LocationController{
 
     public void BlackMarketDice() {
         playerController = PlayerController.getInstance();
-blackMarket = BlackMarket.getInstance();
+        blackMarket = BlackMarket.getInstance();
         blackMarket.diceOne.DiceValue = setDiceValue();
         blackMarket.diceTwo.DiceValue = setDiceValue();
 
@@ -73,29 +55,29 @@ blackMarket = BlackMarket.getInstance();
         System.out.println("Je hebt " + diceResult + " gegooit");
 
         if (diceResult < 7) {
-            player.jewels = player.jewels;
+            myPlayer.jewels = myPlayer.jewels;
         } else if (diceResult == 7 || diceResult == 8) {
             if (playerController.CargoCheckJewels(1) == true) {
-                player.jewels += 1;
+                myPlayer.jewels += 1;
             }
 
         } else if (diceResult == 9 || diceResult == 10) {
             if (playerController.CargoCheckJewels(2)) {
-                player.jewels += 2;
+                myPlayer.jewels += 2;
             } else if (playerController.CargoCheckJewels(1)) {
-                player.jewels += 1;
+                myPlayer.jewels += 1;
             }
 
         } else if (diceResult == 11 || diceResult == 12) {
             if (playerController.CargoCheckJewels(3)) {
-                player.jewels += 3;
+                myPlayer.jewels += 3;
             } else if (playerController.CargoCheckJewels(2)) {
-                player.jewels += 2;
+                myPlayer.jewels += 2;
             } else if (playerController.CargoCheckJewels(1)) {
-                player.jewels += 1;
+                myPlayer.jewels += 1;
             }
         }
-        System.out.println("er zijn " + player.jewels + " Jewels toegevoegd!");
+        System.out.println("er zijn " + myPlayer.jewels + " Jewels toegevoegd!");
 
     }
 
@@ -103,18 +85,18 @@ blackMarket = BlackMarket.getInstance();
 playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
-                player.spices += 1;
+                myPlayer.spices += 1;
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
-                player.fruits += 1;
+                myPlayer.fruits += 1;
 
             }
         } else if (BlackMarketChoice == 3) {
             if (playerController.CargoCheckFabrics(1)) {
-                player.fabrics += 1;
-                System.out.println("er zijn " + player.fabrics + " Fabrics");
+                myPlayer.fabrics += 1;
+                System.out.println("er zijn " + myPlayer.fabrics + " Fabrics");
 
             } else {
             }
@@ -124,18 +106,8 @@ playerController = PlayerController.getInstance();
     }
 
     public void CarravansaryCardSelector() {
-        // moet nog aff
-        cardNumber1 = cardController.getRandomCard() - 1;
-        cardNumber2 = cardController.getRandomCard() - 1;
 
-        Boolean SameCard = cardController.CardChecker();
-
-        while (SameCard = true) {
-            cardNumber2 = cardController.getRandomCard() - 1;
-        }
-
-        board.playerBonusCards.add(board.bonusCards.get(cardNumber1));
-        board.playerBonusCards.add(board.bonusCards.get(cardNumber2));
+        // hier nog even naar kijken jongens, ik weet niet hoe jullie die bonuskaarten willen hebben.
 
 
     }
@@ -153,6 +125,7 @@ playerController = PlayerController.getInstance();
     public void SpiceWarehouse() {
         playerController.MaxCargoUpdater();
         playerController.MaxGoods("spice");
+        System.out.println("Er zijn " + myPlayer.spices + " toegevoegd.");
     }
 
 
