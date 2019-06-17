@@ -1,10 +1,9 @@
 package controllers;
 
 
-import models.locations.BlackMarket;
-import models.locations.Caravansary;
-import models.locations.FruitWarehouse;
-import models.locations.TeaHouse;
+import models.locations.*;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class LocationController{
@@ -23,10 +22,12 @@ public class LocationController{
 
     private BlackMarket blackMarket;
     private TeaHouse teaHouse =  new TeaHouse();
+    private SultanPalace sultansPalaceModel = SultanPalace.getInstance();
     public FruitWarehouse fruitWarehouse;
     public Caravansary caravansary = new Caravansary();
     private CardController cardController;
     public PlayerController playerController = new PlayerController();
+    public GameController gameController = new GameController();
     private models.Player player = new models.Player("Name");
     private models.Board board = new models.Board();
 
@@ -117,6 +118,7 @@ playerController = PlayerController.getInstance();
                 System.out.println("er zijn " + player.fabrics + " Fabrics");
 
             } else {
+
             }
 
         } else {
@@ -156,7 +158,6 @@ playerController = PlayerController.getInstance();
     }
 
 
-
     public void setTeaHouseNumber(int number) {
         teaHouse.setTeahouseNumberChoice(number);
     }
@@ -183,13 +184,23 @@ playerController = PlayerController.getInstance();
             System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
         } else if(teaHouse.teahouseNumberChoice < diceResult){
             playerController.addRubysLiras("lira", 2);
-                System.out.println("Helaas! je ligt eronder!");
+            System.out.println("Helaas! je ligt eronder!");
 
-        }
+    }}
+        // SULTANS PALACE CODE
+        public int  getBluePrice()   { return sultansPalaceModel.getJewelPrice();   }
+        public int  getRedPrice()    { return sultansPalaceModel.getFabricPrice();  }
+        public int  getGreenPrice()  { return sultansPalaceModel.getSpicePrice();   }
+        public int  getYellowPrice() { return sultansPalaceModel.getFruitPrice();   }
+        public int  getChoiceAmount(){ return sultansPalaceModel.getChoiceAmount(); }
+        public void confirmPurchase() throws IOException
+        { sultansPalaceModel.confirmPurchase(gameController.getPlayer()); }
 
 
 
-    }
+
+
+
     // Singleton Pattern
     public static LocationController getInstance() {
         if (locationController == null) {

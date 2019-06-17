@@ -21,7 +21,6 @@ public class BonusGetLira implements BonusCard, BonusGetLiraObservable {
     int cardSupply = 2;
 
     public BonusGetLira() {
-
     }
 
     @Override

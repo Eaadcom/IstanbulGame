@@ -288,6 +288,7 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile5")) {
                 postOffice();
             } else if (source.getId().equals("tile6")) {
+
             } else if (source.getId().equals("tile7")) {
                 fountain();
             } else if (source.getId().equals("tile8")) {
@@ -371,7 +372,6 @@ public class GameView implements GameViewObserver, Initializable {
     public void sultansPalace() throws IOException {
         sultansPalaceView.sultansPalace();
     }
-
     public void postOffice() throws IOException {
         postOfficeView.postOffice();
     }

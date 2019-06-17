@@ -57,6 +57,11 @@ public class GameController {
         return game;
     }
 
+    public Player getPlayer(){
+        return game.getPlayer();
+    }
+
+
     /**
      *Check in the game model if player has moves already
      * @author Stan Hogenboom
