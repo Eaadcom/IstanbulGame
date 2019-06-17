@@ -22,7 +22,6 @@ public class GemstoneDealerView implements Initializable {
         }
         return gemstoneDealerView;
     }
-    //
 
     public void gemstoneDealer() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/gemstoneDealer.fxml"));

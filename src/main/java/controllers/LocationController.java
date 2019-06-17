@@ -195,7 +195,7 @@ public class LocationController{
             System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
         } else if(teaHouse.teahouseNumberChoice < diceResult){
             playerController.addRubysLiras("lira", 2);
-                System.out.println("Helaas! je ligt eronder!");
+                System.out.println("Helaas! je ligt eronder!");}}
 
     /**
      * Checks if the player has entered a valid number at the police station and acts accoringly
@@ -255,6 +255,16 @@ public class LocationController{
         else {
 
         }
+    }
+
+    public void gemstoneDealer() {
+        int gemstonePrice = 12;
+        increasePrice(gemstonePrice);
+
+    }
+
+    private void increasePrice(int price) {
+        price++;
     }
 
     // Singleton Pattern

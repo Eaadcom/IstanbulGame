@@ -3,14 +3,21 @@ package views;
 import controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import java.util.*;
 
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Difficulty;
 import models.Game;
 import models.Player;
@@ -90,7 +97,6 @@ public class GameView implements GameViewObserver, Initializable {
         stage.setHeight(primaryScreenBounds.getHeight());
 
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -288,13 +294,9 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
-            //showPopupBonusKaarten();
-            tileAction(source);
-            gameController.setNextPlayer();
-        }
-    }
+           // tileAction(source);
 
-            // moveTile(getCurrentPlayer, columnIndex, rowIndex);
+            //moveTile(getCurrentPlayer, columnIndex, rowIndex){
             if (source.getId().equals("tile1")) {
                 wainwright();
             } else if (source.getId().equals("tile2")) {
@@ -306,6 +308,7 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile5")) {
                 postOffice();
             } else if (source.getId().equals("tile6")) {
+                //Geen functie omdat dit de eigen tegel is
             } else if (source.getId().equals("tile7")) {
                 fountain();
             } else if (source.getId().equals("tile8")) {
@@ -332,6 +335,7 @@ public class GameView implements GameViewObserver, Initializable {
             possibleMoves(playerred);
         }
     }
+
 
     //TILE POP UPS
     public void blackMarket() throws IOException {
@@ -556,6 +560,7 @@ public class GameView implements GameViewObserver, Initializable {
             }
 
         }
+    }
 
 //        for(int i = 0; i<tiles.size(); i++){
 //            int tilecol = grid.getColumnIndex(tiles.get(i));
@@ -584,7 +589,7 @@ public class GameView implements GameViewObserver, Initializable {
 //                tiles.get(i).setDisable(true);
 //            }
 //        }
-    }
+
 
     /**
      * Gives an int based on the node coordinarions.
