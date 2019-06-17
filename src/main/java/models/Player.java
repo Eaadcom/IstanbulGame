@@ -84,6 +84,22 @@ public class Player implements PlayerObservable {
         this.fabrics = fabrics;
     }
 
+    public int getSpices() {
+        return spices;
+    }
+
+    public int getFruits() {
+        return fruits;
+    }
+
+    public int getJewels() {
+        return jewels;
+    }
+
+    public int getFabrics() {
+        return fabrics;
+    }
+
     // Observer Pattern
     @Override
     public void register(GameViewObserver observer) {

@@ -61,6 +61,12 @@
 #sultanspalace{
     -fx-background-image: url('../img/tiles/popup/sultanspalace.png');
 }
+#sultanspalace2{
+    -fx-background-image: url('../img/tiles/popup/sultanspalace2.png');
+}
+#sultanspalace3{
+    -fx-background-image: url('../img/tiles/popup/sultanspalace3.png');
+}
 #postoffice{
     -fx-background-image: url('../img/tiles/popup/postoffice.png');
 }
