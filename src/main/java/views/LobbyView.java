@@ -2,6 +2,7 @@ package views;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import controllers.GameController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -154,6 +155,12 @@ public class LobbyView implements LobbyViewObserver, Initializable {
             if (game.isGameStarted()) {
                 loadGameScreen();
             }
+
+//            Platform.runLater(new Runnable(){
+//                @Override public void run() {
+//
+//                }
+//            });
         }
     }
 

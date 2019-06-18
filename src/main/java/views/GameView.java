@@ -1,6 +1,7 @@
 package views;
 
 import controllers.GameController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -662,6 +663,12 @@ public class GameView implements GameViewObserver, Initializable {
         if (go instanceof Game) {
             Game game = (Game) go;
             updateGameView(game);
+
+            Platform.runLater(new Runnable(){
+                @Override public void run() {
+
+                }
+            });
         }
     }
 

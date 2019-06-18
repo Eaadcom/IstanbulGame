@@ -127,8 +127,7 @@ public class MenuView implements Initializable, MenuViewObserver {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
             rootPane.getScene().setRoot(pane3);
             //createMainMenu();
-            String username = usernamefield.getText();
-            menuViewController.throwUsername(username);
+            menuViewController.throwUsername(usernamefieldText);
         }
     }
 

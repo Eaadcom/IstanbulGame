@@ -13,14 +13,14 @@ import java.util.Map;
 public class Game implements GameObservable {
 
     // Variables
-    private List<GameViewLobbyViewObserver> observers = new ArrayList<>();
-    private String name;
-    private Board board = new Board();
-    private Integer playerTotal;
-    private boolean gameStarted = false;
-    private boolean gameEnded = false;
-    private Difficulty difficulty;
-    private int turnCounter = 0;
+    private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
+    public String name;
+    public Board board = new Board();
+    public Integer playerTotal;
+    public boolean gameStarted = false;
+    public boolean gameEnded = false;
+    public Difficulty difficulty;
+    public int turnCounter = 0;
 
     public int myPlayerID = 1;
 
