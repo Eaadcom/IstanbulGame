@@ -53,6 +53,8 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
     @FXML
+    public Pane redAs, blueAs, greenAs, yellowAs, whiteAss;
+    @FXML
     public GridPane grid; // aanmaken fx:id
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
@@ -68,6 +70,7 @@ public class GameView implements GameViewObserver, Initializable {
     private Button[][] hardMap;
     private Pane[] players;
     private Pane[] family;
+    private Pane[] assistants;
 
     // Starts the game
     public void start() throws Exception {
@@ -81,6 +84,7 @@ public class GameView implements GameViewObserver, Initializable {
         initializeMaps();
         initializePlayers();
         initializeFamily();
+        initializeAssistants();
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
@@ -144,6 +148,9 @@ public class GameView implements GameViewObserver, Initializable {
         players = new Pane[]{playerred, playerYellow, playergreen, playerblue, playerwhite};
     }
 
+    private void initializeAssistants(){
+        assistants = new Pane[] {redAs, blueAs, greenAs, yellowAs, whiteAss};
+    }
     private void initializeMaps() {
         easyMap = new Button[][]{{tile15, tile4, tile8, tile13},
             {tile5, tile12, tile6, tile10},
@@ -184,6 +191,24 @@ public class GameView implements GameViewObserver, Initializable {
         addToGrid(playergreen, tile7);
         addToGrid(playerblue, tile7);
         addToGrid(playerwhite, tile7);
+    }
+
+    private void setAssistants(int tile, String color){
+        switch(tile){
+            case 1:
+                if(color == "red") {
+                    addToGrid(redAs, tile8);
+                } else if (color == "blue") {
+                    addToGrid(blueAs, tile8);
+                } else if (color == "green"){
+                    addToGrid(greenAs, tile8);
+                } else if (color == "yellow"){
+                    addToGrid(yellowAs, tile8);
+                } else if (color == "white"){
+                    addToGrid(whiteAss, tile8);
+                }
+
+        }
     }
 
     private void addToGrid(Node node, Node ofNodeIndex) {
