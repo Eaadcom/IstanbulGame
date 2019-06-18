@@ -10,6 +10,7 @@ import java.util.List;
 public class Fountain implements Location, FountainObservable {
 
     // Variables
+    public int location = 4;
     private static Fountain fountain;
     private List<LocationViewObserver> observers = new ArrayList<>();
 

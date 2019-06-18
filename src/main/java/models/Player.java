@@ -26,10 +26,12 @@ public class Player implements PlayerObservable {
     public int carUpgrades = 2;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
 
-    public int spices = 0;
-    public int fruits = 0;
-    public int jewels = 0;
-    public int fabrics = 0;
+    public String color = "red";
+
+    public int spices = 5;
+    public int fruits = 5;
+    public int jewels = 5;
+    public int fabrics = 5;
 
     public int maxJewels = 2;
     public int maxFruits = 2;
@@ -56,31 +58,56 @@ public class Player implements PlayerObservable {
     // Setters
     public void setLira(int lira) {
         this.lira = lira;
+        notifyAllObservers();
     }
 
     public void setRubies(int rubies) {
         this.rubies = rubies;
+        notifyAllObservers();
     }
 
     public void setCarUpgrades(int carUpgrades) {
         this.carUpgrades = carUpgrades;
+        notifyAllObservers();
     }
 
     public void setSpices(int spices) {
         this.spices = spices;
+        notifyAllObservers();
     }
 
     public void setFruits(int fruits) {
         this.fruits = fruits;
+        notifyAllObservers();
     }
 
     public void setJewels(int jewels) {
         this.jewels = jewels;
+        notifyAllObservers();
     }
 
     public void setFabrics(int fabrics) {
         this.fabrics = fabrics;
+        notifyAllObservers();
     }
+
+    public int getSpices() {
+        return spices;
+    }
+
+    public int getFruits() {
+        return fruits;
+    }
+
+    public int getJewels() {
+        return jewels;
+    }
+
+    public int getFabrics() {
+        return fabrics;
+    }
+
+    public int getRubies() { return rubies;}
 
     // Observer Pattern
     @Override

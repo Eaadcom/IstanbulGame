@@ -34,6 +34,11 @@ public class GameController {
 //        return menuViewController.getGameDifficulty();
     }
 
+    //CONSTRUCTOR
+    public GameController(){
+
+    }
+
     public boolean isGameEnded() {
         return game.isGameEnded();
     }
@@ -56,6 +61,11 @@ public class GameController {
     public Game getGame() {
         return game;
     }
+
+    public Player getPlayer(){
+        return game.getPlayer();
+    }
+
 
     /**
      *Check in the game model if player has moves already

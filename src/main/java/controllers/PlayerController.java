@@ -43,6 +43,15 @@ public class PlayerController {
         }
     }
 
+    public void CarUpgrader(){
+
+            myPlayer.carUpgrades += 1;
+            if(myPlayer.carUpgrades == 3){
+                addRubysLiras("ruby", 1);
+            }
+        }
+
+
     public boolean CargoCheckSpices(int toAdd){
         boolean CargoCheckSpices;
         MaxCargoUpdater();

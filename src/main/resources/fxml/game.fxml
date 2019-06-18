@@ -80,33 +80,64 @@
          </rowConstraints>
          <children>
             <Button fx:id="tile1" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button fx:id="tile5" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button fx:id="tile5" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="35.0" layoutY="196.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="163.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="35.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="119.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="77.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="119.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="77.0" layoutY="195.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="162.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="172.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="4" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="139.0">
+                           <font>
+                              <Font name="Calisto MT" size="35.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </graphic></Button>
             <Button fx:id="tile9" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <Button fx:id="tile13" mnemonicParsing="false" onAction="#confirmMovement" prefHeight="230.0" prefWidth="330.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
+                        <Text fx:id="SultanRed" id="SultanRed" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
+                        <Text fx:id="SultanYellow" id="SultanYellow" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
+                        <Text fx:id="SultanGreen" id="SultanGreen" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
+                        <Text fx:id="SultanBlue" id="SultanBlue" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
+                        <Text fx:id="SultanChoice" id="SultanChoice" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
@@ -120,22 +151,22 @@
                <graphic>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -147,12 +178,12 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="78.0">
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="2" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="78.0">
                            <font>
                               <Font name="Calisto MT" size="25.0" />
                            </font>
                         </Text>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="78.0">
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="2" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="78.0">
                            <font>
                               <Font name="Calisto MT" size="25.0" />
                            </font>
@@ -166,22 +197,22 @@
                <graphic>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="3" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="#" textAlignment="CENTER">
+                        <Text layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -193,12 +224,12 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="78.0">
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="2" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="78.0">
                            <font>
                               <Font name="Calisto MT" size="25.0" />
                            </font>
                         </Text>
-                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="#" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="78.0">
+                        <Text fill="#574115" stroke="WHITE" strokeType="OUTSIDE" text="2" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="78.0">
                            <font>
                               <Font name="Calisto MT" size="25.0" />
                            </font>
@@ -213,11 +244,11 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="gemprice" layoutX="117.0" layoutY="154.0" text="#">
+                        <Text fx:id="gemPrice" fill="#574115" layoutX="113.0" layoutY="189.0" stroke="WHITE" strokeType="OUTSIDE" text="12" textAlignment="CENTER" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="156.0">
                            <font>
                               <Font size="34.0" />
                            </font>
-                        </Label>
+                        </Text>
                      </children>
                   </AnchorPane>
                </graphic></Button>
@@ -331,7 +362,7 @@
                      <children>
                         <Pane prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                              <Text fx:id="playerSpices" layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -350,7 +381,7 @@
                         </Pane>
                         <Pane layoutX="1.0" layoutY="71.0" prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                              <Text fx:id="playerFabrics" layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -367,7 +398,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Text layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <Text fx:id="playerRubies" layoutX="33.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                            <font>
                               <Font size="34.0" />
                            </font>
@@ -378,7 +409,7 @@
                      <children>
                         <Pane prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                              <Text fx:id="playerJewels" layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>
@@ -397,7 +428,7 @@
                         </Pane>
                         <Pane layoutX="1.0" layoutY="71.0" prefHeight="72.0" prefWidth="86.0">
                            <children>
-                              <Text layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                              <Text fx:id="playerFruits" layoutX="5.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                  <font>
                                     <Font size="34.0" />
                                  </font>

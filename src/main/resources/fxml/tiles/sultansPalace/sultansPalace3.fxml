@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="sultanspalace3" fx:id="rootPane" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.tiles.sultansPalace.SultansPalaceView3">
+   <children>
+      <ChoiceBox fx:id="choiceBox2" layoutX="184.0" layoutY="505.0" prefHeight="25.0" prefWidth="61.0" />
+      <Button layoutX="238.0" layoutY="568.0" mnemonicParsing="false" text="ok" />
+      <ChoiceBox fx:id="choiceBox3" layoutX="265.0" layoutY="506.0" prefHeight="25.0" prefWidth="61.0" />
+   </children>
+</AnchorPane>

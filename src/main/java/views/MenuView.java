@@ -1,5 +1,6 @@
 package views;
 
+import controllers.FirebaseController;
 import controllers.GameController;
 import controllers.MenuViewController;
 import javafx.geometry.Rectangle2D;
@@ -28,16 +29,30 @@ public class MenuView implements Initializable, MenuViewObserver {
     private static MenuView menuView;
     private MenuViewController menuViewController = MenuViewController.getInstance();
     private GameController gameController = GameController.getInstance();
+    private static Stage stage;
 
     // FXML variabelen
     @FXML
     private ChoiceBox<String> cb = new ChoiceBox<>();
     @FXML
     private ChoiceBox<String> cb2 = new ChoiceBox<>();
-    @FXML private VBox rootPane, rootPane2;
+    @FXML private VBox rootPane;
     @FXML private Button createRoom;
     @FXML private TextField usernamefield;
     @FXML private TextField roomName;
+
+    public void start(Stage stager) throws Exception{
+        stage = stager;
+        FirebaseController.getInstance().initialize();
+        stage.setTitle("Istanbul");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        rootPane = (VBox) root.lookup("#rootPane");
+        root.setId("pane");
+        Scene scene = new Scene(root, 1920, 1080);
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -110,10 +125,21 @@ public class MenuView implements Initializable, MenuViewObserver {
 
         if (!usernamefieldText.equals("") && !usernamefieldText.contains(" ") && !loginPattern.matcher(usernamefieldText).find()) {
             VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
-            rootPane.getChildren().setAll(pane3);
-            String username = usernamefield.getText();
+            rootPane.getScene().setRoot(pane3);
+            //createMainMenu();
+            menuViewController.throwUsername(usernamefieldText);
+        }
+    }
 
-            menuViewController.throwUsername(username);
+    @FXML
+    public void createMainMenu(){
+        try{
+            VBox pane3 = FXMLLoader.load(getClass().getResource("../fxml/mainmenu.fxml"));
+            stage.setScene(new Scene(pane3));
+            stage.setFullScreen(true);
+            stage.show();
+        } catch ( Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -126,54 +152,20 @@ public class MenuView implements Initializable, MenuViewObserver {
                 menuViewController.throwGameData(roomName.getText(), cb2.getSelectionModel().getSelectedItem(),
                         Integer.parseInt(cb.getSelectionModel().getSelectedItem()));
 
-                Stage stage = (Stage) createRoom.getScene().getWindow();
+                stage = (Stage) createRoom.getScene().getWindow();
                 stage.close();
                 gameController.initializeGameData();
-                showLobbyView();
+                LobbyView.getInstance().showLobbyView();
             }
         } catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    private void showLobbyView() {
-        try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/lobby.fxml"));
-            Parent root8 = fxmlloader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root8));
-            stage.setMaximized(true);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Stage getStage2(){
+        return stage;
     }
 
-//    private void showGameView() {
-//        try {
-//            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-//            Parent root1 = fxmlloader.load();
-//            Stage stage = new Stage();
-//            stage.initStyle(StageStyle.UNDECORATED);
-//            stage.setTitle("Istanbul");
-//            stage.setScene(new Scene(root1));
-//            stage.setMaximized(true);
-//
-//            GameView gameView = fxmlloader.getController();
-//
-//            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-//            stage.setX(primaryScreenBounds.getMinX());
-//            stage.setY(primaryScreenBounds.getMinY());
-//            stage.setWidth(primaryScreenBounds.getWidth());
-//            stage.setHeight(primaryScreenBounds.getHeight());
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     // Exit game
     @FXML

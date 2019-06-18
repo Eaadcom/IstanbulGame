@@ -31,7 +31,9 @@ import observers.*;
 import java.io.IOException;
 import java.net.URL;
 
+import observers.locations.SultanPalaceObservable;
 import views.tiles.*;
+import views.tiles.sultansPalace.SultansPalaceView;
 
 import static models.Difficulty.EASY;
 import static models.Difficulty.MEDIUM;
@@ -44,11 +46,11 @@ public class GameView implements GameViewObserver, Initializable {
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
     List<Button> tiles = new ArrayList<>();
-
+    Stage stage;
 
     // Locatie views
     private SmallMarketView smallMarketView = SmallMarketView.getInstance();
-    private LargeMarketView largeMarketView = LargeMarketView.getInstance();
+    private GreatMarketView greatMarketView = GreatMarketView.getInstance();
     private GemstoneDealerView gemstoneDealerView = GemstoneDealerView.getInstance();
     private SmallMosqueView smallMosqueView = SmallMosqueView.getInstance();
     private GreatMosqueView greatMosqueView = GreatMosqueView.getInstance();
@@ -64,6 +66,8 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
     @FXML
+    public Pane redAs, blueAs, greenAs, yellowAs, whiteAss;
+    @FXML
     public GridPane grid; // aanmaken fx:id
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
@@ -71,7 +75,9 @@ public class GameView implements GameViewObserver, Initializable {
     public Label gemprice;
     //gemprice.setText(Integer.toString(GemstoneDealer.getInstance().getGemstonePrice()));
     @FXML
-    public Text playerLira;
+    public Text playerLira, playerRubies, playerFabrics, playerFruits, playerSpices, playerJewels;
+    @FXML
+    public Text SultanRed, SultanBlue, SultanYellow, SultanGreen, SultanChoice;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
@@ -80,6 +86,7 @@ public class GameView implements GameViewObserver, Initializable {
     private Button[][] hardMap;
     private Pane[] players;
     private Pane[] family;
+    private Pane[] assistants;
 
     public GameView() {
         GameView.gameView = this;
@@ -87,6 +94,41 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Starts the game
     public void start() throws Exception {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+            Parent root1 = fxmlloader.load();
+            stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root1));
+            stage.setMaximized(true);
+
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(primaryScreenBounds.getMinX());
+            stage.setY(primaryScreenBounds.getMinY());
+            stage.setWidth(primaryScreenBounds.getWidth());
+            stage.setHeight(primaryScreenBounds.getHeight());
+            stage.show();
+
+
+            //Sultans palace
+            SultanRed = (Text) root1.lookup("#SultanRed");
+            SultanBlue = (Text) root1.lookup("#SultanBlue");
+            SultanYellow = (Text) root1.lookup("#SultanYellow");
+            SultanGreen = (Text) root1.lookup("#SultanGreen");
+            SultanChoice = (Text) root1.lookup("#SultanChoice");
+
+            //player values
+            playerLira = (Text) root1.lookup("#playerLira");
+            playerRubies = (Text) root1.lookup("#playerRubies");
+            playerFabrics = (Text) root1.lookup("#playerFabrics");
+            playerFruits = (Text) root1.lookup("#playerFruits");
+            playerSpices = (Text) root1.lookup("#playerSpices");
+            playerJewels = (Text) root1.lookup("#playerJewels");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         Parent root1 = (Parent) fxmlloader.load();
@@ -112,6 +154,8 @@ public class GameView implements GameViewObserver, Initializable {
         initializeMaps();
         initializePlayers();
         initializeFamily();
+        updatePlayerResources(GameController.getInstance().getPlayer());
+        initializeAssistants();
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
@@ -175,6 +219,9 @@ public class GameView implements GameViewObserver, Initializable {
         players = new Pane[]{playerred, playerYellow, playergreen, playerblue, playerwhite};
     }
 
+    private void initializeAssistants(){
+        assistants = new Pane[] {redAs, blueAs, greenAs, yellowAs, whiteAss};
+    }
     private void initializeMaps() {
         easyMap = new Button[][]{{tile15, tile4, tile8, tile13},
             {tile5, tile12, tile6, tile10},
@@ -214,6 +261,24 @@ public class GameView implements GameViewObserver, Initializable {
         addToGrid(playergreen, tile7);
         addToGrid(playerblue, tile7);
         addToGrid(playerwhite, tile7);
+    }
+
+    private void setAssistants(int tile, String color){
+        switch(tile){
+            case 1:
+                if(color == "red") {
+                    addToGrid(redAs, tile8);
+                } else if (color == "blue") {
+                    addToGrid(blueAs, tile8);
+                } else if (color == "green"){
+                    addToGrid(greenAs, tile8);
+                } else if (color == "yellow"){
+                    addToGrid(yellowAs, tile8);
+                } else if (color == "white"){
+                    addToGrid(whiteAss, tile8);
+                }
+
+        }
     }
 
     private void addToGrid(Node node, Node ofNodeIndex) {
@@ -332,7 +397,7 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile9")) {
                 teaHouse();
             } else if (source.getId().equals("tile10")) {
-                largeMarket();
+                greatMarket();
             } else if (source.getId().equals("tile11")) {
                 smallMarket();
             } else if (source.getId().equals("tile12")) {
@@ -520,8 +585,8 @@ public class GameView implements GameViewObserver, Initializable {
         gemstoneDealerView.gemstoneDealer();
     }
 
-    public void largeMarket() throws IOException {
-        largeMarketView.largeMarket();
+    public void greatMarket() throws IOException {
+        greatMarketView.greatMarket();
     }
 
     public void smallMarket() throws IOException {
@@ -531,7 +596,6 @@ public class GameView implements GameViewObserver, Initializable {
     public void sultansPalace() throws IOException {
         sultansPalaceView.sultansPalace();
     }
-
     public void postOffice() throws IOException {
         postOfficeView.postOffice();
     }
@@ -742,6 +806,12 @@ public class GameView implements GameViewObserver, Initializable {
         if (go instanceof Game) {
             Game game = (Game) go;
             updateGameView(game);
+
+            Platform.runLater(new Runnable(){
+                @Override public void run() {
+
+                }
+            });
         }
     }
 
@@ -751,10 +821,26 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
+
     @Override
     public void update(GovernorObservable go) {
-
     }
+
+    @Override
+    public void update(SultanPalaceObservable spo){
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                SultanBlue.setText(String.valueOf(spo.getJewelPrice()));
+                SultanRed.setText(String.valueOf(spo.getFabricPrice()));
+                SultanGreen.setText(String.valueOf(spo.getSpicePrice()));
+                SultanYellow.setText(String.valueOf(spo.getFruitPrice()));
+                SultanChoice.setText(String.valueOf(spo.getChoiceAmount()));
+            }
+        });
+    }
+
+
 
     @Override
     public void update(PlayerObservable po) {
@@ -764,8 +850,14 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
-    private void updatePlayerResources(Player player) {
+    public void updatePlayerResources(Player player) {
         playerLira.setText(String.valueOf(player.getLira()));
+        playerRubies.setText(String.valueOf(player.getRubies()));
+        playerJewels.setText(String.valueOf(player.getJewels()));
+        playerFabrics.setText(String.valueOf(player.getFabrics()));
+        playerSpices.setText(String.valueOf(player.getSpices()));
+        playerFruits.setText(String.valueOf(player.getFruits()));
+
     }
 
     @Override

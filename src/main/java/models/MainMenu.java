@@ -11,11 +11,11 @@ public class MainMenu implements MainMenuObservable {
 
     // Variabelen
     private static MainMenu mainMenu;
-    private List<MenuViewObserver> observers = new ArrayList<>();
-    private String username;
-    private String difficulty;
-    private int playerTotal;
-    private String gameName;
+    public List<MenuViewObserver> observers = new ArrayList<>();
+    public String username;
+    public String difficulty;
+    public int playerTotal;
+    public String gameName;
 
     // Setters
     public void setUsername(String usr){
@@ -35,7 +35,6 @@ public class MainMenu implements MainMenuObservable {
     }
 
     // Getters
-    @Override
     public String getUsername() {
         return username;
     }

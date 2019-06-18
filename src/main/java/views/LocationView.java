@@ -7,19 +7,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.locations.*;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
 import views.tiles.GemstoneDealerView;
 import views.tiles.TeaHouseView;
+import views.tiles.WainwrightView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +28,7 @@ public class LocationView implements LocationViewObserver, Initializable {
     // Variables
     private static LocationView locationView;
     private TeaHouseView thv = new TeaHouseView();
+    private WainwrightView wwv = new WainwrightView();
 
     // FXML variables
     @FXML
@@ -183,13 +182,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         rootPane2.getChildren().setAll(pane2);*/
 
     public void wainwright() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/wainwright.fxml"));
-        Parent root = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        wwv.wainwright();
     }
 
     public void policeStation() throws IOException {
@@ -282,7 +275,7 @@ public class LocationView implements LocationViewObserver, Initializable {
     }
 
     @Override
-    public void update(LargeMarketObservable lmo) {
+    public void update(GreatMarketObservable lmo) {
 
     }
 
