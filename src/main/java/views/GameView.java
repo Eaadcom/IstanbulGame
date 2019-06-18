@@ -1,6 +1,7 @@
 package views;
 
 import controllers.GameController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Difficulty;
+import models.FamilyMember;
 import models.Game;
 import models.Player;
 import models.cards.BonusCard;
@@ -78,6 +80,10 @@ public class GameView implements GameViewObserver, Initializable {
     private Button[][] hardMap;
     private Pane[] players;
     private Pane[] family;
+
+    public GameView() {
+        GameView.gameView = this;
+    }
 
     // Starts the game
     public void start() throws Exception {
@@ -214,6 +220,7 @@ public class GameView implements GameViewObserver, Initializable {
         grid.add(node, GridPane.getColumnIndex(ofNodeIndex), GridPane.getRowIndex(ofNodeIndex));
     }
 
+
     // Builds the map based on difficulty
     public void checkDifficulty() {
         Difficulty difficulty = gameController.getDifficulty();
@@ -287,19 +294,25 @@ public class GameView implements GameViewObserver, Initializable {
         gameController.addGekozenKaart(gekozenKaart);
     }
 
-    // Popup to confirm if the player wants to move to the selected location
+    /**
+     * Handles the movement of the player.
+     * @author Stan Hogenboom
+     * @version 18-6-2019
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
         if (popUpView.confirmMovement()) {
             Button source = (Button) event.getSource();
-            int rowIndex = 0;
+            Pane pane = findPlayerColor(gameController.getMyPlayerID(), true); //finds out what the color of the player is and tells it's a player, not a familymember
+
+            int rowIndex = 0; // gives a default value
             int columnIndex = 0;
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
-            moveTile(playerred, columnIndex, rowIndex);
-           // tileAction(source);
+            moveTile(pane, columnIndex, rowIndex);
 
-            //moveTile(getCurrentPlayer, columnIndex, rowIndex){
             if (source.getId().equals("tile1")) {
                 wainwright();
             } else if (source.getId().equals("tile2")) {
@@ -335,10 +348,133 @@ public class GameView implements GameViewObserver, Initializable {
             }
 
             gameController.setNextPlayer();
-            possibleMoves(playerred);
+            possibleMoves(pane);
         }
     }
 
+    public void setColumnRow(Button button) {
+        int column = GridPane.getColumnIndex(button);
+        int row = GridPane.getRowIndex(button);
+    }
+
+    public void movePoliceStation(int tileNumber) throws IOException {
+
+        Pane familyMember = findPlayerColor(gameController.getMyPlayerID(), false);
+
+        if (tileNumber == 1) {
+            wainwright();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
+        }
+        else if (tileNumber == 2) {
+            fabricWarehouse();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile2));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile2));
+        }
+        else if (tileNumber == 3) {
+            spiceWarehouse();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile3));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile3));
+        }
+        else if (tileNumber == 4) {
+            fruitWarehouse();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile4));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile4));
+        }
+        else if (tileNumber == 5) {
+            postOffice();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile5));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile5));
+        }
+        else if (tileNumber == 6) {
+            //PUT CARAVANSERY HERE WHEN READY
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile6));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile6));
+        }
+        else if (tileNumber == 7) {
+            fountain();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile7));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile7));
+        }
+        else if (tileNumber == 8) {
+            blackMarket();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile8));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile8));
+        }
+        else if (tileNumber == 9) {
+            teaHouse();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile9));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile9));
+        }
+        else if (tileNumber == 10) {
+            largeMarket();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile10));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile10));
+        }
+        else if (tileNumber == 11) {
+            smallMarket();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile11));
+        }
+        else if (tileNumber == 12) {
+            /* This is the policesttion itself, probably shouldn't be included*/
+        }
+        else if (tileNumber == 13) {
+            sultansPalace();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile13));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile13));
+        }
+        else if (tileNumber == 14) {
+            smallMosque();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile14));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile14));
+        }
+        else if (tileNumber == 15) {
+            greatMosque();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile15));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile15));
+        }
+        else if (tileNumber == 16) {
+            gemstoneDealer();
+            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile16));
+            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile16));
+        }
+        
+    }
+
+    /**
+     * finds out the color of the player so other methods know which character to move
+     * @author Stan Hogenboom
+     * @version 18-6-2019
+     * @param playerID
+     * @return
+     */
+    private Pane findPlayerColor(int playerID, boolean player) {
+        Pane pane = playerred; //makes sure it's initialized
+            switch (playerID) {
+                case 1:
+                    if (player) { pane = playerred; }
+                    else { pane = famred; }
+                    break;
+                case 2:
+                    if (player) { pane = playerYellow; }
+                    else { pane = famyellow; }
+                    break;
+                case 3:
+                    if (player) { pane = playergreen; }
+                    else { pane = famgreen; }
+                    break;
+                case 4:
+                    if (player) { pane = playerblue; }
+                    else { pane = famblue; }
+                    break;
+                case 5:
+                    if (player) { pane = playerwhite; }
+                    else { pane = famwhite; }
+                    break;
+            }
+        return pane;
+    }
 
     //TILE POP UPS
     public void blackMarket() throws IOException {
@@ -409,7 +545,7 @@ public class GameView implements GameViewObserver, Initializable {
      * This opens the rules so the player can take a look at them.
      *
      * @throws IOException
-     * @author Stan
+     * @author Stan Hogenboom
      * @version June 5th, 2019
      */
     public void rulesPage() throws Exception {
@@ -426,10 +562,12 @@ public class GameView implements GameViewObserver, Initializable {
      * @throws IOException
      */
     private void moveTile(Pane pane, int column, int row) throws IOException {
-        if(!gameController.movementDone()) {
 
+
+        if(!gameController.movementDone()) {
             GridPane.setColumnIndex(pane, column);
             GridPane.setRowIndex(pane, row);
+
             //gameController.setMoved(true);
             //disableAllTiles();
         }
@@ -438,40 +576,6 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
-    public void moveFamilyTile(int column, int row) throws IOException {
-        //famred = (Pane) root1.lookup("#famred");
-        System.out.println(famred);
-//        grid.setColumnIndex(famred, grid.getColumnIndex(tile1));      grid.setRowIndex(famred, grid.getRowIndex(tile1));
-        Pane pane = playerblue;
-        moveTile(pane, column, row);
-    }
-
-    // Move code used by movePlayer() and moveFamilyMember()
-    // Put here to remove duplicate code
-    private void move(String target, int column, int row) {
-        switch (target) {
-            case ("red"):
-                grid.setColumnIndex(famred, column);
-                grid.setRowIndex(famred, row);
-                break;
-            case ("blue"):
-                grid.setColumnIndex(famblue, column);
-                grid.setRowIndex(famblue, row);
-                break;
-            case ("green"):
-                grid.setColumnIndex(famgreen, column);
-                grid.setRowIndex(famgreen, row);
-                break;
-            case ("yellow"):
-                grid.setColumnIndex(famyellow, column);
-                grid.setRowIndex(famyellow, row);
-                break;
-            case ("white"):
-                grid.setColumnIndex(famwhite, column);
-                grid.setRowIndex(famwhite, row);
-                break;
-        }
-    }
 
     /**
      * This is a method returns the location value of the player.
@@ -537,9 +641,10 @@ public class GameView implements GameViewObserver, Initializable {
         return Math.abs(value1 - value2);
     }
 
+
     public void possibleMoves(Node node) {
-        int playerrow = grid.getRowIndex(node);
-        int playercol = grid.getColumnIndex(node);
+        int playerrow = GridPane.getRowIndex(node);
+        int playercol = GridPane.getColumnIndex(node);
 
         // [1,0] [-1,0] [0,1] [0,-1]
 
@@ -547,8 +652,8 @@ public class GameView implements GameViewObserver, Initializable {
 
         for (int i = 0; i < tiles.size(); i++) {
             Button button = tiles.get(i);
-            int tilecol = grid.getColumnIndex(button);
-            int tilerow = grid.getRowIndex(button);
+            int tilecol = GridPane.getColumnIndex(button);
+            int tilerow = GridPane.getRowIndex(button);
 
             int colDifference = getDifferenceBetweenNumbers(tilecol, playercol);
             int rowDifference = getDifferenceBetweenNumbers(tilerow, playerrow);

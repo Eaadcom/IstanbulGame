@@ -37,11 +37,7 @@ public class LocationController{
 
     private GameView gameView;
 
-
-
     Scanner scanner = new Scanner(System.in);
-
-    // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
 
 
 
@@ -110,6 +106,7 @@ public class LocationController{
             }
 
         } else {
+
         }
     }
 
@@ -173,53 +170,52 @@ public class LocationController{
      */
     public void policeStation(String usernamefield) throws IOException {
         if (usernamefield.equals("1")) {
-            GameView.getInstance().wainwright();
-            //GameView.getInstance().moveFamilyTile(0,0);
+            GameView.getInstance().movePoliceStation(1);
         }
         else if (usernamefield.contains("2")) {
-            GameView.getInstance().fabricWarehouse();
+            GameView.getInstance().movePoliceStation(2);
         }
         else if (usernamefield.contains("3")) {
-            GameView.getInstance().spiceWarehouse();
+            GameView.getInstance().movePoliceStation(3);
         }
         else if (usernamefield.contains("4")) {
-            GameView.getInstance().fruitWarehouse();
+            GameView.getInstance().movePoliceStation(4);
         }
         else if (usernamefield.contains("5")) {
-            GameView.getInstance().postOffice();
+            GameView.getInstance().movePoliceStation(5);
         }
         else if (usernamefield.contains("6")) {
-            //GameView.getInstance().caravansary;
+            //GameView.getInstance().movePoliceStation(6);
         }
         else if (usernamefield.contains("7")) {
-            GameView.getInstance().fountain();
+            GameView.getInstance().movePoliceStation(7);
         }
         else if (usernamefield.contains("8")) {
-            GameView.getInstance().blackMarket();
+            GameView.getInstance().movePoliceStation(8);
         }
         else if (usernamefield.contains("9")) {
-            GameView.getInstance().teaHouse();
+            GameView.getInstance().movePoliceStation(9);
         }
         else if (usernamefield.contains("10")) {
-            GameView.getInstance().largeMarket();
+            GameView.getInstance().movePoliceStation(10);
         }
         else if (usernamefield.contains("11")) {
-            GameView.getInstance().smallMarket();
+            GameView.getInstance().movePoliceStation(11);
         }
         else if (usernamefield.contains("12")) {
             // This is the policesttion itself, probably shouldn't be included
         }
         else if (usernamefield.contains("13")) {
-            GameView.getInstance().sultansPalace();
+            GameView.getInstance().movePoliceStation(13);
         }
         else if (usernamefield.contains("14")) {
-            GameView.getInstance().smallMosque();
+            GameView.getInstance().movePoliceStation(14);
         }
         else if (usernamefield.contains("15")) {
-            GameView.getInstance().greatMosque();
+            GameView.getInstance().movePoliceStation(15);
         }
         else if (usernamefield.contains("16")) {
-            GameView.getInstance().gemstoneDealer();
+            GameView.getInstance().movePoliceStation(16);
         }
         else {
 

@@ -10,6 +10,12 @@ public class FamilyMember implements FamilyMemberObservable {
 
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
+    public int location = 7;
+
+    public void setLocation(int newLocation) {
+        location = newLocation;
+    }
+
 
     // Observer pattern
     @Override
