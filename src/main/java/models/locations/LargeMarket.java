@@ -2,12 +2,12 @@ package models.locations;
 
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
-import observers.locations.LargeMarketObservable;
+import observers.locations.GreatMarketObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LargeMarket implements Location, LargeMarketObservable {
+public class LargeMarket implements Location, GreatMarketObservable {
 
     // Variables
     private static LargeMarket largeMarket;

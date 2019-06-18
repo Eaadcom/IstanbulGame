@@ -170,9 +170,6 @@ public class SultanPalace implements Location, SultanPalaceObservable {
     }
 
 
-
-
-    private List<LocationViewObserver> observers = new ArrayList<>();
     public boolean redAs = false;
     public boolean blueAs = false;
     public boolean greenAs = false;

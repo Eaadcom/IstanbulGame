@@ -404,8 +404,6 @@ public class LocationController{
         GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
 
 
-                System.out.println("Helaas! je ligt eronder!");}}
-
     /**
      * Checks if the player has entered a valid number at the police station and acts accoringly
      * @author Stan Hogenboom
@@ -441,7 +439,7 @@ public class LocationController{
             GameView.getInstance().teaHouse();
         }
         else if (usernamefield.contains("10")) {
-            GameView.getInstance().largeMarket();
+            GameView.getInstance().greatMarket();
         }
         else if (usernamefield.contains("11")) {
             GameView.getInstance().smallMarket();
