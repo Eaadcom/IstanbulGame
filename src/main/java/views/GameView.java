@@ -46,7 +46,7 @@ public class GameView implements GameViewObserver, Initializable {
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
     List<Button> tiles = new ArrayList<>();
-    Stage stage;
+    private Stage stage;
 
     // Locatie views
     private SmallMarketView smallMarketView = SmallMarketView.getInstance();
@@ -94,59 +94,49 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Starts the game
     public void start() throws Exception {
-        try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-            Parent root1 = fxmlloader.load();
-            stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root1));
-            stage.setMaximized(true);
+        Platform.runLater(
+                () -> {
+                    try {
+                        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+                        Parent root1 = fxmlloader.load();
+                        if (stage == null){
+                            stage = new Stage();
+                        }
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.setTitle("Istanbul");
+                        stage.setScene(new Scene(root1));
+                        stage.setMaximized(true);
 
-            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX(primaryScreenBounds.getMinX());
-            stage.setY(primaryScreenBounds.getMinY());
-            stage.setWidth(primaryScreenBounds.getWidth());
-            stage.setHeight(primaryScreenBounds.getHeight());
-            stage.show();
+                        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+                        stage.setX(primaryScreenBounds.getMinX());
+                        stage.setY(primaryScreenBounds.getMinY());
+                        stage.setWidth(primaryScreenBounds.getWidth());
+                        stage.setHeight(primaryScreenBounds.getHeight());
+                        stage.show();
 
 
-            //Sultans palace
-            SultanRed = (Text) root1.lookup("#SultanRed");
-            SultanBlue = (Text) root1.lookup("#SultanBlue");
-            SultanYellow = (Text) root1.lookup("#SultanYellow");
-            SultanGreen = (Text) root1.lookup("#SultanGreen");
-            SultanChoice = (Text) root1.lookup("#SultanChoice");
+                        //Sultans palace
+                        SultanRed = (Text) root1.lookup("#SultanRed");
+                        SultanBlue = (Text) root1.lookup("#SultanBlue");
+                        SultanYellow = (Text) root1.lookup("#SultanYellow");
+                        SultanGreen = (Text) root1.lookup("#SultanGreen");
+                        SultanChoice = (Text) root1.lookup("#SultanChoice");
 
-            //player values
-            playerLira = (Text) root1.lookup("#playerLira");
-            playerRubies = (Text) root1.lookup("#playerRubies");
-            playerFabrics = (Text) root1.lookup("#playerFabrics");
-            playerFruits = (Text) root1.lookup("#playerFruits");
-            playerSpices = (Text) root1.lookup("#playerSpices");
-            playerJewels = (Text) root1.lookup("#playerJewels");
+                        //player values
+                        playerLira = (Text) root1.lookup("#playerLira");
+                        playerRubies = (Text) root1.lookup("#playerRubies");
+                        playerFabrics = (Text) root1.lookup("#playerFabrics");
+                        playerFruits = (Text) root1.lookup("#playerFruits");
+                        playerSpices = (Text) root1.lookup("#playerSpices");
+                        playerJewels = (Text) root1.lookup("#playerJewels");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-        Parent root1 = (Parent) fxmlloader.load();
-
-        famred = (Pane) root1.lookup("#famred");
-
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Istanbul");
-        stage.setScene(new Scene(root1));
-        stage.setMaximized(true);
-
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
-        stage.setWidth(primaryScreenBounds.getWidth());
-        stage.setHeight(primaryScreenBounds.getHeight());
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (IllegalStateException ie){
+                        //helemaal niks
+                    }
+                }
+        );
     }
 
     @Override
@@ -472,7 +462,7 @@ public class GameView implements GameViewObserver, Initializable {
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile9));
         }
         else if (tileNumber == 10) {
-            largeMarket();
+            greatMarket();
             GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile10));
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile10));
         }
