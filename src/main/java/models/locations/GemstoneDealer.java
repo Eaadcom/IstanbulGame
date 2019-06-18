@@ -51,6 +51,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
         }
     }
 
+    private int gemstonePrice = 12;
 
     // Observer Pattern
     @Override
@@ -63,6 +64,14 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
         for (LocationViewObserver gvo : observers){
             gvo.update(this);
         }
+    }
+
+    public int getGemstonePrice() {
+        return gemstonePrice;
+    }
+
+    public void updatePrice(int newPrice) {
+        gemstonePrice = newPrice;
     }
 
     // Singleton Pattern

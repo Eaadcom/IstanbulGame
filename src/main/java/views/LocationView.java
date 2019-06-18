@@ -18,6 +18,7 @@ import models.locations.*;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
+import views.tiles.GemstoneDealerView;
 import views.tiles.TeaHouseView;
 import views.tiles.WainwrightView;
 
@@ -29,7 +30,6 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     // Variables
     private static LocationView locationView;
-    private LocationController locationController = LocationController.getInstance();
     private TeaHouseView thv = new TeaHouseView();
     private WainwrightView wwv = new WainwrightView();
 
@@ -41,6 +41,8 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     @FXML
     private TextField TeaHouseChoice;
+    @FXML
+    private TextField policeStationChoice;
 
     @FXML
     private TextField TeaHouseDice;
@@ -61,14 +63,14 @@ public class LocationView implements LocationViewObserver, Initializable {
     public void blackMarketFabric() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
-        locationController.BlackMarketChoice(3);
+        LocationController.getInstance().BlackMarketChoice(3);
     }
 
     // Stuk code voor +1 fruit
     public void blackMarketFruit() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
-        locationController.BlackMarketChoice(2);
+        LocationController.getInstance().BlackMarketChoice(2);
 
     }
 
@@ -76,7 +78,7 @@ public class LocationView implements LocationViewObserver, Initializable {
     public void blackMarketSpice() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
         rootPane.getChildren().setAll(pane);
-        locationController.BlackMarketChoice(1);
+        LocationController.getInstance().BlackMarketChoice(1);
 
     }
 
@@ -93,7 +95,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
         rootPane.getChildren().setAll(pane2);
 
-        locationController.BlackMarketDice();
+        LocationController.getInstance().BlackMarketDice();
     }
 
     // Function to do a reroll
@@ -127,7 +129,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-        locationController.FabricWarehouse();
+        LocationController.getInstance().FabricWarehouse();
     }
     public void fruitWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fruitWarehouse.fxml"));
@@ -137,7 +139,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-        locationController.FruitWarehouse();
+        LocationController.getInstance().FruitWarehouse();
     }
     public void spiceWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/spiceWarehouse.fxml"));
@@ -147,7 +149,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-        locationController.SpiceWarehouse();
+        LocationController.getInstance().SpiceWarehouse();
     }
     public void teaHouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/teaHouse/teaHouse.fxml"));
@@ -162,15 +164,15 @@ public class LocationView implements LocationViewObserver, Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse2.fxml"));
         rootPane2.getChildren().setAll(pane);
 
-        locationController.setTeaHouseNumber(Integer.parseInt(TeaHouseChoice.getText()));
+        LocationController.getInstance().setTeaHouseNumber(Integer.parseInt(TeaHouseChoice.getText()));
     }
 
     public void teaHouseRollDice() throws IOException {
         // als je geen moskee tegel hebt
         // OF wel een moskee tegel hebt en een reroll hebt gedaan
         // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
-        locationController.TeaHouseResult();
-        locationController.setTeaHouseDice(Integer.parseInt(locationController.diceResultStr));
+        LocationController.getInstance().TeaHouseResult();
+        LocationController.getInstance().setTeaHouseDice(Integer.parseInt(LocationController.getInstance().diceResultStr));
         thv.teaHouseResult();}
 
 
@@ -196,6 +198,12 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.show();
     }
 
+    public void policeStationAction() throws IOException {
+        String pschoice = policeStationChoice.getText();
+        close();
+        LocationController.getInstance().policeStation(pschoice); //aanroepen functie die familymember verplaatst en daarna de actie uitvoert
+    }
+
     public void policeStationTileNumbers() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tileNumbers.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -210,6 +218,10 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.close();
     }
 
+    public void gemstoneDealerAction() {
+        GemstoneDealerView.getInstance().gemstoneDealerYes();
+        close();
+    }
 
     public void fountain() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fountain.fxml"));
@@ -220,7 +232,6 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
-
 
     // Singleton Pattern
     public static LocationView getInstance() {

@@ -2,8 +2,14 @@ package controllers;
 
 
 import models.Player;
+import javafx.stage.Stage;
 import models.locations.*;
+import javafx.scene.control.TextField;
+import views.GameView;
+import views.LocationView;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class LocationController{
@@ -41,6 +47,12 @@ public class LocationController{
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
     private Wainwright wainwright = Wainwright.getInstance();
+
+    private GameView gameView;
+
+
+
+    Scanner scanner = new Scanner(System.in);
 
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
 
@@ -288,7 +300,7 @@ public class LocationController{
     }
 
         public void BlackMarketChoice(int BlackMarketChoice) {
-playerController = PlayerController.getInstance();
+        playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 myPlayer.spices += 1;
@@ -362,13 +374,96 @@ playerController = PlayerController.getInstance();
             System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
         } else if(teaHouse.teahouseNumberChoice < diceResult){
             playerController.addRubysLiras("lira", 2);
-                System.out.println("Helaas! je ligt eronder!");
+                System.out.println("Helaas! je ligt eronder!");}}
+
+    /**
+     * Checks if the player has entered a valid number at the police station and acts accoringly
+     * @author Stan Hogenboom
+     * @param usernamefield
+     */
+    public void policeStation(String usernamefield) throws IOException {
+        if (usernamefield.equals("1")) {
+            GameView.getInstance().wainwright();
+            //GameView.getInstance().moveFamilyTile(0,0);
+        }
+        else if (usernamefield.contains("2")) {
+            GameView.getInstance().fabricWarehouse();
+        }
+        else if (usernamefield.contains("3")) {
+            GameView.getInstance().spiceWarehouse();
+        }
+        else if (usernamefield.contains("4")) {
+            GameView.getInstance().fruitWarehouse();
+        }
+        else if (usernamefield.contains("5")) {
+            GameView.getInstance().postOffice();
+        }
+        else if (usernamefield.contains("6")) {
+            //GameView.getInstance().caravansary;
+        }
+        else if (usernamefield.contains("7")) {
+            GameView.getInstance().fountain();
+        }
+        else if (usernamefield.contains("8")) {
+            GameView.getInstance().blackMarket();
+        }
+        else if (usernamefield.contains("9")) {
+            GameView.getInstance().teaHouse();
+        }
+        else if (usernamefield.contains("10")) {
+            GameView.getInstance().largeMarket();
+        }
+        else if (usernamefield.contains("11")) {
+            GameView.getInstance().smallMarket();
+        }
+        else if (usernamefield.contains("12")) {
+            // This is the policesttion itself, probably shouldn't be included
+        }
+        else if (usernamefield.contains("13")) {
+            GameView.getInstance().sultansPalace();
+        }
+        else if (usernamefield.contains("14")) {
+            GameView.getInstance().smallMosque();
+        }
+        else if (usernamefield.contains("15")) {
+            GameView.getInstance().greatMosque();
+        }
+        else if (usernamefield.contains("16")) {
+            GameView.getInstance().gemstoneDealer();
+        }
+        else {
 
         }
-
-
-
     }
+
+
+    /**
+     * This function is used when the player lands on the gemstone dealer tile and clicks "yes".
+     * It checks if the player has enough Lira to purchase a ruby.
+     * If that's the case, the player recieves a ruby and a number of lira is withdrawn.
+     * The price of a ruby goes up by one every time someone buys a ruby.
+     * @author Stan Hogenboom
+     * @version 17-6-2019
+     */
+    public void gemstoneDealerAction() {
+        GemstoneDealer gsd = GemstoneDealer.getInstance();
+        int price = gsd.getGemstonePrice();
+        //LocationView lcv = LocationView.getInstance();
+
+        if(myPlayer.lira > price){
+            playerController.addRubysLiras("ruby", 1);
+            playerController.addRubysLiras("lira", -price);
+            gsd.updatePrice(price + 1);
+            System.out.println("De nieuwe prijs is: " + gsd.getGemstonePrice());
+            //lcv.close(); <- werkt niet
+        }
+        else {
+            System.out.println("Niet genoeg Lira");
+            //lcv.close(); <- werkt niet
+            //hier moet een scherm met de tekst [je hebt niet genoeg lira]
+        }
+    }
+
     // Singleton Pattern
     public static LocationController getInstance() {
         if (locationController == null) {
