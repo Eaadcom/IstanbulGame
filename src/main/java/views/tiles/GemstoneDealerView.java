@@ -1,13 +1,16 @@
 package views.tiles;
 
 import controllers.LocationController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.locations.GemstoneDealer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +20,9 @@ public class GemstoneDealerView implements Initializable {
 
     private LocationController locationController = LocationController.getInstance();
 
+    @FXML
+    private Label gemprice;
+
     //Singleton
     private static GemstoneDealerView gemstoneDealerView;
     public static GemstoneDealerView getInstance() {
@@ -25,7 +31,6 @@ public class GemstoneDealerView implements Initializable {
         }
         return gemstoneDealerView;
     }
-    //
 
     public void gemstoneDealer() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/gemstoneDealer.fxml"));
@@ -37,9 +42,26 @@ public class GemstoneDealerView implements Initializable {
         stage.show();
     }
 
+    public void gemstoneDealerYes() {
+        locationController.gemstoneDealerAction();
+    }
+
+    public void close() {
+        //insert code to close the pop-up
+    }
+
+
+    /**'
+     * converts int to String so it can be displayed in the game
+     * @param price
+     * @return
+     */
+    private String convertPrice(int price) {
+        return Integer.toString(price);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //set gem price
-        //LocationController.getGemPrice();
+        gemprice.setText(convertPrice(GemstoneDealer.getInstance().getGemstonePrice()));
     }
 }
