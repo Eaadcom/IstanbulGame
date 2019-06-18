@@ -85,7 +85,6 @@ public class LobbyView implements LobbyViewObserver, Initializable {
             Scene scene = new Scene(root8);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Istanbul");
-            scene.getStylesheets().add("css/style.css");
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
