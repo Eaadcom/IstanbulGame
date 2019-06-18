@@ -152,28 +152,6 @@ public class MenuView implements Initializable, MenuViewObserver {
         }
     }
 
-//    private void showGameView() {
-//        try {
-//            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-//            Parent root1 = fxmlloader.load();
-//            Stage stage = new Stage();
-//            stage.initStyle(StageStyle.UNDECORATED);
-//            stage.setTitle("Istanbul");
-//            stage.setScene(new Scene(root1));
-//            stage.setMaximized(true);
-//
-//            GameView gameView = fxmlloader.getController();
-//
-//            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-//            stage.setX(primaryScreenBounds.getMinX());
-//            stage.setY(primaryScreenBounds.getMinY());
-//            stage.setWidth(primaryScreenBounds.getWidth());
-//            stage.setHeight(primaryScreenBounds.getHeight());
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     // Exit game
     @FXML

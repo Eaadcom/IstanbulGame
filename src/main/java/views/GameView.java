@@ -1,16 +1,24 @@
 package views;
 
 import controllers.GameController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import java.util.*;
 
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Difficulty;
 import models.Game;
 import models.Player;
@@ -20,7 +28,9 @@ import observers.*;
 import java.io.IOException;
 import java.net.URL;
 
+import observers.locations.SultanPalaceObservable;
 import views.tiles.*;
+import views.tiles.sultansPalace.SultansPalaceView;
 
 import static models.Difficulty.EASY;
 import static models.Difficulty.MEDIUM;
@@ -37,7 +47,7 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Locatie views
     private SmallMarketView smallMarketView = SmallMarketView.getInstance();
-    private LargeMarketView largeMarketView = LargeMarketView.getInstance();
+    private GreatMarketView greatMarketView = GreatMarketView.getInstance();
     private GemstoneDealerView gemstoneDealerView = GemstoneDealerView.getInstance();
     private SmallMosqueView smallMosqueView = SmallMosqueView.getInstance();
     private GreatMosqueView greatMosqueView = GreatMosqueView.getInstance();
@@ -59,7 +69,9 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Text gemprice;
     @FXML
-    public Text playerLira;
+    public Text playerLira, playerRubies, playerFabrics, playerFruits, playerSpices, playerJewels;
+    @FXML
+    public Text SultanRed, SultanBlue, SultanYellow, SultanGreen, SultanChoice;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
@@ -71,8 +83,44 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Starts the game
     public void start() throws Exception {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+            Parent root1 = fxmlloader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root1));
+            stage.setMaximized(true);
+
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(primaryScreenBounds.getMinX());
+            stage.setY(primaryScreenBounds.getMinY());
+            stage.setWidth(primaryScreenBounds.getWidth());
+            stage.setHeight(primaryScreenBounds.getHeight());
+            stage.show();
 
 
+            //Sultans palace
+            SultanRed = (Text) root1.lookup("#SultanRed");
+            SultanBlue = (Text) root1.lookup("#SultanBlue");
+            SultanYellow = (Text) root1.lookup("#SultanYellow");
+            SultanGreen = (Text) root1.lookup("#SultanGreen");
+            SultanChoice = (Text) root1.lookup("#SultanChoice");
+
+            //player values
+            playerLira = (Text) root1.lookup("#playerLira");
+            playerRubies = (Text) root1.lookup("#playerRubies");
+            playerFabrics = (Text) root1.lookup("#playerFabrics");
+            playerFruits = (Text) root1.lookup("#playerFruits");
+            playerSpices = (Text) root1.lookup("#playerSpices");
+            playerJewels = (Text) root1.lookup("#playerJewels");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //famred = (Pane) root1.lookup("#famred");
     }
 
 
@@ -81,6 +129,7 @@ public class GameView implements GameViewObserver, Initializable {
         initializeMaps();
         initializePlayers();
         initializeFamily();
+        updatePlayerResources(GameController.getInstance().getPlayer());
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
@@ -296,7 +345,7 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile9")) {
                 teaHouse();
             } else if (source.getId().equals("tile10")) {
-                largeMarket();
+                greatMarket();
             } else if (source.getId().equals("tile11")) {
                 smallMarket();
             } else if (source.getId().equals("tile12")) {
@@ -361,8 +410,8 @@ public class GameView implements GameViewObserver, Initializable {
         gemstoneDealerView.gemstoneDealer();
     }
 
-    public void largeMarket() throws IOException {
-        largeMarketView.largeMarket();
+    public void greatMarket() throws IOException {
+        greatMarketView.greatMarket();
     }
 
     public void smallMarket() throws IOException {
@@ -642,10 +691,26 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
+
     @Override
     public void update(GovernorObservable go) {
-
     }
+
+    @Override
+    public void update(SultanPalaceObservable spo){
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                SultanBlue.setText(String.valueOf(spo.getJewelPrice()));
+                SultanRed.setText(String.valueOf(spo.getFabricPrice()));
+                SultanGreen.setText(String.valueOf(spo.getSpicePrice()));
+                SultanYellow.setText(String.valueOf(spo.getFruitPrice()));
+                SultanChoice.setText(String.valueOf(spo.getChoiceAmount()));
+            }
+        });
+    }
+
+
 
     @Override
     public void update(PlayerObservable po) {
@@ -655,8 +720,14 @@ public class GameView implements GameViewObserver, Initializable {
         }
     }
 
-    private void updatePlayerResources(Player player) {
+    public void updatePlayerResources(Player player) {
         playerLira.setText(String.valueOf(player.getLira()));
+        playerRubies.setText(String.valueOf(player.getRubies()));
+        playerJewels.setText(String.valueOf(player.getJewels()));
+        playerFabrics.setText(String.valueOf(player.getFabrics()));
+        playerSpices.setText(String.valueOf(player.getSpices()));
+        playerFruits.setText(String.valueOf(player.getFruits()));
+
     }
 
     @Override

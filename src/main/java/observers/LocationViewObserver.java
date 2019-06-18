@@ -19,7 +19,7 @@ public interface LocationViewObserver {
 
     public void update(GreatMosqueObservable gmo);
 
-    public void update(LargeMarketObservable lmo);
+    public void update(GreatMarketObservable lmo);
 
     public void update(PoliceStationObservable pso);
 

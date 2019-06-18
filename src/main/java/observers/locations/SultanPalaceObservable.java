@@ -1,8 +1,13 @@
 package observers.locations;
 
-import observers.LocationViewObserver;
+import observers.GameViewObserver;
 
 public interface SultanPalaceObservable {
-    void register(LocationViewObserver observer);
+    void register(GameViewObserver observer);
     void notifyAllObservers();
+    int getJewelPrice();
+    int getFabricPrice();
+    int getSpicePrice();
+    int getFruitPrice();
+    int getChoiceAmount();
 }

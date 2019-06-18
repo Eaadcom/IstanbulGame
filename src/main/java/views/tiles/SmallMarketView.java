@@ -1,18 +1,28 @@
 package views.tiles;
 
+import controllers.LocationController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.locations.SmallMarket;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SmallMarketView implements Initializable {
+
+    @FXML
+    private Text jewel, fabric, fruit, spice;
+    @FXML
+    private TextField choiceFabric, choiceJewel, choiceFruit, choiceSpice;
 
     //Singleton
     private static SmallMarketView smallMarketView;
@@ -34,11 +44,27 @@ public class SmallMarketView implements Initializable {
         stage.show();
     }
 
+    public void updatePrice(){
+        jewel.setText (Integer.toString(LocationController.getInstance().SMgetJewel()));
+        spice.setText (Integer.toString(LocationController.getInstance().SMgetSpice()));
+        fabric.setText(Integer.toString(LocationController.getInstance().SMgetFabric()));
+        fruit.setText (Integer.toString(LocationController.getInstance().SMgetFruit()));
+    }
+
+    public void confirmPurchase() throws IOException {
+        if(choiceFruit.getText() != "" && choiceFabric.getText() != "" &&choiceSpice.getText() != "" &&choiceJewel.getText() != "" ) {
+            int fabricvalue = Integer.parseInt(choiceFabric.getText());
+            int fruitvalue = Integer.parseInt(choiceFruit.getText());
+            int spicevalue = Integer.parseInt(choiceSpice.getText());
+            int jewelvalue = Integer.parseInt(choiceJewel.getText());
+            LocationController.getInstance().SMconfirmPurchase(fabricvalue, fruitvalue, spicevalue, jewelvalue);
+        }else{
+            //doe niks
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //set green good price
-        //set red good price
-        //set yellow good price
-        //set blue good price
+        updatePrice();
     }
 }

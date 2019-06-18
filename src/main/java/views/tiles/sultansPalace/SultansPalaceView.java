@@ -1,6 +1,5 @@
-package views.tiles;
+package views.tiles.sultansPalace;
 
-import controllers.GameController;
 import controllers.LocationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +13,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Game;
-import models.Player;
-import models.locations.SultanPalace;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,12 +26,7 @@ public class SultansPalaceView implements Initializable {
     private Text blueprice, redprice, greenprice, yellowprice, choiceamount;
     @FXML
     private Button sultanspalacebuy;
-    @FXML
-    private AnchorPane rootPane;
-    @FXML
-    private ChoiceBox choiceBox1, choiceBox2, choiceBox3;
 
-    //private static GameController gameController = GameController.getInstance();
 
     //Singleton
     private static SultansPalaceView sultansPalaceView;
@@ -50,7 +41,7 @@ public class SultansPalaceView implements Initializable {
     public void confirmPurchase() throws IOException {
         Stage stage = (Stage) sultanspalacebuy.getScene().getWindow();
         stage.close();
-        locationController.confirmPurchase();
+        LocationController.getInstance().confirmPurchase();
     }
 
     public void updatePrice(){
@@ -61,9 +52,15 @@ public class SultansPalaceView implements Initializable {
         choiceamount.setText(Integer.toString(locationController.getChoiceAmount()));
     }
 
+    public void close(){
+        Stage stage = (Stage) blueprice.getScene().getWindow();
+        stage.close();
+    }
+
+
 
     public void sultansPalace() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/sultansPalace/sultansPalace.fxml"));
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../../fxml/tiles/sultansPalace/sultansPalace.fxml"));
         Parent root = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
@@ -72,31 +69,9 @@ public class SultansPalaceView implements Initializable {
         stage.show();
     }
 
-    public void chooseOne() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/sultansPalace/sultansPalace2.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-    public void chooseTwo() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../../fxml/tiles/sultansPalace/sultansPalace3.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updatePrice();
-        //choiceBox1.getItems().add("Fabric (Red)");
-        //choiceBox1.getItems().add("Fruit (Yellow)");
-        //choiceBox1.getItems().add("Spice (Green)");
-        //choiceBox1.getItems().add("Jewel (Blue");
 
-        //choiceBox2.getItems().add("Fabric (Red)");
-        //choiceBox2.getItems().add("Fruit (Yellow)");
-        //choiceBox2.getItems().add("Spice (Green)");
-        //choiceBox2.getItems().add("Jewel (Blue");
-
-        //choiceBox3.getItems().add("Fabric (Red)");
-        //choiceBox3.getItems().add("Fruit (Yellow)");
-        //choiceBox3.getItems().add("Spice (Green)");
-        //choiceBox3.getItems().add("Jewel (Blue");
     }
 }

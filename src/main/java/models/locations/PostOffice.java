@@ -13,6 +13,89 @@ public class PostOffice implements Location, PostOfficeObservable {
     private static PostOffice postOffice;
     private List<LocationViewObserver> observers = new ArrayList<>();
 
+
+    private int jewel  = 1;
+    private int fabric = 1;
+    private int spice  = 0;
+    private int fruit  = 0;
+    private int lira   = 4;
+
+    private int STATE = 0;
+
+    private void setStateValue() {
+        if (STATE == 0) {
+            this.jewel = 1;
+            this.fabric = 1;
+            this.spice = 0;
+            this.fruit = 0;
+            this.lira = 4;
+        } else if (STATE == 1) {
+            this.jewel = 1;
+            this.fabric = 0;
+            this.spice = 1;
+            this.fruit = 0;
+            this.lira = 4;
+        } else if (STATE == 2) {
+            this.jewel = 1;
+            this.fabric = 0;
+            this.spice = 1;
+            this.fruit = 0;
+            this.lira = 3;
+        } else if (STATE == 3) {
+            this.jewel = 0;
+            this.fabric = 0;
+            this.spice = 1;
+            this.fruit = 1;
+            this.lira = 3;
+        } else if (STATE == 4) {
+            this.jewel = 0;
+            this.fabric = 0;
+            this.spice = 1;
+            this.fruit = 1;
+            this.lira = 2;
+        }
+    }
+
+    private void stateHandler() {
+        if (STATE == 0) {
+            STATE++;
+            setStateValue();
+        } else if (STATE == 1) {
+            STATE++;
+            setStateValue();
+        } else if (STATE == 2) {
+            STATE++;
+            setStateValue();
+        } else if (STATE == 3) {
+            STATE++;
+            setStateValue();
+        } else if (STATE == 4) {
+            STATE = 0;
+            setStateValue();
+            int dup =0;
+        }
+    }
+
+    public int PostOfficeGetJewel() {
+        return jewel;
+    }
+
+    public int PostOfficeGetFabric() {
+        return fabric;
+    }
+
+    public int PostOfficeGetSpice() {
+        return spice;
+    }
+
+    public int PostOfficeGetFruit() {
+        return fruit;
+    }
+
+    public int PostOfficeGetLira() {
+        return lira;
+    }
+
     // Observer Pattern
     @Override
     public void register(LocationViewObserver observer) {

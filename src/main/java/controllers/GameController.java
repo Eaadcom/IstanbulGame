@@ -34,6 +34,11 @@ public class GameController {
 //        return menuViewController.getGameDifficulty();
     }
 
+    //CONSTRUCTOR
+    public GameController(){
+
+    }
+
     public boolean isGameEnded() {
         return game.isGameEnded();
     }

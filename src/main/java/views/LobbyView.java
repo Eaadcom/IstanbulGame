@@ -58,21 +58,8 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     private void loadGameScreen() {
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-            Parent root1 = fxmlloader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root1));
-            stage.setMaximized(true);
-
-            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX(primaryScreenBounds.getMinX());
-            stage.setY(primaryScreenBounds.getMinY());
-            stage.setWidth(primaryScreenBounds.getWidth());
-            stage.setHeight(primaryScreenBounds.getHeight());
-            stage.show();
-        } catch (IOException e) {
+            GameView.getInstance().start();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

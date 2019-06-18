@@ -1,12 +1,15 @@
 package views.tiles;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.locations.PostOffice;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +27,9 @@ public class PostOfficeView implements Initializable {
     }
     //
 
+    @FXML
+    private Text blue, red, green, yellow, lira;
+
     public void postOffice() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/postOffice.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -34,12 +40,16 @@ public class PostOfficeView implements Initializable {
         stage.show();
     }
 
+    private void updatePrice(){
+        blue.setText (Integer.toString(PostOffice.getInstance().PostOfficeGetJewel()));
+        green.setText(Integer.toString(PostOffice.getInstance().PostOfficeGetSpice()));
+        red.setText(Integer.toString(PostOffice.getInstance().PostOfficeGetFabric()));
+        yellow.setText(Integer.toString(PostOffice.getInstance().PostOfficeGetFruit()));
+        lira.setText(Integer.toString(PostOffice.getInstance().PostOfficeGetLira()));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //set red tile amount
-        //set green tile amount
-        //set blue tile amount
-        //set yellow tile amount
-        //set lira amount
+        updatePrice();
     }
 }

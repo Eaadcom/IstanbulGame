@@ -1,6 +1,7 @@
 package controllers;
 
 
+import models.Player;
 import models.locations.*;
 
 import java.io.IOException;
@@ -27,8 +28,7 @@ public class LocationController{
     public Caravansary caravansary = new Caravansary();
     private CardController cardController;
     public PlayerController playerController = new PlayerController();
-    public GameController gameController = new GameController();
-    private models.Player player = new models.Player("Name");
+    private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
 
     Scanner scanner = new Scanner(System.in);
@@ -74,29 +74,29 @@ blackMarket = BlackMarket.getInstance();
         System.out.println("Je hebt " + diceResult + " gegooit");
 
         if (diceResult < 7) {
-            player.jewels = player.jewels;
+            myPlayer.jewels = myPlayer.jewels;
         } else if (diceResult == 7 || diceResult == 8) {
             if (playerController.CargoCheckJewels(1) == true) {
-                player.jewels += 1;
+                myPlayer.jewels += 1;
             }
 
         } else if (diceResult == 9 || diceResult == 10) {
             if (playerController.CargoCheckJewels(2)) {
-                player.jewels += 2;
+                myPlayer.jewels += 2;
             } else if (playerController.CargoCheckJewels(1)) {
-                player.jewels += 1;
+                myPlayer.jewels += 1;
             }
 
         } else if (diceResult == 11 || diceResult == 12) {
             if (playerController.CargoCheckJewels(3)) {
-                player.jewels += 3;
+                myPlayer.jewels += 3;
             } else if (playerController.CargoCheckJewels(2)) {
-                player.jewels += 2;
+                myPlayer.jewels += 2;
             } else if (playerController.CargoCheckJewels(1)) {
-                player.jewels += 1;
+                myPlayer.jewels += 1;
             }
         }
-        System.out.println("er zijn " + player.jewels + " Jewels toegevoegd!");
+        System.out.println("er zijn " + myPlayer.jewels + " Jewels toegevoegd!");
 
     }
 
@@ -104,18 +104,18 @@ blackMarket = BlackMarket.getInstance();
 playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
-                player.spices += 1;
+                myPlayer.spices += 1;
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
-                player.fruits += 1;
+                myPlayer.fruits += 1;
 
             }
         } else if (BlackMarketChoice == 3) {
             if (playerController.CargoCheckFabrics(1)) {
-                player.fabrics += 1;
-                System.out.println("er zijn " + player.fabrics + " Fabrics");
+                myPlayer.fabrics += 1;
+                System.out.println("er zijn " + myPlayer.fabrics + " Fabrics");
 
             } else {
 
@@ -188,14 +188,30 @@ playerController = PlayerController.getInstance();
 
     }}
         // SULTANS PALACE CODE
-        public int  getBluePrice()   { return sultansPalaceModel.getJewelPrice();   }
-        public int  getRedPrice()    { return sultansPalaceModel.getFabricPrice();  }
-        public int  getGreenPrice()  { return sultansPalaceModel.getSpicePrice();   }
-        public int  getYellowPrice() { return sultansPalaceModel.getFruitPrice();   }
-        public int  getChoiceAmount(){ return sultansPalaceModel.getChoiceAmount(); }
-        public void confirmPurchase() throws IOException
-        { sultansPalaceModel.confirmPurchase(gameController.getPlayer()); }
+        public int  getBluePrice()   { return SultanPalace.getInstance().getJewelPrice();   }
+        public int  getRedPrice()    { return SultanPalace.getInstance().getFabricPrice();  }
+        public int  getGreenPrice()  { return SultanPalace.getInstance().getSpicePrice();   }
+        public int  getYellowPrice() { return SultanPalace.getInstance().getFruitPrice();   }
+        public int  getChoiceAmount(){ return SultanPalace.getInstance().getChoiceAmount(); }
+        public void confirmPurchase() throws IOException { SultanPalace.getInstance().confirmPurchase(GameController.getInstance().getPlayer()); }
+        public void handleChoice(String choice){ SultanPalace.getInstance().handleChoice(choice, GameController.getInstance().getPlayer()); }
 
+
+        //SMALL MARKET CODE
+        public int  SMgetJewel()   { return SmallMarket.getInstance().getJewel();   }
+        public int  SMgetFabric()    { return SmallMarket.getInstance().getFabric();  }
+        public int  SMgetSpice()  { return SmallMarket.getInstance().getSpice();   }
+        public int  SMgetFruit() { return SmallMarket.getInstance().getFruit();   }
+        public void SMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
+        SmallMarket.getInstance().confirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
+
+        //GREAT MARKET CODE
+        public int  GMgetJewel()   { return GreatMarket.getInstance().GMgetJewel();   }
+        public int  GMgetFabric()    { return GreatMarket.getInstance().GMgetFabric();  }
+        public int  GMgetSpice()  { return GreatMarket.getInstance().GMgetSpice();   }
+        public int  GMgetFruit() { return GreatMarket.getInstance().GMgetFruit();   }
+        public void GMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
+        GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
 
 
 
