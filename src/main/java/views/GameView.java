@@ -45,7 +45,7 @@ public class GameView implements GameViewObserver, Initializable {
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
     List<Button> tiles = new ArrayList<>();
-
+    Stage stage;
 
     // Locatie views
     private SmallMarketView smallMarketView = SmallMarketView.getInstance();
@@ -92,7 +92,7 @@ public class GameView implements GameViewObserver, Initializable {
         try {
             FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
             Parent root1 = fxmlloader.load();
-            Stage stage = new Stage();
+            stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Istanbul");
             stage.setScene(new Scene(root1));
