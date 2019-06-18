@@ -22,9 +22,11 @@ public class Player implements PlayerObservable {
     public String name;
 
     public int rubies = 0;
-    public int lira = 0;
+    public int lira = 50;
     public int carUpgrades = 2;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
+
+    public String color = "red";
 
     public int spices = 5;
     public int fruits = 5;

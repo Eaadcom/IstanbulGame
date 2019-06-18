@@ -26,6 +26,7 @@ public class AvailableRoomsView implements Initializable {
 
     // Variables
     MenuViewController menuViewController;
+    private static AvailableRoomsView availableRoomsView;
 
     // FXML Variables
     @FXML
@@ -67,5 +68,13 @@ public class AvailableRoomsView implements Initializable {
         stage.setScene(new Scene(root1));
         stage.setMaximized(true);
         stage.show();
+    }
+
+    // Singleton Pattern
+    public static AvailableRoomsView getInstance() {
+        if (availableRoomsView == null) {
+            availableRoomsView = new AvailableRoomsView();
+        }
+        return availableRoomsView;
     }
 }

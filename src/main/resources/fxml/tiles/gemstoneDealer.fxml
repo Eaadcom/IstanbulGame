@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="gemstonedealer" fx:id="rootPane" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LocationView">
+<AnchorPane id="gemstonedealer" fx:id="rootPane" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.tiles.GemstoneDealerView">
    <children>
       <Pane layoutX="100.0" layoutY="503.0" prefHeight="79.0" prefWidth="315.0">
          <children>
-            <Button id="yes" fx:id="yes" layoutX="24.0" mnemonicParsing="false" onAction="#close" prefHeight="100.0" prefWidth="100.0" />
+            <Button id="yes" fx:id="yes" layoutX="24.0" mnemonicParsing="false" onAction="#gemstoneDealerYes" prefHeight="100.0" prefWidth="100.0" />
             <Button id="no" fx:id="no" layoutX="201.0" mnemonicParsing="false" onAction="#close" prefHeight="100.0" prefWidth="100.0" />
          </children></Pane>
+      <Label fx:id="gemprice" layoutX="337.0" layoutY="438.0" text="#">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

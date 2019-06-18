@@ -7,21 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.MainMenu;
 import views.MenuView;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        FirebaseController.getInstance().initialize();
-        stage.setTitle("Istanbul");
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-        root.setId("pane");
-        Scene scene = new Scene(root, 1920, 1080);
-        stage.setFullScreen(true);
-
-        stage.setScene(scene);
-        stage.show();
+        MenuView.getInstance().start(stage);
     }
 
     public static void main(String[] args) {

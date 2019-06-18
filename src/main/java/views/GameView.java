@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 
 import java.util.*;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -23,6 +24,7 @@ import models.Difficulty;
 import models.Game;
 import models.Player;
 import models.cards.BonusCard;
+import models.locations.GemstoneDealer;
 import observers.*;
 
 import java.io.IOException;
@@ -63,11 +65,14 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Pane famblue, famred, famgreen, famyellow, famwhite; // aanmaken fx:id
     @FXML
+    public Pane redAs, blueAs, greenAs, yellowAs, whiteAss;
+    @FXML
     public GridPane grid; // aanmaken fx:id
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
     @FXML
-    public Text gemprice;
+    public Label gemprice;
+    //gemprice.setText(Integer.toString(GemstoneDealer.getInstance().getGemstonePrice()));
     @FXML
     public Text playerLira, playerRubies, playerFabrics, playerFruits, playerSpices, playerJewels;
     @FXML
@@ -80,6 +85,7 @@ public class GameView implements GameViewObserver, Initializable {
     private Button[][] hardMap;
     private Pane[] players;
     private Pane[] family;
+    private Pane[] assistants;
 
     // Starts the game
     public void start() throws Exception {
@@ -119,10 +125,24 @@ public class GameView implements GameViewObserver, Initializable {
             e.printStackTrace();
         }
 
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+        Parent root1 = (Parent) fxmlloader.load();
 
-        //famred = (Pane) root1.lookup("#famred");
+        famred = (Pane) root1.lookup("#famred");
+
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Istanbul");
+        stage.setScene(new Scene(root1));
+        stage.setMaximized(true);
+
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX(primaryScreenBounds.getMinX());
+        stage.setY(primaryScreenBounds.getMinY());
+        stage.setWidth(primaryScreenBounds.getWidth());
+        stage.setHeight(primaryScreenBounds.getHeight());
+
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -130,6 +150,7 @@ public class GameView implements GameViewObserver, Initializable {
         initializePlayers();
         initializeFamily();
         updatePlayerResources(GameController.getInstance().getPlayer());
+        initializeAssistants();
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
@@ -193,6 +214,9 @@ public class GameView implements GameViewObserver, Initializable {
         players = new Pane[]{playerred, playerYellow, playergreen, playerblue, playerwhite};
     }
 
+    private void initializeAssistants(){
+        assistants = new Pane[] {redAs, blueAs, greenAs, yellowAs, whiteAss};
+    }
     private void initializeMaps() {
         easyMap = new Button[][]{{tile15, tile4, tile8, tile13},
             {tile5, tile12, tile6, tile10},
@@ -212,7 +236,6 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
      * van de grid enabled of disabled moeten worden
-     *
      * @param currentPlayerTurn Player
      */
     private void manageGameFieldIconen(Player currentPlayerTurn) {
@@ -233,6 +256,24 @@ public class GameView implements GameViewObserver, Initializable {
         addToGrid(playergreen, tile7);
         addToGrid(playerblue, tile7);
         addToGrid(playerwhite, tile7);
+    }
+
+    private void setAssistants(int tile, String color){
+        switch(tile){
+            case 1:
+                if(color == "red") {
+                    addToGrid(redAs, tile8);
+                } else if (color == "blue") {
+                    addToGrid(blueAs, tile8);
+                } else if (color == "green"){
+                    addToGrid(greenAs, tile8);
+                } else if (color == "yellow"){
+                    addToGrid(yellowAs, tile8);
+                } else if (color == "white"){
+                    addToGrid(whiteAss, tile8);
+                }
+
+        }
     }
 
     private void addToGrid(Node node, Node ofNodeIndex) {
@@ -322,10 +363,9 @@ public class GameView implements GameViewObserver, Initializable {
             rowIndex = GridPane.getRowIndex(source);
             columnIndex = GridPane.getColumnIndex(source);
             moveTile(playerred, columnIndex, rowIndex);
+           // tileAction(source);
 
-            //showPopupBonusKaarten();
-
-            // moveTile(getCurrentPlayer, columnIndex, rowIndex);
+            //moveTile(getCurrentPlayer, columnIndex, rowIndex){
             if (source.getId().equals("tile1")) {
                 wainwright();
             } else if (source.getId().equals("tile2")) {
@@ -337,7 +377,7 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile5")) {
                 postOffice();
             } else if (source.getId().equals("tile6")) {
-
+                //Geen functie omdat dit de eigen tegel is
             } else if (source.getId().equals("tile7")) {
                 fountain();
             } else if (source.getId().equals("tile8")) {
@@ -364,6 +404,7 @@ public class GameView implements GameViewObserver, Initializable {
             possibleMoves(playerred);
         }
     }
+
 
     //TILE POP UPS
     public void blackMarket() throws IOException {
@@ -397,7 +438,6 @@ public class GameView implements GameViewObserver, Initializable {
     public void fountain() throws IOException {
         locationView.fountain();
     }
-
     public void greatMosque() throws IOException {
         greatMosqueView.greatMosque();
     }
@@ -442,54 +482,33 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     /**
-     * This is a method that visualizes the movement of the player.
-     *
-     * @param player Specify the team color of the player who moved. ex: "red" or "green".
-     *               Since the node is only visible and reachable via this class
-     *               I made the parameter a String and used a switch case to reach the right node.
-     *                   This function also checks if the player has moved already.
-     *                   If that's the case the player is not able to move again.
-     * @param column This specifies the column the user moved to.
-     * @param row    This specifies the row the user moved to.
-     * @author Thomas van Velzen, Stan Hogenboom
-     * @version 4 juni 2019
-     */
-
-
-    /**
-     * This is a method that visualizes the movement of the player.
-     *
-     * @param familyMember Specify the team color of the player who moved. ex: "red" or "green".
-     *                     Since the node is only visible and reachable via this class
-     *                     I made the parameter a String and used a switch case to reach the right node.
-     * @param column       This specifies the column the user moved to.
-     * @param row          This specifies the row the user moved to.
-     * @author Thomas van Velzen
-     * @version 4 juni 2019
-     */
-    public void moveFamilyMember(String familyMember, int column, int row) {
-        move(familyMember, column, row);
-    }
-
-    /**
      * This functions changes the X and Y position of the player on the board.
      * It also checks if the player has moved already
-     *
+     * @author Stan Hogenboom
      * @param pane
-     * @param columnm
+     * @param column
      * @param row
      * @throws IOException
-     * @author Stan Hogenboom
      */
-    private void moveTile(Pane pane, int columnm, int row) throws IOException {
-        if (!gameController.movementDone()) {
-            GridPane.setColumnIndex(pane, columnm);
+    private void moveTile(Pane pane, int column, int row) throws IOException {
+        if(!gameController.movementDone()) {
+
+            GridPane.setColumnIndex(pane, column);
             GridPane.setRowIndex(pane, row);
-//            gameController.setMoved(true);
-//            disableTiles();
-        } else {
+            //gameController.setMoved(true);
+            //disableAllTiles();
+        }
+        else {
             popUpView.dontMove();
         }
+    }
+
+    public void moveFamilyTile(int column, int row) throws IOException {
+        //famred = (Pane) root1.lookup("#famred");
+        System.out.println(famred);
+//        grid.setColumnIndex(famred, grid.getColumnIndex(tile1));      grid.setRowIndex(famred, grid.getRowIndex(tile1));
+        Pane pane = playerblue;
+        moveTile(pane, column, row);
     }
 
     // Move code used by movePlayer() and moveFamilyMember()
@@ -609,6 +628,7 @@ public class GameView implements GameViewObserver, Initializable {
             }
 
         }
+    }
 
 //        for(int i = 0; i<tiles.size(); i++){
 //            int tilecol = grid.getColumnIndex(tiles.get(i));
@@ -637,7 +657,7 @@ public class GameView implements GameViewObserver, Initializable {
 //                tiles.get(i).setDisable(true);
 //            }
 //        }
-    }
+
 
     /**
      * Gives an int based on the node coordinarions.
@@ -682,6 +702,12 @@ public class GameView implements GameViewObserver, Initializable {
         if (go instanceof Game) {
             Game game = (Game) go;
             updateGameView(game);
+
+            Platform.runLater(new Runnable(){
+                @Override public void run() {
+
+                }
+            });
         }
     }
 

@@ -168,6 +168,7 @@ public class GameController {
 
     public Player getMyPlayer() {
         return playerController.getMyPlayer();
+
     }
 
     public void startWatchForChanges() {

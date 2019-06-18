@@ -2,8 +2,13 @@ package controllers;
 
 
 import models.Player;
+import javafx.stage.Stage;
 import models.locations.*;
+import javafx.scene.control.TextField;
+import views.GameView;
+import views.LocationView;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -18,42 +23,236 @@ public class LocationController{
     models.Dice diceTwo = new models.Dice();
     public int cardNumber1;
     public int cardNumber2;
+    public boolean hasAssistants;
 
     public int teahouseNumberChoice;
 
-    private BlackMarket blackMarket;
-    private TeaHouse teaHouse =  new TeaHouse();
-    private SultanPalace sultansPalaceModel = SultanPalace.getInstance();
-    public FruitWarehouse fruitWarehouse;
-    public Caravansary caravansary = new Caravansary();
-    private CardController cardController;
-    public PlayerController playerController = new PlayerController();
+    private BlackMarket blackMarket = BlackMarket.getInstance();
+    private TeaHouse teaHouse = TeaHouse.getInstance();
+    private FabricWarehouse fabricWarehouse = FabricWarehouse.getInstance();
+    private Fountain fountain = Fountain.getInstance();
+    private GemstoneDealer gemstoneDealer = GemstoneDealer.getInstance();
+    private GreatMosque greatMosque = GreatMosque.getInstance();
+    private LargeMarket largeMarket = LargeMarket.getInstance();
+    private PoliceStation policeStation = PoliceStation.getInstance();
+    private PostOffice postOffice = PostOffice.getInstance();
+    private SmallMarket smallMarket = SmallMarket.getInstance();
+    private SmallMosque smallMosque = SmallMosque.getInstance();
+    private SpiceWarehouse spiceWarehouse = SpiceWarehouse.getInstance();
+    private SultanPalace sultanPalace = SultanPalace.getInstance();
+    private FruitWarehouse fruitWarehouse = FruitWarehouse.getInstance();
+    private Caravansary caravansary = Caravansary.getInstance();
+    private CardController cardController = CardController.getInstance();
+    public PlayerController playerController = PlayerController.getInstance();
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
+    private Wainwright wainwright = Wainwright.getInstance();
+
+    private GameView gameView;
+
+
 
     Scanner scanner = new Scanner(System.in);
 
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
-    public void onUse() {
-        switch (location) {
-            // BlackMarket Functie
-            case 1: {
+
+    public void AssistantLocation(int location){
+        if (myPlayer.assistants > 0) {
+            hasAssistants = true;
+
+
+
+            switch (location) {
+
+                case 1:
+                    if (blackMarket.color(myPlayer.color)) {
+                        blackMarket.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (blackMarket.color(myPlayer.color) == false) {
+                        blackMarket.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 2:
+                    if (caravansary.color(myPlayer.color)) {
+                        caravansary.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (caravansary.color(myPlayer.color) == false) {
+                        caravansary.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 3:
+                    if (fabricWarehouse.color(myPlayer.color)) {
+                        fabricWarehouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (fabricWarehouse.color(myPlayer.color) == false) {
+                        fabricWarehouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 4:
+                    Fountain();
+                    break;
+
+                case 5:
+                    if (fruitWarehouse.color(myPlayer.color)) {
+                        fabricWarehouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (fruitWarehouse.color(myPlayer.color) == false) {
+                        fabricWarehouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 6:
+                    if (gemstoneDealer.color(myPlayer.color)) {
+                        gemstoneDealer.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (gemstoneDealer.color(myPlayer.color) == false) {
+                        gemstoneDealer.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 7:
+                    if (greatMosque.color(myPlayer.color)) {
+                        greatMosque.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (greatMosque.color(myPlayer.color) == false) {
+                        greatMosque.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 8:
+                    if (largeMarket.color(myPlayer.color)) {
+                        largeMarket.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (largeMarket.color(myPlayer.color) == false) {
+                        largeMarket.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 9:
+                    if (policeStation.color(myPlayer.color)) {
+                        policeStation.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (policeStation.color(myPlayer.color) == false) {
+                        policeStation.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 10:
+                    if (postOffice.color(myPlayer.color)) {
+                        postOffice.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (postOffice.color(myPlayer.color) == false) {
+                        postOffice.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 11:
+                    if (smallMarket.color(myPlayer.color)) {
+                        smallMarket.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (smallMarket.color(myPlayer.color) == false) {
+                        smallMarket.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 12:
+                    if (smallMosque.color(myPlayer.color)) {
+                        smallMosque.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (smallMosque.color(myPlayer.color) == false) {
+                        smallMosque.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 13:
+                    if (spiceWarehouse.color(myPlayer.color)) {
+                        spiceWarehouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (spiceWarehouse.color(myPlayer.color) == false) {
+                        spiceWarehouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+
+                case 14:
+                    if (sultanPalace.color(myPlayer.color)) {
+                        sultanPalace.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (sultanPalace.color(myPlayer.color) == false) {
+                        sultanPalace.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    break;
+                case 15:
+                    if (teaHouse.color(myPlayer.color)){
+                        teaHouse.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if (blackMarket.color(myPlayer.color) == false){
+                        teaHouse.setColor(myPlayer.color, true);
+                        myPlayer.assistants -=1;
+                    }
+
+                    break;
+                case 16:
+                    if (wainwright.color(myPlayer.color)){
+                        wainwright.setColor(myPlayer.color, false);
+                        myPlayer.assistants += 1;
+                    } else if(wainwright.color(myPlayer.color) == false){
+                        wainwright.setColor(myPlayer.color, true);
+                        myPlayer.assistants -= 1;
+                    }
+                    System.out.println("Er zijn " + myPlayer.assistants + " assistants.");
+                    break;
+
 
             }
-            // Caravansary Functie
-            case 2: {
-
-            }
-            // Teahouse Functie
-
-            }
+        } else{
+             hasAssistants = false;
         }
 
 
-    public int setNumberChoice() {
+    }
+    public void Fountain(){
+        blackMarket.setColor(myPlayer.color, false);
+        caravansary.setColor(myPlayer.color, false);
+        fabricWarehouse.setColor(myPlayer.color, false);
+        fruitWarehouse.setColor(myPlayer.color, false);
+        teaHouse.setColor(myPlayer.color, false);
+        gemstoneDealer.setColor(myPlayer.color, false);
+        greatMosque.setColor(myPlayer.color, false);
+        largeMarket.setColor(myPlayer.color, false);
+        policeStation.setColor(myPlayer.color, false);
+        postOffice.setColor(myPlayer.color, false);
+        smallMarket.setColor(myPlayer.color, false);
+        smallMosque.setColor(myPlayer.color, false);
+        spiceWarehouse.setColor(myPlayer.color, false);
+        sultanPalace.setColor(myPlayer.color, false);
+        wainwright.setColor(myPlayer.color, false);
 
-        int Choice = scanner.nextInt();
-        return Choice;
+        myPlayer.assistants = myPlayer.maxAssistants;
+    }
+    public void wainrightBuyer(){
+        if(myPlayer.lira > 7 || myPlayer.lira == 7) {
+            if (myPlayer.carUpgrades < 3) {
+                playerController.addRubysLiras("lira", -7);
+                playerController.CarUpgrader();
+
+                System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+            }
+            System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+
+        }
+        System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+
+
     }
 
     public int setDiceValue() {
@@ -65,7 +264,7 @@ public class LocationController{
 
     public void BlackMarketDice() {
         playerController = PlayerController.getInstance();
-blackMarket = BlackMarket.getInstance();
+        blackMarket = BlackMarket.getInstance();
         blackMarket.diceOne.DiceValue = setDiceValue();
         blackMarket.diceTwo.DiceValue = setDiceValue();
 
@@ -101,7 +300,7 @@ blackMarket = BlackMarket.getInstance();
     }
 
         public void BlackMarketChoice(int BlackMarketChoice) {
-playerController = PlayerController.getInstance();
+        playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 myPlayer.spices += 1;
@@ -126,18 +325,8 @@ playerController = PlayerController.getInstance();
     }
 
     public void CarravansaryCardSelector() {
-        // moet nog aff
-        cardNumber1 = cardController.getRandomCard() - 1;
-        cardNumber2 = cardController.getRandomCard() - 1;
 
-        Boolean SameCard = cardController.CardChecker();
-
-        while (SameCard = true) {
-            cardNumber2 = cardController.getRandomCard() - 1;
-        }
-
-        board.playerBonusCards.add(board.bonusCards.get(cardNumber1));
-        board.playerBonusCards.add(board.bonusCards.get(cardNumber2));
+        // hier nog even naar kijken jongens, ik weet niet hoe jullie die bonuskaarten willen hebben.
 
 
     }
@@ -155,6 +344,7 @@ playerController = PlayerController.getInstance();
     public void SpiceWarehouse() {
         playerController.MaxCargoUpdater();
         playerController.MaxGoods("spice");
+        System.out.println("Er zijn " + myPlayer.spices + " toegevoegd.");
     }
 
 
@@ -214,8 +404,95 @@ playerController = PlayerController.getInstance();
         GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
 
 
+                System.out.println("Helaas! je ligt eronder!");}}
+
+    /**
+     * Checks if the player has entered a valid number at the police station and acts accoringly
+     * @author Stan Hogenboom
+     * @param usernamefield
+     */
+    public void policeStation(String usernamefield) throws IOException {
+        if (usernamefield.equals("1")) {
+            GameView.getInstance().wainwright();
+            //GameView.getInstance().moveFamilyTile(0,0);
+        }
+        else if (usernamefield.contains("2")) {
+            GameView.getInstance().fabricWarehouse();
+        }
+        else if (usernamefield.contains("3")) {
+            GameView.getInstance().spiceWarehouse();
+        }
+        else if (usernamefield.contains("4")) {
+            GameView.getInstance().fruitWarehouse();
+        }
+        else if (usernamefield.contains("5")) {
+            GameView.getInstance().postOffice();
+        }
+        else if (usernamefield.contains("6")) {
+            //GameView.getInstance().caravansary;
+        }
+        else if (usernamefield.contains("7")) {
+            GameView.getInstance().fountain();
+        }
+        else if (usernamefield.contains("8")) {
+            GameView.getInstance().blackMarket();
+        }
+        else if (usernamefield.contains("9")) {
+            GameView.getInstance().teaHouse();
+        }
+        else if (usernamefield.contains("10")) {
+            GameView.getInstance().largeMarket();
+        }
+        else if (usernamefield.contains("11")) {
+            GameView.getInstance().smallMarket();
+        }
+        else if (usernamefield.contains("12")) {
+            // This is the policesttion itself, probably shouldn't be included
+        }
+        else if (usernamefield.contains("13")) {
+            GameView.getInstance().sultansPalace();
+        }
+        else if (usernamefield.contains("14")) {
+            GameView.getInstance().smallMosque();
+        }
+        else if (usernamefield.contains("15")) {
+            GameView.getInstance().greatMosque();
+        }
+        else if (usernamefield.contains("16")) {
+            GameView.getInstance().gemstoneDealer();
+        }
+        else {
+
+        }
+    }
 
 
+    /**
+     * This function is used when the player lands on the gemstone dealer tile and clicks "yes".
+     * It checks if the player has enough Lira to purchase a ruby.
+     * If that's the case, the player recieves a ruby and a number of lira is withdrawn.
+     * The price of a ruby goes up by one every time someone buys a ruby.
+     * @author Stan Hogenboom
+     * @version 17-6-2019
+     */
+    public void gemstoneDealerAction() {
+        GemstoneDealer gsd = GemstoneDealer.getInstance();
+        int price = gsd.getGemstonePrice();
+        //LocationView lcv = LocationView.getInstance();
+
+        if(myPlayer.lira > price){
+            playerController.addRubysLiras("ruby", 1);
+            playerController.addRubysLiras("lira", -price);
+            gsd.updatePrice(price + 1);
+            System.out.println("De nieuwe prijs is: " + gsd.getGemstonePrice());
+            //lcv.close(); <- werkt niet
+        }
+        else {
+            System.out.println("Niet genoeg Lira");
+            //lcv.close(); <- werkt niet
+            //hier moet een scherm met de tekst [je hebt niet genoeg lira]
+        }
+    }
 
     // Singleton Pattern
     public static LocationController getInstance() {

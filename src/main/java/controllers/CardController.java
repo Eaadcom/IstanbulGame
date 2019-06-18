@@ -9,7 +9,6 @@ public class CardController {
 
     //Variables
     private static CardController cardController;
-    LocationController locationController = LocationController.getInstance();
 
     Map<String, BonusCard> bonusCardMap = new HashMap<>();
 
@@ -37,14 +36,7 @@ public class CardController {
         return RandCardInt;
     }
 
-    public boolean CardChecker(){
-        if(locationController.cardNumber1 == locationController.cardNumber2){
-           return true;
 
-        }else {
-            return false;
-        }
-    }
 
     // Singleton Pattern
     public static CardController getInstance() {

@@ -2,28 +2,22 @@ package models.locations;
 
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
-import observers.locations.TeaHouseObservable;
+import observers.locations.LargeMarketObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeaHouse implements Location, TeaHouseObservable {
+public class LargeMarket implements Location, LargeMarketObservable {
 
     // Variables
-    private static TeaHouse teaHouse;
-    public int Location = 15;
+    private static LargeMarket largeMarket;
+    private List<LocationViewObserver> observers = new ArrayList<>();
     public boolean redAs = false;
     public boolean blueAs = false;
     public boolean greenAs = false;
     public boolean yellowAs = false;
     public boolean whiteAs = false;
 
-
-
-
-    public int teahouseNumberChoice;
-    public int teahouseDiceNumber;
-    private List<LocationViewObserver> observers = new ArrayList<>();
     public boolean color(String color) {
         boolean myColor;
         if (color == "red") {
@@ -57,27 +51,6 @@ public class TeaHouse implements Location, TeaHouseObservable {
         }
     }
 
-    // Constructor
-    public TeaHouse(){
-    }
-
-    //setter
-    public void setTeahouseNumberChoice(int teahouseNumberChoice) {
-        this.teahouseNumberChoice = teahouseNumberChoice;
-    }
-
-    //getter
-    public int getTeahouseNumberChoice() {
-        return teahouseNumberChoice;
-    }
-
-    public void setTeahouseDiceNumber(int teahouseDiceNumber) {
-        this.teahouseDiceNumber = teahouseDiceNumber;
-    }
-
-    public int getTeahouseDiceNumber(){
-        return teahouseDiceNumber;
-    }
 
     // Observer Pattern
     @Override
@@ -92,14 +65,11 @@ public class TeaHouse implements Location, TeaHouseObservable {
         }
     }
 
-
     // Singleton Pattern
-    public static TeaHouse getInstance() {
-        if (teaHouse == null) {
-            teaHouse = new TeaHouse();
+    public static LargeMarket getInstance() {
+        if (largeMarket == null) {
+            largeMarket = new LargeMarket();
         }
-        return teaHouse;
+        return largeMarket;
     }
 }
-
-
