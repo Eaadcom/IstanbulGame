@@ -53,7 +53,6 @@ public class FabricWarehouse implements Location, FabricWarehouseObservable {
             whiteAs = set;
         }
     }
-
     // Observer Pattern
     @Override
     public void register(LocationViewObserver observer) {
