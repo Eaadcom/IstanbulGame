@@ -1,5 +1,6 @@
 package views;
 
+import controllers.GameController;
 import controllers.LocationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -127,6 +128,9 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         LocationController.getInstance().FabricWarehouse();
+
+        GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter).setMaxFabrics();
     }
     public void fruitWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fruitWarehouse.fxml"));
@@ -137,6 +141,9 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         LocationController.getInstance().FruitWarehouse();
+
+        GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter).setMaxFruits();
     }
     public void spiceWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/spiceWarehouse.fxml"));
@@ -147,6 +154,9 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         LocationController.getInstance().SpiceWarehouse();
+
+        GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter).setMaxSpices();
     }
     public void teaHouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/teaHouse/teaHouse.fxml"));

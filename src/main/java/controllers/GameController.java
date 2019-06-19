@@ -16,6 +16,7 @@ import models.cards.BonusCard;
 import observers.GameViewLobbyViewObserver;
 import observers.GameViewObserver;
 
+import java.awt.*;
 import java.util.List;
 
 public class GameController {
@@ -146,7 +147,7 @@ public class GameController {
 
     public void endTurn() {
         game.increaseTurnCounter();
-        firebaseController.updateGame(game);
+        updateGame();
     }
 
     public void registerGameOrLobbyObserverToGame(GameViewLobbyViewObserver gameView) {
@@ -169,8 +170,8 @@ public class GameController {
         firebaseController.createNewGame(game);
     }
 
-    public void createNewGame(){
-        FirebaseController.getInstance().createNewGame(game);
+    public void updateGame(){
+        FirebaseController.getInstance().updateGame(game);
     }
 
     public void joinGame(QueryDocumentSnapshot document) {
@@ -194,10 +195,17 @@ public class GameController {
         game.updateFromSnapShot(documentSnapshot);
     }
 
-
     public void startGame() {
         game.startGame();
         firebaseController.updateGame(game);
+    }
+
+    public void tilesToModel(List<javafx.scene.control.Button> randomMap) {
+
+    }
+
+    public void tilesToModel(javafx.scene.control.Button[][] buttonMap) {
+
     }
 }
 

@@ -5,7 +5,9 @@ import observers.LocationViewObserver;
 import observers.locations.PostOfficeObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PostOffice implements Location, PostOfficeObservable {
 
@@ -17,6 +19,16 @@ public class PostOffice implements Location, PostOfficeObservable {
     public boolean greenAs = false;
     public boolean yellowAs = false;
     public boolean whiteAs = false;
+
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+    }
 
     public boolean color(String color) {
         boolean myColor;

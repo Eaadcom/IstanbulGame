@@ -12,20 +12,30 @@ import java.util.Map;
 
 public class Game implements GameObservable {
 
-    // Variables
-    private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
+    // LobbyVariables
     public String name;
-    public Board board = new Board();
     public Integer playerTotal;
     public boolean gameStarted = false;
     public boolean gameEnded = false;
     public Difficulty difficulty;
+
+    // GameVariables
+    public Board board = new Board();
     public int turnCounter = 0;
-
     public int myPlayerID = 1;
-
-
     public boolean hasMoved = false;
+
+    // SystemVariables
+    private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
+
+
+
+
+
+
+
+
+
 
 
     public Game(String name, int playerTotal, Difficulty difficulty) {
@@ -46,6 +56,7 @@ public class Game implements GameObservable {
         Map<String, Object> data = documentSnapshot.getData();
         setPlayers(data.get("playerNames"));
         setGameData(data);
+        board.setBoardData((Map)data.get("Board"));
         notifyAllObservers();
     }
 

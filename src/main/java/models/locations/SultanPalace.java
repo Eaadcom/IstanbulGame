@@ -12,13 +12,14 @@ import views.tiles.sultansPalace.SultansPalaceView3;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SultanPalace implements Location, SultanPalaceObservable {
 
     // Variables
     private static SultanPalace sultanPalace;
-
     private List<GameViewObserver> observers = new ArrayList<>();
 
     public SultanPalace(){
@@ -34,6 +35,23 @@ public class SultanPalace implements Location, SultanPalaceObservable {
     private int fruit  = 0;
     private int choice = 0;
     private boolean soldOut = false;
+
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
+
+        Data.put("jewel", jewel); Data.put("fabric", fabric);
+        Data.put("spice", spice); Data.put("fruit", fruit);
+        Data.put("choice", choice); Data.put("soldOut", soldOut);
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+        this.jewel = (int) variables.get("jewel"); this.fabric = (int) variables.get("fabric");
+        this.spice = (int) variables.get("spice"); this.fruit = (int) variables.get("fruit");
+        this.choice = (int) variables.get("choice"); this.soldOut = (boolean) variables.get("soldOut");
+    }
 
     public void increasePrice(){
         if(jewel==2 && fabric==2 && spice==2 && fruit==2 && choice==2){ //voeg niks meer toe

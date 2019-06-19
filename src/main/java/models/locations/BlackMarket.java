@@ -7,7 +7,9 @@ import observers.LocationViewObserver;
 import observers.locations.BlackMarketObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BlackMarket implements Location, BlackMarketObservable {
 
@@ -24,6 +26,20 @@ public class BlackMarket implements Location, BlackMarketObservable {
     public boolean whiteAs = false;
 
 
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> BlackMarketData = new HashMap<>();
+
+        BlackMarketData.put("Location", Location);
+        //TODO make dice work with firebase ?
+        //BlackMarketData.put("diceOne", diceOne); BlackMarketData.put("diceTwo", diceTwo);
+
+        return BlackMarketData;
+    }
+
+    public void setData(Map variables){
+        this.Location = (int) variables.get("Location");
+    }
 
     // Constructor
     public BlackMarket() {

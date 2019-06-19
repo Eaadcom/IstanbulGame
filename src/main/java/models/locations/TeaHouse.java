@@ -5,7 +5,9 @@ import observers.LocationViewObserver;
 import observers.locations.TeaHouseObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TeaHouse implements Location, TeaHouseObservable {
 
@@ -18,7 +20,18 @@ public class TeaHouse implements Location, TeaHouseObservable {
     public boolean yellowAs = false;
     public boolean whiteAs = false;
 
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
 
+        Data.put("Location", Location);
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+        this.Location = (int) variables.get("Location");
+    }
 
 
     public int teahouseNumberChoice;
