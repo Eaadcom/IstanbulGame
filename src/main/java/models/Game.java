@@ -64,6 +64,7 @@ public class Game implements GameObservable {
         this.gameEnded = Boolean.parseBoolean(data.get("gameEnded").toString());
         this.difficulty = Difficulty.fromString(data.get("gameDifficulty").toString());
         this.turnCounter = Integer.parseInt(data.get("turnCounter").toString());
+        notifyAllObservers();
     }
 
     public String getName() {
@@ -105,6 +106,10 @@ public class Game implements GameObservable {
     public void endGame() {
         gameEnded = true;
         notifyAllObservers();
+    }
+
+    public void pauseGame(){
+        gameStarted = false;
     }
 
     public boolean isGameStarted() {

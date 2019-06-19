@@ -66,6 +66,13 @@ public class GameController {
         return game.getPlayer();
     }
 
+    public boolean getGamePhase(){
+        return game.gameStarted;
+    }
+
+    public void pauseGame(){
+        game.pauseGame();
+    }
 
     /**
      *Check in the game model if player has moves already
@@ -108,6 +115,10 @@ public class GameController {
 //                //
 //            }
 //        return 6;
+    }
+
+    public void increaseTurn(){
+        game.increaseTurnCounter();
     }
 
     public void setNextTurn() {
@@ -156,6 +167,10 @@ public class GameController {
         Player player = playerController.createNewPlayer(mainMenu.getUsername());
         game.addInitialPlayer(player);
         firebaseController.createNewGame(game);
+    }
+
+    public void createNewGame(){
+        FirebaseController.getInstance().createNewGame(game);
     }
 
     public void joinGame(QueryDocumentSnapshot document) {

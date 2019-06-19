@@ -174,7 +174,9 @@ public class GameView implements GameViewObserver, Initializable {
         Pane myPane = null;
         List<Player> players = gameController.getGame().getPlayers();
         String myPlayerName = gameController.getMyPlayer().getName();
-        for (int i = 0; i < players.size(); i++) {
+        int playersSize = players.size();
+        if (playersSize > 4){ playersSize = 4;}
+        for (int i = 0; i < playersSize; i++) {
             if (players.get(i).getName().equals(myPlayerName)) {
                 myPane = this.players[i];
                 possibleMoves(myPane);
@@ -195,6 +197,7 @@ public class GameView implements GameViewObserver, Initializable {
             familyPane.setVisible(false);
         }
         int amountOfPlayers = gameController.getGame().getPlayers().size();
+        if (amountOfPlayers > 4){amountOfPlayers = 4;}
         for (int i = 0; i < amountOfPlayers; i++) {
             players[i].setVisible(true);
             family[i].setVisible(true);
@@ -592,6 +595,8 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Closes the game
     public void close() {
+        GameController.getInstance().pauseGame();
+        GameController.getInstance().createNewGame();
         System.exit(0);
     }
 
@@ -676,7 +681,7 @@ public class GameView implements GameViewObserver, Initializable {
         if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.isGameEnded()) {
             disableTiles(false);
             // TURNCOUNTER++;
-
+            //GameController.getInstance().increaseTurn();
         }
     }
 

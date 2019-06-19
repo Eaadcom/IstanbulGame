@@ -1,5 +1,6 @@
 package views;
 
+import controllers.GameController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -232,6 +233,8 @@ public class PopUpView {
 
     // Function to close the game
     public void close(){
+        GameController.getInstance().pauseGame();
+        GameController.getInstance().createNewGame();
         System.exit(0);
     }
 
