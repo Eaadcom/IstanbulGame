@@ -45,14 +45,14 @@ public class Game implements GameObservable {
     public Game(QueryDocumentSnapshot document) {
         Map<String, Object> data = document.getData();
         this.name = document.getId();
-        setPlayers(data.get("playerNames"));
+        //setPlayers(data.get("playerNames"));
         setGameData(data);
     }
 
     public void updateFromSnapShot(DocumentSnapshot documentSnapshot) {
         this.name = documentSnapshot.getId();
         Map<String, Object> data = documentSnapshot.getData();
-        setPlayers(data.get("playerNames"));
+        //setPlayers(data.get("playerNames"));
         setGameData(data);
         board.setBoardData((Map)data.get("Board"));
         notifyAllObservers();
