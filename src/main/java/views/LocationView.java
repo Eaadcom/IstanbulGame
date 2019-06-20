@@ -32,18 +32,11 @@ public class LocationView implements LocationViewObserver, Initializable {
     private WainwrightView wwv = new WainwrightView();
 
     // FXML variables
-    @FXML
-    public Button fabric, fruit, spice, dices, sweet, closetn; // aanmaken fx:id
-    @FXML
-    private AnchorPane rootPane, rootPane2; // aanmaken fx:id
-
-    @FXML
-    private TextField TeaHouseChoice;
-    @FXML
-    private TextField policeStationChoice;
-
-    @FXML
-    private TextField TeaHouseDice;
+    @FXML public Button fabric, fruit, spice, dices, sweet, closetn; // aanmaken fx:id
+    @FXML private AnchorPane rootPane, rootPane2; // aanmaken fx:id
+    @FXML private TextField TeaHouseChoice;
+    @FXML private TextField policeStationChoice;
+    @FXML private TextField TeaHouseDice;
 
 
     // Creates blackmarket popup
@@ -129,6 +122,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.show();
         LocationController.getInstance().FabricWarehouse();
 
+        //TODO hiervoor observer pattern implementeren
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxFabrics();
     }
@@ -142,6 +136,7 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.show();
         LocationController.getInstance().FruitWarehouse();
 
+        //TODO hiervoor observer pattern implementeren
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxFruits();
     }
@@ -155,6 +150,8 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.show();
         LocationController.getInstance().SpiceWarehouse();
 
+
+        //TODO hiervoor observer pattern implementeren
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxSpices();
     }
