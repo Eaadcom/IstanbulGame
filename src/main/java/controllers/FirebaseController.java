@@ -153,10 +153,10 @@ public class FirebaseController {
 
     private Map<String, Object> createKeyValueMapForGame(Game game) {
         Map<String, Object> data = new HashMap<>();
-        ArrayList<String> userNames = new ArrayList<>();
-        for (Player player : game.getPlayers()) {
-            userNames.add(player.getName());
-        }
+//        ArrayList<String> userNames = new ArrayList<>();
+//        for (Player player : game.getPlayers()) {
+//            userNames.add(player.getName());
+//        }
 
         data.put("gameName", game.getName());
         data.put("playerTotal", game.getPlayerTotal());
@@ -165,7 +165,7 @@ public class FirebaseController {
         data.put("gameStarted", game.isGameStarted());
         data.put("gameEnded", game.isGameEnded());
         data.put("turnCounter", game.getTurnCounter());
-        data.put("playerNames", userNames);
+//        data.put("playerNames", userNames);
         data.put("Board", createKeyValueMapForBoard(game.board));
         return data;
     }
