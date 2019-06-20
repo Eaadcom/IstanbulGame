@@ -116,10 +116,12 @@ public class FirebaseController {
         try{
             Map<String, Object> players = new HashMap<>();
             int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
+            int playerListLength = gameController.getInstance().getGame().board.players.size();
 
-            Player player1 = board.getPlayers().get(0); Player player2 = board.getPlayers().get(1);
-            players.put("Player1", player1.getVariableMap()); players.put("Player2", player2.getVariableMap());
-            if (playerTotal >= 3){
+            Player player1 = board.getPlayers().get(0); players.put("Player1", player1.getVariableMap());
+            if (playerListLength > 1){
+                Player player2 = board.getPlayers().get(1); players.put("Player2", player2.getVariableMap());
+            } if (playerTotal >= 3){
                 Player player3 = board.getPlayers().get(2);
                 players.put("Player3", player3.getVariableMap());
             } if (playerTotal >= 4){

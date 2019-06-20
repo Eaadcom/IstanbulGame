@@ -19,7 +19,7 @@ public class PlayerController {
 
     public Player createNewPlayer(String name) {
         Player player = new Player(name);
-        firebaseController.createNewPlayer(player);
+        //.createNewPlayer(player);
         myPlayer = player;
         return player;
     }
