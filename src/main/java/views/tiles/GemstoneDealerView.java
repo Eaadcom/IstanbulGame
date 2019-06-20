@@ -44,10 +44,12 @@ public class GemstoneDealerView implements Initializable {
 
     public void gemstoneDealerYes() {
         locationController.gemstoneDealerAction();
+        close();
     }
 
     public void close() {
-        //insert code to close the pop-up
+        Stage stage = (Stage) gemprice.getScene().getWindow();
+        stage.close();
     }
 
 

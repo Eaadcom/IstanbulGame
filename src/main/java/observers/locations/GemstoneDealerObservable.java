@@ -1,8 +1,10 @@
 package observers.locations;
 
+import observers.GameViewObserver;
 import observers.LocationViewObserver;
 
 public interface GemstoneDealerObservable {
-    void register(LocationViewObserver observer);
+    void register(GameViewObserver observer);
     void notifyAllObservers();
+    int  getGemstonePrice();
 }

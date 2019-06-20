@@ -31,6 +31,7 @@ import observers.*;
 import java.io.IOException;
 import java.net.URL;
 
+import observers.locations.GemstoneDealerObservable;
 import observers.locations.SultanPalaceObservable;
 import views.tiles.*;
 import views.tiles.sultansPalace.SultansPalaceView;
@@ -69,12 +70,13 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
     @FXML
-    public Label gemprice;
-    //gemprice.setText(Integer.toString(GemstoneDealer.getInstance().getGemstonePrice()));
+    public Text gemPrice;
     @FXML
     public Text playerLira, playerRubies, playerFabrics, playerFruits, playerSpices, playerJewels;
     @FXML
     public Text SultanRed, SultanBlue, SultanYellow, SultanGreen, SultanChoice;
+    @FXML
+    public Text maxFruit, maxSpice, maxJewel, maxFabric;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
@@ -93,50 +95,54 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Starts the game
     public void start() throws Exception {
-        Platform.runLater(
-                () -> {
-                    try {
-                        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-                        Parent root1 = fxmlloader.load();
-                        if (stage == null){
-                            stage = new Stage();
-                        }
-                        stage.initStyle(StageStyle.UNDECORATED);
-                        stage.setTitle("Istanbul");
-                        stage.setScene(new Scene(root1));
-                        stage.setMaximized(true);
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+            Parent root1 = fxmlloader.load();
+            if (stage == null){
+                stage = new Stage();
+            }
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Istanbul");
+            stage.setScene(new Scene(root1));
+            stage.setMaximized(true);
 
-                        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-                        stage.setX(primaryScreenBounds.getMinX());
-                        stage.setY(primaryScreenBounds.getMinY());
-                        stage.setWidth(primaryScreenBounds.getWidth());
-                        stage.setHeight(primaryScreenBounds.getHeight());
-                        stage.show();
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(primaryScreenBounds.getMinX());
+            stage.setY(primaryScreenBounds.getMinY());
+            stage.setWidth(primaryScreenBounds.getWidth());
+            stage.setHeight(primaryScreenBounds.getHeight());
+            stage.show();
 
 
-                        //Sultans palace
-                        SultanRed = (Text) root1.lookup("#SultanRed");
-                        SultanBlue = (Text) root1.lookup("#SultanBlue");
-                        SultanYellow = (Text) root1.lookup("#SultanYellow");
-                        SultanGreen = (Text) root1.lookup("#SultanGreen");
-                        SultanChoice = (Text) root1.lookup("#SultanChoice");
+            //Sultans palace
+            SultanRed = (Text) root1.lookup("#SultanRed");
+            SultanBlue = (Text) root1.lookup("#SultanBlue");
+            SultanYellow = (Text) root1.lookup("#SultanYellow");
+            SultanGreen = (Text) root1.lookup("#SultanGreen");
+            SultanChoice = (Text) root1.lookup("#SultanChoice");
 
-                        //player values
-                        playerLira = (Text) root1.lookup("#playerLira");
-                        playerRubies = (Text) root1.lookup("#playerRubies");
-                        playerFabrics = (Text) root1.lookup("#playerFabrics");
-                        playerFruits = (Text) root1.lookup("#playerFruits");
-                        playerSpices = (Text) root1.lookup("#playerSpices");
-                        playerJewels = (Text) root1.lookup("#playerJewels");
+            //player values
+            playerLira = (Text) root1.lookup("#playerLira");
+            playerRubies = (Text) root1.lookup("#playerRubies");
+            playerFabrics = (Text) root1.lookup("#playerFabrics");
+            playerFruits = (Text) root1.lookup("#playerFruits");
+            playerSpices = (Text) root1.lookup("#playerSpices");
+            playerJewels = (Text) root1.lookup("#playerJewels");
+            //maxFabric = (Text) root1.lookup("#maxFabric");
+            //maxFruit = (Text) root1.lookup("#maxFruit");
+            //maxSpice = (Text) root1.lookup("#maxSpice");
+            //maxJewel = (Text) root1.lookup("#maxJewel");
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (IllegalStateException ie){
-                        //helemaal niks
-                    }
-                }
-        );
+            gemPrice = (Text) root1.lookup("#gemPrice");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IllegalStateException ie){
+            //helemaal niks
+        }
     }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -828,6 +834,8 @@ public class GameView implements GameViewObserver, Initializable {
         Platform.runLater(new Runnable(){
             @Override
             public void run() {
+                System.out.println(SultanBlue);
+                System.out.println(spo.getJewelPrice());
                 SultanBlue.setText(String.valueOf(spo.getJewelPrice()));
                 SultanRed.setText(String.valueOf(spo.getFabricPrice()));
                 SultanGreen.setText(String.valueOf(spo.getSpicePrice()));
@@ -836,6 +844,14 @@ public class GameView implements GameViewObserver, Initializable {
             }
         });
     }
+
+    @Override
+    public void update(GemstoneDealerObservable gdo) {
+        Platform.runLater( () -> {
+                System.out.println("vis");
+                gemPrice.setText(String.valueOf(gdo.getGemstonePrice()));
+            });}
+
 
 
 
@@ -854,6 +870,11 @@ public class GameView implements GameViewObserver, Initializable {
         playerFabrics.setText(String.valueOf(player.getFabrics()));
         playerSpices.setText(String.valueOf(player.getSpices()));
         playerFruits.setText(String.valueOf(player.getFruits()));
+
+        //maxFabric.setText(String.valueOf(player.getMaxFabrics()));
+        //maxFruit.setText(String.valueOf(player.getMaxFruits()));
+        //maxJewel.setText(String.valueOf(player.getMaxJewels()));
+        //maxSpice.setText(String.valueOf(player.getMaxSpices()));
 
     }
 
