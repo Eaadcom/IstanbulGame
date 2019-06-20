@@ -1,26 +1,77 @@
 package models;
 
 import models.cards.BonusCard;
+import models.locations.*;
 import observers.BoardObservable;
 import observers.GameViewObserver;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Board implements BoardObservable {
 
-    // Variables
+    // SystemVariables
     private List<GameViewObserver> observers = new ArrayList<>();
+
+    // GameVariables
     public List<Player> players = new LinkedList<>();
-    private List<Dice> dice = new ArrayList<>();
-    private Governor governor = new Governor();
-    private Smuggler smuggler = new Smuggler();
+    public Map<String, Object> tiles = new HashMap<>();
+    public Object[] cards;
+    public Dice[] dice;
+    public Governor governor = new Governor();
+    public Smuggler smuggler = new Smuggler();
 
-    // Constructor
-    public Board() {
+    public Board(){
+        fillTileList();
+    }
 
+    // feeds variables back into this class
+    public void setBoardData(Map variables){
+        //this.players = (List) variables.get("players");
+        setTileData((Map) variables.get("Tiles"));
+        //this.cards = (Object[]) variables.get("cards");
+        //this.dice = (Dice[]) variables.get("dice");
+        //this.governor = (Governor) variables.get("governor");
+        //this.smuggler = (Smuggler) variables.get("smuggler");
+    }
+
+    private void setTileData(Map tiles){
+        BlackMarket.getInstance().setData((Map)tiles.get("BlackMarket")); Caravansary.getInstance().setData((Map)tiles.get("Caravansary"));
+        FabricWarehouse.getInstance().setData((Map)tiles.get("FabricWarehouse")); Fountain.getInstance().setData((Map)tiles.get("Fountain"));
+
+        FruitWarehouse.getInstance().setData((Map)tiles.get("FruitWarehouse")); GemstoneDealer.getInstance().setData((Map)tiles.get("GemstoneDealer"));
+        GreatMarket.getInstance().setData((Map)tiles.get("GreatMarket")); GreatMosque.getInstance().setData((Map)tiles.get("GreatMosque"));
+
+        PoliceStation.getInstance().setData((Map)tiles.get("PoliceStation")); PostOffice.getInstance().setData((Map)tiles.get("PostOffice"));
+        SmallMarket.getInstance().setData((Map)tiles.get("SmallMarket")); SmallMosque.getInstance().setData((Map)tiles.get("SmallMosque"));
+
+        SpiceWarehouse.getInstance().setData((Map)tiles.get("SpiceWarehouse")); SultanPalace.getInstance().setData((Map)tiles.get("SultanPalace"));
+        TeaHouse.getInstance().setData((Map)tiles.get("TeaHouse")); Wainwright.getInstance().setData((Map)tiles.get("Wainwright"));
+    }
+
+    // returns hashmap of variables of this class
+    public Map getVariables(){
+        Map variables = new HashMap();
+        variables.put("players", players);
+        variables.put("tiles", tiles);
+        variables.put("cards", cards);
+        variables.put("dice", dice);
+        variables.put("governor", governor);
+        variables.put("smuggler", smuggler);
+        return variables;
+    }
+
+    private void fillTileList(){
+        tiles.put("BlackMarket", BlackMarket.getInstance()); tiles.put("Caravansary", Caravansary.getInstance());
+        tiles.put("FabricWarehouse", FabricWarehouse.getInstance()); tiles.put("Fountain", Fountain.getInstance());
+
+        tiles.put("FruitWarehouse", FruitWarehouse.getInstance()); tiles.put("GemstoneDealer", GemstoneDealer.getInstance());
+        tiles.put("GreatMarket", GreatMarket.getInstance()); tiles.put("PoliceStation", PoliceStation.getInstance());
+
+        tiles.put("PostOffice", PostOffice.getInstance()); tiles.put("SmallMarket", SmallMarket.getInstance());
+        tiles.put("SmallMosque", SmallMosque.getInstance()); tiles.put("SpiceWarehouse", SpiceWarehouse.getInstance());
+
+        tiles.put("SultanPalace", SultanPalace.getInstance()); tiles.put("TeaHouse", TeaHouse.getInstance());
+        tiles.put("WainWright", Wainwright.getInstance()); tiles.put("GreatMosque", GreatMarket.getInstance());
     }
 
     // Observer Pattern
@@ -36,28 +87,27 @@ public class Board implements BoardObservable {
         }
     }
 
-    public Player getCurrentPlayerTurn() {
-        return null;
+    public void shufflePlayers() {
+        Collections.shuffle(players);
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
+    // Setters
     public void addPlayer(Player player) {
         players.add(player);
     }
-
-    public Player getPlayer() {
-        return players.get(0);
-    }
-
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
 
-    public void shufflePlayers() {
-        Collections.shuffle(players);
+    // Getters
+    public Player getPlayer() {
+        return players.get(0);
+    }
+    public Player getCurrentPlayerTurn() {
+        return null;
+    }
+    public List<Player> getPlayers() {
+        return players;
     }
 
     // singleton pattern

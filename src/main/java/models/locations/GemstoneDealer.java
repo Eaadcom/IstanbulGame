@@ -5,7 +5,9 @@ import observers.LocationViewObserver;
 import observers.locations.GemstoneDealerObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GemstoneDealer implements Location, GemstoneDealerObservable {
 
@@ -17,6 +19,20 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
     public boolean greenAs = false;
     public boolean yellowAs = false;
     public boolean whiteAs = false;
+    private int gemstonePrice = 12;
+
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
+
+        Data.put("gemstonePrice", gemstonePrice);
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+        this.gemstonePrice = (int) variables.get("gemstonePrice");
+    }
 
     public boolean color(String color) {
         boolean myColor;
@@ -51,7 +67,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
         }
     }
 
-    private int gemstonePrice = 12;
+
 
     // Observer Pattern
     @Override

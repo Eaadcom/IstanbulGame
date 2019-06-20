@@ -6,7 +6,9 @@ import observers.LocationViewObserver;
 import observers.locations.SmallMarketObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SmallMarket implements Location, SmallMarketObservable {
 
@@ -18,6 +20,23 @@ public class SmallMarket implements Location, SmallMarketObservable {
     private int fruit  = 1;
 
     private int STATE = 0;
+
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
+
+        Data.put("jewel", jewel); Data.put("fabric", fabric);
+        Data.put("spice", spice); Data.put("fruit", fruit);
+        Data.put("STATE", STATE);
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+        this.jewel = (int) variables.get("jewel"); this.fabric = (int) variables.get("fabric");
+        this.spice = (int) variables.get("spice"); this.fruit = (int) variables.get("fruit");
+        this.STATE = (int) variables.get("STATE");
+    }
 
     private void setStateValue() {
         if (STATE == 0) {

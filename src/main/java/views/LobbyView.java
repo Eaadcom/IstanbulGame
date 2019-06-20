@@ -58,7 +58,8 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     private void loadGameScreen() {
         try {
-            GameView.getInstance().start();
+            //if (GameController.getInstance().getGamePhase()){
+                GameView.getInstance().start();//}
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,8 +93,13 @@ public class LobbyView implements LobbyViewObserver, Initializable {
     }
 
     private void setPlayerNames(List<String> playersNames) {
+        int count = 0;
         for (int i = 0; i < playersNames.size(); i++) {
+            if (count == 5){
+                break;
+            }
             playerTexts.get(i).setText(playersNames.get(i));
+            count++;
         }
     }
 

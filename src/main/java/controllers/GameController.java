@@ -16,6 +16,7 @@ import models.cards.BonusCard;
 import observers.GameViewLobbyViewObserver;
 import observers.GameViewObserver;
 
+import java.awt.*;
 import java.util.List;
 
 public class GameController {
@@ -66,6 +67,13 @@ public class GameController {
         return game.getPlayer();
     }
 
+    public boolean getGamePhase(){
+        return game.gameStarted;
+    }
+
+    public void pauseGame(){
+        game.pauseGame();
+    }
 
     /**
      *Check in the game model if player has moves already
@@ -110,6 +118,10 @@ public class GameController {
 //        return 6;
     }
 
+    public void increaseTurn(){
+        game.increaseTurnCounter();
+    }
+
     public void setNextTurn() {
         game.increaseTurnCounter();
     }
@@ -135,7 +147,7 @@ public class GameController {
 
     public void endTurn() {
         game.increaseTurnCounter();
-        firebaseController.updateGame(game);
+        updateGame();
     }
 
     public void registerGameOrLobbyObserverToGame(GameViewLobbyViewObserver gameView) {
@@ -156,6 +168,10 @@ public class GameController {
         Player player = playerController.createNewPlayer(mainMenu.getUsername());
         game.addInitialPlayer(player);
         firebaseController.createNewGame(game);
+    }
+
+    public void updateGame(){
+        FirebaseController.getInstance().updateGame(game);
     }
 
     public void joinGame(QueryDocumentSnapshot document) {
@@ -179,10 +195,17 @@ public class GameController {
         game.updateFromSnapShot(documentSnapshot);
     }
 
-
     public void startGame() {
         game.startGame();
         firebaseController.updateGame(game);
+    }
+
+    public void tilesToModel(List<javafx.scene.control.Button> randomMap) {
+
+    }
+
+    public void tilesToModel(javafx.scene.control.Button[][] buttonMap) {
+
     }
 }
 

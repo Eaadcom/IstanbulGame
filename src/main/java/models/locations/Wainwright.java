@@ -5,7 +5,9 @@ import observers.LocationViewObserver;
 import observers.locations.WainwrightObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Wainwright implements Location, WainwrightObservable {
     private static Wainwright wainwright;
@@ -15,6 +17,19 @@ public class Wainwright implements Location, WainwrightObservable {
     public boolean greenAs = false;
     public boolean yellowAs = false;
     public boolean whiteAs = false;
+
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
+
+        Data.put("Location", Location);
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+        this.Location = (int) variables.get("Location");
+    }
 
     public boolean color(String color) {
         boolean myColor;

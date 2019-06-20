@@ -57,9 +57,6 @@ public class GameView implements GameViewObserver, Initializable {
     private SultansPalaceView sultansPalaceView = SultansPalaceView.getInstance();
     private PostOfficeView postOfficeView = PostOfficeView.getInstance();
 
-    // Waarom wordt hier een tweede gamecontroller aangemaakt ???
-    private GameController gameController1 = new GameController();
-
     // FXML variables
     @FXML
     public Pane playerblue, playerred, playergreen, playerYellow, playerwhite; // aanmaken fx:id
@@ -84,6 +81,8 @@ public class GameView implements GameViewObserver, Initializable {
 
     private Button[][] easyMap;
     private Button[][] hardMap;
+    private Button[][] mediumMap;
+    private List<Button> randomMap;
     private Pane[] players;
     private Pane[] family;
     private Pane[] assistants;
@@ -174,7 +173,9 @@ public class GameView implements GameViewObserver, Initializable {
         Pane myPane = null;
         List<Player> players = gameController.getGame().getPlayers();
         String myPlayerName = gameController.getMyPlayer().getName();
-        for (int i = 0; i < players.size(); i++) {
+        int playersSize = players.size();
+        if (playersSize > 4){ playersSize = 4;}
+        for (int i = 0; i < playersSize; i++) {
             if (players.get(i).getName().equals(myPlayerName)) {
                 myPane = this.players[i];
                 possibleMoves(myPane);
@@ -195,6 +196,7 @@ public class GameView implements GameViewObserver, Initializable {
             familyPane.setVisible(false);
         }
         int amountOfPlayers = gameController.getGame().getPlayers().size();
+        if (amountOfPlayers > 4){amountOfPlayers = 4;}
         for (int i = 0; i < amountOfPlayers; i++) {
             players[i].setVisible(true);
             family[i].setVisible(true);
@@ -214,14 +216,19 @@ public class GameView implements GameViewObserver, Initializable {
     }
     private void initializeMaps() {
         easyMap = new Button[][]{{tile15, tile4, tile8, tile13},
-            {tile5, tile12, tile6, tile10},
-            {tile2, tile7, tile11, tile1},
-            {tile14, tile3, tile9, tile16}};
+                {tile5, tile12, tile6, tile10},
+                {tile2, tile7, tile11, tile1},
+                {tile14, tile3, tile9, tile16}};
 
         hardMap = new Button[][]{{tile16, tile15, tile3, tile10},
-            {tile2, tile7, tile5, tile9},
-            {tile8, tile6, tile12, tile14},
-            {tile11, tile4, tile1, tile13}};
+                {tile2, tile7, tile5, tile9},
+                {tile8, tile6, tile12, tile14},
+                {tile11, tile4, tile1, tile13}};
+
+//        mediumMap = new Button[][]{{tile1, tile2, tile3, tile4},
+//                {tile5, tile6, tile7, tile8},
+//                {tile9, tile10, tile11, tile12},
+//                {tile13, tile14, tile15, tile16}};
     }
 
     private void disableAllTiles() {
@@ -281,22 +288,17 @@ public class GameView implements GameViewObserver, Initializable {
         Difficulty difficulty = gameController.getDifficulty();
 
         if (difficulty.equals(EASY)) {
-            buildEasyMap();
+            buildMapForDifficulty(easyMap);
         }
         if (difficulty.equals(Difficulty.HARD)) {
-            buildHardMap();
+            buildMapForDifficulty(hardMap);
         }
         if (difficulty.equals(Difficulty.RANDOM)) {
             buildRandomMap();
         }
-    }
-
-    public void buildEasyMap() {
-        buildMapForDifficulty(easyMap);
-    }
-
-    public void buildHardMap() {
-        buildMapForDifficulty(hardMap);
+//        if (difficulty.equals(Difficulty.MEDIUM)){
+//            buildMapForDifficulty(mediumMap);
+//        }
     }
 
     private void buildMapForDifficulty(final Button[][] buttonMap) {
@@ -306,12 +308,14 @@ public class GameView implements GameViewObserver, Initializable {
                 grid.add(buttonMap[y][x], y, x);
             }
         }
+        GameController.getInstance().tilesToModel(buttonMap);
     }
 
     public void buildRandomMap() {
         grid.getChildren().clear();
         List<Button> buttons = Arrays.asList(tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16);
         Collections.shuffle(buttons);
+        randomMap = buttons;
 
         Button[] buttonArray = buttons.toArray(new Button[buttons.size()]);
 
@@ -324,6 +328,7 @@ public class GameView implements GameViewObserver, Initializable {
         for (int i = 0; i < 16; i++) {
             grid.add(buttonArray[i], locatiesCoordinaten[i][0], locatiesCoordinaten[i][1]);
         }
+        GameController.getInstance().tilesToModel(randomMap);
     }
 
     // Closes popups
@@ -339,7 +344,6 @@ public class GameView implements GameViewObserver, Initializable {
     // Popup to show the progression of an enemy player
     public void endTurn() throws IOException {
         if (popUpView.endTurn()) {
-            System.out.println("end turn");
             gameController.endTurn();
         }
     }
@@ -590,7 +594,10 @@ public class GameView implements GameViewObserver, Initializable {
         postOfficeView.postOffice();
     }
 
+
+
     // Closes the game
+    //TODO this function is not used anywhere
     public void close() {
         System.exit(0);
     }
@@ -676,7 +683,7 @@ public class GameView implements GameViewObserver, Initializable {
         if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.isGameEnded()) {
             disableTiles(false);
             // TURNCOUNTER++;
-
+            //GameController.getInstance().increaseTurn();
         }
     }
 

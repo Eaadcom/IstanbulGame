@@ -5,7 +5,9 @@ import observers.LocationViewObserver;
 import observers.locations.CaravansaryObservable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Caravansary implements Location, CaravansaryObservable {
 
@@ -20,6 +22,19 @@ public class Caravansary implements Location, CaravansaryObservable {
     public boolean greenAs = false;
     public boolean yellowAs = false;
     public boolean whiteAs = false;
+
+    // Firebase
+    public Map<String, Object> getVariableMap(){
+        Map<String, Object> Data = new HashMap<>();
+
+        Data.put("Location", Location); Data.put("usedBonusCards", usedBonusCards);
+
+        return Data;
+    }
+
+    public void setData(Map variables){
+        this.Location = (int) variables.get("Location");
+    }
 
     public boolean color(String color) {
         boolean myColor;
