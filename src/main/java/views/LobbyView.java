@@ -98,7 +98,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
             if (count == 5){
                 break;
             }
-            playerTexts.get(i).setText(playersNames.get(i));
+            playerTexts.get(i).setText(GameController.getInstance().getGame().board.getPlayers().get(i).getName());
             count++;
         }
     }

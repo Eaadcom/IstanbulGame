@@ -177,6 +177,13 @@ public class GameController {
     public void joinGame(QueryDocumentSnapshot document) {
         MainMenu mainMenu = menuViewController.getMainMenu();
         this.game = new Game(document);
+        int playersJoined = GameController.getInstance().getGame().board.players.size();
+
+        if (playersJoined == 1){ GameController.getInstance().getGame().myPlayerID = 2; }
+        if (playersJoined == 2){ GameController.getInstance().getGame().myPlayerID = 3; }
+        if (playersJoined == 3){ GameController.getInstance().getGame().myPlayerID = 4; }
+        if (playersJoined == 4){ GameController.getInstance().getGame().myPlayerID = 5; }
+
         Player newPlayer = playerController.createNewPlayer(mainMenu.getUsername());
         game.addPlayer(newPlayer);
         firebaseController.updateGame(game);
