@@ -26,6 +26,7 @@ import models.Game;
 import models.Player;
 import models.cards.BonusCard;
 import models.locations.GemstoneDealer;
+import models.locations.SultanPalace;
 import observers.*;
 
 import java.io.IOException;
@@ -95,51 +96,55 @@ public class GameView implements GameViewObserver, Initializable {
 
     // Starts the game
     public void start() throws Exception {
-        try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
-            Parent root1 = fxmlloader.load();
-            if (stage == null){
-                stage = new Stage();
-            }
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Istanbul");
-            stage.setScene(new Scene(root1));
-            stage.setMaximized(true);
+        Platform.runLater(
+                () -> {
+                    try {
+                        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
+                        Parent root1 = fxmlloader.load();
+                        if (stage == null) {
+                            stage = new Stage();
+                        }
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.setTitle("Istanbul");
+                        stage.setScene(new Scene(root1));
+                        stage.setMaximized(true);
 
-            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-            stage.setX(primaryScreenBounds.getMinX());
-            stage.setY(primaryScreenBounds.getMinY());
-            stage.setWidth(primaryScreenBounds.getWidth());
-            stage.setHeight(primaryScreenBounds.getHeight());
-            stage.show();
+                        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+                        stage.setX(primaryScreenBounds.getMinX());
+                        stage.setY(primaryScreenBounds.getMinY());
+                        stage.setWidth(primaryScreenBounds.getWidth());
+                        stage.setHeight(primaryScreenBounds.getHeight());
+                        stage.show();
 
 
-            //Sultans palace
-            SultanRed = (Text) root1.lookup("#SultanRed");
-            SultanBlue = (Text) root1.lookup("#SultanBlue");
-            SultanYellow = (Text) root1.lookup("#SultanYellow");
-            SultanGreen = (Text) root1.lookup("#SultanGreen");
-            SultanChoice = (Text) root1.lookup("#SultanChoice");
+                        //Sultans palace
+                        SultanRed = (Text) root1.lookup("#SultanRed");
+                        SultanBlue = (Text) root1.lookup("#SultanBlue");
+                        SultanYellow = (Text) root1.lookup("#SultanYellow");
+                        SultanGreen = (Text) root1.lookup("#SultanGreen");
+                        SultanChoice = (Text) root1.lookup("#SultanChoice");
 
-            //player values
-            playerLira = (Text) root1.lookup("#playerLira");
-            playerRubies = (Text) root1.lookup("#playerRubies");
-            playerFabrics = (Text) root1.lookup("#playerFabrics");
-            playerFruits = (Text) root1.lookup("#playerFruits");
-            playerSpices = (Text) root1.lookup("#playerSpices");
-            playerJewels = (Text) root1.lookup("#playerJewels");
-            //maxFabric = (Text) root1.lookup("#maxFabric");
-            //maxFruit = (Text) root1.lookup("#maxFruit");
-            //maxSpice = (Text) root1.lookup("#maxSpice");
-            //maxJewel = (Text) root1.lookup("#maxJewel");
+                        //player values
+                        playerLira = (Text) root1.lookup("#playerLira");
+                        playerRubies = (Text) root1.lookup("#playerRubies");
+                        playerFabrics = (Text) root1.lookup("#playerFabrics");
+                        playerFruits = (Text) root1.lookup("#playerFruits");
+                        playerSpices = (Text) root1.lookup("#playerSpices");
+                        playerJewels = (Text) root1.lookup("#playerJewels");
+                        maxFabric = (Text) root1.lookup("#maxFabric");
+                        maxFruit = (Text) root1.lookup("#maxFruit");
+                        maxSpice = (Text) root1.lookup("#maxSpice");
+                        maxJewel = (Text) root1.lookup("#maxJewel");
 
-            gemPrice = (Text) root1.lookup("#gemPrice");
+                        gemPrice = (Text) root1.lookup("#gemPrice");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException ie){
-            //helemaal niks
-        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (IllegalStateException ie) {
+                        //helemaal niks
+                    }
+                }
+        );
     }
 
 
@@ -677,7 +682,7 @@ public class GameView implements GameViewObserver, Initializable {
 
         // [1,0] [-1,0] [0,1] [0,-1]
 
-        final int moves = 2;
+        final int moves = 4;
 
         for (int i = 0; i < tiles.size(); i++) {
             Button button = tiles.get(i);
@@ -838,6 +843,26 @@ public class GameView implements GameViewObserver, Initializable {
         //maxJewel.setText(String.valueOf(player.getMaxJewels()));
         //maxSpice.setText(String.valueOf(player.getMaxSpices()));
 
+    }
+
+    public void updateBoard(Player player){
+        playerLira.setText(String.valueOf(player.getLira()));
+        playerRubies.setText(String.valueOf(player.getRubies()));
+        playerJewels.setText(String.valueOf(player.getJewels()));
+        playerFabrics.setText(String.valueOf(player.getFabrics()));
+        playerSpices.setText(String.valueOf(player.getSpices()));
+        playerFruits.setText(String.valueOf(player.getFruits()));
+
+        maxFabric.setText(String.valueOf(player.getMaxFabrics()));
+        maxFruit.setText(String.valueOf(player.getMaxFruits()));
+        maxJewel.setText(String.valueOf(player.getMaxJewels()));
+        maxSpice.setText(String.valueOf(player.getMaxSpices()));
+
+        SultanBlue.setText(String.valueOf(SultanPalace.getInstance().getJewelPrice()));
+        SultanRed.setText(String.valueOf(SultanPalace.getInstance().getFabricPrice()));
+        SultanGreen.setText(String.valueOf(SultanPalace.getInstance().getSpicePrice()));
+        SultanYellow.setText(String.valueOf(SultanPalace.getInstance().getFruitPrice()));
+        SultanChoice.setText(String.valueOf(SultanPalace.getInstance().getChoiceAmount()));
     }
 
     @Override
