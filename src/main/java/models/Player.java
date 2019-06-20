@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is the player. An object of this class is created for every player. All statistics of a player, including it's position on the board, are stored here.
+ * This class is the player.
+ * An object of this class is created for every player.
+ * All statistics of a player, including it's position on the board, are stored here.
  * @author Stan, Joeri
  * @version 4 juni 2019
  */
@@ -45,6 +47,8 @@ public class Player implements PlayerObservable {
     public boolean redTile = false;
     public boolean blueTile = false;
     public boolean yellowTile = false;
+
+    public int positionOnBoard = 7;
 
     public boolean hasMoved = false;
 

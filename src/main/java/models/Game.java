@@ -28,16 +28,6 @@ public class Game implements GameObservable {
     // SystemVariables
     private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
 
-
-
-
-
-
-
-
-
-
-
     public Game(String name, int playerTotal, Difficulty difficulty) {
         this.name = name;
         this.playerTotal = playerTotal;

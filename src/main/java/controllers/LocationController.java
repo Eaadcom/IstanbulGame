@@ -58,8 +58,6 @@ public class LocationController{
         if (myPlayer.assistants > 0) {
             hasAssistants = true;
 
-
-
             switch (location) {
 
                 case 1:
@@ -215,9 +213,8 @@ public class LocationController{
         } else{
              hasAssistants = false;
         }
-
-
     }
+
     public void Fountain(){
         blackMarket.setColor(myPlayer.color, false);
         caravansary.setColor(myPlayer.color, false);
@@ -424,7 +421,7 @@ public class LocationController{
             GameView.getInstance().movePoliceStation(5);
         }
         else if (usernamefield.contains("6")) {
-            //GameView.getInstance().movePoliceStation(6);
+            GameView.getInstance().movePoliceStation(6);
         }
         else if (usernamefield.contains("7")) {
             GameView.getInstance().movePoliceStation(7);
