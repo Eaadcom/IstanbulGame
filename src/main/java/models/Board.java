@@ -109,7 +109,7 @@ public class Board implements BoardObservable {
 
     // Setters
     public void addPlayer(Player player) {
-        players.add(player);
+        players.add(players.size(), player);
     }
     public void setPlayers(List<Player> players) {
         this.players = players;
