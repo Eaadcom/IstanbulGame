@@ -408,7 +408,7 @@ public class GameView implements GameViewObserver, Initializable {
 
             gameController.setNextPlayer();
             possibleMoves(pane);
-            disableTiles(true);
+            //disableTiles(true);
         }
     }
 
@@ -424,6 +424,7 @@ public class GameView implements GameViewObserver, Initializable {
         if (tileNumber == 1) {
             wainwright();
             GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+            System.out.println("Hij is: " + familyMember);
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
         }
         else if (tileNumber == 2) {
