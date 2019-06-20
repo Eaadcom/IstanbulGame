@@ -43,9 +43,17 @@ public class PlayerController {
         }
     }
 
+    /**
+     * Upgrades the maximum values of the cart so the player can have more goods.
+     * @author Stan Hogenboom
+     * @version 19-6-2019
+     */
     public void CarUpgrader(){
-
-            myPlayer.carUpgrades += 1;
+            myPlayer.carUpgrades++;
+            myPlayer.maxSpices++;
+            myPlayer.maxFabrics++;
+            myPlayer.maxFruits++;
+            myPlayer.maxJewels++;
             if(myPlayer.carUpgrades == 3){
                 addRubysLiras("ruby", 1);
             }

@@ -238,7 +238,7 @@ public class LocationController{
         myPlayer.assistants = myPlayer.maxAssistants;
     }
     public void wainrightBuyer(){
-        if(myPlayer.lira > 7 || myPlayer.lira == 7) {
+        if(myPlayer.lira >= 7) {
             if (myPlayer.carUpgrades < 3) {
                 playerController.addRubysLiras("lira", -7);
                 playerController.CarUpgrader();
@@ -249,7 +249,6 @@ public class LocationController{
 
         }
         System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
-
 
     }
 
@@ -474,18 +473,14 @@ public class LocationController{
     public void gemstoneDealerAction() {
         GemstoneDealer gsd = GemstoneDealer.getInstance();
         int price = gsd.getGemstonePrice();
-        //LocationView lcv = LocationView.getInstance();
 
         if(myPlayer.lira > price){
             playerController.addRubysLiras("ruby", 1);
             playerController.addRubysLiras("lira", -price);
             gsd.updatePrice(price + 1);
-            System.out.println("De nieuwe prijs is: " + gsd.getGemstonePrice());
-            //lcv.close(); <- werkt niet
         }
         else {
             System.out.println("Niet genoeg Lira");
-            //lcv.close(); <- werkt niet
             //hier moet een scherm met de tekst [je hebt niet genoeg lira]
         }
     }
@@ -497,5 +492,4 @@ public class LocationController{
         }
         return locationController;
     }
-
 }

@@ -15,6 +15,7 @@ public class Wainwright implements Location, WainwrightObservable {
     public boolean greenAs = false;
     public boolean yellowAs = false;
     public boolean whiteAs = false;
+
     public boolean color(String color) {
         boolean myColor;
         if (color == "red") {

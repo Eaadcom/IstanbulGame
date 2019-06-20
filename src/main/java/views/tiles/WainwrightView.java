@@ -20,10 +20,7 @@ public class WainwrightView {
             wainwrightView = new WainwrightView();
         }
         return wainwrightView;
-
-
     }
-
 
     public void wainwright() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/wainwright.fxml"));
@@ -39,7 +36,5 @@ public class WainwrightView {
         } else{
             System.out.println("Nope");
         }
-
-
     }
 }
