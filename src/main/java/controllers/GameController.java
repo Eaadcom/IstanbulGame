@@ -18,6 +18,7 @@ import observers.GameViewObserver;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Map;
 
 public class GameController {
 
@@ -175,8 +176,11 @@ public class GameController {
     }
 
     public void joinGame(QueryDocumentSnapshot document) {
+        //Map<String, Object> newData =  firebaseController.getGameDataFromFirebase();
+        DocumentSnapshot documentSnapshot = firebaseController.getGameDataFromFirebase();
         MainMenu mainMenu = menuViewController.getMainMenu();
         this.game = new Game(document);
+        game.updateFromSnapShot(documentSnapshot);
         int playersJoined = GameController.getInstance().getGame().board.players.size();
 
         if (playersJoined == 1){ GameController.getInstance().getGame().myPlayerID = 2; }
@@ -186,9 +190,8 @@ public class GameController {
 
         Player newPlayer = playerController.createNewPlayer(mainMenu.getUsername());
         game.addPlayer(newPlayer);
-        System.out.println(document.getData());
+        System.out.println(document.getData().get("Players"));
         System.out.println(GameController.getInstance().getGame().board.players.get(0).name);
-        System.out.println(newPlayer);
         updateGame();
     }
 

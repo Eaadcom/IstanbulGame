@@ -38,7 +38,7 @@ public class BlackMarket implements Location, BlackMarketObservable {
     }
 
     public void setData(Map variables){
-        this.Location = (int) variables.get("Location");
+        this.Location = Math.toIntExact((long) variables.get("Location"));
     }
 
     // Constructor

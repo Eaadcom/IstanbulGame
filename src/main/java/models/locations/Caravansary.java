@@ -33,7 +33,7 @@ public class Caravansary implements Location, CaravansaryObservable {
     }
 
     public void setData(Map variables){
-        this.Location = (int) variables.get("Location");
+        this.Location = Math.toIntExact((Long) variables.get("Location"));
     }
 
     public boolean color(String color) {

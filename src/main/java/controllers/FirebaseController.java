@@ -238,6 +238,19 @@ public class FirebaseController {
         return firebaseController;
     }
 
+    public DocumentSnapshot getGameDataFromFirebase(){
+        try{
+            System.out.println(db);
+            ApiFuture<DocumentSnapshot> future = db.collection("Games").document(GameController.getInstance().getGame().getName()).get();
+            DocumentSnapshot documentSnapshot = future.get();
+            //Map<String, Object> dataMap = documentSnapshot.getData();
+            return documentSnapshot;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void startWatchForChangesForGame(Game game) {
         System.out.println("Start watching for changes for game: " + game.getName());
         Runnable runnable = () -> {

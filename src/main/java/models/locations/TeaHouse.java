@@ -30,7 +30,7 @@ public class TeaHouse implements Location, TeaHouseObservable {
     }
 
     public void setData(Map variables){
-        this.Location = (int) variables.get("Location");
+        this.Location = Math.toIntExact((long) variables.get("Location"));
     }
 
 
