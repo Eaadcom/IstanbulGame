@@ -28,6 +28,15 @@ public class Game implements GameObservable {
     // SystemVariables
     private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
 
+
+    public void nextTurn(){
+        if (turnCounter == getPlayerTotal() - 1){
+            turnCounter = 0;
+        } else{
+            turnCounter++;
+        }
+    }
+
     public Game(String name, int playerTotal, Difficulty difficulty) {
         this.name = name;
         this.playerTotal = playerTotal;

@@ -1,5 +1,6 @@
 package models;
 
+import controllers.GameController;
 import models.cards.BonusCard;
 import models.locations.*;
 import observers.BoardObservable;
@@ -13,7 +14,7 @@ public class Board implements BoardObservable {
     private List<GameViewObserver> observers = new ArrayList<>();
 
     // GameVariables
-    public List<Player> players = new LinkedList<>();
+    public List<Player> players = new LinkedList<Player>();
     public Map<String, Object> tiles = new HashMap<>();
     public Object[] cards;
     public Dice[] dice;
@@ -26,12 +27,27 @@ public class Board implements BoardObservable {
 
     // feeds variables back into this class
     public void setBoardData(Map variables){
-        //this.players = (List) variables.get("players");
+        setPlayerData((Map) variables.get("Players"));
         setTileData((Map) variables.get("Tiles"));
         //this.cards = (Object[]) variables.get("cards");
         //this.dice = (Dice[]) variables.get("dice");
         //this.governor = (Governor) variables.get("governor");
         //this.smuggler = (Smuggler) variables.get("smuggler");
+    }
+
+    private void setPlayerData(Map<String, Object> playersList){
+        int playerTotal = GameController.getInstance().getGame().getPlayerTotal(); //TODO niet goed volgens MVC
+
+        players.get(0).setData((Map) playersList.get("Player1"));
+        if (playersList.size() >= 2){
+            players.get(1).setData((Map) playersList.get("Player2"));
+        } if (playersList.size() >= 3){
+            players.get(2).setData((Map) playersList.get("Player3"));
+        } if (playersList.size() >= 4){
+            players.get(3).setData((Map) playersList.get("Player4"));
+        } if (playersList.size() == 5){
+            players.get(4).setData((Map) playersList.get("Player5"));
+        }
     }
 
     private void setTileData(Map tiles){
