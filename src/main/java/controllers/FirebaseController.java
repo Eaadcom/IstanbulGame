@@ -112,7 +112,7 @@ public class FirebaseController {
     }
 
     private Map<String, Object> createKeyValueMapForPlayers(Board board){
-        try{
+//        try{
             Map<String, Object> players = new HashMap<>();
             int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
             int playerListLength = gameController.getInstance().getGame().board.players.size();
@@ -132,12 +132,12 @@ public class FirebaseController {
             }
 
             return players;
-        } catch (IndexOutOfBoundsException ie){
-            Map<String, Object> players = new HashMap<>();
-            Player player1 = board.getPlayers().get(0);
-            players.put("Player1", player1.getVariableMap());
-            return players;
-        }
+//        } catch (IndexOutOfBoundsException ie){
+//            Map<String, Object> players = new HashMap<>();
+//            Player player1 = board.getPlayers().get(0);
+//            players.put("Player1", player1.getVariableMap());
+//            return players;
+//        }
 
     }
 
