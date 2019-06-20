@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -117,27 +116,27 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="SultanRed" id="SultanRed" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanRed" fx:id="SultanRed" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanYellow" id="SultanYellow" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanYellow" fx:id="SultanYellow" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanGreen" id="SultanGreen" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanGreen" fx:id="SultanGreen" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanBlue" id="SultanBlue" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanBlue" fx:id="SultanBlue" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanChoice" id="SultanChoice" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanChoice" fx:id="SultanChoice" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
@@ -321,7 +320,10 @@
                </children></Pane>
             <Pane prefHeight="297.0" prefWidth="360.0">
                <children>
-                  <Button fx:id="endturn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#endTurn" text="end turn" />
+                  <Button fx:id="endturn" layoutX="130.0" layoutY="233.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #262626; -fx-border-radius: 10;" text="end turn" textFill="#eeeeee">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Button>
                   <Button id="bc" fx:id="bonuscard" layoutX="50.0" layoutY="14.0" mnemonicParsing="false" onAction="#bonusCards" prefHeight="203.0" prefWidth="260.0" />
                </children></Pane>
             <Pane id="goodsback" prefHeight="240.0" prefWidth="360.0">
