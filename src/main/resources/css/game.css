@@ -78,6 +78,12 @@
 #bc{
     -fx-background-image: url('../img/bc.png');
 }
+#usetile{
+    -fx-background-image: url('../img/usetile.png');
+}
+#endturnbutton{
+    -fx-background-image: url('../img/endturnbutton.png');
+}
 
 
 #player1, #player2, #player3, #player4, #player5{
@@ -88,14 +94,14 @@
     -fx-border-radius: 70;
 }
 
-#player1:hover,#player2:hover,#player3:hover,#player4:hover,#player5:hover,#menubutton:hover,#rulesbutton:hover,#smallClose:hover, #bc:hover{
+#player1:hover,#player2:hover,#player3:hover,#player4:hover,#player5:hover,#menubutton:hover,#rulesbutton:hover,#smallClose:hover, #bc:hover, #usetile:hover, #endturnbutton:hover{
     -fx-scale-y: 1.02;
     -fx-scale-x: 1.02;
     -fx-cursor: hand;
-    -fx-rotate: 2;
+    -fx-rotate: 1.3;
 }
 
-#player1:pressed,#player2:pressed,#player3:pressed,#player4:pressed,#player5:pressed,#menubutton:pressed,#rulesbutton:pressed, #bc:pressed{
+#player1:pressed,#player2:pressed,#player3:pressed,#player4:pressed,#player5:pressed,#menubutton:pressed,#rulesbutton:pressed, #bc:pressed, #usetile:pressed, #endturnbutton:pressed{
     -fx-scale-y: 0.98;
     -fx-scale-x: 0.98;
     -fx-cursor: hand;
@@ -248,7 +254,7 @@
     -fx-border-radius: 14;
 }
 
-#close, #bc {
+#close, #bc, #endturnbutton, #usetile {
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90%;
     -fx-border-width: 0;
@@ -269,14 +275,14 @@
      -fx-scale-y: 1.05;
      -fx-scale-x: 1.05;
      -fx-cursor: hand;
-    -fx-rotate: 2;
+    -fx-rotate: 1.5;
 }
 
 #tile1:hover, #tile2:hover, #tile3:hover, #tile4:hover, #tile5:hover, #tile6:hover, #tile7:hover, #tile8:hover, #tile9:hover, #tile10:hover, #tile11:hover, #tile12:hover, #tile13:hover, #tile14:hover, #tile15:hover, #tile16:hover{
     -fx-scale-y: 1.01;
     -fx-scale-x: 1.01;
     -fx-cursor: hand;
-    -fx-rotate: 0.5;
+    -fx-rotate: 0.3;
 }
 
 #close:pressed, #cac:pressed, #cpp:pressed, #closegame:pressed, #arrowleft:pressed, #arrowright:pressed{

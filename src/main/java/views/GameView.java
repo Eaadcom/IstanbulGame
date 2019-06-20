@@ -56,6 +56,7 @@ public class GameView implements GameViewObserver, Initializable {
     private GreatMosqueView greatMosqueView = GreatMosqueView.getInstance();
     private SultansPalaceView sultansPalaceView = SultansPalaceView.getInstance();
     private PostOfficeView postOfficeView = PostOfficeView.getInstance();
+    private CaravansaryView caravansaryView = CaravansaryView.getInstance();
 
     // Waarom wordt hier een tweede gamecontroller aangemaakt ???
     private GameController gameController1 = new GameController();
@@ -379,7 +380,7 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile5")) {
                 postOffice();
             } else if (source.getId().equals("tile6")) {
-                //Geen functie omdat dit de eigen tegel is
+                caravansary();
             } else if (source.getId().equals("tile7")) {
                 fountain();
             } else if (source.getId().equals("tile8")) {
@@ -442,7 +443,7 @@ public class GameView implements GameViewObserver, Initializable {
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile5));
         }
         else if (tileNumber == 6) {
-            //PUT CARAVANSERY HERE WHEN READY
+            caravansary();
             GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile6));
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile6));
         }
@@ -588,6 +589,9 @@ public class GameView implements GameViewObserver, Initializable {
     }
     public void postOffice() throws IOException {
         postOfficeView.postOffice();
+    }
+    public void caravansary() throws IOException {
+        caravansaryView.caravansary();
     }
 
     // Closes the game

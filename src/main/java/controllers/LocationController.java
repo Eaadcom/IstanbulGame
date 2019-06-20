@@ -425,7 +425,7 @@ public class LocationController{
             GameView.getInstance().movePoliceStation(5);
         }
         else if (usernamefield.contains("6")) {
-            //GameView.getInstance().movePoliceStation(6);
+            GameView.getInstance().movePoliceStation(6);
         }
         else if (usernamefield.contains("7")) {
             GameView.getInstance().movePoliceStation(7);
