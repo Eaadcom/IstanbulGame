@@ -246,7 +246,7 @@ public class GameView implements GameViewObserver, Initializable {
 
     private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
-        addToGrid(famred, tile12);
+        addToGrid(famred, tile1);
         addToGrid(famyellow, tile12);
         addToGrid(famgreen, tile12);
         addToGrid(famwhite, tile12);
@@ -424,8 +424,8 @@ public class GameView implements GameViewObserver, Initializable {
         if (tileNumber == 1) {
             wainwright();
             GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
-            System.out.println("Hij is: " + familyMember);
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
+            GameController.getInstance().getMyPlayer().familyMember.location = 1;
         }
         else if (tileNumber == 2) {
             fabricWarehouse();
