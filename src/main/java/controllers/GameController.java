@@ -186,6 +186,9 @@ public class GameController {
 
         Player newPlayer = playerController.createNewPlayer(mainMenu.getUsername());
         game.addPlayer(newPlayer);
+        System.out.println(document.getData());
+        System.out.println(GameController.getInstance().getGame().board.players);
+        System.out.println(newPlayer);
         firebaseController.updateGame(game);
     }
 
