@@ -13,6 +13,7 @@ import models.Firebase;
 import models.Game;
 import models.Player;
 import models.locations.*;
+import util.GameInformation;
 
 import java.util.*;
 import java.io.FileInputStream;
@@ -241,7 +242,7 @@ public class FirebaseController {
     public DocumentSnapshot getGameDataFromFirebase(){
         try{
             System.out.println(db);
-            ApiFuture<DocumentSnapshot> future = db.collection("Games").document(GameController.getInstance().getGame().getName()).get();
+            ApiFuture<DocumentSnapshot> future = db.collection("Games").document(GameInformation.getGameInfo().getRoomname()).get();
             DocumentSnapshot documentSnapshot = future.get();
             //Map<String, Object> dataMap = documentSnapshot.getData();
             return documentSnapshot;
