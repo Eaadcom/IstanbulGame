@@ -414,6 +414,7 @@ public class GameView implements GameViewObserver, Initializable {
 
             gameController.setNextPlayer();
             possibleMoves(pane);
+            disableTiles(true);
         }
     }
 
@@ -642,45 +643,6 @@ public class GameView implements GameViewObserver, Initializable {
             popUpView.dontMove();
         }
     }
-
-
-    /**
-     * This is a method returns the location value of the player.
-     *
-     * @param player Specify the team color of the player you want to know the location of. ex: "red" or "green".
-     *               The method returns a location integer -1 which you can convert back into coordinates.
-     *               Example with return value 14: '13 % 4 = 3r1' results in a row/column index of: 3,1 .
-     * @author Thomas van Velzen
-     * @version 4 juni 2019
-     */
-    public int getPlayerPosition(String player) {
-        switch (player) {
-            case ("red"):
-                int red1 = grid.getColumnIndex(playerred);
-                int red2 = grid.getRowIndex(playerred);
-                return red1 + red2 - 1;
-            case ("yellow"):
-                int yel1 = grid.getColumnIndex(playerYellow);
-                int yel2 = grid.getRowIndex(playerYellow);
-                return yel1 + yel2 - 1;
-            case ("green"):
-                int gre1 = grid.getColumnIndex(playergreen);
-                int gre2 = grid.getRowIndex(playergreen);
-                return gre1 + gre2 - 1;
-            case ("blue"):
-                int blu1 = grid.getColumnIndex(playerblue);
-                int blu2 = grid.getRowIndex(playerblue);
-                return blu1 + blu2 - 1;
-            case ("white"):
-                int whi1 = grid.getColumnIndex(playerwhite);
-                int whi2 = grid.getRowIndex(playerwhite);
-                return whi1 + whi2 - 1;
-            default:
-                break;
-        }
-        return 17;
-    }
-
 
     /**
      * Checks if it's your turn and disbales tiles acordingly.

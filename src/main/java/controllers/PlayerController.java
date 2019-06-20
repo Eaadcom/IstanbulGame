@@ -31,7 +31,7 @@ public class PlayerController {
     Scanner scanner = new Scanner(System.in);
     private PopUpView pv = new PopUpView();
 
-    ////
+
     public void AssistantHandler(String todo){
 
         if(todo == "Remove"){
@@ -43,9 +43,17 @@ public class PlayerController {
         }
     }
 
+    /**
+     * Upgrades the maximum values of the cart so the player can have more goods.
+     * @author Stan Hogenboom
+     * @version 19-6-2019
+     */
     public void CarUpgrader(){
-
-            myPlayer.carUpgrades += 1;
+            myPlayer.carUpgrades++;
+            myPlayer.maxSpices++;
+            myPlayer.maxFabrics++;
+            myPlayer.maxFruits++;
+            myPlayer.maxJewels++;
             if(myPlayer.carUpgrades == 3){
                 addRubysLiras("ruby", 1);
             }
@@ -116,12 +124,15 @@ public class PlayerController {
         myPlayer.maxFruits = myPlayer.maxFruits + myPlayer.carUpgrades;
         myPlayer.maxJewels = myPlayer.maxJewels + myPlayer.carUpgrades;
     }
-    public void pay(int amount, Player player){
-        if (amount > player.lira){}else{
-            player.lira -= amount;
-            addRubysLiras("lira", amount);
-        }}
 
+    /**
+     * Adds either rubies or lira to the player.
+     * Can also be used to remove rubies and lira by inserting a negative number.
+     * @author Stan Hogenboom
+     * @version 20-6-2019
+     * @param g
+     * @param amount
+     */
     public void addRubysLiras(String g, int amount) {
         switch(g) {
             case "ruby":
@@ -207,13 +218,6 @@ public class PlayerController {
                 // code block
         }}
 
-    /**
-     * Deze functie wordt aangeroepen als een speler aan het begin van zijn beurt op een tegel klikt waar hij naartoe wilt lopen.
-     * @Author: Stan Hogenboom
-     * @Version: 3 juni 2019
-     * @param
-     */
-
     public int PlayerChoosesCard(){
 
         int CardChoice = scanner.nextInt();
@@ -221,29 +225,9 @@ public class PlayerController {
         return CardChoice;
     }
 
-//    public void placeAssistant(Location l){
-//        if(assistants > 0){
-//            assistants =- 1;
-//            l.placeAssistant(teamColor);
-//
-//    }}
-
     public void setName(String name){
         myPlayer.name = name;
     }
-
-    //    public static void getVariables() {
-//        LinkedHashMap<String, String> variables = new LinkedHashMap<>();
-//
-//        variables.put("className", className);
-//        variables.put("username", username);
-//        variables.put("gemstones", Integer.toString(gemstones));
-//        FirebaseController.firebaseWriter(variables);
-//    }
-//
-//    public static void updateVariables(HashMap variables){
-//
-//    }
 
     // Singleton Pattern
     public static PlayerController getInstance() {
@@ -252,12 +236,5 @@ public class PlayerController {
         }
         return playerController;
     }
-
-    /**
-     * deze functie houdt bij welke bonuskaarten de speler tot zijn beschikking heeft
-     * @AUTHOR Joeri van Duijkeren
-     * @VERSION 8 june 2019
-     */
-
 
 }
