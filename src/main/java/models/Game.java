@@ -108,7 +108,7 @@ public class Game implements GameObservable {
 
     public void startGame() {
         gameStarted = true;
-        board.shufflePlayers();
+        //board.shufflePlayers();
         notifyAllObservers();
     }
 
