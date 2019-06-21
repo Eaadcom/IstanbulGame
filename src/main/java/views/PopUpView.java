@@ -109,7 +109,6 @@ public class PopUpView {
     }
 
     public void confirmEndTurn() {
-        GameView.getInstance().disableTiles(true);
         this.endTurn = true;
         Stage stage = (Stage) endturn.getScene().getWindow();
         stage.close();

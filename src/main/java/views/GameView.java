@@ -121,7 +121,10 @@ public class GameView implements GameViewObserver, Initializable {
                             GameController.getInstance().getGame().removeDoubleGames = false;
                         }
 
-
+                        //Disable tiles if not your turn
+                        if (GameController.getInstance().getGame().turnCounter != GameController.getInstance().getGame().myPlayerID){
+                            GameView.getInstance().disableTiles(true);
+                        }
 
                         //Sultans palace
                         SultanRed = (Text) root1.lookup("#SultanRed");
