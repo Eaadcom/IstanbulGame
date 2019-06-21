@@ -244,12 +244,89 @@ public class GameView implements GameViewObserver, Initializable {
 
     }
 
+    private Button externalNode = tile12;
+
+    /**
+     * Translates the int 'location'  from familyMember to a button in this class.
+     * @author Stan Hogenboom
+     * @version 20-6-2019
+     * @param location
+     * @return
+     */
+    public Button findNode(int location) {
+        if (location == 1) {
+            externalNode = tile1;
+            return externalNode;
+        }
+        else if (location == 2) {
+            externalNode = tile2;
+            return externalNode;
+        }
+        else if (location == 3) {
+            externalNode = tile3;
+            return externalNode;
+        }
+        else if (location == 4) {
+            externalNode = tile4;
+            return externalNode;
+        }
+        else if (location == 5) {
+            externalNode = tile5;
+            return externalNode;
+        }
+        else if (location == 6) {
+            externalNode = tile6;
+            return externalNode;
+        }
+        else if (location == 7) {
+            externalNode = tile7;
+            return externalNode;
+        }
+        else if (location == 8) {
+            externalNode = tile8;
+            return externalNode;
+        }
+        else if (location == 9) {
+            externalNode = tile9;
+            return externalNode;
+        }
+        else if (location == 10) {
+            externalNode = tile10;
+            return externalNode;
+        }
+        else if (location == 11) {
+            externalNode = tile11;
+            return externalNode;
+        }
+        else if (location == 13) {
+            externalNode = tile13;
+            return externalNode;
+        }
+        else if (location == 14) {
+            externalNode = tile14;
+            return externalNode;
+        }
+        else if (location == 15) {
+            externalNode = tile15;
+            return externalNode;
+        }
+        else if (location == 16) {
+            externalNode = tile16;
+            return externalNode;
+        }
+        else {
+            externalNode = tile12;
+            return externalNode;
+        }
+    }
+
     private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
-        addToGrid(famred, tile1);
-        addToGrid(famyellow, tile12);
-        addToGrid(famgreen, tile12);
-        addToGrid(famwhite, tile12);
+
+        addToGrid(famred, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
+        addToGrid(famyellow, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
+        addToGrid(famgreen, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
+        addToGrid(famwhite, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
         addToGrid(famblue, tile12);
 
         //spelers op de juiste plek zetten
@@ -408,7 +485,7 @@ public class GameView implements GameViewObserver, Initializable {
 
             gameController.setNextPlayer();
             possibleMoves(pane);
-            //disableTiles(true);
+            disableTiles(true);
         }
     }
 
