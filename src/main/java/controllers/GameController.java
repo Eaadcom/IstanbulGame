@@ -17,6 +17,7 @@ import observers.GameViewLobbyViewObserver;
 import observers.GameViewObserver;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +96,12 @@ public class GameController {
         return game.getPlayers().get(playerTurn);
     }
 
+
+    /**
+     * Manages the turns based on the amount of players.
+     * @author Thomas van Velzen, Joeri van Duijkeren
+     * @version 20-6-2019
+     */
     public int TurnManager() {
         int turn = (game.getTurnCounter() + game.getPlayerTotal()) % game.getPlayerTotal();
         return turn;

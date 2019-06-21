@@ -2,7 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -117,27 +119,27 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="SultanRed" id="SultanRed" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanRed" fx:id="SultanRed" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.bottomAnchor="7.599609375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanYellow" id="SultanYellow" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanYellow" fx:id="SultanYellow" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanGreen" id="SultanGreen" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanGreen" fx:id="SultanGreen" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanBlue" id="SultanBlue" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanBlue" fx:id="SultanBlue" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="SultanChoice" id="SultanChoice" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
+                        <Text id="SultanChoice" fx:id="SultanChoice" fill="WHITE" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
@@ -244,7 +246,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="gemPrice" fill="#574115" layoutX="113.0" layoutY="189.0" stroke="WHITE" strokeType="OUTSIDE" text="12" textAlignment="CENTER" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="156.0">
+                        <Text fx:id="gemPrice" fill="#574115" layoutX="113.0" layoutY="190.689453125" stroke="WHITE" strokeType="OUTSIDE" text="12" textAlignment="CENTER" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="154.0">
                            <font>
                               <Font size="34.0" />
                            </font>
@@ -310,19 +312,26 @@
    <right>
       <VBox prefHeight="1080.0" prefWidth="360.0">
          <children>
-            <Pane prefHeight="530.0" prefWidth="360.0">
+            <Pane prefHeight="800.0" prefWidth="360.0">
                <children>
                   <Button id="close" layoutX="268.0" layoutY="22.0" onAction="#askClose" prefHeight="70.0" prefWidth="70.0">
                      <padding>
                         <Insets right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button layoutX="148.0" layoutY="451.0" mnemonicParsing="false" onAction="#useTile" text="Use tile" />
-               </children></Pane>
-            <Pane prefHeight="297.0" prefWidth="360.0">
-               <children>
-                  <Button fx:id="endturn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#endTurn" text="end turn" />
-                  <Button id="bc" fx:id="bonuscard" layoutX="50.0" layoutY="14.0" mnemonicParsing="false" onAction="#bonusCards" prefHeight="203.0" prefWidth="260.0" />
+                  <Button id="usetile" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#useTile" prefHeight="80.0" prefWidth="286.0">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Button>
+                  <Button id="endturnbutton" fx:id="endturn" layoutX="37.0" layoutY="430.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="80.0" prefWidth="286.0" />
+                  <Button id="bc" fx:id="bonuscard" layoutX="50.0" layoutY="548.0" mnemonicParsing="false" onAction="#bonusCards" prefHeight="203.0" prefWidth="260.0" />
                </children></Pane>
             <Pane id="goodsback" prefHeight="240.0" prefWidth="360.0">
                <children>
