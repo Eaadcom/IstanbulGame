@@ -30,6 +30,7 @@ public class PopUpView {
     @FXML
     public Button closeConfirmMovement; // aanmaken fx:id
 
+
     public boolean move = true;
     public BonusCard gekozenBonusKaart;
     private boolean bonusKaartGebruiken = false;

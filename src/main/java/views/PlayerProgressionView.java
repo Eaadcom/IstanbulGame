@@ -41,6 +41,8 @@ public class PlayerProgressionView implements Initializable {
     @FXML
     public Pane playerIcon;
 
+    public int STATE;
+
 
     public void playerProgression(int id){
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
@@ -72,6 +74,14 @@ public class PlayerProgressionView implements Initializable {
         updateScreen(id);
     }
 
+    public void nextPlayer(){
+        updateScreen(STATE+1);
+    }
+
+    public void previousPlayer(){
+        updateScreen(STATE-1);
+    }
+
     public void updateScreen(int id){
         Platform.runLater(new Runnable(){
             @Override
@@ -86,6 +96,7 @@ public class PlayerProgressionView implements Initializable {
                     liraProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getLira()));
                     rubyProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getRubies()));
                     carProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getCarUpgrades()));
+                    STATE = id;
                 }
                 catch(Exception e) {
                     System.out.println("Je klikte op een speler die er niet is. De gegevens konden niet geladen worden.");

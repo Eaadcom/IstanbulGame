@@ -26,12 +26,12 @@
                            <children>
                               <Pane prefHeight="44.0" prefWidth="102.0">
                                  <children>
-                                    <Button id="arrowleft" layoutX="44.0" prefHeight="44.0" prefWidth="55.0" />
+                                    <Button id="arrowleft" fx:id="arrowleft" onAction="#previousPlayer" layoutX="44.0" prefHeight="44.0" prefWidth="55.0" />
                                  </children>
                               </Pane>
                               <Pane layoutX="98.0" prefHeight="44.0" prefWidth="102.0">
                                  <children>
-                                    <Button id="arrowright" layoutX="14.0" prefHeight="44.0" prefWidth="55.0" />
+                                    <Button onAction="#nextPlayer" id="arrowright" layoutX="14.0" prefHeight="44.0" prefWidth="55.0" />
                                  </children>
                               </Pane>
                            </children>
@@ -52,37 +52,37 @@
                   <Pane layoutY="331.0" prefHeight="76.0" prefWidth="275.0" />
                   <Pane layoutX="-2.0" layoutY="76.0" prefHeight="255.0" prefWidth="283.0">
                      <children>
-                        <Text fx:id="redProg" id="redProg" layoutX="105.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="redProg" fx:id="redProg" layoutX="105.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="greenProg" id="greenProg" layoutX="105.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="greenProg" fx:id="greenProg" layoutX="105.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="liraProg" id="liraProg" layoutX="105.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="liraProg" fx:id="liraProg" layoutX="105.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="carProg" id="carProg" layoutX="105.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="carProg" fx:id="carProg" layoutX="105.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="yellowProg" id="yellowProg" layoutX="220.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="yellowProg" fx:id="yellowProg" layoutX="220.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="blueProg" id="blueProg" layoutX="220.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="blueProg" fx:id="blueProg" layoutX="220.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="rubyProg" id="rubyProg" layoutX="220.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                        <Text id="rubyProg" fx:id="rubyProg" layoutX="220.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                            <font>
                               <Font size="35.0" />
                            </font>
