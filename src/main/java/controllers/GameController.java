@@ -119,14 +119,6 @@ public class GameController {
 //        return 6;
     }
 
-    public void increaseTurn(){
-        game.increaseTurnCounter();
-    }
-
-    public void setNextTurn() {
-        game.increaseTurnCounter();
-    }
-
     public Player getCurrentPlayerTurn() {
         return game.getCurrentPlayerTurn();
     }
@@ -147,7 +139,7 @@ public class GameController {
     }
 
     public void endTurn() {
-        game.increaseTurnCounter();
+        game.nextTurn();
         updateGame();
     }
 

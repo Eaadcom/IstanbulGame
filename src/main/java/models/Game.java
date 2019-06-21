@@ -34,6 +34,7 @@ public class Game implements GameObservable {
         } else{
             turnCounter++;
         }
+        notifyAllObservers();
     }
 
     public Game(String name, int playerTotal, Difficulty difficulty) {
@@ -80,6 +81,10 @@ public class Game implements GameObservable {
         return name;
     }
 
+    public int getPlayerID(){
+        return myPlayerID;
+    }
+
     // Setters
     public void setHasMoved(Boolean b) {
         hasMoved = b;
@@ -108,7 +113,7 @@ public class Game implements GameObservable {
 
     public void startGame() {
         gameStarted = true;
-        board.shufflePlayers();
+        //board.shufflePlayers();
         notifyAllObservers();
     }
 
@@ -125,10 +130,10 @@ public class Game implements GameObservable {
         return gameStarted;
     }
 
-    public void increaseTurnCounter() {
-        turnCounter++;
-        notifyAllObservers();
-    }
+//    public void increaseTurnCounter() {
+//        turnCounter++;
+//        notifyAllObservers();
+//    }
 
     public int getTurnCounter() {
         return turnCounter;

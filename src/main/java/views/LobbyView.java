@@ -52,7 +52,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     public void startGame() {
         gameController.startGame();
-        closeStage();
+        //closeStage();
 //        loadGameScreen();
     }
 
@@ -135,6 +135,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
     @Override
     public void update(GameObservable go) {
         if (go instanceof Game) {
+            closeStage();
             System.out.println("received update as observer");
             Game game = (Game) go;
             List<String> names = new ArrayList<>();
