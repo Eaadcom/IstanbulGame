@@ -169,7 +169,6 @@ public class GameView implements GameViewObserver, Initializable {
         gameController.registerGameViewObserverToPlayer(this);
     }
 
-    //TODO why does this return null
     private Pane enableLocationsForMyPlayer() {
         Pane myPane = null;
         List<Player> players = gameController.getGame().getPlayers();
@@ -185,8 +184,8 @@ public class GameView implements GameViewObserver, Initializable {
         return myPane;
     }
 
-    private boolean isMyTurn(){
-        return gameController.getGame().getMyPlayerID() == gameController.getGame().getTurnCounter() + 1;
+    private boolean isMyTurn() {
+        return gameController.getMyPlayer().getName().equals(gameController.getPlayerCurrentTurn().getName());
     }
 
     private void checkAmountOfPlayers() {
@@ -805,11 +804,11 @@ public class GameView implements GameViewObserver, Initializable {
             Game game = (Game) go;
             updateGameView(game);
 
-//            Platform.runLater(new Runnable(){
-//                @Override public void run() {
-//
-//                }
-//            });
+            Platform.runLater(new Runnable(){
+                @Override public void run() {
+
+                }
+            });
         }
     }
 
@@ -818,6 +817,7 @@ public class GameView implements GameViewObserver, Initializable {
             enableLocationsForMyPlayer();
         }
     }
+
 
     @Override
     public void update(GovernorObservable go) {
@@ -837,6 +837,8 @@ public class GameView implements GameViewObserver, Initializable {
         });
     }
 
+
+
     @Override
     public void update(PlayerObservable po) {
         if (po instanceof Player) {
@@ -852,6 +854,7 @@ public class GameView implements GameViewObserver, Initializable {
         playerFabrics.setText(String.valueOf(player.getFabrics()));
         playerSpices.setText(String.valueOf(player.getSpices()));
         playerFruits.setText(String.valueOf(player.getFruits()));
+
     }
 
     @Override
