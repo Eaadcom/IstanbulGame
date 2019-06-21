@@ -32,9 +32,9 @@ public class GreatMarket implements Location, GreatMarketObservable {
     }
 
     public void setData(Map variables){
-        this.jewel = (int) variables.get("jewel"); this.fabric = (int) variables.get("fabric");
-        this.spice = (int) variables.get("spice"); this.fruit = (int) variables.get("fruit");
-        this.STATE = (int) variables.get("STATE");
+        this.jewel = Math.toIntExact((long) variables.get("jewel")); this.fabric = Math.toIntExact((long) variables.get("fabric"));
+        this.spice = Math.toIntExact((long) variables.get("spice")); this.fruit = Math.toIntExact((long) variables.get("fruit"));
+        this.STATE = Math.toIntExact((long) variables.get("STATE"));
     }
 
     //1: 2, 2, 0, 1
@@ -43,6 +43,11 @@ public class GreatMarket implements Location, GreatMarketObservable {
     //4: 2, 1, 1, 1
     //5: 3, 1, 1, 0
 
+    /**
+     *  Handles the state of the large market based on the STATE int.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     private void setStateValue() {
         if (STATE == 0) {
             this.jewel = 2;
@@ -72,6 +77,11 @@ public class GreatMarket implements Location, GreatMarketObservable {
         }
     }
 
+    /**
+     *  updates the STATE int to handle the large market state.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     private void stateHandler() {
         if (STATE == 0) {
             STATE++;
@@ -92,6 +102,17 @@ public class GreatMarket implements Location, GreatMarketObservable {
         }
     }
 
+    /**
+     *  Confirms the purchase of the large market. It checks if the player has enough resources
+     *  and updates the price if so. It also adds lira and removes the goods from the player.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     * @param fabric
+     * @param fruit
+     * @param spice
+     * @param jewel
+     * @param player
+     */
     public void GMconfirmPurchase(int fabric, int fruit, int spice, int jewel, Player player){
         System.out.println("h");
         if( player.getFabrics() >= fabric && fabric <= this.fabric &&

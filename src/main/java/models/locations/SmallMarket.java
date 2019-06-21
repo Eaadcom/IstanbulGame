@@ -33,10 +33,16 @@ public class SmallMarket implements Location, SmallMarketObservable {
     }
 
     public void setData(Map variables){
-        this.jewel = (int) variables.get("jewel"); this.fabric = (int) variables.get("fabric");
-        this.spice = (int) variables.get("spice"); this.fruit = (int) variables.get("fruit");
-        this.STATE = (int) variables.get("STATE");
+        this.jewel = Math.toIntExact((long) variables.get("jewel")); this.fabric = Math.toIntExact((long) variables.get("fabric"));
+        this.spice = Math.toIntExact((long) variables.get("spice")); this.fruit = Math.toIntExact((long) variables.get("fruit"));
+        this.STATE = Math.toIntExact((long) variables.get("STATE"));
     }
+
+    /**
+     *  Handles the state of the small market based on the STATE int.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
 
     private void setStateValue() {
         if (STATE == 0) {
@@ -67,6 +73,11 @@ public class SmallMarket implements Location, SmallMarketObservable {
         }
     }
 
+    /**
+     *  updates the STATE int to handle the small market state.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     private void stateHandler() {
         if (STATE == 0) {
             STATE++;
@@ -86,6 +97,17 @@ public class SmallMarket implements Location, SmallMarketObservable {
         }
     }
 
+    /**
+     *  Confirms the purchase of the small market. It checks if the player has enough resources
+     *  and updates the price if so. It also adds lira and removes the goods from the player.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     * @param fabric
+     * @param fruit
+     * @param spice
+     * @param jewel
+     * @param player
+     */
     public void confirmPurchase(int fabric, int fruit, int spice, int jewel, Player player){
         if( player.getFabrics() >= fabric && fabric <= this.fabric &&
             player.getFruits()  >= fruit  && fruit  <= this.fruit  &&

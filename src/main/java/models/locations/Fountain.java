@@ -26,7 +26,7 @@ public class Fountain implements Location, FountainObservable {
     }
 
     public void setData(Map variables){
-        this.location = (int) variables.get("Location");
+        this.location = Math.toIntExact((long) variables.get("Location"));
     }
 
     // Observer Pattern

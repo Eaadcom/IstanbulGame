@@ -73,6 +73,11 @@ public class PostOffice implements Location, PostOfficeObservable {
 
     private int STATE = 0;
 
+    /**
+     *  Handles the state of the post office based on the STATE int.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     private void setStateValue() {
         if (STATE == 0) {
             this.jewel = 1;
@@ -107,6 +112,11 @@ public class PostOffice implements Location, PostOfficeObservable {
         }
     }
 
+    /**
+     *  updates the STATE int to handle the post office state.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     private void stateHandler() {
         if (STATE == 0) {
             STATE++;

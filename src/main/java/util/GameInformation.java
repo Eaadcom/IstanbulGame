@@ -41,8 +41,8 @@ public class GameInformation {
     private EventHandler<ActionEvent> setButtonActionHandler() {
         return event -> {
             try {
-                gameController.joinGame(document);
                 gameInformation = this;
+                gameController.joinGame(document);
                 LobbyView.getInstance().showLobbyView();
                 MenuView.getInstance().getStage2().close();
             } catch (Exception e) {

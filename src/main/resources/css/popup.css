@@ -70,6 +70,9 @@
 #postoffice{
     -fx-background-image: url('../img/tiles/popup/postoffice.png');
 }
+#caravansary{
+    -fx-background-image: url('../img/tiles/popup/caravansary.png');
+}
 #endturn{
     -fx-background-image: url('../img/endturn.png');
 }

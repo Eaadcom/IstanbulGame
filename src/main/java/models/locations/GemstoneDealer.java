@@ -3,6 +3,7 @@ package models.locations;
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
 import observers.locations.GemstoneDealerObservable;
+import views.GameView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
 
     // Variables
     private static GemstoneDealer gemstoneDealer;
-    private List<LocationViewObserver> observers = new ArrayList<>();
+    private List<GameViewObserver> observers = new ArrayList<>();
     public boolean redAs = false;
     public boolean blueAs = false;
     public boolean greenAs = false;
@@ -21,6 +22,11 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
     public boolean whiteAs = false;
     private int gemstonePrice = 12;
 
+    /**
+     *  Adds the value of the gemstone dealer to the firebase server.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     // Firebase
     public Map<String, Object> getVariableMap(){
         Map<String, Object> Data = new HashMap<>();
@@ -30,8 +36,15 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
         return Data;
     }
 
+    /**
+     *  Sets the value of the gemstone dealer from the firebase server.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     *  @param variables
+     *  @param variables
+     */
     public void setData(Map variables){
-        this.gemstonePrice = (int) variables.get("gemstonePrice");
+        this.gemstonePrice = Math.toIntExact((long) variables.get("gemstonePrice"));
     }
 
     public boolean color(String color) {
@@ -71,13 +84,16 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
 
     // Observer Pattern
     @Override
-    public void register(LocationViewObserver observer) {
+    public void register(GameViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (LocationViewObserver gvo : observers){
+        if (!observers.contains(GameView.getInstance())){
+            register(GameView.getInstance());
+        }
+        for (GameViewObserver gvo : observers){
             gvo.update(this);
         }
     }
@@ -88,6 +104,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
 
     public void updatePrice(int newPrice) {
         gemstonePrice = newPrice;
+        notifyAllObservers();
     }
 
     // Singleton Pattern

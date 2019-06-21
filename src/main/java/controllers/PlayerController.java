@@ -19,7 +19,7 @@ public class PlayerController {
 
     public Player createNewPlayer(String name) {
         Player player = new Player(name);
-        firebaseController.createNewPlayer(player);
+        //.createNewPlayer(player);
         myPlayer = player;
         return player;
     }
@@ -194,6 +194,12 @@ public class PlayerController {
 
     }
 
+    /**
+     *  Adds a mosque tile to the player. colorOfTile defines what mosque tile is added.
+     *  @version 20-6-2019
+     *  @param colorOfTile
+     *  @Author Thomas van Velzen
+     */
     public void addMosqueTile(String colorOfTile){
         switch(colorOfTile) {
             case "green":

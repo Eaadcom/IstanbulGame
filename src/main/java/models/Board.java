@@ -36,18 +36,25 @@ public class Board implements BoardObservable {
     }
 
     private void setPlayerData(Map<String, Object> playersList){
-        int playerTotal = GameController.getInstance().getGame().getPlayerTotal(); //TODO niet goed volgens MVC
+        try{
+            int playerTotal = GameController.getInstance().getGame().getPlayerTotal(); //TODO niet goed volgens MVC
 
-        players.get(0).setData((Map) playersList.get("Player1"));
-        if (playersList.size() >= 2){
-            players.get(1).setData((Map) playersList.get("Player2"));
-        } if (playersList.size() >= 3){
-            players.get(2).setData((Map) playersList.get("Player3"));
-        } if (playersList.size() >= 4){
-            players.get(3).setData((Map) playersList.get("Player4"));
-        } if (playersList.size() == 5){
-            players.get(4).setData((Map) playersList.get("Player5"));
+            players.get(0).setData((Map) playersList.get("Player1"));
+            if (playersList.size() >= 2){
+                players.get(1).setData((Map) playersList.get("Player2"));
+            } if (playersList.size() >= 3){
+                players.get(2).setData((Map) playersList.get("Player3"));
+            } if (playersList.size() >= 4){
+                players.get(3).setData((Map) playersList.get("Player4"));
+            } if (playersList.size() == 5){
+                players.get(4).setData((Map) playersList.get("Player5"));
+            }
+        } catch (IndexOutOfBoundsException ioe){
+            Player player = new Player("");
+            players.add(player);
+            setPlayerData(playersList);
         }
+
     }
 
     private void setTileData(Map tiles){
@@ -109,7 +116,7 @@ public class Board implements BoardObservable {
 
     // Setters
     public void addPlayer(Player player) {
-        players.add(player);
+        players.add(players.size(), player);
     }
     public void setPlayers(List<Player> players) {
         this.players = players;

@@ -26,15 +26,16 @@ public class Player implements PlayerObservable {
 
     // GameVariables
     public int rubies = 0;
-    public int lira = 0;
+    public int lira = 50;
     public int carUpgrades = 0;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
     public String color = "red";
 
-    public int spices = 0;
-    public int fruits = 0;
-    public int jewels = 0;
-    public int fabrics = 0;
+    public int spices = 5;
+    public int fruits = 5;
+    public int jewels = 5;
+    public int fabrics = 5;
+
 
     public int maxJewels = 2;
     public int maxFruits = 2;
@@ -79,14 +80,14 @@ public class Player implements PlayerObservable {
 
     public void setData(Map playerData){
 
-        this.rubies = (int) playerData.get("rubies"); this.lira = (int) playerData.get("lira");
-        this.carUpgrades = (int) playerData.get("carUpgrades"); this.playerBonusCards = (List) playerData.get("playerBonusCards");
-        this.color = (String) playerData.get("color"); this.spices = (int) playerData.get("spices");
-        this.fruits = (int) playerData.get("fruits"); this.jewels = (int) playerData.get("jewels");
-        this.fabrics = (int) playerData.get("fabrics"); this.maxJewels = (int) playerData.get("maxJewels");
-        this.maxFruits = (int) playerData.get("maxFruits"); this.maxSpices = (int) playerData.get("maxSpices");
-        this. maxFabrics = (int) playerData.get("maxFabrics"); this.assistants = (int) playerData.get("assistants");
-        this.maxAssistants = (int) playerData.get("maxAssistants"); this.greenTile = (boolean) playerData.get("greentile");
+        this.rubies = Math.toIntExact((long) playerData.get("rubies")); this.lira = Math.toIntExact((long) playerData.get("lira"));
+        this.carUpgrades = Math.toIntExact((long) playerData.get("carUpgrades")); this.playerBonusCards = (List) playerData.get("playerBonusCards");
+        this.color = (String) playerData.get("color"); this.spices = Math.toIntExact((long) playerData.get("spices"));
+        this.fruits = Math.toIntExact((long) playerData.get("fruits")); this.jewels = Math.toIntExact((long) playerData.get("jewels"));
+        this.fabrics = Math.toIntExact((long) playerData.get("fabrics")); this.maxJewels = Math.toIntExact((long) playerData.get("maxJewels"));
+        this.maxFruits = Math.toIntExact((long) playerData.get("maxFruits")); this.maxSpices = Math.toIntExact((long) playerData.get("maxSpices"));
+        this. maxFabrics = Math.toIntExact((long) playerData.get("maxFabrics")); this.assistants = Math.toIntExact((long) playerData.get("assistants"));
+        this.maxAssistants = Math.toIntExact((long) playerData.get("maxAssistants")); this.greenTile = (boolean) playerData.get("greentile");
         this.redTile = (boolean) playerData.get("redtile"); this.blueTile = (boolean) playerData.get("bluetile");
         this.yellowTile = (boolean) playerData.get("yellowTile"); this.name = (String) playerData.get("name");
     }
@@ -164,6 +165,22 @@ public class Player implements PlayerObservable {
     }
 
     public int getRubies() { return rubies;}
+
+    public int getMaxJewels() {
+        return maxJewels;
+    }
+
+    public int getMaxFruits() {
+        return maxFruits;
+    }
+
+    public int getMaxSpices() {
+        return maxSpices;
+    }
+
+    public int getMaxFabrics() {
+        return maxFabrics;
+    }
 
     // Observer Pattern
     @Override

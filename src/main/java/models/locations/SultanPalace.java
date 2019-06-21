@@ -30,9 +30,9 @@ public class SultanPalace implements Location, SultanPalaceObservable {
 
     //price
     private int jewel  = 1;
-    private int fabric = 0;
-    private int spice  = 0;
-    private int fruit  = 0;
+    private int fabric = 1;
+    private int spice  = 1;
+    private int fruit  = 1;
     private int choice = 0;
     private boolean soldOut = false;
 
@@ -48,11 +48,16 @@ public class SultanPalace implements Location, SultanPalaceObservable {
     }
 
     public void setData(Map variables){
-        this.jewel = (int) variables.get("jewel"); this.fabric = (int) variables.get("fabric");
-        this.spice = (int) variables.get("spice"); this.fruit = (int) variables.get("fruit");
-        this.choice = (int) variables.get("choice"); this.soldOut = (boolean) variables.get("soldOut");
+        this.jewel = Math.toIntExact((long) variables.get("jewel")); this.fabric = Math.toIntExact((long) variables.get("fabric"));
+        this.spice = Math.toIntExact((long) variables.get("spice")); this.fruit = Math.toIntExact((long) variables.get("fruit"));
+        this.choice = Math.toIntExact((long) variables.get("choice")); this.soldOut = (boolean) variables.get("soldOut");
     }
 
+    /**
+     *  updates the price of the Sultans palace like the original game.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     */
     public void increasePrice(){
         if(jewel==2 && fabric==2 && spice==2 && fruit==2 && choice==2){ //voeg niks meer toe
         }else if(jewel  >  fabric)  { fabric++;
@@ -64,6 +69,13 @@ public class SultanPalace implements Location, SultanPalaceObservable {
         notifyAllObservers();
     }
 
+    /**
+     *  confirms the purchase of the Sultans Palace. It checks if the player has enough resources, if so it removes the price off the
+     *  players good and updates the price.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     * @param player
+     */
     public void confirmPurchase(Player player) throws IOException {
         if(player.getFabrics() >= this.fabric &&
            player.getFruits()  >= this.fruit  &&
@@ -106,6 +118,13 @@ public class SultanPalace implements Location, SultanPalaceObservable {
         }
     }
 
+    /**
+     *  Handles the choice of the sultans palace.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     *  @param choice
+     *  @param player
+     */
     public void handleChoice(String choice, Player player) {
         if (choice == "Fabric (Red)") {
 
@@ -155,7 +174,12 @@ public class SultanPalace implements Location, SultanPalaceObservable {
     }
 
 
-
+    /**
+     *  returns a true if the player is able to choose a good. If not, it returns a false.
+     *  @version 20-6-2019
+     *  @Author Thomas van Velzen
+     * @param player
+     */
     public boolean canChoose(Player player){
         if ((player.getFabrics() - this.fabric) +
             (player.getFruits()  - this.fruit)  +

@@ -1,5 +1,6 @@
 package observers;
 
+import observers.locations.GemstoneDealerObservable;
 import observers.locations.SultanPalaceObservable;
 
 public interface GameViewObserver extends GameViewLobbyViewObserver {
@@ -20,4 +21,6 @@ public interface GameViewObserver extends GameViewLobbyViewObserver {
     void update(SmugglerObservable so);
 
     void update(SultanPalaceObservable spo);
+
+    void update(GemstoneDealerObservable gdo);
 }

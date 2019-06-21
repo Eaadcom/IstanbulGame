@@ -46,16 +46,16 @@ public class Game implements GameObservable {
     public Game(QueryDocumentSnapshot document) {
         Map<String, Object> data = document.getData();
         this.name = document.getId();
-        setPlayers(data.get("playerNames"));
+        //setPlayers(data.get("playerNames"));
         setGameData(data);
     }
 
     public void updateFromSnapShot(DocumentSnapshot documentSnapshot) {
         this.name = documentSnapshot.getId();
         Map<String, Object> data = documentSnapshot.getData();
-        setPlayers(data.get("playerNames"));
-        setGameData(data);
         board.setBoardData((Map)data.get("Board"));
+        //setPlayers(data.get("playerNames"));
+        setGameData(data);
         notifyAllObservers();
     }
 
@@ -109,7 +109,7 @@ public class Game implements GameObservable {
 
     public void startGame() {
         gameStarted = true;
-        board.shufflePlayers();
+        //board.shufflePlayers();
         notifyAllObservers();
     }
 
@@ -147,7 +147,7 @@ public class Game implements GameObservable {
         board.addPlayer(player);
     }
 
-    public void addPlayer(Player player) {
+    public void addPlayer(Player player){
         board.addPlayer(player);
         notifyAllObservers();
     }

@@ -378,7 +378,19 @@ public class LocationController{
         public int  getGreenPrice()  { return SultanPalace.getInstance().getSpicePrice();   }
         public int  getYellowPrice() { return SultanPalace.getInstance().getFruitPrice();   }
         public int  getChoiceAmount(){ return SultanPalace.getInstance().getChoiceAmount(); }
+
+        /**
+        *  Confirms the purchase of the sultans palace. Triggers the confirmPurchase(Player) function in the SultanPalace model.
+        *  @author Thomas van Velzen
+        *  @version 20-6-2019
+        */
         public void confirmPurchase() throws IOException { SultanPalace.getInstance().confirmPurchase(GameController.getInstance().getPlayer()); }
+        /**
+        *  Handles the choice of the sultans palace. Triggers the handleChoice(choice, Player) function in the SultanPalace model.
+        *  @author Thomas van Velzen
+        *  @version 20-6-2019
+        *  @param choice
+        */
         public void handleChoice(String choice){ SultanPalace.getInstance().handleChoice(choice, GameController.getInstance().getPlayer()); }
 
 
@@ -387,6 +399,16 @@ public class LocationController{
         public int  SMgetFabric()    { return SmallMarket.getInstance().getFabric();  }
         public int  SMgetSpice()  { return SmallMarket.getInstance().getSpice();   }
         public int  SMgetFruit() { return SmallMarket.getInstance().getFruit();   }
+
+        /**
+        *  Confirms the purchase of the small market. Triggers the confirmPurchase(fabric, fruit, spice, jewel Player) function in the SmallMarket model.
+        *  @author Thomas van Velzen
+        *  @version 20-6-2019
+        *  @param fabric
+        *  @param fruit
+        *  @param spice
+        *  @param jewel
+        */
         public void SMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
         SmallMarket.getInstance().confirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
 
@@ -395,6 +417,15 @@ public class LocationController{
         public int  GMgetFabric()    { return GreatMarket.getInstance().GMgetFabric();  }
         public int  GMgetSpice()  { return GreatMarket.getInstance().GMgetSpice();   }
         public int  GMgetFruit() { return GreatMarket.getInstance().GMgetFruit();   }
+        /**
+        *  Confirms the purchase of the large market. Triggers the confirmPurchase(fabric, fruit, spice, jewel Player) function in the LargeMarket model.
+        *  @author Thomas van Velzen
+        *  @version 20-6-2019
+        *  @param fabric
+        *  @param fruit
+        *  @param spice
+        *  @param jewel
+        */
         public void GMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
         GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
 

@@ -94,11 +94,11 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     private void setPlayerNames(List<String> playersNames) {
         int count = 0;
-        for (int i = 0; i < playersNames.size(); i++) {
+        for (int i = 0; i < GameController.getInstance().getGame().board.getPlayers().size(); i++) {
             if (count == 5){
                 break;
             }
-            playerTexts.get(i).setText(playersNames.get(i));
+            playerTexts.get(i).setText(GameController.getInstance().getGame().board.getPlayers().get(i).getName());
             count++;
         }
     }
