@@ -44,7 +44,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
      *  @param variables
      */
     public void setData(Map variables){
-        this.gemstonePrice = (int) variables.get("gemstonePrice");
+        this.gemstonePrice = Math.toIntExact((long) variables.get("gemstonePrice"));
     }
 
     public boolean color(String color) {
