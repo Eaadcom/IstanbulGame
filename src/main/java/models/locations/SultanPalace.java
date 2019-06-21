@@ -48,9 +48,9 @@ public class SultanPalace implements Location, SultanPalaceObservable {
     }
 
     public void setData(Map variables){
-        this.jewel = (int) variables.get("jewel"); this.fabric = (int) variables.get("fabric");
-        this.spice = (int) variables.get("spice"); this.fruit = (int) variables.get("fruit");
-        this.choice = (int) variables.get("choice"); this.soldOut = (boolean) variables.get("soldOut");
+        this.jewel = Math.toIntExact((long) variables.get("jewel")); this.fabric = Math.toIntExact((long) variables.get("fabric"));
+        this.spice = Math.toIntExact((long) variables.get("spice")); this.fruit = Math.toIntExact((long) variables.get("fruit"));
+        this.choice = Math.toIntExact((long) variables.get("choice")); this.soldOut = (boolean) variables.get("soldOut");
     }
 
     public void increasePrice(){

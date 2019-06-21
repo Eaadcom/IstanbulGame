@@ -13,6 +13,7 @@ import models.Firebase;
 import models.Game;
 import models.Player;
 import models.locations.*;
+import util.GameInformation;
 
 import java.util.*;
 import java.io.FileInputStream;
@@ -86,7 +87,6 @@ public class FirebaseController {
             Map<String, Object> data = createKeyValueMapForGame(game);
             System.out.println("updating data: " + data.toString() + " for game with name: " + game.getName());
 
-
             ApiFuture<WriteResult> result = docRef.update(data);
             WriteResult writeResult = result.get();
             System.out.println("Update result: " + writeResult);
@@ -116,10 +116,12 @@ public class FirebaseController {
         try{
             Map<String, Object> players = new HashMap<>();
             int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
+            int playerListLength = gameController.getInstance().getGame().board.players.size();
 
-            Player player1 = board.getPlayers().get(0); Player player2 = board.getPlayers().get(1);
-            players.put("Player1", player1.getVariableMap()); players.put("Player2", player2.getVariableMap());
-            if (playerTotal >= 3){
+            Player player1 = board.getPlayers().get(0); players.put("Player1", player1.getVariableMap());
+            if (playerListLength > 1){
+                Player player2 = board.getPlayers().get(1); players.put("Player2", player2.getVariableMap());
+            } if (playerTotal >= 3){
                 Player player3 = board.getPlayers().get(2);
                 players.put("Player3", player3.getVariableMap());
             } if (playerTotal >= 4){
@@ -153,10 +155,10 @@ public class FirebaseController {
 
     private Map<String, Object> createKeyValueMapForGame(Game game) {
         Map<String, Object> data = new HashMap<>();
-        ArrayList<String> userNames = new ArrayList<>();
-        for (Player player : game.getPlayers()) {
-            userNames.add(player.getName());
-        }
+//        ArrayList<String> userNames = new ArrayList<>();
+//        for (Player player : game.getPlayers()) {
+//            userNames.add(player.getName());
+//        }
 
         data.put("gameName", game.getName());
         data.put("playerTotal", game.getPlayerTotal());
@@ -165,7 +167,7 @@ public class FirebaseController {
         data.put("gameStarted", game.isGameStarted());
         data.put("gameEnded", game.isGameEnded());
         data.put("turnCounter", game.getTurnCounter());
-        data.put("playerNames", userNames);
+//        data.put("playerNames", userNames);
         data.put("Board", createKeyValueMapForBoard(game.board));
         return data;
     }
@@ -235,6 +237,19 @@ public class FirebaseController {
             firebaseController = new FirebaseController();
         }
         return firebaseController;
+    }
+
+    public DocumentSnapshot getGameDataFromFirebase(){
+        try{
+            System.out.println(db);
+            ApiFuture<DocumentSnapshot> future = db.collection("Games").document(GameInformation.getGameInfo().getRoomname()).get();
+            DocumentSnapshot documentSnapshot = future.get();
+            //Map<String, Object> dataMap = documentSnapshot.getData();
+            return documentSnapshot;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void startWatchForChangesForGame(Game game) {

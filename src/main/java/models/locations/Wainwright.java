@@ -28,7 +28,7 @@ public class Wainwright implements Location, WainwrightObservable {
     }
 
     public void setData(Map variables){
-        this.Location = (int) variables.get("Location");
+        this.Location = Math.toIntExact((long) variables.get("Location"));
     }
 
     public boolean color(String color) {
