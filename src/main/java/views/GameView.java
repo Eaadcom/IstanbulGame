@@ -104,18 +104,19 @@ public class GameView implements GameViewObserver, Initializable {
                         Parent root1 = fxmlloader.load();
                         if (stage == null) {
                             stage = new Stage();
-                        }
-                        stage.initStyle(StageStyle.UNDECORATED);
-                        stage.setTitle("Istanbul");
-                        stage.setScene(new Scene(root1));
-                        stage.setMaximized(true);
+                            stage.initStyle(StageStyle.UNDECORATED);
+                            stage.setTitle("Istanbul");
+                            stage.setScene(new Scene(root1));
+                            stage.setMaximized(true);
 
-                        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-                        stage.setX(primaryScreenBounds.getMinX());
-                        stage.setY(primaryScreenBounds.getMinY());
-                        stage.setWidth(primaryScreenBounds.getWidth());
-                        stage.setHeight(primaryScreenBounds.getHeight());
-                        stage.show();
+                            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+                            stage.setX(primaryScreenBounds.getMinX());
+                            stage.setY(primaryScreenBounds.getMinY());
+                            stage.setWidth(primaryScreenBounds.getWidth());
+                            stage.setHeight(primaryScreenBounds.getHeight());
+                            stage.show();
+                        }
+
 
 
                         //Sultans palace

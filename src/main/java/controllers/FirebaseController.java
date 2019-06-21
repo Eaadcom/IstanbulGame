@@ -281,7 +281,7 @@ public class FirebaseController {
                         System.err.println("Listen failed: " + e);
                         return;
                     }
-
+                    
                     if (snapshot != null && snapshot.exists()) {
                         Map<String, Object> newData = snapshot.getData();
                         System.out.println("Current data: " + newData);
