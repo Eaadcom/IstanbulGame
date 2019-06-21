@@ -10,6 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is the model for the most important game elements
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class Game implements GameObservable {
 
     // LobbyVariables

@@ -15,6 +15,12 @@ import models.cards.BonusCard;
 
 import java.io.IOException;
 
+/**
+ * This view class contains the views of the less complicated pop-up windows.
+ * The more complicated ones are stored in their own respective view classes.
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class PopUpView {
 
     // Variables

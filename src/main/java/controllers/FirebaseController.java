@@ -19,6 +19,11 @@ import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+/**
+ * This is the controller for everything that goes to the Firebase server.
+ * @author Edward Deen, Joeri van Duijkeren
+ * @version 21-6-2019
+ */
 public class FirebaseController {
 
     // Variables

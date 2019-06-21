@@ -40,6 +40,12 @@ import views.tiles.sultansPalace.SultansPalaceView;
 import static models.Difficulty.EASY;
 import static models.Difficulty.MEDIUM;
 
+/**
+ * This class is the main view of the game.
+ * It contains all the main elements that build the UI of the game. This doesn't include pop-ups.
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class GameView implements GameViewObserver, Initializable {
 
     // Variables

@@ -23,6 +23,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+/**
+ * This class contains all view elements for the main menu.
+ * @author Thomas van Velzen
+ * @version 19-6-2019
+ */
 public class MenuView implements Initializable, MenuViewObserver {
 
     // variabelen
