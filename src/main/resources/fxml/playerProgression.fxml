@@ -14,7 +14,7 @@
                <children>
                   <Pane prefHeight="147.0" prefWidth="204.0">
                      <children>
-                        <Text layoutX="51.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spelernaam" textAlignment="CENTER" wrappingWidth="112.00000551342964">
+                        <Text fx:id="playername" id="playername" layoutX="51.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spelernaam" textAlignment="CENTER" wrappingWidth="112.00000551342964">
                            <font>
                               <Font name="Californian FB Bold" size="18.0" />
                            </font></Text>

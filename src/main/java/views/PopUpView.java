@@ -48,17 +48,6 @@ public class PopUpView {
         stage.show();
     }
 
-    // Function to show the playerprogression popup
-    public void playerProgression() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
-        Parent root2 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-    }
-
     // Function to show the confirmmovement popup
     public boolean confirmMovement() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/confirmMovement.fxml"));

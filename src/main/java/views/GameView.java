@@ -44,6 +44,7 @@ public class GameView implements GameViewObserver, Initializable {
     private LocationView locationView = LocationView.getInstance();
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
+    private PlayerProgressionView playerProgressionView = PlayerProgressionView.getInstance();
     List<Button> tiles = new ArrayList<>();
     private Stage stage;
 
@@ -406,6 +407,22 @@ public class GameView implements GameViewObserver, Initializable {
 //        }
     }
 
+    public void playerProgression(ActionEvent event){
+        Button source = (Button) event.getSource();
+        System.out.println("BLAB");
+        if (source.getId().equals("player1")) {
+            playerProgressionView.playerProgression("white");
+        } else if (source.getId().equals("player5")) {
+            playerProgressionView.playerProgression("red");
+        } else if (source.getId().equals("player4")) {
+            playerProgressionView.playerProgression("yellow");
+        } else if (source.getId().equals("player2")) {
+            playerProgressionView.playerProgression("green");
+        } else if (source.getId().equals("player3")) {
+            playerProgressionView.playerProgression("blue");
+        }
+    }
+
     private void buildMapForDifficulty(final Button[][] buttonMap) {
         grid.getChildren().clear();
         for (int y = 0; y < buttonMap.length; y++) {
@@ -441,10 +458,6 @@ public class GameView implements GameViewObserver, Initializable {
         popUpView.askClose();
     }
 
-    // Popup to show the progression of an enemy player
-    public void playerProgression() throws IOException {
-        popUpView.playerProgression();
-    }
 
     // Popup to show the progression of an enemy player
     public void endTurn() throws IOException {
