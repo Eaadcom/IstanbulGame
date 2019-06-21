@@ -20,10 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Difficulty;
-import models.FamilyMember;
-import models.Game;
-import models.Player;
+import models.*;
 import models.cards.BonusCard;
 import models.locations.GemstoneDealer;
 import models.locations.SultanPalace;
@@ -68,7 +65,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Pane redAs, blueAs, greenAs, yellowAs, whiteAss;
     @FXML
-    public GridPane grid; // aanmaken fx:id
+    public GridPane grid, playerGrid; // aanmaken fx:id
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
     @FXML
@@ -79,6 +76,8 @@ public class GameView implements GameViewObserver, Initializable {
     public Text SultanRed, SultanBlue, SultanYellow, SultanGreen, SultanChoice;
     @FXML
     public Text maxFruit, maxSpice, maxJewel, maxFabric;
+    @FXML
+    public Button whiteProg, redProg, yellowProg, greenProg, blueProg;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
@@ -157,6 +156,7 @@ public class GameView implements GameViewObserver, Initializable {
         initializeFamily();
         updatePlayerResources(GameController.getInstance().getPlayer());
         initializeAssistants();
+        initializePlayerColor();
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
@@ -241,6 +241,22 @@ public class GameView implements GameViewObserver, Initializable {
 //                {tile5, tile6, tile7, tile8},
 //                {tile9, tile10, tile11, tile12},
 //                {tile13, tile14, tile15, tile16}};
+    }
+
+    private void initializePlayerColor(){
+        if(GameController.getInstance().getMyPlayerID() == 1){
+            playerGrid.setRowIndex(whiteProg, 1);
+            playerGrid.setRowIndex(redProg, 5);
+        }else if(GameController.getInstance().getMyPlayerID() == 2){
+            playerGrid.setRowIndex(whiteProg, 2);
+            playerGrid.setRowIndex(yellowProg, 5);
+        }else if(GameController.getInstance().getMyPlayerID() == 3){
+            playerGrid.setRowIndex(whiteProg, 3);
+            playerGrid.setRowIndex(greenProg, 5);
+        }else if(GameController.getInstance().getMyPlayerID() == 4) {
+            playerGrid.setRowIndex(whiteProg, 4);
+            playerGrid.setRowIndex(blueProg, 5);
+        }
     }
 
     private void disableAllTiles() {
