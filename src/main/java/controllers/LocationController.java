@@ -12,6 +12,12 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * This is the controller for all 16 tiles.
+ * The methods in this class are called when they player visits the respective tile.
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class LocationController{
 
     // Variables

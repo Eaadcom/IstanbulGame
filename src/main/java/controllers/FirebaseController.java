@@ -19,6 +19,11 @@ import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+/**
+ * This is the controller for everything that goes to the Firebase server.
+ * @author Edward Deen, Joeri van Duijkeren
+ * @version 21-6-2019
+ */
 public class FirebaseController {
 
     // Variables
@@ -81,6 +86,14 @@ public class FirebaseController {
         }
     }
 
+    /**
+     * Updates the game in the firebase firebase snapshot it
+     * gets by using the current game model it gets as an argument.
+     *
+     * @version 21-6-2019
+     * @author Edward Deen
+     * @param game
+     */
     public void updateGame(Game game) {
         try {
             DocumentReference docRef = db.collection("Games").document(game.getName());
@@ -252,6 +265,14 @@ public class FirebaseController {
         return null;
     }
 
+    /**
+     * Starts a thread that listens for changes in the firebase,
+     * and updates the models when it registers a change.
+     *
+     * @version 21-6-2019
+     * @author Edward Deen
+     * @param game
+     */
     public void startWatchForChangesForGame(Game game) {
         System.out.println("Start watching for changes for game: " + game.getName());
         Runnable runnable = () -> {
@@ -265,7 +286,7 @@ public class FirebaseController {
                         System.err.println("Listen failed: " + e);
                         return;
                     }
-
+                    
                     if (snapshot != null && snapshot.exists()) {
                         Map<String, Object> newData = snapshot.getData();
                         System.out.println("Current data: " + newData);

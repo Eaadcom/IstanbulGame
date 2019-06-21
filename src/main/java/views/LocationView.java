@@ -193,13 +193,19 @@ public class LocationView implements LocationViewObserver, Initializable {
     }
 
     public void policeStation() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/policeStation.fxml"));
-        Parent root = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+
+        if (GameController.getInstance().getMyPlayer().familyMember.location == 12) {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/policeStation.fxml"));
+            Parent root = (Parent) fxmlloader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        else {
+
+        }
     }
 
     public void policeStationAction() throws IOException {

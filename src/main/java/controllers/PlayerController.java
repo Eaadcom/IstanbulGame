@@ -8,6 +8,12 @@ import java.io.Console;
 import java.util.Scanner;
 import java.io.IOException;
 
+/**
+ * This class is the controller for the player.
+ * It contains inmportant methods that update the player's statistics.
+ * @author Edward Deen, Joeri van Duijkeren, Stan Hogenboom, Floris Dekker, Thomas van Velzen
+ * @version 21-6-2019
+ */
 public class PlayerController {
 
     // Variables

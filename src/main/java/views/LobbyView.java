@@ -24,6 +24,11 @@ import java.net.URL;
 import java.util.*;
 import java.util.List;
 
+/**
+ * This view is shown when the player enters a lobby, which is after the main menu but before entering the actual game.
+ * @author Thomas vabn Velzen, Edward Deen
+ * @version 20-6-2019
+ */
 public class LobbyView implements LobbyViewObserver, Initializable {
 
     // Variables
@@ -52,7 +57,6 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     public void startGame() {
         gameController.startGame();
-        closeStage();
 //        loadGameScreen();
     }
 
@@ -122,7 +126,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
         }
     }
 
-    private void closeStage(){
+    public void closeStage(){
         stage.close();
     }
 

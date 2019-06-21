@@ -16,6 +16,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This is the view class for the pop-up of the gemstonedealer.
+ * @author Stan Hogenboom
+ * @version 21-6-2019
+ *
+ */
 public class GemstoneDealerView implements Initializable {
 
     private LocationController locationController = LocationController.getInstance();

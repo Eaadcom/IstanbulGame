@@ -10,6 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is the model for the most important game elements
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class Game implements GameObservable {
 
     // LobbyVariables
@@ -27,10 +32,11 @@ public class Game implements GameObservable {
 
     // SystemVariables
     private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
+    public boolean removeDoubleGames = true;
 
 
     public void nextTurn(){
-        if (turnCounter == getPlayerTotal() - 1){
+        if (turnCounter == board.players.size() - 1){
             turnCounter = 0;
         } else{
             turnCounter++;
@@ -127,7 +133,7 @@ public class Game implements GameObservable {
     }
 
     public void increaseTurnCounter() {
-        turnCounter++;
+        nextTurn();
         notifyAllObservers();
     }
 
