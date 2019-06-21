@@ -118,7 +118,6 @@ public class GameView implements GameViewObserver, Initializable {
                             stage.setHeight(primaryScreenBounds.getHeight());
                             stage.show();
                             GameController.getInstance().getGame().removeDoubleGames = false;
-                            disableEndTurn(true);
                         }
 
                         //Sultans palace

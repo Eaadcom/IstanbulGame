@@ -330,7 +330,7 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></Button>
-                  <Button id="endturnbutton" fx:id="endturn" layoutX="37.0" layoutY="430.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="80.0" prefWidth="286.0" />
+                  <Button id="endturnbutton" fx:id="endturn" layoutX="37.0" layoutY="430.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="80.0" prefWidth="286.0" disable="true"/>
                   <Button id="bc" fx:id="bonuscard" layoutX="50.0" layoutY="548.0" mnemonicParsing="false" onAction="#bonusCards" prefHeight="203.0" prefWidth="260.0" />
                </children></Pane>
             <Pane id="goodsback" prefHeight="240.0" prefWidth="360.0">
