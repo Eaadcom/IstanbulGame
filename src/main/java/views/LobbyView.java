@@ -57,7 +57,6 @@ public class LobbyView implements LobbyViewObserver, Initializable {
 
     public void startGame() {
         gameController.startGame();
-        closeStage();
 //        loadGameScreen();
     }
 
@@ -127,7 +126,7 @@ public class LobbyView implements LobbyViewObserver, Initializable {
         }
     }
 
-    private void closeStage(){
+    public void closeStage(){
         stage.close();
     }
 
