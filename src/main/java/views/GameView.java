@@ -409,17 +409,16 @@ public class GameView implements GameViewObserver, Initializable {
 
     public void playerProgression(ActionEvent event){
         Button source = (Button) event.getSource();
-        System.out.println("BLAB");
         if (source.getId().equals("player1")) {
-            playerProgressionView.playerProgression("white");
+            playerProgressionView.playerProgression(4);
         } else if (source.getId().equals("player5")) {
-            playerProgressionView.playerProgression("red");
+            playerProgressionView.playerProgression(0);
         } else if (source.getId().equals("player4")) {
-            playerProgressionView.playerProgression("yellow");
+            playerProgressionView.playerProgression(1);
         } else if (source.getId().equals("player2")) {
-            playerProgressionView.playerProgression("green");
+            playerProgressionView.playerProgression(2);
         } else if (source.getId().equals("player3")) {
-            playerProgressionView.playerProgression("blue");
+            playerProgressionView.playerProgression(3);
         }
     }
 

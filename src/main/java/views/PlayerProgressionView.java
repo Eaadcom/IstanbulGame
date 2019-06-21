@@ -15,12 +15,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import util.GameInformation;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -33,10 +37,12 @@ public class PlayerProgressionView implements Initializable {
 
     // FXML Variables
     @FXML
-    public Text playername;
+    public Text playername, redProg, blueProg, yellowProg, greenProg, liraProg, rubyProg, carProg;
+    @FXML
+    public Pane playerIcon;
 
 
-    public void playerProgression(String color){
+    public void playerProgression(int id){
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
         Parent root2 = null;
         try {
@@ -51,26 +57,40 @@ public class PlayerProgressionView implements Initializable {
         stage.show();
 
         playername = (Text) root2.lookup("#playername");
+        redProg = (Text) root2.lookup("#redProg");
+        yellowProg = (Text) root2.lookup("#yellowProg");
+        greenProg = (Text) root2.lookup("#greenProg");
+        blueProg = (Text) root2.lookup("#blueProg");
+        liraProg = (Text) root2.lookup("#liraProg");
+        rubyProg = (Text) root2.lookup("#rubyProg");
+        carProg = (Text) root2.lookup("#carProg");
 
-        updateScreen(color);
+        playerIcon = (Pane) root2.lookup("#playerIcon");
+
+
+
+        updateScreen(id);
     }
 
-    public void updateScreen(String color){
+    public void updateScreen(int id){
         Platform.runLater(new Runnable(){
             @Override
             public void run() {
-                if(color == "red"){
-                    System.out.println(GameController.getInstance().getGame().board.players.get(0).getName());
-                    playername.setText(GameController.getInstance().getGame().board.players.get(0).getName());
-                }else if(color == "yellow"){
-                    playername.setText(GameController.getInstance().getGame().board.players.get(1).getName());
-                }else if(color == "green"){
-                    playername.setText(GameController.getInstance().getGame().board.players.get(2).getName());
-                }else if(color == "blue"){
-                    playername.setText(GameController.getInstance().getGame().board.players.get(3).getName());
-                }else if(color == "white"){
-                    playername.setText(GameController.getInstance().getGame().board.players.get(4).getName());
+                try {
+                    playerIcon.setId("playerIcon" + id);
+                    playername.setText(GameController.getInstance().getGame().board.players.get(id).getName());
+                    redProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getFabrics()));
+                    yellowProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getFruits()));
+                    greenProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getSpices()));
+                    blueProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getJewels()));
+                    liraProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getLira()));
+                    rubyProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getRubies()));
+                    carProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getCarUpgrades()));
                 }
+                catch(Exception e) {
+                    System.out.println("Je klikte op een speler die er niet is. De gegevens konden niet geladen worden.");
+                }
+
             }
         });
 
