@@ -122,7 +122,7 @@ public class GameView implements GameViewObserver, Initializable {
                         }
 
                         //Disable tiles if not your turn
-                        if (GameController.getInstance().getGame().turnCounter != GameController.getInstance().getGame().myPlayerID){
+                        if (GameController.getInstance().getGame().turnCounter +1 != GameController.getInstance().getGame().myPlayerID){
                             GameView.getInstance().disableTiles(true);
                         }
 
