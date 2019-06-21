@@ -26,12 +26,12 @@
                            <children>
                               <Pane prefHeight="44.0" prefWidth="102.0">
                                  <children>
-                                    <Button id="arrowleft" fx:id="arrowleft" onAction="#previousPlayer" layoutX="44.0" prefHeight="44.0" prefWidth="55.0" />
+                                    <Button id="arrowleft" fx:id="arrowleft" layoutX="44.0" prefHeight="44.0" prefWidth="55.0" />
                                  </children>
                               </Pane>
                               <Pane layoutX="98.0" prefHeight="44.0" prefWidth="102.0">
                                  <children>
-                                    <Button onAction="#nextPlayer" id="arrowright" layoutX="14.0" prefHeight="44.0" prefWidth="55.0" />
+                                    <Button id="arrowright" layoutX="14.0" prefHeight="44.0" prefWidth="55.0" />
                                  </children>
                               </Pane>
                            </children>
