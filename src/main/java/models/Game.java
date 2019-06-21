@@ -27,6 +27,7 @@ public class Game implements GameObservable {
 
     // SystemVariables
     private  List<GameViewLobbyViewObserver> observers = new ArrayList<>();
+    public boolean removeDoubleGames = true;
 
 
     public void nextTurn(){

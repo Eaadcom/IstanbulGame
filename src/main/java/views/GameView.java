@@ -91,6 +91,8 @@ public class GameView implements GameViewObserver, Initializable {
     private Pane[] family;
     private Pane[] assistants;
 
+
+
     public GameView() {
         GameView.gameView = this;
     }
@@ -102,7 +104,8 @@ public class GameView implements GameViewObserver, Initializable {
                     try {
                         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
                         Parent root1 = fxmlloader.load();
-                        if (stage == null) {
+                        if (GameController.getInstance().getGame().removeDoubleGames) {
+                            System.out.println("HIERMAAKIKGAMEAAN");
                             stage = new Stage();
                             stage.initStyle(StageStyle.UNDECORATED);
                             stage.setTitle("Istanbul");
@@ -115,6 +118,7 @@ public class GameView implements GameViewObserver, Initializable {
                             stage.setWidth(primaryScreenBounds.getWidth());
                             stage.setHeight(primaryScreenBounds.getHeight());
                             stage.show();
+                            GameController.getInstance().getGame().removeDoubleGames = false;
                         }
 
 
