@@ -31,7 +31,7 @@ public class Game implements GameObservable {
 
 
     public void nextTurn(){
-        if (turnCounter == getPlayerTotal() - 1){
+        if (turnCounter == board.players.size() - 1){
             turnCounter = 0;
         } else{
             turnCounter++;
@@ -128,7 +128,7 @@ public class Game implements GameObservable {
     }
 
     public void increaseTurnCounter() {
-        turnCounter++;
+        nextTurn();
         notifyAllObservers();
     }
 
