@@ -439,49 +439,49 @@ public class LocationController{
         if (usernamefield.equals("1")) {
             GameView.getInstance().movePoliceStation(1);
         }
-        else if (usernamefield.contains("2")) {
+        else if (usernamefield.equals("2")) {
             GameView.getInstance().movePoliceStation(2);
         }
-        else if (usernamefield.contains("3")) {
+        else if (usernamefield.equals("3")) {
             GameView.getInstance().movePoliceStation(3);
         }
-        else if (usernamefield.contains("4")) {
+        else if (usernamefield.equals("4")) {
             GameView.getInstance().movePoliceStation(4);
         }
-        else if (usernamefield.contains("5")) {
+        else if (usernamefield.equals("5")) {
             GameView.getInstance().movePoliceStation(5);
         }
-        else if (usernamefield.contains("6")) {
+        else if (usernamefield.equals("6")) {
             GameView.getInstance().movePoliceStation(6);
         }
-        else if (usernamefield.contains("7")) {
+        else if (usernamefield.equals("7")) {
             GameView.getInstance().movePoliceStation(7);
         }
-        else if (usernamefield.contains("8")) {
+        else if (usernamefield.equals("8")) {
             GameView.getInstance().movePoliceStation(8);
         }
-        else if (usernamefield.contains("9")) {
+        else if (usernamefield.equals("9")) {
             GameView.getInstance().movePoliceStation(9);
         }
-        else if (usernamefield.contains("10")) {
+        else if (usernamefield.equals("10")) {
             GameView.getInstance().movePoliceStation(10);
         }
-        else if (usernamefield.contains("11")) {
+        else if (usernamefield.equals("11")) {
             GameView.getInstance().movePoliceStation(11);
         }
-        else if (usernamefield.contains("12")) {
+        else if (usernamefield.equals("12")) {
             // This is the policesttion itself, probably shouldn't be included
         }
-        else if (usernamefield.contains("13")) {
+        else if (usernamefield.equals("13")) {
             GameView.getInstance().movePoliceStation(13);
         }
-        else if (usernamefield.contains("14")) {
+        else if (usernamefield.equals("14")) {
             GameView.getInstance().movePoliceStation(14);
         }
-        else if (usernamefield.contains("15")) {
+        else if (usernamefield.equals("15")) {
             GameView.getInstance().movePoliceStation(15);
         }
-        else if (usernamefield.contains("16")) {
+        else if (usernamefield.equals("16")) {
             GameView.getInstance().movePoliceStation(16);
         }
         else {

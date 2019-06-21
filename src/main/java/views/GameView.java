@@ -258,7 +258,7 @@ public class GameView implements GameViewObserver, Initializable {
 
     private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
-        addToGrid(famred, tile12);
+        addToGrid(famred, tile1);
         addToGrid(famyellow, tile12);
         addToGrid(famgreen, tile12);
         addToGrid(famwhite, tile12);
@@ -420,7 +420,7 @@ public class GameView implements GameViewObserver, Initializable {
 
             gameController.setNextPlayer();
             possibleMoves(pane);
-            disableTiles(true);
+            //disableTiles(true);
         }
     }
 
@@ -437,6 +437,7 @@ public class GameView implements GameViewObserver, Initializable {
             wainwright();
             GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
             GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
+            GameController.getInstance().getMyPlayer().familyMember.location = 1;
         }
         else if (tileNumber == 2) {
             fabricWarehouse();

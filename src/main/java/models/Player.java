@@ -51,6 +51,7 @@ public class Player implements PlayerObservable {
     public boolean yellowTile = false;
 
     public int positionOnBoard = 7;
+    public FamilyMember familyMember = new FamilyMember();
 
     public boolean hasMoved = false;
 
