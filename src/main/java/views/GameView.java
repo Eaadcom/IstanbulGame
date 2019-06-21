@@ -70,7 +70,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public GridPane grid; // aanmaken fx:id
     @FXML
-    public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16; // aanmaken fx:id
+    public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16, endturn; // aanmaken fx:id
     @FXML
     public Text gemPrice;
     @FXML
@@ -105,7 +105,6 @@ public class GameView implements GameViewObserver, Initializable {
                         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
                         Parent root1 = fxmlloader.load();
                         if (GameController.getInstance().getGame().removeDoubleGames) {
-                            System.out.println("HIERMAAKIKGAMEAAN");
                             stage = new Stage();
                             stage.initStyle(StageStyle.UNDECORATED);
                             stage.setTitle("Istanbul");
@@ -119,11 +118,7 @@ public class GameView implements GameViewObserver, Initializable {
                             stage.setHeight(primaryScreenBounds.getHeight());
                             stage.show();
                             GameController.getInstance().getGame().removeDoubleGames = false;
-                        }
-
-                        //Disable tiles if not your turn
-                        if (GameController.getInstance().getGame().turnCounter +1 != GameController.getInstance().getGame().myPlayerID){
-                            GameView.getInstance().disableTiles(true);
+                            disableEndTurn(true);
                         }
 
                         //Sultans palace
@@ -202,6 +197,14 @@ public class GameView implements GameViewObserver, Initializable {
             }
         }
         return myPane;
+    }
+
+    public void disableEndTurn(boolean b){
+        if(b){
+            endturn.setDisable(true);
+        }else{
+            endturn.setDisable(false);
+        }
     }
 
     private boolean isMyTurn() {
@@ -441,6 +444,7 @@ public class GameView implements GameViewObserver, Initializable {
     // Popup to show the progression of an enemy player
     public void endTurn() throws IOException {
         if (popUpView.endTurn()) {
+            disableEndTurn(true);
             gameController.endTurn();
         }
     }
@@ -460,6 +464,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
         if (popUpView.confirmMovement()) {
+            disableEndTurn(false);
             Button source = (Button) event.getSource();
             Pane pane = findPlayerColor(gameController.getMyPlayerID(), true); //finds out what the color of the player is and tells it's a player, not a familymember
 
