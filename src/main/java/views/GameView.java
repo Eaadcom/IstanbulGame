@@ -105,7 +105,7 @@ public class GameView implements GameViewObserver, Initializable {
                         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
                         Parent root1 = fxmlloader.load();
                         if (GameController.getInstance().getGame().removeDoubleGames) {
-                            LobbyView.getInstance().closeStage();
+
                             stage = new Stage();
                             stage.initStyle(StageStyle.UNDECORATED);
                             stage.setTitle("Istanbul");
@@ -119,6 +119,7 @@ public class GameView implements GameViewObserver, Initializable {
                             stage.setHeight(primaryScreenBounds.getHeight());
                             stage.show();
                             GameController.getInstance().getGame().removeDoubleGames = false;
+                            LobbyView.getInstance().closeStage();
                         }
 
                         //Sultans palace
