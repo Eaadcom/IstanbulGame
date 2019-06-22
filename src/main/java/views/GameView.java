@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 
 import java.util.*;
 
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -22,7 +21,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.*;
 import models.cards.BonusCard;
-import models.locations.GemstoneDealer;
 import models.locations.SultanPalace;
 import observers.*;
 
@@ -193,8 +191,6 @@ public class GameView implements GameViewObserver, Initializable {
             disableTiles(true);
         }
 
-//        turnManager();
-
         gameController.registerGameOrLobbyObserverToGame(this);
         gameController.registerGameViewObserverToPlayer(this);
     }
@@ -258,7 +254,7 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     private void initializeMaps() {
-        stringTiles = new HashMap<String, Button>(){{
+        stringTiles = new HashMap<String, Button>() {{
             put("tile1", tile1);
             put("tile2", tile2);
             put("tile3", tile3);
@@ -286,10 +282,6 @@ public class GameView implements GameViewObserver, Initializable {
                 {tile8, tile6, tile12, tile14},
                 {tile11, tile4, tile1, tile13}};
 
-//        mediumMap = new Button[][]{{tile1, tile2, tile3, tile4},
-//                {tile5, tile6, tile7, tile8},
-//                {tile9, tile10, tile11, tile12},
-//                {tile13, tile14, tile15, tile16}};
     }
 
     private void initializePlayerColor() {
@@ -306,20 +298,6 @@ public class GameView implements GameViewObserver, Initializable {
             playerGrid.setRowIndex(whiteProg, 4);
             playerGrid.setRowIndex(blueProg, 5);
         }
-    }
-
-    private void disableAllTiles() {
-        tiles.forEach(button -> button.setDisable(false));
-    }
-
-    /**
-     * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
-     * van de grid enabled of disabled moeten worden
-     *
-     * @param currentPlayerTurn Player
-     */
-    private void manageGameFieldIconen(Player currentPlayerTurn) {
-
     }
 
     private Button externalNode = tile12;
@@ -407,15 +385,15 @@ public class GameView implements GameViewObserver, Initializable {
         }
 
 //        //spelers op de juiste plek zetten
-//        addToGrid(playerred, tile7);
-//        addToGrid(playerYellow, tile7);
-//        addToGrid(playergreen, tile7);
-//        addToGrid(playerblue, tile7);
-//        addToGrid(playerwhite, tile7);
+        addToGrid(playerred, tile7);
+        addToGrid(playerYellow, tile7);
+        addToGrid(playergreen, tile7);
+        addToGrid(playerblue, tile7);
+        addToGrid(playerwhite, tile7);
     }
 
     private void setPlayerIcons(Map<Integer, String> playerTiles) {
-        for(Map.Entry<Integer, String> entry : playerTiles.entrySet()) {
+        for (Map.Entry<Integer, String> entry : playerTiles.entrySet()) {
             Pane playerColor = findPlayerColor(entry.getKey(), true);
 
             int rowIndex = getRowIndex(stringTiles.get(entry.getValue()));
@@ -591,16 +569,10 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile16")) {
                 gemstoneDealer();
             }
-
-            gameController.setNextPlayer();
-            possibleMoves(pane);
-            disableTiles(true);
+            gameController.updatePlayerTile(source.getId());
+            gameController.setHasMoved(true);
+            gameController.updateGame();
         }
-    }
-
-    public void setColumnRow(Button button) {
-        int column = GridPane.getColumnIndex(button);
-        int row = GridPane.getRowIndex(button);
     }
 
     /**
@@ -848,28 +820,8 @@ public class GameView implements GameViewObserver, Initializable {
      * @author Stan Hogenboom
      */
     private void moveTile(Pane pane, int column, int row) {
-
-
-        if (!gameController.movementDone()) {
-            GridPane.setColumnIndex(pane, column);
-            GridPane.setRowIndex(pane, row);
-
-            //gameController.setMoved(true);
-            //disableAllTiles();
-        } else {
-            popUpView.dontMove();
-        }
-    }
-
-    /**
-     * Checks if it's your turn and disbales tiles acordingly.
-     */
-    public void turnManager() {
-        if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.isGameEnded()) {
-            disableTiles(false);
-            // TURNCOUNTER++;
-            //GameController.getInstance().increaseTurn();
-        }
+        GridPane.setColumnIndex(pane, column);
+        GridPane.setRowIndex(pane, row);
     }
 
     /**
@@ -999,8 +951,10 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     private void updateGameView(Game game) {
-        if (isMyTurn()) {
+        if (isMyTurn() && !game.hasMoved) {
             enableLocationsForMyPlayer();
+        } else {
+            disableTiles(true);
         }
         updateGameIcons(game);
     }

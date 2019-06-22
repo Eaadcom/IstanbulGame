@@ -28,6 +28,8 @@ public class GameController {
     private static PlayerController playerController = PlayerController.getInstance();
     public Game game;
 
+    private boolean myGameStarted = false;
+
     // Get data from other controllers
     public Difficulty getDifficulty() {
         return game.getDifficulty();
@@ -37,6 +39,14 @@ public class GameController {
     //CONSTRUCTOR
     public GameController(){
 
+    }
+
+    public boolean isMyGameStarted() {
+        return myGameStarted;
+    }
+
+    public void setMyGameStarted(boolean myGameStarted) {
+        this.myGameStarted = myGameStarted;
     }
 
     public boolean isGameEnded() {
@@ -88,6 +98,14 @@ public class GameController {
         }
     }
 
+    public void setHasMoved(boolean hasMoved) {
+        game.setHasMoved(hasMoved);
+    }
+
+    public boolean hasMoved() {
+        return game.isHasMoved();
+    }
+
     public Player getPlayerCurrentTurn() {
         int playerTurn = TurnManager();
         return game.getPlayers().get(playerTurn);
@@ -104,14 +122,6 @@ public class GameController {
         return turn;
     }
 
-    public void increaseTurn(){
-        game.increaseTurnCounter();
-    }
-
-    public void setNextTurn() {
-        game.increaseTurnCounter();
-    }
-
     public void setNextPlayer() {
 
     }
@@ -124,6 +134,7 @@ public class GameController {
 
     public void endTurn() {
         game.increaseTurnCounter();
+        game.setHasMoved(false);
         updateGame();
     }
 
@@ -188,6 +199,10 @@ public class GameController {
 
     public void tilesToModel(javafx.scene.control.Button[][] buttonMap) {
 
+    }
+
+    public void updatePlayerTile(String tileString) {
+        game.updatePlayerTile(tileString, playerController.getMyPlayer().getPlayerID());
     }
 }
 

@@ -149,7 +149,8 @@ public class LobbyView implements LobbyViewObserver, Initializable {
             setPlayerNames(names);
             disablePlayerTexts(game.getPlayerTotal());
             System.out.println(game.isGameStarted());
-            if (game.isGameStarted()) {
+            if (game.isGameStarted() && !gameController.isMyGameStarted()) {
+                gameController.setMyGameStarted(true);
                 loadGameScreen();
             }
 

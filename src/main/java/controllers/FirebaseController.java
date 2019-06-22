@@ -135,37 +135,44 @@ public class FirebaseController {
     }
 
     private Map<String, Object> createKeyValueMapForPlayers(Board board) {
-        try {
-            Map<String, Object> players = new HashMap<>();
-            int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
-            int playerListLength = gameController.getInstance().getGame().board.players.size();
+//        try {
+            Map<String, Object> playerMap = new HashMap<>();
+            List<Player> players = board.getPlayers();
+            for (int i = 0; i < players.size(); i++) {
+                playerMap.put(Integer.toString(i), players.get(i).getVariableMap());
+            }
+            return playerMap;
 
-            Player player1 = board.getPlayers().get(0);
-            players.put("Player1", player1.getVariableMap());
-            if (playerListLength > 1) {
-                Player player2 = board.getPlayers().get(1);
-                players.put("Player2", player2.getVariableMap());
-            }
-            if (playerTotal >= 3) {
-                Player player3 = board.getPlayers().get(2);
-                players.put("Player3", player3.getVariableMap());
-            }
-            if (playerTotal >= 4) {
-                Player player4 = board.getPlayers().get(3);
-                players.put("Player4", player4.getVariableMap());
-            }
-            if (playerTotal == 5) {
-                Player player5 = board.getPlayers().get(4);
-                players.put("Player1", player5.getVariableMap());
-            }
-
-            return players;
-        } catch (IndexOutOfBoundsException ie) {
-            Map<String, Object> players = new HashMap<>();
-            Player player1 = board.getPlayers().get(0);
-            players.put("Player1", player1.getVariableMap());
-            return players;
-        }
+//
+//            int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
+//            int playerListLength = gameController.getInstance().getGame().board.players.size();
+//
+//            Player player1 = board.getPlayers().get(0);
+//            players.put("Player1", player1.getVariableMap());
+//            if (playerListLength > 1) {
+//                Player player2 = board.getPlayers().get(1);
+//                players.put("Player2", player2.getVariableMap());
+//            }
+//            if (playerTotal >= 3) {
+//                Player player3 = board.getPlayers().get(2);
+//                players.put("Player3", player3.getVariableMap());
+//            }
+//            if (playerTotal >= 4) {
+//                Player player4 = board.getPlayers().get(3);
+//                players.put("Player4", player4.getVariableMap());
+//            }
+//            if (playerTotal == 5) {
+//                Player player5 = board.getPlayers().get(4);
+//                players.put("Player1", player5.getVariableMap());
+//            }
+//
+//            return players;
+//        } catch (IndexOutOfBoundsException ie) {
+//            Map<String, Object> players = new HashMap<>();
+//            Player player1 = board.getPlayers().get(0);
+//            players.put("Player1", player1.getVariableMap());
+//            return players;
+//        }
 
     }
 
@@ -203,6 +210,7 @@ public class FirebaseController {
         data.put("gameStarted", game.isGameStarted());
         data.put("gameEnded", game.isGameEnded());
         data.put("turnCounter", game.getTurnCounter());
+        data.put("hasMoved", game.isHasMoved());
 //        data.put("playerNames", userNames);
         data.put("Board", createKeyValueMapForBoard(game.board));
         return data;

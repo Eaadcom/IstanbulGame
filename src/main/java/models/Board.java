@@ -13,7 +13,7 @@ public class Board implements BoardObservable {
     private List<GameViewObserver> observers = new ArrayList<>();
 
     // GameVariables
-    public List<Player> players = new LinkedList<Player>();
+    public List<Player> players = new LinkedList<>();
     public Map<String, Object> tiles = new HashMap<>();
     public Object[] cards;
     public Dice[] dice;
@@ -45,25 +45,32 @@ public class Board implements BoardObservable {
     }
 
     private void setPlayerData(Map<String, Object> playersList) {
-        try {
-            int playerTotal = GameController.getInstance().getGame().getPlayerTotal(); //TODO niet goed volgens MVC
-
-            players.get(0).setData((Map) playersList.get("Player1"));
-            if (playersList.size() >= 2) {
-                players.get(1).setData((Map) playersList.get("Player2"));
-            }
-            if (playersList.size() >= 3) {
-                players.get(2).setData((Map) playersList.get("Player3"));
-            }
-            if (playersList.size() >= 4) {
-                players.get(3).setData((Map) playersList.get("Player4"));
-            }
-            if (playersList.size() == 5) {
-                players.get(4).setData((Map) playersList.get("Player5"));
-            }
-        } catch (IndexOutOfBoundsException ioe) {
-            System.out.println(ioe);
+        players.clear();
+        for (Map.Entry<String, Object> entry : playersList.entrySet()) {
+            Player player = new Player();
+            player.setData((Map) entry.getValue());
+            players.add(Integer.parseInt(entry.getKey()), player);
         }
+
+//        try {
+//            int playerTotal = GameController.getInstance().getGame().getPlayerTotal(); //TODO niet goed volgens MVC
+//
+//            players.get(0).setData((Map) playersList.get("Player1"));
+//            if (playersList.size() >= 2) {
+//                players.get(1).setData((Map) playersList.get("Player2"));
+//            }
+//            if (playersList.size() >= 3) {
+//                players.get(2).setData((Map) playersList.get("Player3"));
+//            }
+//            if (playersList.size() >= 4) {
+//                players.get(3).setData((Map) playersList.get("Player4"));
+//            }
+//            if (playersList.size() == 5) {
+//                players.get(4).setData((Map) playersList.get("Player5"));
+//            }
+//        } catch (IndexOutOfBoundsException ioe) {
+//            System.out.println(ioe);
+//        }
 
     }
 
@@ -168,5 +175,9 @@ public class Board implements BoardObservable {
 
     public Map<Integer, String> getPlayerTiles() {
         return playerTiles;
+    }
+
+    public void updatePlayerTile(String tileString, int playerID) {
+        playerTiles.put(playerID, tileString);
     }
 }

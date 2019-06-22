@@ -112,6 +112,8 @@ public class Player implements PlayerObservable {
         this.playerID = Math.toIntExact((long) playerData.get("playerID"));
     }
 
+    public Player() {}
+
     // Constructor
     public Player(String name, int playerID) {
         this.name = name;

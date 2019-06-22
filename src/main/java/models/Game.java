@@ -67,6 +67,7 @@ public class Game implements GameObservable {
         this.gameEnded = Boolean.parseBoolean(data.get("gameEnded").toString());
         this.difficulty = Difficulty.fromString(data.get("gameDifficulty").toString());
         this.turnCounter = Integer.parseInt(data.get("turnCounter").toString());
+        this.hasMoved = Boolean.parseBoolean(data.get("hasMoved").toString());
     }
 
     public Board getBoard() {
@@ -81,6 +82,10 @@ public class Game implements GameObservable {
     public void setHasMoved(Boolean b) {
         hasMoved = b;
     } //ik was hier gebleven
+
+    public boolean isHasMoved() {
+        return hasMoved;
+    }
 
     //Getters
     public Integer getPlayerTotal(){
@@ -153,4 +158,7 @@ public class Game implements GameObservable {
         return gameEnded;
     }
 
+    public void updatePlayerTile(String tileString, int playerID) {
+        board.updatePlayerTile(tileString, playerID);
+    }
 }
