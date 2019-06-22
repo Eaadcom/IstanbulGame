@@ -16,10 +16,7 @@ import models.cards.BonusCard;
 import observers.GameViewLobbyViewObserver;
 import observers.GameViewObserver;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class GameController {
 
@@ -47,7 +44,7 @@ public class GameController {
     }
     
     public int getMyPlayerID(){
-        return game.getMyPlayerID();
+        return playerController.getMyPlayer().getPlayerID();
     }
 
     // Singleton Pattern
@@ -115,18 +112,9 @@ public class GameController {
         game.increaseTurnCounter();
     }
 
-    public Player getCurrentPlayerTurn() {
-        return game.getCurrentPlayerTurn();
-    }
-
     public void setNextPlayer() {
 
     }
-
-    public List<BonusCard> getBonusKaartenVanHuidigeSpeler() {
-        return getCurrentPlayerTurn().getBonusKaartenInBezit();
-    }
-
 
     public void addGekozenKaart(String gekozenKaartId) {
         BonusCard gekozenKaart = cardController.getGekozenKaart(gekozenKaartId);
@@ -147,14 +135,11 @@ public class GameController {
         game.getPlayer().register(gameViewObserver);
     }
 
-    public void addPlayer(Player player) {
-        game.addPlayer(player);
-    }
-
     public void initializeGameData() {
         MainMenu mainMenu = menuViewController.getMainMenu();
         game = new Game(mainMenu.getGameName(), mainMenu.getPlayerTotal(), Difficulty.fromString(mainMenu.getDifficulty()));
-        Player player = playerController.createNewPlayer(mainMenu.getUsername());
+        int myPlayerID = game.getPlayers().size() + 1;
+        Player player = playerController.createNewPlayer(mainMenu.getUsername(), myPlayerID);
         game.addInitialPlayer(player);
         firebaseController.createNewGame(game);
     }
@@ -167,16 +152,12 @@ public class GameController {
         //Map<String, Object> newData =  firebaseController.getGameDataFromFirebase();
         DocumentSnapshot documentSnapshot = firebaseController.getGameDataFromFirebase();
         MainMenu mainMenu = menuViewController.getMainMenu();
-        this.game = new Game(document);
+        this.game = new Game();
         game.updateFromSnapShot(documentSnapshot);
         int playersJoined = GameController.getInstance().getGame().board.players.size();
+        int myPlayerID = playersJoined + 1;
 
-        if (playersJoined == 1){ GameController.getInstance().getGame().myPlayerID = 2; }
-        if (playersJoined == 2){ GameController.getInstance().getGame().myPlayerID = 3; }
-        if (playersJoined == 3){ GameController.getInstance().getGame().myPlayerID = 4; }
-        if (playersJoined == 4){ GameController.getInstance().getGame().myPlayerID = 5; }
-
-        Player newPlayer = playerController.createNewPlayer(mainMenu.getUsername());
+        Player newPlayer = playerController.createNewPlayer(mainMenu.getUsername(), myPlayerID);
         game.addPlayer(newPlayer);
         System.out.println(document.getData().get("Players"));
         System.out.println(GameController.getInstance().getGame().board.players.get(0).name);
