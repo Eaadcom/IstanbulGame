@@ -466,12 +466,13 @@ public class LocationController{
      * @version 17-6-2019
      */
     public void gemstoneDealerAction() {
+        Player player = GameController.getInstance().getPlayer();
         GemstoneDealer gsd = GemstoneDealer.getInstance();
         int price = gsd.getGemstonePrice();
 
-        if(myPlayer.lira > price){
-            playerController.addRubysLiras("ruby", 1);
-            playerController.addRubysLiras("lira", -price);
+        if(player.getLira() > price){
+            player.setRubies(player.getRubies()+1);
+            player.setLira(player.getLira()-price);
             gsd.updatePrice(price + 1);
         }
         else {
