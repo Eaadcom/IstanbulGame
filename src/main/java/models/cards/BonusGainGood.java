@@ -44,13 +44,25 @@ public class BonusGainGood implements BonusCard, BonusGainGoodObservable {
         Player player = GameController.getInstance().getPlayer();
         int newValue;
         if(choice == "fabric"){
-            player.setFabrics(player.getFabrics()+1);
+            newValue = player.getFabrics()+1;
+            if(newValue < player.getMaxFabrics()) {
+                player.setFabrics(newValue);
+            }
         } else if(choice == "fruit"){
-            player.setFruits(player.getFruits()+1);
+            newValue = player.getFruits()+1;
+            if(newValue < player.getMaxFruits()) {
+                player.setFruits(newValue);
+            }
         } else if (choice  == "jewel"){
-            player.setJewels(player.getJewels()+1);
+            newValue = player.getJewels()+1;
+            if(newValue < player.getMaxJewels()) {
+                player.setJewels(newValue);
+            }
         } else if(choice == "spice"){
-            player.setSpices(player.getSpices()+1);
+            newValue = player.getSpices()+1;
+            if(newValue < player.getMaxSpices()) {
+                player.setSpices(newValue);
+            }
         }
     }
 
