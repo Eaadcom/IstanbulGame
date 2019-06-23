@@ -20,7 +20,8 @@ public class SmallMosque implements Location, SmallMosqueObservable {
     public boolean yellowAs = false;
     public boolean whiteAs = false;
 
-    public int bought;
+    public int greenPrice = 2;
+    public int redPrice = 2;
 
     // Firebase
     public Map<String, Object> getVariableMap(){

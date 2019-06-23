@@ -321,60 +321,48 @@ public class LocationController{
     }
 
 
-    public int SmallMosque(int Bought, String choice){
-        int payement;
+    public void SmallMosque(int Bought, String choice){
 
         switch (choice) {
             case "fabric":
-                payement = 1 + Bought;
-                if (player.fabrics > payement || player.fabrics == payement) {
-                    player.setFabrics(-payement);
+                if (player.fabrics > Bought || player.fabrics == Bought) {
+                    player.setFabrics(-Bought);
                     player.setFabricMosque(true);
-                    Bought++;
                     MosqueChecker("small");
 
                 }
             case "spice":
-                payement = 1 + Bought;
-                if (player.spices > payement || player.spices == payement){
-                    player.setSpices(-payement);
+                if (player.spices > Bought || player.spices == Bought){
+                    player.setSpices(-Bought);
                     player.setSpiceMosque(true);
                     MosqueChecker("small");
-                    Bought++;
                 }
         }
 
 
 
 
-        return Bought;
     }
 
-    public int BigMosque(int Bought, String choice){
-        int payement;
+    public void BigMosque(int Bought, String choice){
 
         switch(choice){
             case "jewel":
-                payement = 1 + Bought;
-                if(player.jewels > payement || player.jewels == payement){
-                    player.setJewels(-payement);
+                if(player.jewels > Bought || player.jewels == Bought){
+                    System.out.println("Je betaald nu" + Bought);
+                    player.setJewels(-Bought);
                     player.setJewelMosque(true);
                     MosqueChecker("big");
-                    Bought++;
                 }
             case "fruit":
-                payement = 1 + Bought;
-                if(player.fruits > payement || player.fruits == payement){
-                    player.setFruits((-payement));
+                if(player.fruits > Bought || player.fruits == Bought){
+                    player.setFruits((-Bought));
                     player.setFruitMosque(true);
                     MosqueChecker("big");
-                    Bought++;
                 }
         }
 
 
-        Bought++;
-        return Bought;
     }
 
     public void MosqueChecker(String mosque){
@@ -391,6 +379,8 @@ public class LocationController{
             case "big":
                 if(player.BigMosqueRuby == false) {
                     if (myPlayer.jewelMosque && myPlayer.fruitMosque) {
+                        System.out.println("Je hebt nu beide de jewels en fruit op true staan");
+
                         playerController.addRubysLiras("ruby", 1);
                         player.setBigMosqueRuby(true);
                     }
