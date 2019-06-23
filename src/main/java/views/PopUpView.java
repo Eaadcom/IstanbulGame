@@ -61,7 +61,7 @@ public class PopUpView {
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));   
+        stage.setScene(new Scene(root2));
         stage.initModality(Modality.APPLICATION_MODAL);
         PopUpView controller = fxmlloader.getController();
         stage.showAndWait();

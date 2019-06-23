@@ -44,6 +44,11 @@ public class PlayerProgressionView implements Initializable {
     public int STATE;
 
 
+    /**
+     *
+     * @param id
+     * @author Thomas van Velzen
+     */
     public void playerProgression(int id){
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
         Parent root2 = null;
@@ -81,6 +86,8 @@ public class PlayerProgressionView implements Initializable {
     public void previousPlayer(){
         updateScreen(STATE-1);
     }
+
+
 
     public void updateScreen(int id){
         Platform.runLater(new Runnable(){
