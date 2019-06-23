@@ -263,21 +263,20 @@ public class LocationController{
     }
 
         public void BlackMarketChoice(int BlackMarketChoice) {
-        playerController = PlayerController.getInstance();
+        Player player = GameController.getInstance().getPlayer();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
-                myPlayer.spices += 1;
+                player.setSpices(player.getSpices() +1);
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
-                myPlayer.fruits += 1;
+                player.setFruits(player.getFruits() +1);
 
             }
         } else if (BlackMarketChoice == 3) {
             if (playerController.CargoCheckFabrics(1)) {
-                myPlayer.fabrics += 1;
-                System.out.println("er zijn " + myPlayer.fabrics + " Fabrics");
+                player.setFabrics(player.getFabrics() +1);
 
             } else {
 

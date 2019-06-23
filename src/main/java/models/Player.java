@@ -33,7 +33,7 @@ public class Player implements PlayerObservable {
     public String color = "red";
 
     public int spices = 2;
-    public int fruits = 2;
+    public int fruits = 1;
     public int jewels = 0;
     public int fabrics = 2;
 
