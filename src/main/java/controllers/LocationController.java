@@ -53,6 +53,7 @@ public class LocationController{
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
     private Wainwright wainwright = Wainwright.getInstance();
+    private Player player = GameController.getInstance().getPlayer();
 
     private GameView gameView;
 
@@ -283,6 +284,84 @@ public class LocationController{
         }
     }
 
+
+    public int SmallMosque(int Bought, String choice){
+        int payement;
+
+        switch (choice) {
+            case "fabric":
+                payement = 1 + Bought;
+                if (player.fabrics > payement || player.fabrics == payement) {
+                    player.setFabrics(-payement);
+                    player.setFabricMosque(true);
+                    Bought++;
+                    MosqueChecker("small");
+
+                }
+            case "spice":
+                payement = 1 + Bought;
+                if (player.spices > payement || player.spices == payement){
+                    player.setSpices(-payement);
+                    player.setSpiceMosque(true);
+                    MosqueChecker("small");
+                    Bought++;
+                }
+        }
+
+
+
+
+        return Bought;
+    }
+
+    public int BigMosque(int Bought, String choice){
+        int payement;
+
+        switch(choice){
+            case "jewel":
+                payement = 1 + Bought;
+                if(player.jewels > payement || player.jewels == payement){
+                    player.setJewels(-payement);
+                    player.setJewelMosque(true);
+                    MosqueChecker("big");
+                    Bought++;
+                }
+            case "fruit":
+                payement = 1 + Bought;
+                if(player.fruits > payement || player.fruits == payement){
+                    player.setFruits((-payement));
+                    player.setFruitMosque(true);
+                    MosqueChecker("big");
+                    Bought++;
+                }
+        }
+
+
+        Bought++;
+        return Bought;
+    }
+
+    public void MosqueChecker(String mosque){
+
+        switch (mosque){
+            case "small":
+                if(player.SmallMosqueRuby == false) {
+                    if (myPlayer.fabricMosque && myPlayer.spiceMosque) {
+                        playerController.addRubysLiras("ruby", 1);
+                        player.setSmallMosqueRuby(true);
+
+                    }
+                }
+            case "big":
+                if(player.BigMosqueRuby == false) {
+                    if (myPlayer.jewelMosque && myPlayer.fruitMosque) {
+                        playerController.addRubysLiras("ruby", 1);
+                        player.setBigMosqueRuby(true);
+                    }
+                }
+
+        }
+    }
     public void CarravansaryCardSelector() {
 
         // hier nog even naar kijken jongens, ik weet niet hoe jullie die bonuskaarten willen hebben.
