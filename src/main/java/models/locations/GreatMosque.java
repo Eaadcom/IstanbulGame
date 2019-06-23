@@ -13,8 +13,7 @@ public class GreatMosque implements Location, GreatMosqueObservable {
 
     // Variables
     private static GreatMosque greatMosque;
-    public int boughtFruit;
-    public int boughtJewels;
+    public int bought;
     private List<LocationViewObserver> observers = new ArrayList<>();
     public boolean redAs = false;
     public boolean blueAs = false;

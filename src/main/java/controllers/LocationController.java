@@ -350,32 +350,31 @@ public class LocationController{
         return Bought;
     }
 
-    public void BigMosque(String choice){
+    public int BigMosque(int Bought, String choice){
         int payement;
-        int BoughtJewels = greatMosque.boughtJewels;
-        int BoughtFruit = greatMosque.boughtFruit;
+
         switch(choice){
             case "jewel":
-                payement = 1 + BoughtJewels;
+                payement = 1 + Bought;
                 if(player.jewels > payement || player.jewels == payement){
                     player.setJewels(-payement);
                     player.setJewelMosque(true);
                     MosqueChecker("big");
-                    BoughtJewels++;
-                    greatMosque.boughtJewels = BoughtJewels;
+                    Bought++;
                 }
             case "fruit":
-                payement = 1 + BoughtFruit;
+                payement = 1 + Bought;
                 if(player.fruits > payement || player.fruits == payement){
                     player.setFruits((-payement));
                     player.setFruitMosque(true);
                     MosqueChecker("big");
-                    BoughtFruit++;
-                    greatMosque.boughtFruit = BoughtFruit;
+                    Bought++;
                 }
         }
 
 
+        Bought++;
+        return Bought;
     }
 
     public void MosqueChecker(String mosque){
