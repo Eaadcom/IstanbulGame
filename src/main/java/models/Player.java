@@ -26,6 +26,13 @@ public class Player implements PlayerObservable {
     private List<GameViewObserver> observers = new ArrayList<>();
 
     // GameVariables
+    public boolean fabricMosque = false;
+    public boolean spiceMosque = false;
+    public boolean fruitMosque = false;
+    public boolean jewelMosque = false;
+    public boolean BigMosqueRuby = false;
+    public boolean SmallMosqueRuby = false;
+
     public int rubies = 0;
     public int lira = 50;
     public int carUpgrades = 0;
@@ -203,6 +210,36 @@ public class Player implements PlayerObservable {
         notifyAllObservers();
     }
 
+    public void setFabricMosque(boolean fabricMosque){
+        this.fabricMosque = fabricMosque;
+        notifyAllObservers();
+    }
+
+    public void setFruitMosque(boolean fruitMosque){
+        this.fruitMosque = fruitMosque;
+        notifyAllObservers();
+    }
+
+    public void setJewelMosque(boolean jewelMosque){
+        this.fruitMosque = fruitMosque;
+        notifyAllObservers();
+    }
+
+    public void setSpiceMosque(boolean spiceMosque){
+        this.spiceMosque = spiceMosque;
+        notifyAllObservers();
+    }
+
+    public void setSmallMosqueRuby(boolean smallMosqueRuby){
+        this.SmallMosqueRuby = smallMosqueRuby;
+        notifyAllObservers();
+    }
+
+    public void setBigMosqueRuby(boolean bigMosqueRuby){
+        this.BigMosqueRuby = bigMosqueRuby;
+        notifyAllObservers();
+    }
+
     public int getSpices() {
         return spices;
     }
@@ -246,6 +283,10 @@ public class Player implements PlayerObservable {
     public int getPlayerID() {
         return playerID;
     }
+    public boolean getSpiceMosque (){return spiceMosque;}
+    public boolean getFabricMosque(){return fabricMosque;}
+    public boolean getFruitMosque(){return fruitMosque;}
+    public boolean getJewelMosque(){return jewelMosque;}
 
     // Observer Pattern
     @Override
