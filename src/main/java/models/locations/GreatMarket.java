@@ -1,8 +1,10 @@
 package models.locations;
 
 import models.Player;
+import observers.GameViewObserver;
 import observers.LocationViewObserver;
 import observers.locations.GreatMarketObservable;
+import views.GameView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,19 +88,23 @@ public class GreatMarket implements Location, GreatMarketObservable {
         if (STATE == 0) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 1) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 2) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 3) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 4) {
             STATE = 0;
             setStateValue();
-            int duplicate;
+            notifyAllObservers();
         }
     }
 
@@ -114,7 +120,6 @@ public class GreatMarket implements Location, GreatMarketObservable {
      * @param player
      */
     public void GMconfirmPurchase(int fabric, int fruit, int spice, int jewel, Player player){
-        System.out.println("h");
         if( player.getFabrics() >= fabric && fabric <= this.fabric &&
             player.getFruits()  >= fruit  && fruit  <= this.fruit  &&
             player.getSpices()  >= spice  && spice  <= this.spice  &&
@@ -130,23 +135,23 @@ public class GreatMarket implements Location, GreatMarketObservable {
             System.out.println("GM player jewel: " + player.getJewels());
 
             if(fabric + fruit + spice + jewel == 1){
-                //voeg 3 lira toe
+                player.setLira(player.getLira()+3);
                 System.out.println("3 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 2){
-                //voeg 7 lira toe
+                player.setLira(player.getLira()+7);
                 System.out.println("7 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 3){
-                //voeg 12 lira toe
+                player.setLira(player.getLira()+12);
                 System.out.println("12 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 4){
-                //voeg 18 lira toe
+                player.setLira(player.getLira()+18);
                 System.out.println("18 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 5){
-                //voeg 25 lira toe
+                player.setLira(player.getLira()+25);
                 System.out.println("25 lira toegevoegd");
                 stateHandler();
             }
@@ -168,17 +173,20 @@ public class GreatMarket implements Location, GreatMarketObservable {
     // Variables
     private static GreatMarket greatMarket;
     private ArrayList<String> demandTiles = new ArrayList<>();
-    private List<LocationViewObserver> observers = new ArrayList<>();
+    private List<GameViewObserver> observers = new ArrayList<>();
 
     // Observer Pattern
     @Override
-    public void register(LocationViewObserver observer) {
+    public void register(GameViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (LocationViewObserver gvo : observers){
+        if (!observers.contains(GameView.getInstance())){
+            register(GameView.getInstance());
+        }
+        for (GameViewObserver gvo : observers){
             gvo.update(this);
         }
     }

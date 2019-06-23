@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -23,6 +24,8 @@ public class SmallMarketView implements Initializable {
     private Text jewel, fabric, fruit, spice;
     @FXML
     private TextField choiceFabric, choiceJewel, choiceFruit, choiceSpice;
+    @FXML
+    private Button none;
 
     //Singleton
     private static SmallMarketView smallMarketView;
@@ -52,15 +55,21 @@ public class SmallMarketView implements Initializable {
     }
 
     public void confirmPurchase() throws IOException {
-        if(choiceFruit.getText() != "" && choiceFabric.getText() != "" &&choiceSpice.getText() != "" &&choiceJewel.getText() != "" ) {
+        if(choiceFruit.getText() != null && choiceFabric.getText() != null &&choiceSpice.getText() != null &&choiceJewel.getText() != null ) {
             int fabricvalue = Integer.parseInt(choiceFabric.getText());
             int fruitvalue = Integer.parseInt(choiceFruit.getText());
             int spicevalue = Integer.parseInt(choiceSpice.getText());
             int jewelvalue = Integer.parseInt(choiceJewel.getText());
             LocationController.getInstance().SMconfirmPurchase(fabricvalue, fruitvalue, spicevalue, jewelvalue);
+            close();
         }else{
             //doe niks
         }
+    }
+
+    public void close(){
+        Stage stage = (Stage) none.getScene().getWindow();
+        stage.close();
     }
 
     @Override

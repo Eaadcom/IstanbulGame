@@ -16,7 +16,7 @@
             <TextField fx:id="GMchoiceFruit" layoutX="160.0" layoutY="159.0" prefHeight="24.0" prefWidth="59.0" />
             <TextField fx:id="GMchoiceSpice" layoutX="238.0" layoutY="159.0" prefHeight="24.0" prefWidth="59.0" />
             <TextField fx:id="GMchoiceJewel" layoutX="313.0" layoutY="160.0" prefHeight="24.0" prefWidth="59.0" />
-            <Button id="none" fx:id="none" layoutX="351.0" layoutY="234.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" />
+            <Button id="none" fx:id="none" onAction="#close" layoutX="351.0" layoutY="234.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" />
          </children></Pane>
       <Pane layoutX="143.0" layoutY="156.0" prefHeight="81.0" prefWidth="86.0">
          <children>
