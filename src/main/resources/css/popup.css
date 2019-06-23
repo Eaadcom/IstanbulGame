@@ -118,9 +118,14 @@
 #card10{
     -fx-background-image: url('../img/bonuscards/10.png');
 }
+#onegood{
+    -fx-background-image: url('../img/selectgood.png');
+}
 
 
-
+#jewels{
+    -fx-background-image: url('../img/heirlooms.png');
+}
 
 
 #fabric{

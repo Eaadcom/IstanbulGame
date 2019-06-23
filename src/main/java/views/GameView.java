@@ -843,6 +843,8 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
 
+
+
     // Closes the game
     //TODO this function is not used anywhere
     public void close() {

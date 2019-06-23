@@ -10,7 +10,7 @@ public class CardController {
 
     //Variables
     private static CardController cardController;
-    private Player player = GameController.getInstance().getPlayer();
+
 
     Map<String, BonusCard> bonusCardMap = new HashMap<>();
 
@@ -39,22 +39,7 @@ public class CardController {
     }
 
 
-    public void GainGood(String choice){
-        int newValue;
-        if(choice == "fabric"){
-            newValue = player.fabrics++;
-            player.setFabrics(newValue);
-        } else if(choice == "fruit"){
-            newValue = player.fruits++;
-            player.setFruits(newValue);
-        } else if (choice  == "jewel"){
-            newValue = player.jewels++;
-            player.setJewels(newValue);
-        } else if(choice == "spice"){
-            newValue = player.spices++;
-            player.setSpices(newValue);
-        }
-    }
+
 
 
 
