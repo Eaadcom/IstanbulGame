@@ -34,7 +34,7 @@ public class Player implements PlayerObservable {
 
     public int spices = 2;
     public int fruits = 2;
-    public int jewels = 2;
+    public int jewels = 0;
     public int fabrics = 2;
 
 

@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
+import views.tiles.BlackMarketView;
 import views.tiles.GemstoneDealerView;
 import views.tiles.TeaHouseView;
 import views.tiles.WainwrightView;
@@ -75,19 +76,9 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     // Function for rolling the dice
     public void blackMarketRollDice() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    // Function to change one of your dice rolls to 4
-    public void turnToFourBlackMarket() {
-        //stuk code om de laagste dice naar een 4 te veranderen
-    }
-
-    // Function to do a reroll
-    public void blackMarketRerollDices() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
-        rootPane.getChildren().setAll(pane);
+        Stage stage = (Stage) dices.getScene().getWindow();
+        stage.close();
+        BlackMarketView.getInstance().BlackMarketResult();
     }
 
     // Function to close the popup

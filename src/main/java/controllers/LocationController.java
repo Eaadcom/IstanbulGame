@@ -262,43 +262,6 @@ public class LocationController{
         return DiceValue;
     }
 
-    public void BlackMarketDice() {
-        playerController = PlayerController.getInstance();
-        blackMarket = BlackMarket.getInstance();
-        blackMarket.diceOne.DiceValue = setDiceValue();
-        blackMarket.diceTwo.DiceValue = setDiceValue();
-
-        diceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
-        diceResult = 8;
-        System.out.println("Je hebt " + diceResult + " gegooit");
-
-        if (diceResult < 7) {
-            myPlayer.jewels = myPlayer.jewels;
-        } else if (diceResult == 7 || diceResult == 8) {
-            if (playerController.CargoCheckJewels(1) == true) {
-                myPlayer.jewels += 1;
-            }
-
-        } else if (diceResult == 9 || diceResult == 10) {
-            if (playerController.CargoCheckJewels(2)) {
-                myPlayer.jewels += 2;
-            } else if (playerController.CargoCheckJewels(1)) {
-                myPlayer.jewels += 1;
-            }
-
-        } else if (diceResult == 11 || diceResult == 12) {
-            if (playerController.CargoCheckJewels(3)) {
-                myPlayer.jewels += 3;
-            } else if (playerController.CargoCheckJewels(2)) {
-                myPlayer.jewels += 2;
-            } else if (playerController.CargoCheckJewels(1)) {
-                myPlayer.jewels += 1;
-            }
-        }
-        System.out.println("er zijn " + myPlayer.jewels + " Jewels toegevoegd!");
-
-    }
-
         public void BlackMarketChoice(int BlackMarketChoice) {
         playerController = PlayerController.getInstance();
         if (BlackMarketChoice == 1) {

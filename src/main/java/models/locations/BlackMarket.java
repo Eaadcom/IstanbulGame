@@ -45,6 +45,17 @@ public class BlackMarket implements Location, BlackMarketObservable {
     public BlackMarket() {
     }
 
+    public int rollDice(){
+        int dice1=(int)(Math.random()*6+1);
+        int dice2=(int)(Math.random()*6+1);
+        int sum= dice1 + dice2;
+        return sum;
+    }
+
+    public void addJewel(int number, Player player){
+        player.setJewels(player.getJewels() + number);
+    }
+
     // Observer Pattern
     @Override
     public void register(LocationViewObserver observer) {
