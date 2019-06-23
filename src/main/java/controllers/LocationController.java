@@ -241,17 +241,13 @@ public class LocationController{
         myPlayer.assistants = myPlayer.maxAssistants;
     }
     public void wainrightBuyer(){
-        if(myPlayer.lira >= 7) {
-            if (myPlayer.carUpgrades < 3) {
-                playerController.addRubysLiras("lira", -7);
-                playerController.CarUpgrader();
-
-                System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+        Player player = GameController.getInstance().getPlayer();
+        if(player.getLira() >= 7) {
+            if (player.getCarUpgrades() < 3) {
+                player.setLira(player.getLira() - 7);
+                player.setCarUpgrades(player.getCarUpgrades() + 1);
             }
-            System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
-
         }
-        System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
 
     }
 

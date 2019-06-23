@@ -102,7 +102,7 @@ public class PlayerProgressionView implements Initializable {
                     blueProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getJewels()));
                     liraProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getLira()));
                     rubyProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getRubies()));
-                    carProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getCarUpgrades()));
+                    carProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getCarUpgrades() +2));
                     STATE = id;
                 }
                 catch(Exception e) {
