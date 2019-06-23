@@ -7,7 +7,7 @@ import observers.locations.GreatMarketObservable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LargeMarket implements Location, GreatMarketObservable {
+public class LargeMarket implements Location {
 
     // Variables
     private static LargeMarket largeMarket;
@@ -52,18 +52,6 @@ public class LargeMarket implements Location, GreatMarketObservable {
     }
 
 
-    // Observer Pattern
-    @Override
-    public void register(LocationViewObserver observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifyAllObservers() {
-        for (LocationViewObserver gvo : observers){
-            gvo.update(this);
-        }
-    }
 
     // Singleton Pattern
     public static LargeMarket getInstance() {

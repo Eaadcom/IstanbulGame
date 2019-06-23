@@ -27,9 +27,7 @@ import observers.*;
 import java.io.IOException;
 import java.net.URL;
 
-import observers.locations.GemstoneDealerObservable;
-import observers.locations.PostOfficeObservable;
-import observers.locations.SultanPalaceObservable;
+import observers.locations.*;
 import views.tiles.*;
 import views.tiles.sultansPalace.SultansPalaceView;
 
@@ -85,6 +83,10 @@ public class GameView implements GameViewObserver, Initializable {
     public Text maxFruit, maxSpice, maxJewel, maxFabric;
     @FXML
     public Text postRed, postBlue, postYellow, postGreen, postLira;
+    @FXML
+    public Text smallRed, smallBlue, smallYellow, smallGreen;
+    @FXML
+    public Text largeRed, largeBlue, largeYellow, largeGreen;
     @FXML
     public Button whiteProg, redProg, yellowProg, greenProg, blueProg;
 
@@ -143,6 +145,18 @@ public class GameView implements GameViewObserver, Initializable {
                         postYellow = (Text) root1.lookup("#postYellow");
                         postGreen = (Text) root1.lookup("#postGreen");
                         postLira = (Text) root1.lookup("#postLira");
+
+                        //Small market
+                        smallRed = (Text) root1.lookup("#smallRed");
+                        smallBlue = (Text) root1.lookup("#smallBlue");
+                        smallYellow = (Text) root1.lookup("#smallYellow");
+                        smallGreen = (Text) root1.lookup("#smallGreen");
+
+                        //Large market
+                        largeRed = (Text) root1.lookup("#largeRed");
+                        largeBlue = (Text) root1.lookup("#largeBlue");
+                        largeYellow = (Text) root1.lookup("#largeYellow");
+                        largeGreen = (Text) root1.lookup("#largeGreen");
 
                         //player values
                         playerLira = (Text) root1.lookup("#playerLira");
@@ -1012,6 +1026,33 @@ public class GameView implements GameViewObserver, Initializable {
                 postGreen.setText(String.valueOf(poo.PostOfficeGetSpice()));
                 postYellow.setText(String.valueOf(poo.PostOfficeGetFruit()));
                 postLira.setText(String.valueOf(poo.PostOfficeGetLira()));
+            }
+        });
+    }
+
+    @Override
+    public void update(SmallMarketObservable smo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                smallBlue.setText(String.valueOf(smo.getJewel()));
+                smallRed.setText(String.valueOf(smo.getFabric()));
+                smallGreen.setText(String.valueOf(smo.getSpice()));
+                smallYellow.setText(String.valueOf(smo.getFruit()));
+            }
+        });
+    }
+
+    @Override
+    public void update(GreatMarketObservable gmo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("YOUP");
+                largeBlue.setText(String.valueOf(gmo.GMgetJewel()));
+                largeRed.setText(String.valueOf(gmo.GMgetFabric()));
+                largeGreen.setText(String.valueOf(gmo.GMgetSpice()));
+                largeYellow.setText(String.valueOf(gmo.GMgetFruit()));
             }
         });
     }

@@ -109,27 +109,27 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="postGreen" id="postGreen"  fill="WHITE" layoutX="35.0" layoutY="196.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="163.0">
+                        <Text id="postGreen" fx:id="postGreen" fill="WHITE" layoutX="35.0" layoutY="196.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="163.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="postRed" id="postRed" fill="WHITE" layoutX="35.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="119.0">
+                        <Text id="postRed" fx:id="postRed" fill="WHITE" layoutX="35.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="119.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="postBlue" id="postBlue" fill="WHITE" layoutX="77.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="119.0">
+                        <Text id="postBlue" fx:id="postBlue" fill="WHITE" layoutX="77.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="119.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="postYellow" id="postYellow" fill="WHITE" layoutX="77.0" layoutY="195.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="162.0">
+                        <Text id="postYellow" fx:id="postYellow" fill="WHITE" layoutX="77.0" layoutY="195.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="162.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fx:id="postLira" id="postLira" fill="WHITE" layoutX="119.0" layoutY="172.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="4" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="139.0">
+                        <Text id="postLira" fx:id="postLira" fill="WHITE" layoutX="119.0" layoutY="172.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="4" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="139.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
@@ -176,22 +176,22 @@
                <graphic>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
+                        <Text fx:id="largeBlue" id="largeBlue" layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
+                        <Text fx:id="largeRed" id="largeRed" layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
+                        <Text fx:id="largeGreen" id="largeGreen" layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
+                        <Text fx:id="largeYellow" id="largeYellow" layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -222,22 +222,22 @@
                <graphic>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
+                        <Text id="smallBlue" fx:id="smallBlue" layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
+                        <Text id="smallRed" fx:id="smallRed" layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="3" textAlignment="CENTER">
+                        <Text id="smallGreen" fx:id="smallGreen" layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="3" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
+                        <Text id="smallYellow" fx:id="smallYellow" layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
