@@ -32,10 +32,10 @@ public class Player implements PlayerObservable {
     public List<BonusCard> playerBonusCards = new ArrayList<>();
     public String color = "red";
 
-    public int spices = 2;
-    public int fruits = 1;
+    public int spices = 0;
+    public int fruits = 0;
     public int jewels = 0;
-    public int fabrics = 2;
+    public int fabrics = 0;
 
 
     public int maxJewels = 2;

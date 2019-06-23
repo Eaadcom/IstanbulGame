@@ -1,10 +1,12 @@
 package views.tiles;
 
+import controllers.GameController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,6 +31,8 @@ public class PostOfficeView implements Initializable {
 
     @FXML
     private Text blue, red, green, yellow, lira;
+    @FXML
+    public Button yes, no;
 
     public void postOffice() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/postOffice.fxml"));
@@ -38,6 +42,17 @@ public class PostOfficeView implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+    }
+
+    public void confirm(){
+        PostOffice.getInstance().confirmPurchase(GameController.getInstance().getPlayer());
+        Stage stage = (Stage) yes.getScene().getWindow();
+        stage.close();
+    }
+
+    public void close(){
+        Stage stage = (Stage) no.getScene().getWindow();
+        stage.close();
     }
 
     private void updatePrice(){

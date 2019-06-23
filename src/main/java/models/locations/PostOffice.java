@@ -1,5 +1,6 @@
 package models.locations;
 
+import models.Player;
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
 import observers.locations.PostOfficeObservable;
@@ -72,6 +73,15 @@ public class PostOffice implements Location, PostOfficeObservable {
     private int lira   = 4;
 
     private int STATE = 0;
+
+    public void confirmPurchase(Player player){
+        player.setLira(player.getLira()+lira);
+        player.setFabrics(player.getFabrics()+fabric);
+        player.setSpices(player.getSpices()+spice);
+        player.setFruits(player.getFruits()+fruit);
+        player.setJewels(player.getJewels()+jewel);
+        stateHandler();
+    }
 
     /**
      *  Handles the state of the post office based on the STATE int.
