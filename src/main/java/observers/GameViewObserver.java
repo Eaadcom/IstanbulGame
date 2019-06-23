@@ -1,6 +1,8 @@
 package observers;
 
+import models.locations.PostOffice;
 import observers.locations.GemstoneDealerObservable;
+import observers.locations.PostOfficeObservable;
 import observers.locations.SultanPalaceObservable;
 
 public interface GameViewObserver extends GameViewLobbyViewObserver {
@@ -23,4 +25,6 @@ public interface GameViewObserver extends GameViewLobbyViewObserver {
     void update(SultanPalaceObservable spo);
 
     void update(GemstoneDealerObservable gdo);
+
+    void update(PostOfficeObservable poo);
 }

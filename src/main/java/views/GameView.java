@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import observers.locations.GemstoneDealerObservable;
+import observers.locations.PostOfficeObservable;
 import observers.locations.SultanPalaceObservable;
 import views.tiles.*;
 import views.tiles.sultansPalace.SultansPalaceView;
@@ -83,6 +84,8 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Text maxFruit, maxSpice, maxJewel, maxFabric;
     @FXML
+    public Text postRed, postBlue, postYellow, postGreen, postLira;
+    @FXML
     public Button whiteProg, redProg, yellowProg, greenProg, blueProg;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
@@ -133,6 +136,13 @@ public class GameView implements GameViewObserver, Initializable {
                         SultanYellow = (Text) root1.lookup("#SultanYellow");
                         SultanGreen = (Text) root1.lookup("#SultanGreen");
                         SultanChoice = (Text) root1.lookup("#SultanChoice");
+
+                        //Post office values
+                        postRed = (Text) root1.lookup("#postRed");
+                        postBlue = (Text) root1.lookup("#postBlue");
+                        postYellow = (Text) root1.lookup("#postYellow");
+                        postGreen = (Text) root1.lookup("#postGreen");
+                        postLira = (Text) root1.lookup("#postLira");
 
                         //player values
                         playerLira = (Text) root1.lookup("#playerLira");
@@ -989,6 +999,20 @@ public class GameView implements GameViewObserver, Initializable {
         Platform.runLater(() -> {
             System.out.println("vis");
             gemPrice.setText(String.valueOf(gdo.getGemstonePrice()));
+        });
+    }
+
+    @Override
+    public void update(PostOfficeObservable poo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                postBlue.setText(String.valueOf(poo.PostOfficeGetJewel()));
+                postRed.setText(String.valueOf(poo.PostOfficeGetFabric()));
+                postGreen.setText(String.valueOf(poo.PostOfficeGetSpice()));
+                postYellow.setText(String.valueOf(poo.PostOfficeGetFruit()));
+                postLira.setText(String.valueOf(poo.PostOfficeGetLira()));
+            }
         });
     }
 
