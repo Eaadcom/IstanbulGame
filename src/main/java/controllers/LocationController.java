@@ -111,18 +111,20 @@ public class LocationController{
 
 
     public void SmallMosque(int Bought, String choice){
-
+        int newValue;
         switch (choice) {
             case "fabric":
                 if (player.fabrics > Bought || player.fabrics == Bought) {
-                    player.setFabrics(-Bought);
+                    newValue = player.fabrics - Bought;
+                    player.setFabrics(newValue);
                     player.setFabricMosque(true);
                     MosqueChecker("small");
 
                 }
             case "spice":
                 if (player.spices > Bought || player.spices == Bought){
-                    player.setSpices(-Bought);
+                    newValue = player.spices - Bought;
+                    player.setSpices(newValue);
                     player.setSpiceMosque(true);
                     MosqueChecker("small");
                 }
@@ -131,21 +133,26 @@ public class LocationController{
 
 
 
+
     }
 
     public void BigMosque(int Bought, String choice){
+        int newValue;
 
         switch(choice){
             case "jewel":
                 if(player.jewels > Bought || player.jewels == Bought){
                     System.out.println("Je betaald nu" + Bought);
-                    player.setJewels(-Bought);
+                    newValue = player.jewels - Bought;
+                    player.setJewels(newValue);
+                    System.out.println(player.jewels);
                     player.setJewelMosque(true);
                     MosqueChecker("big");
                 }
             case "fruit":
                 if(player.fruits > Bought || player.fruits == Bought){
-                    player.setFruits((-Bought));
+                    newValue = player.fruits - Bought;
+                    player.setFruits((newValue));
                     player.setFruitMosque(true);
                     MosqueChecker("big");
                 }
