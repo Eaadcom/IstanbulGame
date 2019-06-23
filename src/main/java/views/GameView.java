@@ -322,6 +322,32 @@ public class GameView implements GameViewObserver, Initializable {
             playerGrid.setRowIndex(whiteProg, 4);
             playerGrid.setRowIndex(blueProg, 5);
         }
+
+        try {
+
+        } catch (Exception e) {
+            //
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(1);
+        } catch (Exception e) {
+            yellowProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(2);
+        } catch (Exception e) {
+            greenProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(3);
+        } catch (Exception e) {
+            blueProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(4);
+        } catch (Exception e) {
+            whiteProg.setDisable(true);
+        }
     }
 
     private Button externalNode = tile12;

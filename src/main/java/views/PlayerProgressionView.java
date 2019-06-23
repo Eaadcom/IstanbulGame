@@ -107,6 +107,7 @@ public class PlayerProgressionView implements Initializable {
                 }
                 catch(Exception e) {
                     System.out.println("Je klikte op een speler die er niet is. De gegevens konden niet geladen worden.");
+                    playername.setText("Player N/A");
                 }
 
             }
