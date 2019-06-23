@@ -48,7 +48,6 @@ public class LocationController{
     private SultanPalace sultanPalace = SultanPalace.getInstance();
     private FruitWarehouse fruitWarehouse = FruitWarehouse.getInstance();
     private Caravansary caravansary = Caravansary.getInstance();
-    private CardController cardController = CardController.getInstance();
     public PlayerController playerController = PlayerController.getInstance();
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
@@ -127,13 +126,8 @@ public class LocationController{
                     player.setSpices(newValue);
                     player.setSpiceMosque(true);
                     MosqueChecker("small");
-                }
+                    }
         }
-
-
-
-
-
     }
 
     public void BigMosque(int Bought, String choice){

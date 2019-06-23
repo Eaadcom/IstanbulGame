@@ -1,6 +1,6 @@
 package controllers;
 
-public class EncounterController {
+public class    EncounterController {
 
     // Variables
     private static EncounterController encounterController;
