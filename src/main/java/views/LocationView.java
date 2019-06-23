@@ -147,21 +147,13 @@ public class LocationView implements LocationViewObserver, Initializable {
     }
 
     public void teaHouseRollDice() throws IOException {
-        // als je geen moskee tegel hebt
-        // OF wel een moskee tegel hebt en een reroll hebt gedaan
-        // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
+        Stage stage = (Stage) dices.getScene().getWindow();
+        stage.close();
         LocationController.getInstance().TeaHouseResult();
         LocationController.getInstance().setTeaHouseDice(Integer.parseInt(LocationController.getInstance().diceResultStr));
         thv.teaHouseResult();}
 
 
-        //System.out.println((locationController.getTeaHouseNumber()));
-
-
-        //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        /*
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse4.fxml"));
-        rootPane2.getChildren().setAll(pane2);*/
 
     public void wainwright() throws IOException {
         wwv.wainwright();

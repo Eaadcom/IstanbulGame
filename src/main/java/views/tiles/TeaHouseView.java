@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,6 +22,8 @@ public class TeaHouseView implements Initializable {
     public Label rollNumber;
     @FXML
     public Label liraNumber;
+    @FXML
+    public Button sweet;
 
     public void teaHouseResult() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/teaHouse/teaHouse3.fxml"));
@@ -30,6 +33,11 @@ public class TeaHouseView implements Initializable {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+    }
+
+    public void close(){
+        Stage stage = (Stage) sweet.getScene().getWindow();
+        stage.close();
     }
 
     @Override
