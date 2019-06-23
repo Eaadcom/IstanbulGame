@@ -19,6 +19,12 @@ import java.util.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+/**
+ * This is the controller for everything that goes to the Firebase server.
+ *
+ * @author Edward Deen, Joeri van Duijkeren
+ * @version 21-6-2019
+ */
 public class FirebaseController {
 
     // Variables
@@ -33,28 +39,28 @@ public class FirebaseController {
 
 
     // gets all game documents and returns them in a list
-    public List<QueryDocumentSnapshot> fillGameLobby(){
-        try{
-                       ApiFuture<QuerySnapshot> future = db.collection("Games").get();
+    public List<QueryDocumentSnapshot> fillGameLobby() {
+        try {
+            ApiFuture<QuerySnapshot> future = db.collection("Games").get();
             List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
             QueryDocumentSnapshot result = null;
             for (QueryDocumentSnapshot queryDocumentSnapshot : documents) {
-                if(queryDocumentSnapshot.getId().equals("_A_Test2")) {
+                if (queryDocumentSnapshot.getId().equals("_A_Test2")) {
                     result = queryDocumentSnapshot;
                     break;
                 }
             }
 
             return documents;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
     //TODO can i remove this? -Ed
-    public void saveLobbyInfo(List<QueryDocumentSnapshot> documents){
+    public void saveLobbyInfo(List<QueryDocumentSnapshot> documents) {
         ArrayList<Map> documentsList = new ArrayList<Map>();
 
         for (QueryDocumentSnapshot document : documents) {
@@ -63,8 +69,8 @@ public class FirebaseController {
     }
 
     // Outputs firestore token used to do operations with firebase
-    public Firestore firebaseLogin(){
-        try{
+    public Firestore firebaseLogin() {
+        try {
             InputStream serviceAccount = new FileInputStream("src//main//resources//istanbulgame-c7958-firebase-adminsdk-gn1yc-811acdb682.json");
             GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
             FirebaseOptions options = new FirebaseOptions.Builder()
@@ -85,9 +91,9 @@ public class FirebaseController {
      * Updates the game in the firebase firebase snapshot it
      * gets by using the current game model it gets as an argument.
      *
+     * @param game
      * @version 21-6-2019
      * @author Edward Deen
-     * @param game
      */
     public void updateGame(Game game) {
         try {
@@ -97,68 +103,97 @@ public class FirebaseController {
 
             ApiFuture<WriteResult> result = docRef.update(data);
             WriteResult writeResult = result.get();
-            System.out.println("Update result: " + writeResult);
+            System.out.println("Update result: " + writeResult.toString());
             System.out.println("Update time : " + writeResult.getUpdateTime());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private Map<String, Object> createKeyValueMapForTiles(Board board){
+    private Map<String, Object> createKeyValueMapForTiles(Board board) {
         Map<String, Object> tileData = new HashMap<>();
-        tileData.put("BlackMarket", BlackMarket.getInstance().getVariableMap()); tileData.put("Caravansary", Caravansary.getInstance().getVariableMap());
-        tileData.put("FabricWarehouse", FabricWarehouse.getInstance().getVariableMap()); tileData.put("Fountain", Fountain.getInstance().getVariableMap());
+        tileData.put("BlackMarket", BlackMarket.getInstance().getVariableMap());
+        tileData.put("Caravansary", Caravansary.getInstance().getVariableMap());
+        tileData.put("FabricWarehouse", FabricWarehouse.getInstance().getVariableMap());
+        tileData.put("Fountain", Fountain.getInstance().getVariableMap());
 
-        tileData.put("FruitWarehouse", FruitWarehouse.getInstance().getVariableMap()); tileData.put("GemstoneDealer", GemstoneDealer.getInstance().getVariableMap());
-        tileData.put("GreatMarket", GreatMarket.getInstance().getVariableMap()); tileData.put("PoliceStation", PoliceStation.getInstance().getVariableMap());
+        tileData.put("FruitWarehouse", FruitWarehouse.getInstance().getVariableMap());
+        tileData.put("GemstoneDealer", GemstoneDealer.getInstance().getVariableMap());
+        tileData.put("GreatMarket", GreatMarket.getInstance().getVariableMap());
+        tileData.put("PoliceStation", PoliceStation.getInstance().getVariableMap());
 
-        tileData.put("PostOffice", PostOffice.getInstance().getVariableMap()); tileData.put("SmallMarket", SmallMarket.getInstance().getVariableMap());
-        tileData.put("SmallMosque", SmallMosque.getInstance().getVariableMap()); tileData.put("SpiceWarehouse", SpiceWarehouse.getInstance().getVariableMap());
+        tileData.put("PostOffice", PostOffice.getInstance().getVariableMap());
+        tileData.put("SmallMarket", SmallMarket.getInstance().getVariableMap());
+        tileData.put("SmallMosque", SmallMosque.getInstance().getVariableMap());
+        tileData.put("SpiceWarehouse", SpiceWarehouse.getInstance().getVariableMap());
 
-        tileData.put("SultanPalace", SultanPalace.getInstance().getVariableMap()); tileData.put("TeaHouse", TeaHouse.getInstance().getVariableMap());
-        tileData.put("Wainwright", Wainwright.getInstance().getVariableMap()); tileData.put("GreatMosque", GreatMarket.getInstance().getVariableMap());
+        tileData.put("SultanPalace", SultanPalace.getInstance().getVariableMap());
+        tileData.put("TeaHouse", TeaHouse.getInstance().getVariableMap());
+        tileData.put("Wainwright", Wainwright.getInstance().getVariableMap());
+        tileData.put("GreatMosque", GreatMarket.getInstance().getVariableMap());
         return tileData;
     }
 
-    private Map<String, Object> createKeyValueMapForPlayers(Board board){
-        try{
-            Map<String, Object> players = new HashMap<>();
-            int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
-            int playerListLength = gameController.getInstance().getGame().board.players.size();
-
-            Player player1 = board.getPlayers().get(0); players.put("Player1", player1.getVariableMap());
-            if (playerListLength > 1){
-                Player player2 = board.getPlayers().get(1); players.put("Player2", player2.getVariableMap());
-            } if (playerTotal >= 3){
-                Player player3 = board.getPlayers().get(2);
-                players.put("Player3", player3.getVariableMap());
-            } if (playerTotal >= 4){
-                Player player4 = board.getPlayers().get(3);
-                players.put("Player4", player4.getVariableMap());
-            } if (playerTotal == 5){
-                Player player5 = board.getPlayers().get(4);
-                players.put("Player1", player5.getVariableMap());
+    private Map<String, Object> createKeyValueMapForPlayers(Board board) {
+//        try {
+            Map<String, Object> playerMap = new HashMap<>();
+            List<Player> players = board.getPlayers();
+            for (int i = 0; i < players.size(); i++) {
+                playerMap.put(Integer.toString(i), players.get(i).getVariableMap());
             }
+            return playerMap;
 
-            return players;
-        } catch (IndexOutOfBoundsException ie){
-            Map<String, Object> players = new HashMap<>();
-            Player player1 = board.getPlayers().get(0);
-            players.put("Player1", player1.getVariableMap());
-            return players;
-        }
+//
+//            int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
+//            int playerListLength = gameController.getInstance().getGame().board.players.size();
+//
+//            Player player1 = board.getPlayers().get(0);
+//            players.put("Player1", player1.getVariableMap());
+//            if (playerListLength > 1) {
+//                Player player2 = board.getPlayers().get(1);
+//                players.put("Player2", player2.getVariableMap());
+//            }
+//            if (playerTotal >= 3) {
+//                Player player3 = board.getPlayers().get(2);
+//                players.put("Player3", player3.getVariableMap());
+//            }
+//            if (playerTotal >= 4) {
+//                Player player4 = board.getPlayers().get(3);
+//                players.put("Player4", player4.getVariableMap());
+//            }
+//            if (playerTotal == 5) {
+//                Player player5 = board.getPlayers().get(4);
+//                players.put("Player1", player5.getVariableMap());
+//            }
+//
+//            return players;
+//        } catch (IndexOutOfBoundsException ie) {
+//            Map<String, Object> players = new HashMap<>();
+//            Player player1 = board.getPlayers().get(0);
+//            players.put("Player1", player1.getVariableMap());
+//            return players;
+//        }
 
     }
 
-    private Map<String, Object> createKeyValueMapForBoard(Board board){
+    private Map<String, Object> createKeyValueMapForBoard(Board board) {
         Map<String, Object> boardData = new HashMap<>();
         boardData.put("Players", createKeyValueMapForPlayers(board));
         boardData.put("Tiles", createKeyValueMapForTiles(board));
+        boardData.put("playerTiles", createPlayerTiles(board.getPlayerTiles()));
         //.put("Cards", board.cards);
         //boardData.put("Dice", board.dice);
         //boardData.put("Governor", board.governor);
         //boardData.put("Smuggler", board.smuggler);
         return boardData;
+    }
+
+    private Map<String, String> createPlayerTiles(Map<Integer, String> playerTiles) {
+        Map<String, String> stringMap = new HashMap<>();
+        for (Map.Entry<Integer, String> entry : playerTiles.entrySet()) {
+            stringMap.put(entry.getKey().toString(), entry.getValue());
+        }
+        return stringMap;
     }
 
     private Map<String, Object> createKeyValueMapForGame(Game game) {
@@ -175,6 +210,7 @@ public class FirebaseController {
         data.put("gameStarted", game.isGameStarted());
         data.put("gameEnded", game.isGameEnded());
         data.put("turnCounter", game.getTurnCounter());
+        data.put("hasMoved", game.isHasMoved());
 //        data.put("playerNames", userNames);
         data.put("Board", createKeyValueMapForBoard(game.board));
         return data;
@@ -211,11 +247,11 @@ public class FirebaseController {
     }
 
     private <T> T getAsObject(String collection, String documentName, Class<T> clazz) {
-        try{
+        try {
             ApiFuture<DocumentSnapshot> future = db.collection(collection).document(documentName).get();
             DocumentSnapshot documentSnapshot = future.get();
             return documentSnapshot.toObject(clazz);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -230,11 +266,11 @@ public class FirebaseController {
     }
 
     // Create Online Game
-    public void createNewGame(Game game){
-        try{
+    public void createNewGame(Game game) {
+        try {
             Map<String, Object> data = createKeyValueMapForGame(game);
             create("Games", game.getName(), data);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -247,14 +283,14 @@ public class FirebaseController {
         return firebaseController;
     }
 
-    public DocumentSnapshot getGameDataFromFirebase(){
-        try{
+    public DocumentSnapshot getGameDataFromFirebase() {
+        try {
             System.out.println(db);
             ApiFuture<DocumentSnapshot> future = db.collection("Games").document(GameInformation.getGameInfo().getRoomname()).get();
             DocumentSnapshot documentSnapshot = future.get();
             //Map<String, Object> dataMap = documentSnapshot.getData();
             return documentSnapshot;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -264,9 +300,9 @@ public class FirebaseController {
      * Starts a thread that listens for changes in the firebase,
      * and updates the models when it registers a change.
      *
+     * @param game
      * @version 21-6-2019
      * @author Edward Deen
-     * @param game
      */
     public void startWatchForChangesForGame(Game game) {
         System.out.println("Start watching for changes for game: " + game.getName());
@@ -281,7 +317,7 @@ public class FirebaseController {
                         System.err.println("Listen failed: " + e);
                         return;
                     }
-                    
+
                     if (snapshot != null && snapshot.exists()) {
                         Map<String, Object> newData = snapshot.getData();
                         System.out.println("Current data: " + newData);

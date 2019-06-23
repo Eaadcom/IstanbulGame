@@ -108,7 +108,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 SultansPalaceView2.getInstance().chooseOne();
                 increasePrice();
             }else                     {
-                //add ruby
+                player.setRubies(player.getRubies()+1);
                 increasePrice();
             }
 
@@ -134,7 +134,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("fabrics: " + player.fabrics);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
 
@@ -145,7 +145,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("fruits: " + player.fruits);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
 
@@ -156,7 +156,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("spice: " + player.spices);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
 
@@ -167,7 +167,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("jewels: " + player.jewels);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
         }

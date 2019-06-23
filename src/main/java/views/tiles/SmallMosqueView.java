@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.Player;
 import models.locations.SmallMosque;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class SmallMosqueView implements Initializable {
     private SmallMosque smallMosque = SmallMosque.getInstance();
     //Singleton
     private static SmallMosqueView smallMosqueView;
+
     public static SmallMosqueView getInstance() {
         if (smallMosqueView == null) {
             smallMosqueView = new SmallMosqueView();

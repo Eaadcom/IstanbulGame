@@ -1,13 +1,17 @@
 package controllers;
 
-import models.Board;
 import models.Player;
 import views.PopUpView;
 
-import java.io.Console;
 import java.util.Scanner;
 import java.io.IOException;
 
+/**
+ * This class is the controller for the player.
+ * It contains inmportant methods that update the player's statistics.
+ * @author Edward Deen, Joeri van Duijkeren, Stan Hogenboom, Floris Dekker, Thomas van Velzen
+ * @version 21-6-2019
+ */
 public class PlayerController {
 
     // Variables
@@ -17,8 +21,8 @@ public class PlayerController {
 
     private Player myPlayer;
 
-    public Player createNewPlayer(String name) {
-        Player player = new Player(name);
+    public Player createNewPlayer(String name, int myPlayerID) {
+        Player player = new Player(name, myPlayerID);
         //.createNewPlayer(player);
         myPlayer = player;
         return player;

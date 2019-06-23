@@ -14,32 +14,33 @@ import javafx.scene.control.Button;
 
 import java.util.*;
 
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Difficulty;
-import models.FamilyMember;
-import models.Game;
-import models.Player;
+import models.*;
 import models.cards.BonusCard;
-import models.locations.GemstoneDealer;
 import models.locations.SultanPalace;
 import observers.*;
 
 import java.io.IOException;
 import java.net.URL;
 
-import observers.locations.GemstoneDealerObservable;
-import observers.locations.SultanPalaceObservable;
+import observers.locations.*;
 import views.tiles.*;
 import views.tiles.sultansPalace.SultansPalaceView;
 
 import static models.Difficulty.EASY;
 import static models.Difficulty.MEDIUM;
 
+/**
+ * This class is the main view of the game.
+ * It contains all the main elements that build the UI of the game. This doesn't include pop-ups.
+ *
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class GameView implements GameViewObserver, Initializable {
 
     // Variables
@@ -47,6 +48,7 @@ public class GameView implements GameViewObserver, Initializable {
     private LocationView locationView = LocationView.getInstance();
     private PopUpView popUpView = PopUpView.getInstance();
     private GameController gameController = GameController.getInstance();
+    private PlayerProgressionView playerProgressionView = PlayerProgressionView.getInstance();
     List<Button> tiles = new ArrayList<>();
     private Stage stage;
 
@@ -68,7 +70,7 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Pane redAs, blueAs, greenAs, yellowAs, whiteAss;
     @FXML
-    public GridPane grid; // aanmaken fx:id
+    public GridPane grid, playerGrid; // aanmaken fx:id
     @FXML
     public Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13, tile14, tile15, tile16, endturn; // aanmaken fx:id
     @FXML
@@ -79,6 +81,14 @@ public class GameView implements GameViewObserver, Initializable {
     public Text SultanRed, SultanBlue, SultanYellow, SultanGreen, SultanChoice;
     @FXML
     public Text maxFruit, maxSpice, maxJewel, maxFabric;
+    @FXML
+    public Text postRed, postBlue, postYellow, postGreen, postLira;
+    @FXML
+    public Text smallRed, smallBlue, smallYellow, smallGreen;
+    @FXML
+    public Text largeRed, largeBlue, largeYellow, largeGreen;
+    @FXML
+    public Button whiteProg, redProg, yellowProg, greenProg, blueProg;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
     private boolean endTurn = false;
@@ -90,7 +100,7 @@ public class GameView implements GameViewObserver, Initializable {
     private Pane[] players;
     private Pane[] family;
     private Pane[] assistants;
-
+    private HashMap<String, Button> stringTiles;
 
 
     public GameView() {
@@ -129,6 +139,25 @@ public class GameView implements GameViewObserver, Initializable {
                         SultanGreen = (Text) root1.lookup("#SultanGreen");
                         SultanChoice = (Text) root1.lookup("#SultanChoice");
 
+                        //Post office values
+                        postRed = (Text) root1.lookup("#postRed");
+                        postBlue = (Text) root1.lookup("#postBlue");
+                        postYellow = (Text) root1.lookup("#postYellow");
+                        postGreen = (Text) root1.lookup("#postGreen");
+                        postLira = (Text) root1.lookup("#postLira");
+
+                        //Small market
+                        smallRed = (Text) root1.lookup("#smallRed");
+                        smallBlue = (Text) root1.lookup("#smallBlue");
+                        smallYellow = (Text) root1.lookup("#smallYellow");
+                        smallGreen = (Text) root1.lookup("#smallGreen");
+
+                        //Large market
+                        largeRed = (Text) root1.lookup("#largeRed");
+                        largeBlue = (Text) root1.lookup("#largeBlue");
+                        largeYellow = (Text) root1.lookup("#largeYellow");
+                        largeGreen = (Text) root1.lookup("#largeGreen");
+
                         //player values
                         playerLira = (Text) root1.lookup("#playerLira");
                         playerRubies = (Text) root1.lookup("#playerRubies");
@@ -140,6 +169,12 @@ public class GameView implements GameViewObserver, Initializable {
                         maxFruit = (Text) root1.lookup("#maxFruit");
                         maxSpice = (Text) root1.lookup("#maxSpice");
                         maxJewel = (Text) root1.lookup("#maxJewel");
+
+                        famblue = (Pane) root1.lookup("#famblue");
+                        famred = (Pane) root1.lookup("#famred");
+                        famgreen = (Pane) root1.lookup("#famgreen");
+                        famyellow = (Pane) root1.lookup("#famyellow");
+                        famwhite = (Pane) root1.lookup("#famwhite");
 
                         gemPrice = (Text) root1.lookup("#gemPrice");
 
@@ -153,7 +188,6 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeMaps();
@@ -161,10 +195,12 @@ public class GameView implements GameViewObserver, Initializable {
         initializeFamily();
         updatePlayerResources(GameController.getInstance().getPlayer());
         initializeAssistants();
+        initializePlayerColor();
 
         checkDifficulty();
         if (!gameController.getDifficulty().equals(MEDIUM)) {
             setPlayersEnFamily();
+            setPlayerIcons(gameController.getGame().getBoard().getPlayerTiles());
         }
 
         checkAmountOfPlayers();
@@ -173,13 +209,11 @@ public class GameView implements GameViewObserver, Initializable {
                 tile12, tile13, tile14, tile15, tile16
         ));
 
-        if(isMyTurn()) {
+        if (isMyTurn()) {
             enableLocationsForMyPlayer();
         } else {
             disableTiles(true);
         }
-
-//        turnManager();
 
         gameController.registerGameOrLobbyObserverToGame(this);
         gameController.registerGameViewObserverToPlayer(this);
@@ -190,7 +224,9 @@ public class GameView implements GameViewObserver, Initializable {
         List<Player> players = gameController.getGame().getPlayers();
         String myPlayerName = gameController.getMyPlayer().getName();
         int playersSize = players.size();
-        if (playersSize > 4){ playersSize = 4;}
+        if (playersSize > 4) {
+            playersSize = 4;
+        }
         for (int i = 0; i < playersSize; i++) {
             if (players.get(i).getName().equals(myPlayerName)) {
                 myPane = this.players[i];
@@ -200,10 +236,10 @@ public class GameView implements GameViewObserver, Initializable {
         return myPane;
     }
 
-    public void disableEndTurn(boolean b){
-        if(b){
+    public void disableEndTurn(boolean b) {
+        if (b) {
             endturn.setDisable(true);
-        }else{
+        } else {
             endturn.setDisable(false);
         }
     }
@@ -220,7 +256,9 @@ public class GameView implements GameViewObserver, Initializable {
             familyPane.setVisible(false);
         }
         int amountOfPlayers = gameController.getGame().getPlayers().size();
-        if (amountOfPlayers > 4){amountOfPlayers = 4;}
+        if (amountOfPlayers > 4) {
+            amountOfPlayers = 4;
+        }
         for (int i = 0; i < amountOfPlayers; i++) {
             players[i].setVisible(true);
             family[i].setVisible(true);
@@ -235,10 +273,29 @@ public class GameView implements GameViewObserver, Initializable {
         players = new Pane[]{playerred, playerYellow, playergreen, playerblue, playerwhite};
     }
 
-    private void initializeAssistants(){
-        assistants = new Pane[] {redAs, blueAs, greenAs, yellowAs, whiteAss};
+    private void initializeAssistants() {
+        assistants = new Pane[]{redAs, blueAs, greenAs, yellowAs, whiteAss};
     }
+
     private void initializeMaps() {
+        stringTiles = new HashMap<String, Button>() {{
+            put("tile1", tile1);
+            put("tile2", tile2);
+            put("tile3", tile3);
+            put("tile4", tile4);
+            put("tile5", tile5);
+            put("tile6", tile6);
+            put("tile7", tile7);
+            put("tile8", tile8);
+            put("tile9", tile9);
+            put("tile10", tile10);
+            put("tile11", tile11);
+            put("tile12", tile12);
+            put("tile13", tile13);
+            put("ptile14", tile14);
+        }};
+
+
         easyMap = new Button[][]{{tile15, tile4, tile8, tile13},
                 {tile5, tile12, tile6, tile10},
                 {tile2, tile7, tile11, tile1},
@@ -249,111 +306,135 @@ public class GameView implements GameViewObserver, Initializable {
                 {tile8, tile6, tile12, tile14},
                 {tile11, tile4, tile1, tile13}};
 
-//        mediumMap = new Button[][]{{tile1, tile2, tile3, tile4},
-//                {tile5, tile6, tile7, tile8},
-//                {tile9, tile10, tile11, tile12},
-//                {tile13, tile14, tile15, tile16}};
     }
 
-    private void disableAllTiles() {
-        tiles.forEach(button -> button.setDisable(false));
-    }
+    private void initializePlayerColor() {
+        if (GameController.getInstance().getMyPlayerID() == 1) {
+            playerGrid.setRowIndex(whiteProg, 1);
+            playerGrid.setRowIndex(redProg, 5);
+        } else if (GameController.getInstance().getMyPlayerID() == 2) {
+            playerGrid.setRowIndex(whiteProg, 2);
+            playerGrid.setRowIndex(yellowProg, 5);
+        } else if (GameController.getInstance().getMyPlayerID() == 3) {
+            playerGrid.setRowIndex(whiteProg, 3);
+            playerGrid.setRowIndex(greenProg, 5);
+        } else if (GameController.getInstance().getMyPlayerID() == 4) {
+            playerGrid.setRowIndex(whiteProg, 4);
+            playerGrid.setRowIndex(blueProg, 5);
+        }
 
-    /**
-     * Hier moet code komen zoals in {@link GameView#turnManager()} waarin de buttons
-     * van de grid enabled of disabled moeten worden
-     * @param currentPlayerTurn Player
-     */
-    private void manageGameFieldIconen(Player currentPlayerTurn) {
+        try {
 
+        } catch (Exception e) {
+            //
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(1);
+        } catch (Exception e) {
+            yellowProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(2);
+        } catch (Exception e) {
+            greenProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(3);
+        } catch (Exception e) {
+            blueProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(4);
+        } catch (Exception e) {
+            whiteProg.setDisable(true);
+        }
     }
 
     private Button externalNode = tile12;
 
     /**
      * Translates the int 'location'  from familyMember to a button in this class.
-     * @author Stan Hogenboom
-     * @version 20-6-2019
+     *
      * @param location
      * @return
+     * @author Stan Hogenboom
+     * @version 20-6-2019
      */
     public Button findNode(int location) {
         if (location == 1) {
             externalNode = tile1;
             return externalNode;
-        }
-        else if (location == 2) {
+        } else if (location == 2) {
             externalNode = tile2;
             return externalNode;
-        }
-        else if (location == 3) {
+        } else if (location == 3) {
             externalNode = tile3;
             return externalNode;
-        }
-        else if (location == 4) {
+        } else if (location == 4) {
             externalNode = tile4;
             return externalNode;
-        }
-        else if (location == 5) {
+        } else if (location == 5) {
             externalNode = tile5;
             return externalNode;
-        }
-        else if (location == 6) {
+        } else if (location == 6) {
             externalNode = tile6;
             return externalNode;
-        }
-        else if (location == 7) {
+        } else if (location == 7) {
             externalNode = tile7;
             return externalNode;
-        }
-        else if (location == 8) {
+        } else if (location == 8) {
             externalNode = tile8;
             return externalNode;
-        }
-        else if (location == 9) {
+        } else if (location == 9) {
             externalNode = tile9;
             return externalNode;
-        }
-        else if (location == 10) {
+        } else if (location == 10) {
             externalNode = tile10;
             return externalNode;
-        }
-        else if (location == 11) {
+        } else if (location == 11) {
             externalNode = tile11;
             return externalNode;
-        }
-        else if (location == 13) {
+        } else if (location == 13) {
             externalNode = tile13;
             return externalNode;
-        }
-        else if (location == 14) {
+        } else if (location == 14) {
             externalNode = tile14;
             return externalNode;
-        }
-        else if (location == 15) {
+        } else if (location == 15) {
             externalNode = tile15;
             return externalNode;
-        }
-        else if (location == 16) {
+        } else if (location == 16) {
             externalNode = tile16;
             return externalNode;
-        }
-        else {
+        } else {
             externalNode = tile12;
             return externalNode;
         }
     }
 
+    /**
+     * Places the family members and players on the board
+     *
+     * @author Stan Hogenboom
+     * @version 21-6-2019
+     */
     private void setPlayersEnFamily() {
         //Familieleden op de juiste plek zetten
+        addToGrid(famred, findNode(GameController.getInstance().getGame().board.players.get(0).familyMember.location));
+        if (GameController.getInstance().getGame().board.players.size() > 1) {
+            addToGrid(famyellow, findNode(GameController.getInstance().getGame().board.players.get(1).familyMember.location));
+        }
+        if (GameController.getInstance().getGame().board.players.size() > 2) {
+            addToGrid(famgreen, findNode(GameController.getInstance().getGame().board.players.get(2).familyMember.location));
+        }
+        if (GameController.getInstance().getGame().board.players.size() > 3) {
+            addToGrid(famwhite, findNode(GameController.getInstance().getGame().board.players.get(3).familyMember.location));
+        }
+        if (GameController.getInstance().getGame().board.players.size() > 4) {
+            addToGrid(famblue, findNode(GameController.getInstance().getGame().board.players.get(4).familyMember.location));
+        }
 
-        addToGrid(famred, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
-        addToGrid(famyellow, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
-        addToGrid(famgreen, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
-        addToGrid(famwhite, findNode(GameController.getInstance().getMyPlayer().familyMember.location));
-        addToGrid(famblue, tile12);
-
-        //spelers op de juiste plek zetten
+//        //spelers op de juiste plek zetten
         addToGrid(playerred, tile7);
         addToGrid(playerYellow, tile7);
         addToGrid(playergreen, tile7);
@@ -361,22 +442,40 @@ public class GameView implements GameViewObserver, Initializable {
         addToGrid(playerwhite, tile7);
     }
 
-    private void setAssistants(int tile, String color){
-        switch(tile){
+    private void setPlayerIcons(Map<Integer, String> playerTiles) {
+        for (Map.Entry<Integer, String> entry : playerTiles.entrySet()) {
+            Pane playerColor = findPlayerColor(entry.getKey(), true);
+
+            int rowIndex = getRowIndex(stringTiles.get(entry.getValue()));
+            int columnIndex = getColumnIndex(stringTiles.get(entry.getValue()));
+            moveTile(playerColor, columnIndex, rowIndex);
+        }
+    }
+
+    private void setAssistants(int tile, String color) {
+        switch (tile) {
             case 1:
-                if(color == "red") {
+                if (color == "red") {
                     addToGrid(redAs, tile8);
                 } else if (color == "blue") {
                     addToGrid(blueAs, tile8);
-                } else if (color == "green"){
+                } else if (color == "green") {
                     addToGrid(greenAs, tile8);
-                } else if (color == "yellow"){
+                } else if (color == "yellow") {
                     addToGrid(yellowAs, tile8);
-                } else if (color == "white"){
+                } else if (color == "white") {
                     addToGrid(whiteAss, tile8);
                 }
 
         }
+    }
+
+    private int getRowIndex(Button button) {
+        return GridPane.getRowIndex(button);
+    }
+
+    private int getColumnIndex(Button button) {
+        return GridPane.getColumnIndex(button);
     }
 
     private void addToGrid(Node node, Node ofNodeIndex) {
@@ -400,6 +499,21 @@ public class GameView implements GameViewObserver, Initializable {
 //        if (difficulty.equals(Difficulty.MEDIUM)){
 //            buildMapForDifficulty(mediumMap);
 //        }
+    }
+
+    public void playerProgression(ActionEvent event) {
+        Button source = (Button) event.getSource();
+        if (source.getId().equals("player1")) {
+            playerProgressionView.playerProgression(4);
+        } else if (source.getId().equals("player5")) {
+            playerProgressionView.playerProgression(0);
+        } else if (source.getId().equals("player4")) {
+            playerProgressionView.playerProgression(1);
+        } else if (source.getId().equals("player2")) {
+            playerProgressionView.playerProgression(2);
+        } else if (source.getId().equals("player3")) {
+            playerProgressionView.playerProgression(3);
+        }
     }
 
     private void buildMapForDifficulty(final Button[][] buttonMap) {
@@ -437,10 +551,6 @@ public class GameView implements GameViewObserver, Initializable {
         popUpView.askClose();
     }
 
-    // Popup to show the progression of an enemy player
-    public void playerProgression() throws IOException {
-        popUpView.playerProgression();
-    }
 
     // Popup to show the progression of an enemy player
     public void endTurn() throws IOException {
@@ -457,10 +567,11 @@ public class GameView implements GameViewObserver, Initializable {
 
     /**
      * Handles the movement of the player.
-     * @author Stan Hogenboom
-     * @version 18-6-2019
+     *
      * @param event
      * @throws IOException
+     * @author Stan Hogenboom
+     * @version 18-6-2019
      */
     @FXML
     public void confirmMovement(ActionEvent event) throws IOException {
@@ -508,135 +619,161 @@ public class GameView implements GameViewObserver, Initializable {
             } else if (source.getId().equals("tile16")) {
                 gemstoneDealer();
             }
-
-            gameController.setNextPlayer();
-            possibleMoves(pane);
-            disableTiles(true);
+            gameController.updatePlayerTile(source.getId());
+            gameController.setHasMoved(true);
+            gameController.updateGame();
         }
     }
 
-    public void setColumnRow(Button button) {
-        int column = GridPane.getColumnIndex(button);
-        int row = GridPane.getRowIndex(button);
-    }
-
+    /**
+     * moves the familymember on the board when the player does the policestation action.
+     *
+     * @param tileNumber
+     * @throws IOException
+     * @author Stan Hogenboom
+     * @verion 21-6-2019
+     */
     public void movePoliceStation(int tileNumber) throws IOException {
 
-        Pane familyMember = findPlayerColor(gameController.getMyPlayerID(), false);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
 
-        if (tileNumber == 1) {
-            wainwright();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
-            GameController.getInstance().getMyPlayer().familyMember.location = 1;
-        }
-        else if (tileNumber == 2) {
-            fabricWarehouse();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile2));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile2));
-        }
-        else if (tileNumber == 3) {
-            spiceWarehouse();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile3));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile3));
-        }
-        else if (tileNumber == 4) {
-            fruitWarehouse();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile4));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile4));
-        }
-        else if (tileNumber == 5) {
-            postOffice();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile5));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile5));
-        }
-        else if (tileNumber == 6) {
-            caravansary();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile6));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile6));
-        }
-        else if (tileNumber == 7) {
-            fountain();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile7));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile7));
-        }
-        else if (tileNumber == 8) {
-            blackMarket();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile8));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile8));
-        }
-        else if (tileNumber == 9) {
-            teaHouse();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile9));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile9));
-        }
-        else if (tileNumber == 10) {
-            greatMarket();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile10));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile10));
-        }
-        else if (tileNumber == 11) {
-            smallMarket();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile11));
-        }
-        else if (tileNumber == 12) {
-            /* This is the policesttion itself, probably shouldn't be included*/
-        }
-        else if (tileNumber == 13) {
-            sultansPalace();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile13));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile13));
-        }
-        else if (tileNumber == 14) {
-            smallMosque();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile14));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile14));
-        }
-        else if (tileNumber == 15) {
-            greatMosque();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile15));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile15));
-        }
-        else if (tileNumber == 16) {
-            gemstoneDealer();
-            GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile16));
-            GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile16));
-        }
-        
+                Pane familyMember = findPlayerColor(gameController.getMyPlayerID(), false);
+
+                try {
+                    if (tileNumber == 1) {
+                        wainwright();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 1;
+                    } else if (tileNumber == 2) {
+                        fabricWarehouse();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile2));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile2));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 2;
+                    } else if (tileNumber == 3) {
+                        spiceWarehouse();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile3));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile3));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 3;
+                    } else if (tileNumber == 4) {
+                        fruitWarehouse();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile4));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile4));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 4;
+                    } else if (tileNumber == 5) {
+                        postOffice();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile5));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile5));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 5;
+                    } else if (tileNumber == 6) {
+                        caravansary();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile6));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile6));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 6;
+                    } else if (tileNumber == 7) {
+                        fountain();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile7));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile7));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 7;
+                    } else if (tileNumber == 8) {
+                        blackMarket();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile8));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile8));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 8;
+                    } else if (tileNumber == 9) {
+                        teaHouse();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile9));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile9));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 9;
+                    } else if (tileNumber == 10) {
+                        greatMarket();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile10));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile10));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 10;
+                    } else if (tileNumber == 11) {
+                        smallMarket();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile11));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 11;
+                    } else if (tileNumber == 12) {
+                        /* This is the policesttion itself, probably shouldn't be included*/
+                    } else if (tileNumber == 13) {
+                        sultansPalace();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile13));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile13));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 13;
+                    } else if (tileNumber == 14) {
+                        smallMosque();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile14));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile14));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 14;
+                    } else if (tileNumber == 15) {
+                        greatMosque();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile15));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile15));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 15;
+                    } else if (tileNumber == 16) {
+                        gemstoneDealer();
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile16));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile16));
+                        GameController.getInstance().getMyPlayer().familyMember.location = 16;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
      * finds out the color of the player so other methods know which character to move
-     * @author Stan Hogenboom
-     * @version 18-6-2019
+     *
      * @param playerID
      * @return
+     * @author Stan Hogenboom
+     * @version 18-6-2019
      */
     private Pane findPlayerColor(int playerID, boolean player) {
         Pane pane = playerred; //makes sure it's initialized
-            switch (playerID) {
-                case 1:
-                    if (player) { pane = playerred; }
-                    else { pane = famred; }
-                    break;
-                case 2:
-                    if (player) { pane = playerYellow; }
-                    else { pane = famyellow; }
-                    break;
-                case 3:
-                    if (player) { pane = playergreen; }
-                    else { pane = famgreen; }
-                    break;
-                case 4:
-                    if (player) { pane = playerblue; }
-                    else { pane = famblue; }
-                    break;
-                case 5:
-                    if (player) { pane = playerwhite; }
-                    else { pane = famwhite; }
-                    break;
-            }
+        switch (playerID) {
+            case 1:
+                if (player) {
+                    pane = playerred;
+                } else {
+                    pane = famred;
+                }
+                break;
+            case 2:
+                if (player) {
+                    pane = playerYellow;
+                } else {
+                    pane = famyellow;
+                }
+                break;
+            case 3:
+                if (player) {
+                    pane = playergreen;
+                } else {
+                    pane = famgreen;
+                }
+                break;
+            case 4:
+                if (player) {
+                    pane = playerblue;
+                } else {
+                    pane = famblue;
+                }
+                break;
+            case 5:
+                if (player) {
+                    pane = playerwhite;
+                } else {
+                    pane = famwhite;
+                }
+                break;
+        }
         return pane;
     }
 
@@ -672,6 +809,7 @@ public class GameView implements GameViewObserver, Initializable {
     public void fountain() throws IOException {
         locationView.fountain();
     }
+
     public void greatMosque() throws IOException {
         greatMosqueView.greatMosque();
     }
@@ -695,13 +833,14 @@ public class GameView implements GameViewObserver, Initializable {
     public void sultansPalace() throws IOException {
         sultansPalaceView.sultansPalace();
     }
+
     public void postOffice() throws IOException {
         postOfficeView.postOffice();
     }
+
     public void caravansary() throws IOException {
         caravansaryView.caravansary();
     }
-
 
 
     // Closes the game
@@ -724,36 +863,15 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * This functions changes the X and Y position of the player on the board.
      * It also checks if the player has moved already
-     * @author Stan Hogenboom
+     *
      * @param pane
      * @param column
      * @param row
-     * @throws IOException
+     * @author Stan Hogenboom
      */
-    private void moveTile(Pane pane, int column, int row) throws IOException {
-
-
-        if(!gameController.movementDone()) {
-            GridPane.setColumnIndex(pane, column);
-            GridPane.setRowIndex(pane, row);
-
-            //gameController.setMoved(true);
-            //disableAllTiles();
-        }
-        else {
-            popUpView.dontMove();
-        }
-    }
-
-    /**
-     * Checks if it's your turn and disbales tiles acordingly.
-     */
-    public void turnManager() {
-        if (gameController.getMyPlayerID() != gameController.TurnManager() && !gameController.isGameEnded()) {
-            disableTiles(false);
-            // TURNCOUNTER++;
-            //GameController.getInstance().increaseTurn();
-        }
+    private void moveTile(Pane pane, int column, int row) {
+        GridPane.setColumnIndex(pane, column);
+        GridPane.setRowIndex(pane, row);
     }
 
     /**
@@ -873,8 +991,9 @@ public class GameView implements GameViewObserver, Initializable {
             Game game = (Game) go;
             updateGameView(game);
 
-            Platform.runLater(new Runnable(){
-                @Override public void run() {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
 
                 }
             });
@@ -882,9 +1001,16 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     private void updateGameView(Game game) {
-        if (isMyTurn()) {
+        if (isMyTurn() && !game.hasMoved) {
             enableLocationsForMyPlayer();
+        } else {
+            disableTiles(true);
         }
+        updateGameIcons(game);
+    }
+
+    private void updateGameIcons(Game game) {
+        setPlayerIcons(game.getBoard().getPlayerTiles());
     }
 
 
@@ -893,8 +1019,8 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     @Override
-    public void update(SultanPalaceObservable spo){
-        Platform.runLater(new Runnable(){
+    public void update(SultanPalaceObservable spo) {
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 System.out.println(SultanBlue);
@@ -910,12 +1036,52 @@ public class GameView implements GameViewObserver, Initializable {
 
     @Override
     public void update(GemstoneDealerObservable gdo) {
-        Platform.runLater( () -> {
-                System.out.println("vis");
-                gemPrice.setText(String.valueOf(gdo.getGemstonePrice()));
-            });}
+        Platform.runLater(() -> {
+            System.out.println("vis");
+            gemPrice.setText(String.valueOf(gdo.getGemstonePrice()));
+        });
+    }
 
+    @Override
+    public void update(PostOfficeObservable poo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                postBlue.setText(String.valueOf(poo.PostOfficeGetJewel()));
+                postRed.setText(String.valueOf(poo.PostOfficeGetFabric()));
+                postGreen.setText(String.valueOf(poo.PostOfficeGetSpice()));
+                postYellow.setText(String.valueOf(poo.PostOfficeGetFruit()));
+                postLira.setText(String.valueOf(poo.PostOfficeGetLira()));
+            }
+        });
+    }
 
+    @Override
+    public void update(SmallMarketObservable smo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                smallBlue.setText(String.valueOf(smo.getJewel()));
+                smallRed.setText(String.valueOf(smo.getFabric()));
+                smallGreen.setText(String.valueOf(smo.getSpice()));
+                smallYellow.setText(String.valueOf(smo.getFruit()));
+            }
+        });
+    }
+
+    @Override
+    public void update(GreatMarketObservable gmo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("YOUP");
+                largeBlue.setText(String.valueOf(gmo.GMgetJewel()));
+                largeRed.setText(String.valueOf(gmo.GMgetFabric()));
+                largeGreen.setText(String.valueOf(gmo.GMgetSpice()));
+                largeYellow.setText(String.valueOf(gmo.GMgetFruit()));
+            }
+        });
+    }
 
 
     @Override
@@ -941,7 +1107,7 @@ public class GameView implements GameViewObserver, Initializable {
 
     }
 
-    public void updateBoard(Player player){
+    public void updateBoard(Player player) {
         playerLira.setText(String.valueOf(player.getLira()));
         playerRubies.setText(String.valueOf(player.getRubies()));
         playerJewels.setText(String.valueOf(player.getJewels()));

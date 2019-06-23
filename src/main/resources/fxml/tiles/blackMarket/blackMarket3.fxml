@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" id="blackmarket3" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LocationView">
+<AnchorPane id="blackmarket3" fx:id="rootPane" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.tiles.BlackMarketView">
    <children>
       <Pane layoutX="100.0" layoutY="475.0" prefHeight="79.0" prefWidth="315.0">
          <children>
-            <Text fill="#ffd1ba" layoutX="169.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="DiceBlackMarket" text="#">
+            <Text fx:id="jewelsBlackMarket" fill="#ffd1ba" layoutX="169.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
                <font>
                   <Font size="55.0" />
                </font>
@@ -27,7 +27,7 @@
             </Button>
          </children>
       </HBox>
-      <Text fill="#ffd1ba" layoutX="347.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="JewelsBlackMarket" text="#">
+      <Text fx:id="diceBlackMarket" fill="#ffd1ba" layoutX="347.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
          <font>
             <Font size="55.0" />
          </font>

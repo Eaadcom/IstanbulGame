@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
+import views.tiles.BlackMarketView;
 import views.tiles.GemstoneDealerView;
 import views.tiles.TeaHouseView;
 import views.tiles.WainwrightView;
@@ -75,35 +76,9 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     // Function for rolling the dice
     public void blackMarketRollDice() throws IOException {
-        //locationController.BlackMarketDice();
-        //als je geen moskee tegel hebt
-        // OF wel een moskee tegel hebt en een reroll hebt gedaan
-        // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
-        rootPane.getChildren().setAll(pane);
-
-        //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
-        rootPane.getChildren().setAll(pane2);
-
-        LocationController.getInstance().BlackMarketDice();
-    }
-
-    // Function to do a reroll
-    public void acceptRerollBlackMarket() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    // Function to change one of your dice rolls to 4
-    public void turnToFourBlackMarket() {
-        //stuk code om de laagste dice naar een 4 te veranderen
-    }
-
-    // Function to do a reroll
-    public void blackMarketRerollDices() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
-        rootPane.getChildren().setAll(pane);
+        Stage stage = (Stage) dices.getScene().getWindow();
+        stage.close();
+        BlackMarketView.getInstance().BlackMarketResult();
     }
 
     // Function to close the popup
@@ -172,34 +147,32 @@ public class LocationView implements LocationViewObserver, Initializable {
     }
 
     public void teaHouseRollDice() throws IOException {
-        // als je geen moskee tegel hebt
-        // OF wel een moskee tegel hebt en een reroll hebt gedaan
-        // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
+        Stage stage = (Stage) dices.getScene().getWindow();
+        stage.close();
         LocationController.getInstance().TeaHouseResult();
         LocationController.getInstance().setTeaHouseDice(Integer.parseInt(LocationController.getInstance().diceResultStr));
         thv.teaHouseResult();}
 
 
-        //System.out.println((locationController.getTeaHouseNumber()));
-
-
-        //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        /*
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse4.fxml"));
-        rootPane2.getChildren().setAll(pane2);*/
 
     public void wainwright() throws IOException {
         wwv.wainwright();
     }
 
     public void policeStation() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/policeStation.fxml"));
-        Parent root = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+
+        if (GameController.getInstance().getMyPlayer().familyMember.location == 12) {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/policeStation.fxml"));
+            Parent root = (Parent) fxmlloader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        else {
+
+        }
     }
 
     public void policeStationAction() throws IOException {

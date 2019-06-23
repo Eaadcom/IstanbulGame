@@ -84,10 +84,33 @@
 #endturnbutton{
     -fx-background-image: url('../img/endturnbutton.png');
 }
+#playerIcon0{
+    -fx-background-image: url('../img/player/prog/redplayer.png');
+}
+#playerIcon1{
+    -fx-background-image: url('../img/player/prog/yellowplayer.png');
+}
+#playerIcon2{
+    -fx-background-image: url('../img/player/prog/greenplayer.png');
+}
+#playerIcon3{
+    -fx-background-image: url('../img/player/prog/blueplayer.png');
+}
+#playerIcon4{
+    -fx-background-image: url('../img/player/prog/whiteplayer.png');
+}
+
+#playerIcon0, #playerIcon1, #playerIcon2, #playerIcon3, #playerIcon4 {
+    -fx-background-repeat: no-repeat;
+    -fx-border-color:black;
+    -fx-border-width: 0.7;
+    -fx-border-radius: 50;
+    -fx-effect: dropshadow(three-pass-box, black, 3, 0.005 , 0, 0);
+}
 
 
 #player1, #player2, #player3, #player4, #player5{
-    -fx-effect: dropshadow(three-pass-box, grey, 7, 0.005 , 0, 0);
+    -fx-effect: dropshadow(three-pass-box, black, 7, 0.005 , 0, 0);
     -fx-background-color: transparent;
     -fx-border-color:black;
     -fx-border-width: 1;

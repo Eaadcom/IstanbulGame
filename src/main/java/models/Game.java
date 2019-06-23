@@ -10,6 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is the model for the most important game elements
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class Game implements GameObservable {
 
     // LobbyVariables
@@ -22,7 +27,6 @@ public class Game implements GameObservable {
     // GameVariables
     public Board board = new Board();
     public int turnCounter = 0;
-    public int myPlayerID = 1;
     public boolean hasMoved = false;
 
     // SystemVariables
@@ -38,35 +42,23 @@ public class Game implements GameObservable {
         }
     }
 
+    public Game() {
+
+    }
+
     public Game(String name, int playerTotal, Difficulty difficulty) {
         this.name = name;
         this.playerTotal = playerTotal;
         this.difficulty = difficulty;
     }
 
-    public Game(QueryDocumentSnapshot document) {
-        Map<String, Object> data = document.getData();
-        this.name = document.getId();
-        //setPlayers(data.get("playerNames"));
-        setGameData(data);
-    }
-
     public void updateFromSnapShot(DocumentSnapshot documentSnapshot) {
         this.name = documentSnapshot.getId();
         Map<String, Object> data = documentSnapshot.getData();
+        setGameData(data);
         board.setBoardData((Map)data.get("Board"));
         //setPlayers(data.get("playerNames"));
-        setGameData(data);
         notifyAllObservers();
-    }
-
-    private void setPlayers(Object playerNames) {
-        List<String> names = (List<String>) playerNames;
-        List<Player> players = new LinkedList<>();
-        for(String name : names) {
-            players.add(new Player(name));
-        }
-        board.setPlayers(players);
     }
 
     private void setGameData(Map<String, Object> data) {
@@ -75,7 +67,11 @@ public class Game implements GameObservable {
         this.gameEnded = Boolean.parseBoolean(data.get("gameEnded").toString());
         this.difficulty = Difficulty.fromString(data.get("gameDifficulty").toString());
         this.turnCounter = Integer.parseInt(data.get("turnCounter").toString());
-        notifyAllObservers();
+        this.hasMoved = Boolean.parseBoolean(data.get("hasMoved").toString());
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     public String getName() {
@@ -87,12 +83,13 @@ public class Game implements GameObservable {
         hasMoved = b;
     } //ik was hier gebleven
 
+    public boolean isHasMoved() {
+        return hasMoved;
+    }
+
     //Getters
     public Integer getPlayerTotal(){
         return playerTotal;
-    }
-    public int getMyPlayerID(){
-        return myPlayerID;
     }
 
     // Observer pattern
@@ -140,10 +137,6 @@ public class Game implements GameObservable {
         return board.getPlayers();
     }
 
-    public Player getCurrentPlayerTurn() {
-        return board.getCurrentPlayerTurn();
-    }
-
     public void addInitialPlayer(Player player) {
         board.addPlayer(player);
     }
@@ -163,5 +156,9 @@ public class Game implements GameObservable {
 
     public boolean isGameEnded() {
         return gameEnded;
+    }
+
+    public void updatePlayerTile(String tileString, int playerID) {
+        board.updatePlayerTile(tileString, playerID);
     }
 }

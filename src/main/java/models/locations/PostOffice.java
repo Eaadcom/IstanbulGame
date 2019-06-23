@@ -1,8 +1,10 @@
 package models.locations;
 
+import models.Player;
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
 import observers.locations.PostOfficeObservable;
+import views.GameView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +15,7 @@ public class PostOffice implements Location, PostOfficeObservable {
 
     // Variables
     private static PostOffice postOffice;
-    private List<LocationViewObserver> observers = new ArrayList<>();
+    private List<GameViewObserver> observers = new ArrayList<>();
     public boolean redAs = false;
     public boolean blueAs = false;
     public boolean greenAs = false;
@@ -72,6 +74,16 @@ public class PostOffice implements Location, PostOfficeObservable {
     private int lira   = 4;
 
     private int STATE = 0;
+
+    public void confirmPurchase(Player player){
+        player.setLira(player.getLira()+lira);
+        player.setFabrics(player.getFabrics()+fabric);
+        player.setSpices(player.getSpices()+spice);
+        player.setFruits(player.getFruits()+fruit);
+        player.setJewels(player.getJewels()+jewel);
+        stateHandler();
+        notifyAllObservers();
+    }
 
     /**
      *  Handles the state of the post office based on the STATE int.
@@ -159,13 +171,16 @@ public class PostOffice implements Location, PostOfficeObservable {
 
     // Observer Pattern
     @Override
-    public void register(LocationViewObserver observer) {
+    public void register(GameViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (LocationViewObserver gvo : observers){
+        if (!observers.contains(GameView.getInstance())){
+            register(GameView.getInstance());
+        }
+        for (GameViewObserver gvo : observers){
             gvo.update(this);
         }
     }

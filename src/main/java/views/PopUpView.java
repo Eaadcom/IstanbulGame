@@ -15,6 +15,12 @@ import models.cards.BonusCard;
 
 import java.io.IOException;
 
+/**
+ * This view class contains the views of the less complicated pop-up windows.
+ * The more complicated ones are stored in their own respective view classes.
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class PopUpView {
 
     // Variables
@@ -30,6 +36,7 @@ public class PopUpView {
     @FXML
     public Button closeConfirmMovement; // aanmaken fx:id
 
+
     public boolean move = true;
     public BonusCard gekozenBonusKaart;
     private boolean bonusKaartGebruiken = false;
@@ -40,17 +47,6 @@ public class PopUpView {
     // Function to close the popup
     public void askClose() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/askClose.fxml"));
-        Parent root2 = (Parent) fxmlloader.load();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root2));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-    }
-
-    // Function to show the playerprogression popup
-    public void playerProgression() throws IOException {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);

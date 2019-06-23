@@ -12,6 +12,12 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * This is the controller for all 16 tiles.
+ * The methods in this class are called when they player visits the respective tile.
+ * @author Stan Hogenboom, Thomas van Velzen, Edward Deen, Joeri van Duijkeren, Floris Dekker
+ * @version 21-6-2019
+ */
 public class LocationController{
 
     // Variables
@@ -236,17 +242,13 @@ public class LocationController{
         myPlayer.assistants = myPlayer.maxAssistants;
     }
     public void wainrightBuyer(){
-        if(myPlayer.lira >= 7) {
-            if (myPlayer.carUpgrades < 3) {
-                playerController.addRubysLiras("lira", -7);
-                playerController.CarUpgrader();
-
-                System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
+        Player player = GameController.getInstance().getPlayer();
+        if(player.getLira() >= 7) {
+            if (player.getCarUpgrades() < 3) {
+                player.setLira(player.getLira() - 7);
+                player.setCarUpgrades(player.getCarUpgrades() + 1);
             }
-            System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
-
         }
-        System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
 
     }
 
@@ -257,59 +259,21 @@ public class LocationController{
         return DiceValue;
     }
 
-    public void BlackMarketDice() {
-        playerController = PlayerController.getInstance();
-        blackMarket = BlackMarket.getInstance();
-        blackMarket.diceOne.DiceValue = setDiceValue();
-        blackMarket.diceTwo.DiceValue = setDiceValue();
-
-        diceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
-        diceResult = 8;
-        System.out.println("Je hebt " + diceResult + " gegooit");
-
-        if (diceResult < 7) {
-            myPlayer.jewels = myPlayer.jewels;
-        } else if (diceResult == 7 || diceResult == 8) {
-            if (playerController.CargoCheckJewels(1) == true) {
-                myPlayer.jewels += 1;
-            }
-
-        } else if (diceResult == 9 || diceResult == 10) {
-            if (playerController.CargoCheckJewels(2)) {
-                myPlayer.jewels += 2;
-            } else if (playerController.CargoCheckJewels(1)) {
-                myPlayer.jewels += 1;
-            }
-
-        } else if (diceResult == 11 || diceResult == 12) {
-            if (playerController.CargoCheckJewels(3)) {
-                myPlayer.jewels += 3;
-            } else if (playerController.CargoCheckJewels(2)) {
-                myPlayer.jewels += 2;
-            } else if (playerController.CargoCheckJewels(1)) {
-                myPlayer.jewels += 1;
-            }
-        }
-        System.out.println("er zijn " + myPlayer.jewels + " Jewels toegevoegd!");
-
-    }
-
         public void BlackMarketChoice(int BlackMarketChoice) {
-        playerController = PlayerController.getInstance();
+        Player player = GameController.getInstance().getPlayer();
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
-                myPlayer.spices += 1;
+                player.setSpices(player.getSpices() +1);
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
-                myPlayer.fruits += 1;
+                player.setFruits(player.getFruits() +1);
 
             }
         } else if (BlackMarketChoice == 3) {
             if (playerController.CargoCheckFabrics(1)) {
-                myPlayer.fabrics += 1;
-                System.out.println("er zijn " + myPlayer.fabrics + " Fabrics");
+                player.setFabrics(player.getFabrics() +1);
 
             } else {
 
@@ -427,6 +391,7 @@ public class LocationController{
     }
 
     public void TeaHouseResult(){
+        Player player = GameController.getInstance().getPlayer();
         diceOne.DiceValue = setDiceValue();
         diceTwo.DiceValue = setDiceValue();
         diceResult = diceOne.DiceValue + diceTwo.DiceValue;
@@ -434,11 +399,9 @@ public class LocationController{
         teahouseNumberChoice = teaHouse.teahouseNumberChoice;
 
         if (teaHouse.teahouseNumberChoice < diceResult || teaHouse.teahouseNumberChoice == diceResult) {
-            playerController.addRubysLiras("lira", teaHouse.teahouseNumberChoice);
-            System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
+            player.setLira(player.getLira() + teahouseNumberChoice);
         } else if(teaHouse.teahouseNumberChoice < diceResult){
-            playerController.addRubysLiras("lira", 2);
-            System.out.println("Helaas! je ligt eronder!");
+            player.setLira(player.getLira() + 2);
 
     }}
         // SULTANS PALACE CODE
@@ -568,12 +531,13 @@ public class LocationController{
      * @version 17-6-2019
      */
     public void gemstoneDealerAction() {
+        Player player = GameController.getInstance().getPlayer();
         GemstoneDealer gsd = GemstoneDealer.getInstance();
         int price = gsd.getGemstonePrice();
 
-        if(myPlayer.lira > price){
-            playerController.addRubysLiras("ruby", 1);
-            playerController.addRubysLiras("lira", -price);
+        if(player.getLira() > price){
+            player.setRubies(player.getRubies()+1);
+            player.setLira(player.getLira()-price);
             gsd.updatePrice(price + 1);
         }
         else {

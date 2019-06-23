@@ -10,8 +10,8 @@
    <children>
       <Pane layoutX="100.0" layoutY="503.0" prefHeight="79.0" prefWidth="315.0">
          <children>
-            <Button id="yes" fx:id="yes" layoutX="24.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" />
-            <Button id="no" fx:id="no" layoutX="201.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" />
+            <Button id="yes" fx:id="yes" onAction="#confirm" layoutX="24.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" />
+            <Button id="no" fx:id="no" onAction="#close" layoutX="201.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" />
          </children></Pane>
       <Text fill="#432f00" stroke="#e1e1e1" strokeType="OUTSIDE" text="#" textAlignment="CENTER" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="224.0">
          <font>

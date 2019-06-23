@@ -10,10 +10,10 @@
    <children>
       <Pane layoutX="100.0" layoutY="414.0" prefHeight="151.0" prefWidth="324.0">
          <children>
-            <Button id="redtile" fx:id="redTile" layoutX="33.0" layoutY="14.0" mnemonicParsing="false" onAction="#redTile" prefHeight="122.0" prefWidth="122.0" />
-            <Button id="greentile" fx:id="greenTile" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" onAction="#greenTile" prefHeight="122.0" prefWidth="122.0" />
+            <Button id="redtile" onAction="#redTile" layoutX="33.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" />
+            <Button id="greentile" layoutX="172.0" onAction="#greenTile" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" />
          </children></Pane>
-      <Button id="neither" fx:id="neither" layoutX="179.0" layoutY="573.0" mnemonicParsing="false" onAction="#close" prefHeight="33.0" prefWidth="158.0" />
+      <Button id="neither" fx:id="neither" onAction="#close" layoutX="179.0" layoutY="573.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="158.0" />
       <Text layoutX="179.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
          <font>
             <Font size="24.0" />

@@ -17,8 +17,53 @@
 
 <BorderPane id="gameback" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080" prefWidth="1920" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GameView">
    <left>
-      <VBox id="playerscroll" alignment="TOP_CENTER" prefHeight="1033.0" prefWidth="200.0">
+      <GridPane id="playerscroll" fx:id="playerGrid" alignment="TOP_CENTER" prefHeight="1033.0" prefWidth="200.0">
          <children>
+            <Button id="player1" fx:id="whiteProg" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;" GridPane.rowIndex="5">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Button>
+            <Button id="player2" fx:id="greenProg" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;" GridPane.rowIndex="3">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin></Button>
+            <Button id="player3" fx:id="blueProg" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;" GridPane.rowIndex="4">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin></Button>
+            <Button id="player4" fx:id="yellowProg" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;" GridPane.rowIndex="2">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin></Button>
+            <Button id="player5" fx:id="redProg" maxHeight="130.0" maxWidth="130.0" minHeight="130.0" minWidth="130.0" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;" GridPane.rowIndex="1">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin></Button>
+            <Button id="rulesbutton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#rulesPage" onMouseClicked="#rulesPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #262626; -fx-border-radius: 10;" text="Rules" textAlignment="CENTER" textFill="#eeeeee" GridPane.rowIndex="6">
+               <VBox.margin>
+                  <Insets top="45.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Button>
+            <Button id="menubutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #262626;" text="Menu" textFill="#eeeeee" GridPane.rowIndex="7">
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Button>
             <Button id="close" alignment="TOP_CENTER" onAction="#askClose" opacity="0.0" prefHeight="70.0" prefWidth="70.0">
                <padding>
                   <Insets right="5.0" top="5.0" />
@@ -27,44 +72,22 @@
                   <Insets right="130.0" />
                </VBox.margin>
             </Button>
-            <Button id="player1" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Button>
-            <Button id="player2" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin></Button>
-            <Button id="player3" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin></Button>
-            <Button id="player4" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin></Button>
-            <Button id="player5" mnemonicParsing="false" onAction="#playerProgression" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 70;">
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin></Button>
-            <Button id="rulesbutton" mnemonicParsing="false" onAction="#rulesPage" onMouseClicked="#rulesPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #262626; -fx-border-radius: 10;" text="Rules" textFill="#eeeeee">
-               <VBox.margin>
-                  <Insets top="45.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button id="menubutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #262626;" text="Menu" textFill="#eeeeee">
-               <VBox.margin>
-                  <Insets top="35.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
+
          </children>
-      </VBox>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" />
+            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" />
+            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" />
+            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" />
+            <RowConstraints maxHeight="190.0" minHeight="190.0" prefHeight="190.0" valignment="BOTTOM" />
+            <RowConstraints minHeight="10.0" prefHeight="80.0" />
+            <RowConstraints minHeight="10.0" prefHeight="80.0" />
+         </rowConstraints>
+      </GridPane>
    </left>
    <center>
       <GridPane fx:id="grid" hgap="8.0" vgap="8.0">
@@ -86,27 +109,27 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fill="WHITE" layoutX="35.0" layoutY="196.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="163.0">
+                        <Text id="postGreen" fx:id="postGreen" fill="WHITE" layoutX="35.0" layoutY="196.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="163.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="35.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="119.0">
+                        <Text id="postRed" fx:id="postRed" fill="WHITE" layoutX="35.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="119.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="77.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="119.0">
+                        <Text id="postBlue" fx:id="postBlue" fill="WHITE" layoutX="77.0" layoutY="152.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="1" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="119.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="77.0" layoutY="195.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="162.0">
+                        <Text id="postYellow" fx:id="postYellow" fill="WHITE" layoutX="77.0" layoutY="195.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="162.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="119.0" layoutY="172.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="4" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="139.0">
+                        <Text id="postLira" fx:id="postLira" fill="WHITE" layoutX="119.0" layoutY="172.0" stroke="#5e5e5e" strokeType="OUTSIDE" text="4" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="139.0">
                            <font>
                               <Font name="Calisto MT" size="35.0" />
                            </font>
@@ -153,22 +176,22 @@
                <graphic>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
+                        <Text fx:id="largeBlue" id="largeBlue" layoutX="84.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
+                        <Text fx:id="largeRed" id="largeRed" layoutX="110.0" layoutY="126.0" stroke="WHITE" strokeType="OUTSIDE" text="2" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
+                        <Text fx:id="largeGreen" id="largeGreen" layoutX="84.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
+                        <Text fx:id="largeYellow" id="largeYellow" layoutX="110.0" layoutY="152.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -199,22 +222,22 @@
                <graphic>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
+                        <Text id="smallBlue" fx:id="smallBlue" layoutX="84.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="0" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
+                        <Text id="smallRed" fx:id="smallRed" layoutX="110.0" layoutY="124.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="3" textAlignment="CENTER">
+                        <Text id="smallGreen" fx:id="smallGreen" layoutX="84.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="3" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Text>
-                        <Text layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
+                        <Text id="smallYellow" fx:id="smallYellow" layoutX="110.0" layoutY="150.0" stroke="WHITE" strokeType="OUTSIDE" text="1" textAlignment="CENTER">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -330,7 +353,7 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></Button>
-                  <Button id="endturnbutton" fx:id="endturn" layoutX="37.0" layoutY="430.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="80.0" prefWidth="286.0" disable="true"/>
+                  <Button id="endturnbutton" fx:id="endturn" disable="true" layoutX="37.0" layoutY="430.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="80.0" prefWidth="286.0" />
                   <Button id="bc" fx:id="bonuscard" layoutX="50.0" layoutY="548.0" mnemonicParsing="false" onAction="#bonusCards" prefHeight="203.0" prefWidth="260.0" />
                </children></Pane>
             <Pane id="goodsback" prefHeight="240.0" prefWidth="360.0">

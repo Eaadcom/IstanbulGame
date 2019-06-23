@@ -14,7 +14,7 @@
                <children>
                   <Pane prefHeight="147.0" prefWidth="204.0">
                      <children>
-                        <Text layoutX="51.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spelernaam" textAlignment="CENTER" wrappingWidth="112.00000551342964">
+                        <Text id="playername" fx:id="playername" layoutX="51.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spelernaam" textAlignment="CENTER" wrappingWidth="112.00000551342964">
                            <font>
                               <Font name="Californian FB Bold" size="18.0" />
                            </font></Text>
@@ -26,7 +26,7 @@
                            <children>
                               <Pane prefHeight="44.0" prefWidth="102.0">
                                  <children>
-                                    <Button id="arrowleft" layoutX="44.0" prefHeight="44.0" prefWidth="55.0" />
+                                    <Button id="arrowleft" fx:id="arrowleft" layoutX="44.0" prefHeight="44.0" prefWidth="55.0" />
                                  </children>
                               </Pane>
                               <Pane layoutX="98.0" prefHeight="44.0" prefWidth="102.0">
@@ -41,7 +41,7 @@
                      <children>
                         <Pane prefHeight="105.0" prefWidth="57.0" />
                         <Pane layoutX="159.0" prefHeight="105.0" prefWidth="45.0" />
-                        <Pane layoutX="57.0" prefHeight="105.0" prefWidth="102.0" />
+                        <Pane id="playerIcon" fx:id="playerIcon" layoutX="63.0" layoutY="7.0" prefHeight="90.0" prefWidth="90.0" />
                      </children>
                   </Pane>
                </children>
@@ -50,7 +50,44 @@
                <children>
                   <Pane prefHeight="76.0" prefWidth="275.0" />
                   <Pane layoutY="331.0" prefHeight="76.0" prefWidth="275.0" />
-                  <Pane layoutX="-2.0" layoutY="76.0" prefHeight="255.0" prefWidth="283.0" />
+                  <Pane layoutX="-2.0" layoutY="76.0" prefHeight="255.0" prefWidth="283.0">
+                     <children>
+                        <Text id="redProg" fx:id="redProg" layoutX="105.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text id="greenProg" fx:id="greenProg" layoutX="105.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text id="liraProg" fx:id="liraProg" layoutX="105.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text id="carProg" fx:id="carProg" layoutX="105.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text id="yellowProg" fx:id="yellowProg" layoutX="220.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text id="blueProg" fx:id="blueProg" layoutX="220.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                        <Text id="rubyProg" fx:id="rubyProg" layoutX="220.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Text>
+                     </children></Pane>
                </children>
             </Pane>
             <Pane layoutX="479.0" prefHeight="407.0" prefWidth="54.0">

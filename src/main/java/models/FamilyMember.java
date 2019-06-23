@@ -6,17 +6,17 @@ import observers.GameViewObserver;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This model stores information about the family member.
+ * The most important information is the position of the familymember on the board.
+ * @author Stan Hogenboom
+ * @version 20-6-2019
+ */
 public class FamilyMember implements FamilyMemberObservable {
 
     // Variables
     private List<GameViewObserver> observers = new ArrayList<>();
-
-//    public String location = "tile12";
-//
-//    public void setLocation(String newLocation) {
-//        location = newLocation;
-//    }
-
+    
     public int location = 12;
 
     public void setLocation(int newLocation) {
