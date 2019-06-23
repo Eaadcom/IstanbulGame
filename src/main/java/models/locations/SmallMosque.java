@@ -20,6 +20,17 @@ public class SmallMosque implements Location, SmallMosqueObservable {
     public boolean yellowAs = false;
     public boolean whiteAs = false;
 
+    public int getRedPrice() {
+        return redPrice;
+    }
+
+    public int getGreenPrice() {
+        return greenPrice;
+    }
+
+    public int redPrice =2;
+    public int greenPrice =2;
+
     // Firebase
     public Map<String, Object> getVariableMap(){
         Map<String, Object> Data = new HashMap<>();
@@ -28,6 +39,14 @@ public class SmallMosque implements Location, SmallMosqueObservable {
     }
 
     public void setData(Map variables){
+    }
+
+    public void incrementPrice(String color){
+        if(color == "red" && redPrice != 5){
+            redPrice++;
+        }else if(color == "green" && greenPrice != 5){
+            greenPrice++;
+        }
     }
 
     public boolean color(String color) {

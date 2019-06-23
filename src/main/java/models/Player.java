@@ -46,6 +46,38 @@ public class Player implements PlayerObservable {
     public int assistants = 4;
     public int maxAssistants = 4;
 
+    public boolean isGreenTile() {
+        return greenTile;
+    }
+
+    public void setGreenTile(boolean greenTile) {
+        this.greenTile = greenTile;
+    }
+
+    public boolean isRedTile() {
+        return redTile;
+    }
+
+    public void setRedTile(boolean redTile) {
+        this.redTile = redTile;
+    }
+
+    public boolean isBlueTile() {
+        return blueTile;
+    }
+
+    public void setBlueTile(boolean blueTile) {
+        this.blueTile = blueTile;
+    }
+
+    public boolean isYellowTile() {
+        return yellowTile;
+    }
+
+    public void setYellowTile(boolean yellowTile) {
+        this.yellowTile = yellowTile;
+    }
+
     public boolean greenTile = false;
     public boolean redTile = false;
     public boolean blueTile = false;
