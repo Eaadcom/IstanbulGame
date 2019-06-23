@@ -42,17 +42,26 @@ public class CardController {
     public void GainGood(String choice){
         int newValue;
         if(choice == "fabric"){
+
             newValue = player.fabrics++;
-            player.setFabrics(newValue);
+            if(newValue < player.maxFabrics) {
+                player.setFabrics(newValue);
+            }
         } else if(choice == "fruit"){
             newValue = player.fruits++;
-            player.setFruits(newValue);
+            if(newValue < player.maxFruits) {
+                player.setFruits(newValue);
+            }
         } else if (choice  == "jewel"){
             newValue = player.jewels++;
-            player.setJewels(newValue);
+            if(newValue < player.maxFabrics) {
+                player.setJewels(newValue);
+            }
         } else if(choice == "spice"){
             newValue = player.spices++;
-            player.setSpices(newValue);
+            if(newValue < player.maxSpices) {
+                player.setSpices(newValue);
+            }
         }
     }
 
