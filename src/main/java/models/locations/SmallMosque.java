@@ -20,15 +20,7 @@ public class SmallMosque implements Location, SmallMosqueObservable {
     public boolean yellowAs = false;
     public boolean whiteAs = false;
 
-<<<<<<< Updated upstream
     public int bought;
-=======
-    public int boughtGreen = 2;
-    public int boughtRed = 2;
-
-
-
->>>>>>> Stashed changes
 
     // Firebase
     public Map<String, Object> getVariableMap(){
@@ -39,10 +31,6 @@ public class SmallMosque implements Location, SmallMosqueObservable {
 
     public void setData(Map variables){
     }
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
 
     public boolean color(String color) {
         boolean myColor;

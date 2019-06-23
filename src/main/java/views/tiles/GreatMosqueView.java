@@ -6,15 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-<<<<<<< Updated upstream
 import javafx.event.ActionEvent;
-=======
-import models.locations.GreatMosque;
->>>>>>> Stashed changes
 
 import java.awt.*;
 import java.io.IOException;
@@ -23,15 +18,8 @@ import java.util.ResourceBundle;
 
 public class GreatMosqueView implements Initializable {
 
-<<<<<<< Updated upstream
     @FXML public Button BlueTile, YellowTile, neither;
 
-=======
-    @FXML public Button neither;
-
-    private LocationController locationController = LocationController.getInstance();
-    private GreatMosque greatMosque = GreatMosque.getInstance();
->>>>>>> Stashed changes
 
     //Singleton
     LocationController locationController = LocationController.getInstance();
@@ -54,7 +42,6 @@ public class GreatMosqueView implements Initializable {
         stage.show();
     }
 
-<<<<<<< Updated upstream
     public void BlueTile() throws IOException{
         locationController.BigMosque("jewel");
         System.out.println("Jewel");
@@ -69,25 +56,6 @@ public class GreatMosqueView implements Initializable {
         locationController.BigMosque("fruit");
         System.out.println("Fruit");
 
-=======
-
-    public void blueTile(){
-        locationController.BigMosque(greatMosque.boughtBlue, "jewel");
-        close();
-
-    }
-
-
-    public void yellowTile(){
-        locationController.BigMosque(greatMosque.boughtBlue, "fruit");
-        close();
-
-    }
-
-    public void close(){
-        Stage stage = (Stage) neither.getScene().getWindow();
-        stage.close();
->>>>>>> Stashed changes
     }
 
     @Override

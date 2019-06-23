@@ -1,10 +1,5 @@
 package views.tiles;
 
-<<<<<<< Updated upstream
-=======
-import controllers.LocationController;
-import javafx.fxml.FXML;
->>>>>>> Stashed changes
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -12,12 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-<<<<<<< Updated upstream
-=======
-import models.Player;
-import models.locations.Location;
-import models.locations.SmallMosque;
->>>>>>> Stashed changes
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,12 +16,6 @@ public class SmallMosqueView implements Initializable {
 
     //Singleton
     private static SmallMosqueView smallMosqueView;
-<<<<<<< Updated upstream
-=======
-    private LocationController locationController = LocationController.getInstance();
-    private SmallMosque smallMosque = SmallMosque.getInstance();
-
->>>>>>> Stashed changes
     public static SmallMosqueView getInstance() {
         if (smallMosqueView == null) {
             smallMosqueView = new SmallMosqueView();
@@ -51,29 +34,9 @@ public class SmallMosqueView implements Initializable {
         stage.show();
     }
 
-<<<<<<< Updated upstream
     public void Close(){
     }
 
-=======
-    public void greenTile() {
-        locationController.SmallMosque(smallMosque.boughtGreen, "spice");
-        close();
-
-    }
-
-    public void redTile(){
-       locationController.SmallMosque(smallMosque.boughtRed, "fabric");
-       close();
-    }
-
-    public void close(){
-        Stage stage = (Stage) neither.getScene().getWindow();
-        stage.close();
-    }
-
-
->>>>>>> Stashed changes
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //set mosque tile 1 price
