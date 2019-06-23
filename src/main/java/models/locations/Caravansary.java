@@ -17,11 +17,7 @@ public class Caravansary implements Location, CaravansaryObservable {
     private int PlayerCardChoice;
     ArrayList usedBonusCards = new ArrayList();
     private static Caravansary caravansary;
-    public boolean redAs = false;
-    public boolean blueAs = false;
-    public boolean greenAs = false;
-    public boolean yellowAs = false;
-    public boolean whiteAs = false;
+
 
     // Firebase
     public Map<String, Object> getVariableMap(){
@@ -36,38 +32,6 @@ public class Caravansary implements Location, CaravansaryObservable {
         this.Location = Math.toIntExact((Long) variables.get("Location"));
     }
 
-    public boolean color(String color) {
-        boolean myColor;
-        if (color == "red") {
-            myColor = redAs;
-        } else if( color == "blue"){
-            myColor = blueAs;
-        } else if(color == "green" ){
-            myColor = greenAs;
-        } else if ( color == "yellow"){
-            myColor = yellowAs;
-        } else if (color == "white"){
-            myColor = whiteAs;
-        }
-        else{
-            myColor = false;
-        }
-        return myColor;
-    }
-
-    public void setColor(String color, boolean set){
-        if (color == "red"){
-            redAs = set;
-        } else if(color == "blue"){
-            blueAs = set;
-        } else if (color == "green"){
-            greenAs = set;
-        } else if (color == "yellow"){
-            yellowAs = set;
-        } else if (color == "white"){
-            whiteAs = set;
-        }
-    }
 
 
     // Constructor
