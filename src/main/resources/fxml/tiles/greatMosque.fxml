@@ -6,14 +6,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="greatmosque" fx:id="rootPane" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LocationView">
+<AnchorPane id="greatmosque" fx:id="rootPane" prefHeight="646.0" prefWidth="514.0" style="-fx-background-color: transparent;" stylesheets="@../../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.tiles.GreatMosqueView">
    <children>
       <Pane layoutX="100.0" layoutY="414.0" prefHeight="151.0" prefWidth="324.0">
          <children>
+<<<<<<< Updated upstream
             <Button id="bluetile" fx:id="BlueTile" layoutX="33.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBlueTile" prefHeight="122.0" prefWidth="122.0" />
             <Button id="yellowtile" fx:id="YellowTile" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" />
+=======
+            <Button id="bluetile" fx:id="blueTile" layoutX="33.0" layoutY="14.0" mnemonicParsing="false" onAction="#blueTile" prefHeight="122.0" prefWidth="122.0" />
+            <Button id="yellowtile" fx:id="yellowTile" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" onAction="#yellowTile" prefHeight="122.0" prefWidth="122.0" />
+>>>>>>> Stashed changes
          </children></Pane>
-      <Button id="neither" fx:id="neither" layoutX="179.0" layoutY="573.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="158.0" />
+      <Button id="neither" fx:id="neither" layoutX="179.0" layoutY="573.0" mnemonicParsing="false" onAction="#close" prefHeight="33.0" prefWidth="158.0" />
       <Text layoutX="179.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">
          <font>
             <Font size="24.0" />

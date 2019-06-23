@@ -350,7 +350,11 @@ public class LocationController{
         return Bought;
     }
 
+<<<<<<< Updated upstream
     public void BigMosque(String choice){
+=======
+    public void BigMosque(int Bought, String choice){
+>>>>>>> Stashed changes
         int payement;
         int BoughtJewels = greatMosque.boughtJewels;
         int BoughtFruit = greatMosque.boughtFruit;
@@ -361,8 +365,13 @@ public class LocationController{
                     player.setJewels(-payement);
                     player.setJewelMosque(true);
                     MosqueChecker("big");
+<<<<<<< Updated upstream
                     BoughtJewels++;
                     greatMosque.boughtJewels = BoughtJewels;
+=======
+                    Bought++;
+                    greatMosque.boughtBlue = Bought;
+>>>>>>> Stashed changes
                 }
             case "fruit":
                 payement = 1 + BoughtFruit;
@@ -370,8 +379,13 @@ public class LocationController{
                     player.setFruits((-payement));
                     player.setFruitMosque(true);
                     MosqueChecker("big");
+<<<<<<< Updated upstream
                     BoughtFruit++;
                     greatMosque.boughtFruit = BoughtFruit;
+=======
+                    Bought++;
+                    greatMosque.boughtYellow = Bought;
+>>>>>>> Stashed changes
                 }
         }
 
