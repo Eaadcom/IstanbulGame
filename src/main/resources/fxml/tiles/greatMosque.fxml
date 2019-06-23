@@ -10,8 +10,8 @@
    <children>
       <Pane layoutX="100.0" layoutY="414.0" prefHeight="151.0" prefWidth="324.0">
          <children>
-            <Button id="bluetile" layoutX="33.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" />
-            <Button id="yellowtile" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" />
+            <Button id="bluetile" fx:id="BlueTile" layoutX="33.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBlueTile" prefHeight="122.0" prefWidth="122.0" />
+            <Button id="yellowtile" fx:id="YellowTile" layoutX="172.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" />
          </children></Pane>
       <Button id="neither" fx:id="neither" layoutX="179.0" layoutY="573.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="158.0" />
       <Text layoutX="179.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#">

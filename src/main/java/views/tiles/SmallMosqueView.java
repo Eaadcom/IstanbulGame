@@ -34,6 +34,9 @@ public class SmallMosqueView implements Initializable {
         stage.show();
     }
 
+    public void Close(){
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //set mosque tile 1 price
