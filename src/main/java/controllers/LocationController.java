@@ -326,6 +326,7 @@ public class LocationController{
     }
 
     public void TeaHouseResult(){
+        Player player = GameController.getInstance().getPlayer();
         diceOne.DiceValue = setDiceValue();
         diceTwo.DiceValue = setDiceValue();
         diceResult = diceOne.DiceValue + diceTwo.DiceValue;
@@ -333,11 +334,9 @@ public class LocationController{
         teahouseNumberChoice = teaHouse.teahouseNumberChoice;
 
         if (teaHouse.teahouseNumberChoice < diceResult || teaHouse.teahouseNumberChoice == diceResult) {
-            playerController.addRubysLiras("lira", teaHouse.teahouseNumberChoice);
-            System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
+            player.setLira(player.getLira() + teahouseNumberChoice);
         } else if(teaHouse.teahouseNumberChoice < diceResult){
-            playerController.addRubysLiras("lira", 2);
-            System.out.println("Helaas! je ligt eronder!");
+            player.setLira(player.getLira() + 2);
 
     }}
         // SULTANS PALACE CODE
