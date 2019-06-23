@@ -49,11 +49,10 @@ public class PlayerController {
 
     /**
      * Upgrades the maximum values of the cart so the player can have more goods.
-     * @author Stan Hogenboom
+     * @author Stan Hogenboom, Floris Dekker
      * @version 19-6-2019
      */
     public void CarUpgrader(){
-            myPlayer.carUpgrades++;
             myPlayer.maxSpices++;
             myPlayer.maxFabrics++;
             myPlayer.maxFruits++;

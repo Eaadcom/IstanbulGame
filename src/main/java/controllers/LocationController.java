@@ -71,6 +71,7 @@ public class LocationController{
             if (player.getCarUpgrades() < 3) {
                 player.setLira(player.getLira() - 7);
                 player.setCarUpgrades(player.getCarUpgrades() + 1);
+                playerController.CarUpgrader();
             }
         }
 
