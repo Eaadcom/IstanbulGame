@@ -41,7 +41,8 @@ public class BonusGainGood implements BonusCard, BonusGainGoodObservable {
     }
 
     public void GainGood(String choice){
-        Player player = GameController.getInstance().getPlayer();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         int newValue;
         if(choice == "fabric"){
             newValue = player.getFabrics()+1;
