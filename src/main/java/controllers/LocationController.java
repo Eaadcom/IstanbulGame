@@ -52,7 +52,6 @@ public class LocationController{
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
     private Wainwright wainwright = Wainwright.getInstance();
-    private Player player = GameController.getInstance().getPlayer();
 
     private GameView gameView;
 
@@ -66,7 +65,8 @@ public class LocationController{
 
     }
     public void wainrightBuyer(){
-        Player player = GameController.getInstance().getPlayer();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         if(player.getLira() >= 7) {
             if (player.getCarUpgrades() < 3) {
                 player.setLira(player.getLira() - 7);
@@ -85,7 +85,8 @@ public class LocationController{
     }
 
         public void BlackMarketChoice(int BlackMarketChoice) {
-        Player player = GameController.getInstance().getPlayer();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
                 player.setSpices(player.getSpices() +1);
@@ -111,6 +112,8 @@ public class LocationController{
 
 
     public void SmallMosque(int Bought, String choice){
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         int newValue;
         switch (choice) {
             case "fabric":
@@ -132,6 +135,8 @@ public class LocationController{
     }
 
     public void BigMosque(int Bought, String choice){
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         int newValue;
 
         switch(choice){
@@ -218,7 +223,8 @@ public class LocationController{
     }
 
     public void TeaHouseResult(){
-        Player player = GameController.getInstance().getPlayer();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         diceOne.DiceValue = setDiceValue();
         diceTwo.DiceValue = setDiceValue();
         diceResult = diceOne.DiceValue + diceTwo.DiceValue;
@@ -243,14 +249,16 @@ public class LocationController{
         *  @author Thomas van Velzen
         *  @version 20-6-2019
         */
-        public void confirmPurchase() throws IOException { SultanPalace.getInstance().confirmPurchase(GameController.getInstance().getPlayer()); }
+        public void confirmPurchase() throws IOException { SultanPalace.getInstance().confirmPurchase(GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
         /**
         *  Handles the choice of the sultans palace. Triggers the handleChoice(choice, Player) function in the SultanPalace model.
         *  @author Thomas van Velzen
         *  @version 20-6-2019
         *  @param choice
         */
-        public void handleChoice(String choice){ SultanPalace.getInstance().handleChoice(choice, GameController.getInstance().getPlayer()); }
+        public void handleChoice(String choice){ SultanPalace.getInstance().handleChoice(choice, GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
 
 
         //SMALL MARKET CODE
@@ -269,7 +277,8 @@ public class LocationController{
         *  @param jewel
         */
         public void SMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
-        SmallMarket.getInstance().confirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
+        SmallMarket.getInstance().confirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
 
         //GREAT MARKET CODE
         public int  GMgetJewel()   { return GreatMarket.getInstance().GMgetJewel();   }
@@ -286,7 +295,8 @@ public class LocationController{
         *  @param jewel
         */
         public void GMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
-        GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
+        GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
 
 
     /**
@@ -358,7 +368,8 @@ public class LocationController{
      * @version 17-6-2019
      */
     public void gemstoneDealerAction() {
-        Player player = GameController.getInstance().getPlayer();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         GemstoneDealer gsd = GemstoneDealer.getInstance();
         int price = gsd.getGemstonePrice();
 

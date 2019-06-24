@@ -45,7 +45,8 @@ public class PostOfficeView implements Initializable {
     }
 
     public void confirm(){
-        PostOffice.getInstance().confirmPurchase(GameController.getInstance().getPlayer());
+        PostOffice.getInstance().confirmPurchase(GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter));
         Stage stage = (Stage) yes.getScene().getWindow();
         stage.close();
     }

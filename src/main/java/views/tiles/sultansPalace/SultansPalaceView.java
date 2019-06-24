@@ -42,7 +42,8 @@ public class SultansPalaceView implements Initializable {
     //
 
     public void confirmPurchase() throws IOException {
-        Player player = GameController.getInstance().getPlayer();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
 
         if(player.getFabrics() >= SultanPalace.getInstance().getFabricPrice() &&
            player.getFruits()  >= SultanPalace.getInstance().getFruitPrice()  &&

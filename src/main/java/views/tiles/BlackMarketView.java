@@ -54,15 +54,18 @@ public class BlackMarketView implements Initializable {
 
         } else if(number == 7 || number == 8){
             jewelsBlackMarket.setText(String.valueOf(1));
-            BlackMarket.getInstance().addJewel(1, GameController.getInstance().getPlayer());
+            BlackMarket.getInstance().addJewel(1, GameController.getInstance().getGame().board.players.get(
+                    GameController.getInstance().game.turnCounter));
             //PlayerController.getInstance().CargoCheckJewels(1);
         } else if(number == 9 || number == 10){
             jewelsBlackMarket.setText(String.valueOf(2));
-            BlackMarket.getInstance().addJewel(2, GameController.getInstance().getPlayer());
+            BlackMarket.getInstance().addJewel(2, GameController.getInstance().getGame().board.players.get(
+                    GameController.getInstance().game.turnCounter));
             //PlayerController.getInstance().CargoCheckJewels(2);
         } else if(number == 11 || number == 12){
             jewelsBlackMarket.setText(String.valueOf(3));
-            BlackMarket.getInstance().addJewel(3, GameController.getInstance().getPlayer());
+            BlackMarket.getInstance().addJewel(3, GameController.getInstance().getGame().board.players.get(
+                    GameController.getInstance().game.turnCounter));
             //PlayerController.getInstance().CargoCheckJewels(3);
         }
 
