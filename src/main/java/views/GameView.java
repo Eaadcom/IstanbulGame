@@ -428,10 +428,10 @@ public class GameView implements GameViewObserver, Initializable {
             addToGrid(famgreen, findNode(GameController.getInstance().getGame().board.players.get(2).familyMember.location));
         }
         if (GameController.getInstance().getGame().board.players.size() > 3) {
-            addToGrid(famwhite, findNode(GameController.getInstance().getGame().board.players.get(3).familyMember.location));
+            addToGrid(famblue, findNode(GameController.getInstance().getGame().board.players.get(3).familyMember.location));
         }
         if (GameController.getInstance().getGame().board.players.size() > 4) {
-            addToGrid(famblue, findNode(GameController.getInstance().getGame().board.players.get(4).familyMember.location));
+            addToGrid(famwhite, findNode(GameController.getInstance().getGame().board.players.get(4).familyMember.location));
         }
 
 //        //spelers op de juiste plek zetten
