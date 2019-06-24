@@ -743,7 +743,12 @@ public class GameView implements GameViewObserver, Initializable {
         });
     }
 
-    //Update familymember positions
+    /**
+     * Updates position of the familymember in Firebase
+     * @author Edward Deen
+     * @verison 24-6-2019
+     * @throws IOException
+     */
     public void updateFamilyPos() throws IOException {
 
         Platform.runLater(new Runnable() {
@@ -949,7 +954,7 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * This opens the rules so the player can take a look at them.
      *
-     * @throws IOException
+     * @throws Exception
      * @author Stan Hogenboom
      * @version June 5th, 2019
      */
@@ -1104,11 +1109,11 @@ public class GameView implements GameViewObserver, Initializable {
             disableTiles(true);
         }
         updateGameIcons(game);
-        try{
-            updateFamilyPos();
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
+//        try{
+//            updateFamilyPos();
+//        } catch (IOException ioe){
+//            ioe.printStackTrace();
+//        }
 
     }
 

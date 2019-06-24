@@ -40,6 +40,11 @@ public class LocationView implements LocationViewObserver, Initializable {
     @FXML private TextField TeaHouseDice;
 
 
+    /**
+     * Starts the blackmarket pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Creates blackmarket popup
     public void blackMarket() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/blackMarket/blackMarket.fxml"));
@@ -51,6 +56,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.show();
     }
 
+    /**
+     * Action if you choose fabric at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Code voor +1 fabric
     public void blackMarketFabric() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
@@ -58,6 +68,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         LocationController.getInstance().BlackMarketChoice(3);
     }
 
+    /**
+     * Action if you choose fruit at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Stuk code voor +1 fruit
     public void blackMarketFruit() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
@@ -66,6 +81,11 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     }
 
+    /**
+     * Action if you choose spice at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Stuk code voor +1 spice
     public void blackMarketSpice() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
@@ -74,6 +94,11 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     }
 
+    /**
+     * Rolls the dice at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Function for rolling the dice
     public void blackMarketRollDice() throws IOException {
         Stage stage = (Stage) dices.getScene().getWindow();
@@ -87,6 +112,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.close();
     }
 
+    /**
+     * Opens the fabric warehouse pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void fabricWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fabricWarehouse.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -101,6 +131,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxFabrics();
     }
+    /**
+     * Opens the fruit warehouse pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void fruitWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fruitWarehouse.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -115,6 +150,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxFruits();
     }
+    /**
+     * Opens the spice warehouse pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void spiceWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/spiceWarehouse.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -175,12 +215,25 @@ public class LocationView implements LocationViewObserver, Initializable {
         }
     }
 
+    /**
+     * This function performs the action of the police station.
+     * It saves the text in the textfield, where the player has inserted the tile they want to move to.
+     * Finally it calls the actual movement function in the LocationControllerm with the player's choice as an argument.
+     * @author Stan Hogenboom
+     * @throws IOException
+     */
     public void policeStationAction() throws IOException {
         String pschoice = policeStationChoice.getText();
         close();
         LocationController.getInstance().policeStation(pschoice); //aanroepen functie die familymember verplaatst en daarna de actie uitvoert
     }
 
+    /**
+     * This opens a pop-up which shows the tile numbers to the player when they are at the police station.
+     * @version 24-6-2019
+     * @author Stan Hogenboom
+     * @throws IOException
+     */
     public void policeStationTileNumbers() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tileNumbers.fxml"));
         Parent root = (Parent) fxmlloader.load();

@@ -35,7 +35,11 @@ public class GreatMarketView implements Initializable {
         return greatMarketView;
     }
     //
-
+    /**
+     * Starts the great market popup.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void greatMarket() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/greatMarket.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -46,6 +50,11 @@ public class GreatMarketView implements Initializable {
         stage.show();
     }
 
+    /**
+     * Updates the price of the great market.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void updatePrice(){
         jewel.setText (Integer.toString(LocationController.getInstance().GMgetJewel()));
         spice.setText (Integer.toString(LocationController.getInstance().GMgetSpice()));
@@ -53,6 +62,11 @@ public class GreatMarketView implements Initializable {
         fruit.setText (Integer.toString(LocationController.getInstance().GMgetFruit()));
     }
 
+    /**
+     * Gets the choicebox values and triggers the function to confirm the purchase
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void confirmPurchase() throws IOException {
         if(GMchoiceFruit.getText() != null && GMchoiceFabric.getText() != null &&GMchoiceSpice.getText() != null &&GMchoiceJewel.getText() != null ) {
             int GMfabricvalue = Integer.parseInt(GMchoiceFabric.getText());

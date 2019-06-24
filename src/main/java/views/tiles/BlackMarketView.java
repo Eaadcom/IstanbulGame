@@ -49,6 +49,11 @@ public class BlackMarketView implements Initializable {
         stage.close();
     }
 
+    /**
+     * Sets the roll values of the dices at the black market.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         int number = BlackMarket.getInstance().rollDice();
