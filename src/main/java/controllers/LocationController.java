@@ -162,7 +162,8 @@ public class LocationController{
     }
 
     public void MosqueChecker(String mosque){
-
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         switch (mosque){
             case "small":
                 if(player.SmallMosqueRuby == false) {
