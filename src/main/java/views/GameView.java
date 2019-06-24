@@ -898,7 +898,7 @@ public class GameView implements GameViewObserver, Initializable {
 
         // [1,0] [-1,0] [0,1] [0,-1]
 
-        final int moves = 4;
+        final int moves = 2;
 
         for (int i = 0; i < tiles.size(); i++) {
             Button button = tiles.get(i);
