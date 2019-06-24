@@ -234,8 +234,10 @@ public class LocationController{
 
         if (teaHouse.teahouseNumberChoice < diceResult || teaHouse.teahouseNumberChoice == diceResult) {
             player.setLira(player.getLira() + teahouseNumberChoice);
-        } else if(teaHouse.teahouseNumberChoice < diceResult){
+            System.out.println(player.getLira());
+        } else if(teaHouse.teahouseNumberChoice > diceResult){
             player.setLira(player.getLira() + 2);
+            System.out.println(player.getLira());
 
     }}
         // SULTANS PALACE CODE
