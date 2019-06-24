@@ -19,6 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This class is the view for the black market
+ * @author Floris Dekker, Thomas van Velzen
+ * @version 24-6-2019
+ */
 public class BlackMarketView implements Initializable {
     private LocationController locationController = LocationController.getInstance();
     @FXML
