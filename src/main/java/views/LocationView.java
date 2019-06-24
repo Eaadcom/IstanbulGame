@@ -215,12 +215,25 @@ public class LocationView implements LocationViewObserver, Initializable {
         }
     }
 
+    /**
+     * This function performs the action of the police station.
+     * It saves the text in the textfield, where the player has inserted the tile they want to move to.
+     * Finally it calls the actual movement function in the LocationControllerm with the player's choice as an argument.
+     * @author Stan Hogenboom
+     * @throws IOException
+     */
     public void policeStationAction() throws IOException {
         String pschoice = policeStationChoice.getText();
         close();
         LocationController.getInstance().policeStation(pschoice); //aanroepen functie die familymember verplaatst en daarna de actie uitvoert
     }
 
+    /**
+     * This opens a pop-up which shows the tile numbers to the player when they are at the police station.
+     * @version 24-6-2019
+     * @author Stan Hogenboom
+     * @throws IOException
+     */
     public void policeStationTileNumbers() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tileNumbers.fxml"));
         Parent root = (Parent) fxmlloader.load();
