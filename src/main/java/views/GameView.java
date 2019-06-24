@@ -1109,11 +1109,11 @@ public class GameView implements GameViewObserver, Initializable {
             disableTiles(true);
         }
         updateGameIcons(game);
-        try{
-            updateFamilyPos();
-        } catch (IOException ioe){
-            ioe.printStackTrace();
-        }
+//        try{
+//            updateFamilyPos();
+//        } catch (IOException ioe){
+//            ioe.printStackTrace();
+//        }
 
     }
 
