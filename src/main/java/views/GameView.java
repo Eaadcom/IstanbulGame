@@ -308,6 +308,8 @@ public class GameView implements GameViewObserver, Initializable {
 
     }
 
+
+
     private void initializePlayerColor() {
         if (GameController.getInstance().getMyPlayerID() == 1) {
             playerGrid.setRowIndex(whiteProg, 1);
@@ -513,6 +515,20 @@ public class GameView implements GameViewObserver, Initializable {
             playerProgressionView.playerProgression(2);
         } else if (source.getId().equals("player3")) {
             playerProgressionView.playerProgression(3);
+        }
+    }
+
+    public void goodsButton() {
+        if (GameController.getInstance().getMyPlayerID() == 1) {
+            playerProgressionView.playerProgression(0);
+        } else if (GameController.getInstance().getMyPlayerID() == 2) {
+            playerProgressionView.playerProgression(1);
+        } else if (GameController.getInstance().getMyPlayerID() == 3) {
+            playerProgressionView.playerProgression(2);
+        } else if (GameController.getInstance().getMyPlayerID() == 4) {
+            playerProgressionView.playerProgression(3);
+        } else if (GameController.getInstance().getMyPlayerID() == 5) {
+            playerProgressionView.playerProgression(4);
         }
     }
 

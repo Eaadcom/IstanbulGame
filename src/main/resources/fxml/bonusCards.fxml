@@ -21,10 +21,10 @@
          <RowConstraints maxHeight="117.0" minHeight="117.0" prefHeight="117.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <Button id="card2" fx:id="card2" disable="false" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.rowIndex="1" />
-            <Button id="card7" fx:id="card7" disable="false" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button id="card8" fx:id="card8" disable="false" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.rowIndex="2" />
-            <Button id="card10" fx:id="card10" disable="false" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button id="card2" fx:id="card2" disable="true" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.rowIndex="1" />
+            <Button id="card7" fx:id="card7" disable="true" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button id="card8" fx:id="card8" disable="true" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.rowIndex="2" />
+            <Button id="card10" fx:id="card10" disable="true" mnemonicParsing="false" onAction="#chooseBonusCard" prefHeight="117.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
          <BorderPane.margin>
             <Insets top="65.0" />
