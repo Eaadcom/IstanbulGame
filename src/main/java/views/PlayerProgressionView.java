@@ -45,7 +45,7 @@ public class PlayerProgressionView implements Initializable {
 
 
     /**
-     *
+     * Starts the playerprogession screen and updates it with the id entered.
      * @param id
      * @author Thomas van Velzen
      */
@@ -88,7 +88,12 @@ public class PlayerProgressionView implements Initializable {
     }
 
 
-
+    /**
+     * Updates the playerprogression screen based on the id entered in the parameters
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     * @param id
+     */
     public void updateScreen(int id){
         Platform.runLater(new Runnable(){
             @Override

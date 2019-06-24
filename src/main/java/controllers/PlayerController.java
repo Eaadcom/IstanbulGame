@@ -131,7 +131,7 @@ public class PlayerController {
     /**
      * Adds either rubies or lira to the player.
      * Can also be used to remove rubies and lira by inserting a negative number.
-     * @author Stan Hogenboom
+     * @author Stan Hogenboom, Thomas van Velzen
      * @version 20-6-2019
      * @param g
      * @param amount

@@ -37,6 +37,11 @@ public class SmallMarketView implements Initializable {
     }
     //
 
+    /**
+     * Starts the small market popup.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void smallMarket() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/smallMarket.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -47,6 +52,11 @@ public class SmallMarketView implements Initializable {
         stage.show();
     }
 
+    /**
+     * Updates the price smallmarket price on the board.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void updatePrice(){
         jewel.setText (Integer.toString(LocationController.getInstance().SMgetJewel()));
         spice.setText (Integer.toString(LocationController.getInstance().SMgetSpice()));
@@ -54,6 +64,11 @@ public class SmallMarketView implements Initializable {
         fruit.setText (Integer.toString(LocationController.getInstance().SMgetFruit()));
     }
 
+    /**
+     * Updates the price of the small market and triggers the function to confirm the purchase
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void confirmPurchase() throws IOException {
         if(choiceFruit.getText() != null && choiceFabric.getText() != null &&choiceSpice.getText() != null &&choiceJewel.getText() != null ) {
             int fabricvalue = Integer.parseInt(choiceFabric.getText());
@@ -67,6 +82,11 @@ public class SmallMarketView implements Initializable {
         }
     }
 
+    /**
+     * Closes the small market
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void close(){
         Stage stage = (Stage) none.getScene().getWindow();
         stage.close();
