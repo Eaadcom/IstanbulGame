@@ -122,6 +122,7 @@ public class Player implements PlayerObservable {
         playerData.put("yellowTile", yellowTile);
         playerData.put("name", name);
         playerData.put("playerID", playerID);
+        playerData.put("familyMember", familyMember.getFamilyMemberMap());
 
         return playerData;
     }
@@ -149,6 +150,7 @@ public class Player implements PlayerObservable {
         this.yellowTile = (boolean) playerData.get("yellowTile");
         this.name = (String) playerData.get("name");
         this.playerID = Math.toIntExact((long) playerData.get("playerID"));
+        this.familyMember.setFamilyMembermap((Map) playerData.get("familyMember"));
     }
 
     public Player() {}
