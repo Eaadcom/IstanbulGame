@@ -64,6 +64,12 @@ public class LocationController{
     public void Fountain(){
 
     }
+
+    /**
+     *  Handles the upgrading of your car when you buy one in the wainwright.
+     *  @author Floris Dekker
+     *  @version 20-6-2019
+     */
     public void wainrightBuyer(){
         Player player = GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter);
@@ -77,6 +83,11 @@ public class LocationController{
 
     }
 
+    /**
+     * Set's a dice's value.
+     * @author Floris Dekker
+     * @version 22-6-2019
+     */
     public int setDiceValue() {
 
         int DiceValue = (int) (Math.random() * 6 + 1);
@@ -84,6 +95,12 @@ public class LocationController{
         return DiceValue;
     }
 
+    /**
+     * Handles the decision the player has to make in the BlackMarket
+     * @author Floris Deker
+     * @version 22-6-2019
+     * @param BlackMarketChoice
+     */
         public void BlackMarketChoice(int BlackMarketChoice) {
         Player player = GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter);
@@ -110,6 +127,14 @@ public class LocationController{
         }
     }
 
+    /**
+     * Handles the smallmosque tile
+     * @author Floris Dekker
+     * @version 23-06-2019
+     * @param Bought
+     * @param choice
+     */
+
 
     public void SmallMosque(int Bought, String choice){
         Player player = GameController.getInstance().getGame().board.players.get(
@@ -133,6 +158,14 @@ public class LocationController{
                     }
         }
     }
+
+    /**
+     * Handles the LargeMosque Tile
+     * @author Floris dekker
+     * @version 24-06-2019
+     * @param Bought
+     * @param choice
+     */
 
     public void BigMosque(int Bought, String choice){
         Player player = GameController.getInstance().getGame().board.players.get(
@@ -161,6 +194,13 @@ public class LocationController{
 
     }
 
+    /**
+     * handles the ruby functionality in the mosques.
+     * @author Floris Dekker
+     * @version 24-06-2019
+     * @param mosque
+     */
+
     public void MosqueChecker(String mosque){
         Player player = GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter);
@@ -185,12 +225,13 @@ public class LocationController{
 
         }
     }
-    public void CarravansaryCardSelector() {
-
-        // hier nog even naar kijken jongens, ik weet niet hoe jullie die bonuskaarten willen hebben.
 
 
-    }
+    /**
+     * these are the functions that are used for all the warehouses.
+     * @author Floris Dekker
+     * @version 24-06-2019
+     */
 
     public void FruitWarehouse() {
         playerController.MaxCargoUpdater();
@@ -208,6 +249,13 @@ public class LocationController{
         System.out.println("Er zijn " + myPlayer.spices + " toegevoegd.");
     }
 
+
+    /**
+     * handles the logic for the teahouse tile
+     * @author Floris Dekker
+     * @version 20-06-2019
+     * @param number
+     */
 
     public void setTeaHouseNumber(int number) {
         teaHouse.setTeahouseNumberChoice(number);
@@ -367,7 +415,7 @@ public class LocationController{
      * It checks if the player has enough Lira to purchase a ruby.
      * If that's the case, the player recieves a ruby and a number of lira is withdrawn.
      * The price of a ruby goes up by one every time someone buys a ruby.
-     * @author Stan Hogenboom
+     * @author Stan Hogenboom, Floris Dekker
      * @version 17-6-2019
      */
     public void gemstoneDealerAction() {
