@@ -34,15 +34,15 @@ public class Player implements PlayerObservable {
     public boolean SmallMosqueRuby = false;
 
     public int rubies = 0;
-    public int lira = 50;
+    public int lira = 0;
     public int carUpgrades = 0;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
     public String color = "red";
 
-    public int spices = 5;
-    public int fruits = 5;
+    public int spices = 0;
+    public int fruits = 0;
     public int jewels = 0;
-    public int fabrics = 5;
+    public int fabrics = 0;
 
 
     public int maxJewels = 2;
