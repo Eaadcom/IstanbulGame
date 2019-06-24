@@ -870,7 +870,7 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * This opens the rules so the player can take a look at them.
      *
-     * @throws IOException
+     * @throws Exception
      * @author Stan Hogenboom
      * @version June 5th, 2019
      */
