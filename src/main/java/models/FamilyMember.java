@@ -35,11 +35,7 @@ public class FamilyMember implements FamilyMemberObservable {
     }
 
     public void setFamilyMembermap(Map<String, Object> familyMembermap){
-        try{
-            this.location = Math.toIntExact((long) familyMembermap.get("location"));
-        } catch (NullPointerException npe){
-            //weg ermee
-        }
+        this.location = Math.toIntExact((long) familyMembermap.get("location"));
     }
 
     // Observer pattern

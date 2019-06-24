@@ -743,6 +743,85 @@ public class GameView implements GameViewObserver, Initializable {
         });
     }
 
+    //Update familymember positions
+    public void updateFamilyPos() throws IOException {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < GameController.getInstance().getGame().getPlayers().size() -1; i++){
+                    int tileNumber = GameController.getInstance().getGame().getPlayers().get(i).familyMember.location;
+                    Pane familyMember = findPlayerColor(i, false);
+
+                    if (tileNumber == 1) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 1;
+                    } else if (tileNumber == 2) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile2));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile2));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 2;
+                    } else if (tileNumber == 3) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile3));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile3));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 3;
+                    } else if (tileNumber == 4) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile4));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile4));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 4;
+                    } else if (tileNumber == 5) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile5));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile5));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 5;
+                    } else if (tileNumber == 6) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile6));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile6));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 6;
+                    } else if (tileNumber == 7) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile7));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile7));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 7;
+                    } else if (tileNumber == 8) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile8));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile8));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 8;
+                    } else if (tileNumber == 9) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile9));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile9));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 9;
+                    } else if (tileNumber == 10) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile10));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile10));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 10;
+                    } else if (tileNumber == 11) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile11));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 11;
+                    } else if (tileNumber == 12) {
+                        /* This is the policesttion itself, probably shouldn't be included*/
+                    } else if (tileNumber == 13) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile13));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile13));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 13;
+                    } else if (tileNumber == 14) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile14));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile14));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 14;
+                    } else if (tileNumber == 15) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile15));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile15));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 15;
+                    } else if (tileNumber == 16) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile16));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile16));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 16;
+                    }
+                }
+            }
+        });
+    }
+
     /**
      * finds out the color of the player so other methods know which character to move
      *
@@ -1025,6 +1104,7 @@ public class GameView implements GameViewObserver, Initializable {
             disableTiles(true);
         }
         updateGameIcons(game);
+        updateFamilyPos();
     }
 
     private void updateGameIcons(Game game) {
