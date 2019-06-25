@@ -55,7 +55,12 @@ public class PopUpView {
         stage.show();
     }
 
-    // Function to show the confirmmovement popup
+    /**
+     * Methoden to show the confirmmovement popup
+     * @author Joeri
+     * @version 12 june 2019
+     * @throws IOException
+     */
     public boolean confirmMovement() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/confirmMovement.fxml"));
         Parent root2 = (Parent) fxmlloader.load();
@@ -104,12 +109,24 @@ public class PopUpView {
         return controller.endTurn;
     }
 
+    /**
+     * Methode die aangeroepen wordt als bevestigd wordt dat de beurt beindigd is
+     * @author Joeri
+     * @version 12 june 2019
+     * @throws IOException
+     */
     public void confirmEndTurn() {
         this.endTurn = true;
         Stage stage = (Stage) endturn.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Methode die aangeroepen wordt als niet bevestigd wordt dat de beurt beindigd is
+     * @author Joeri
+     * @version 12 june 2019
+     * @throws IOException
+     */
     public void closeEndTurn() {
         Stage stage = (Stage) endturn.getScene().getWindow();
         stage.close();

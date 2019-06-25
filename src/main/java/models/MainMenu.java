@@ -18,8 +18,7 @@ public class MainMenu implements MainMenuObservable {
     public String gameName;
 
     // Setters
-    public void setUsername(String usr){
-        this.username = usr;
+    public void setUsername(String usr){ this.username = usr;
     }
 
     public void setDifficulty(String diff){

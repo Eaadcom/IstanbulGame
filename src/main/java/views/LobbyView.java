@@ -154,11 +154,6 @@ public class LobbyView implements LobbyViewObserver, Initializable {
                 loadGameScreen();
             }
 
-//            Platform.runLater(new Runnable(){
-//                @Override public void run() {
-//
-//                }
-//            });
         }
     }
 

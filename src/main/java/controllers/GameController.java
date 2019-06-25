@@ -41,10 +41,21 @@ public class GameController {
 
     }
 
+    /**
+     * Methode om te kijken of lokaal de game gestart is
+     * @author Joeri
+     * @version 12 june
+     */
     public boolean isMyGameStarted() {
         return myGameStarted;
     }
 
+    /**
+     * Nethode om lokaal de game te starten
+     * @author Joeri
+     * @param myGameStarted of de game gestart is ja of nee
+     * @version 12 june
+     */
     public void setMyGameStarted(boolean myGameStarted) {
         this.myGameStarted = myGameStarted;
     }
@@ -65,9 +76,11 @@ public class GameController {
         return gameController;
     }
 
-    public void setGameName(String gameName) {
-    }
-
+    /**
+     * Methode om de naam van de game op te halen
+     * @author Joeri
+     * @version 12 june
+     */
     public Game getGame() {
         return game;
     }
@@ -98,6 +111,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Methode om aan te geven dat de huidige speler bewogen heeft
+     * @param hasMoved of de speler bewogen heeft of niet
+     * @author Joeri
+     * @version 12 june
+     */
     public void setHasMoved(boolean hasMoved) {
         game.setHasMoved(hasMoved);
     }
@@ -146,6 +165,11 @@ public class GameController {
         game.getPlayer().register(gameViewObserver);
     }
 
+    /**
+     * Methode om de game data te initialiseren wanneer er een nieuwe game aangemaakt wordt
+     * @author Joeri
+     * @version 12 june
+     */
     public void initializeGameData() {
         MainMenu mainMenu = menuViewController.getMainMenu();
         game = new Game(mainMenu.getGameName(), mainMenu.getPlayerTotal(), Difficulty.fromString(mainMenu.getDifficulty()));
@@ -159,6 +183,12 @@ public class GameController {
         FirebaseController.getInstance().updateGame(game);
     }
 
+    /**
+     * Methode om een game te joinen geselecteerd uit de lijst in de lobbby view
+     * @author Joeri
+     * @param document het document uit de firebase die geklikt is in de lobby view
+     * @version 12 june
+     */
     public void joinGame(QueryDocumentSnapshot document) {
         //Map<String, Object> newData =  firebaseController.getGameDataFromFirebase();
         DocumentSnapshot documentSnapshot = firebaseController.getGameDataFromFirebase();
@@ -175,15 +205,31 @@ public class GameController {
         updateGame();
     }
 
+    /**
+     * Methode om de eigen speler op te halen
+     * @author Joeri
+     * @version 12 june
+     */
     public Player getMyPlayer() {
         return playerController.getMyPlayer();
 
     }
 
+    /**
+     * Methode om te starten met kijken naar veranderingen in het game document in firebase
+     * @author Joeri
+     * @version 12 june
+     */
     public void startWatchForChanges() {
         firebaseController.startWatchForChangesForGame(this.game);
     }
 
+    /**
+     * Methode om game te updaten met informatie uit firebase
+     * @author Joeri
+     * @param documentSnapshot het document met geupdate data uit firebase
+     * @version 12 june
+     */
     public void updateGameData(DocumentSnapshot documentSnapshot) {
         game.updateFromSnapShot(documentSnapshot);
     }

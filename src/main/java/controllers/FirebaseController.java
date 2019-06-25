@@ -93,7 +93,7 @@ public class FirebaseController {
      *
      * @param game
      * @version 21-6-2019
-     * @author Edward Deen
+     * @author Edward Deen, Joeri
      */
     public void updateGame(Game game) {
         try {
@@ -134,6 +134,11 @@ public class FirebaseController {
         return tileData;
     }
 
+    /**
+     * Nethode om alle properties van de spelers op te slaan in een map
+     * @author Joeri
+     * @version 12 june
+     */
     private Map<String, Object> createKeyValueMapForPlayers(Board board) {
 //        try {
             Map<String, Object> playerMap = new HashMap<>();
@@ -188,6 +193,12 @@ public class FirebaseController {
         return boardData;
     }
 
+    /**
+     * Methode om de positie van de spelers op te slaan
+     * @author Joeri
+     * @param playerTiles de posities van de spelers
+     * @version 12 june
+     */
     private Map<String, String> createPlayerTiles(Map<Integer, String> playerTiles) {
         Map<String, String> stringMap = new HashMap<>();
         for (Map.Entry<Integer, String> entry : playerTiles.entrySet()) {
@@ -216,6 +227,14 @@ public class FirebaseController {
         return data;
     }
 
+    /**
+     * Methode om een document aan te maken met data, in een meegegeven collection
+     * @author Joeri
+     * @param collection de collection naam waarin opgeslagen wordt
+     * @param documentName de naam van de game
+     * @param data de data van de game
+     * @version 12 june
+     */
     private void create(String collection, String documentName, Map<String, Object> data) {
         try {
             DocumentReference docRef = db.collection(collection).document(documentName);
@@ -229,40 +248,6 @@ public class FirebaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void createFromObject(String collection, String documentName, Object object) {
-        try {
-            DocumentReference docRef = db.collection(collection).document(documentName);
-
-            System.out.println("inserting into collection: " + collection + " document: " + documentName + " object: " + object);
-
-            ApiFuture<WriteResult> result = docRef.set(object);
-            WriteResult writeResult = result.get();
-            System.out.println("create result: " + writeResult);
-            System.out.println("create time : " + writeResult.getUpdateTime());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private <T> T getAsObject(String collection, String documentName, Class<T> clazz) {
-        try {
-            ApiFuture<DocumentSnapshot> future = db.collection(collection).document(documentName).get();
-            DocumentSnapshot documentSnapshot = future.get();
-            return documentSnapshot.toObject(clazz);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void createNewPlayer(Player player) {
-        createFromObject("Players", player.getName(), player);
-    }
-
-    public Player getPlayer(String name) {
-        return getAsObject("Players", name, Player.class);
     }
 
     // Create Online Game

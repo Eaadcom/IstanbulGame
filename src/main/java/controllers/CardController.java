@@ -17,6 +17,11 @@ public class CardController {
         createBonusCardsReferentie();
     }
 
+    /**
+     * Methode om de bonuskaarten te mappen naar een string die bekend is in de view
+     * @author Joeri
+     * @version 12 june
+     */
     private void createBonusCardsReferentie() {
         bonusCardMap.put("card1", new BonusSmallMarket());
         bonusCardMap.put("card2", new BonusZeroMoves());
@@ -46,6 +51,12 @@ public class CardController {
         return cardController;
     }
 
+    /**
+     * Methode om een bonuskaart op te halen op basis van meegegeven string
+     * @author Joeri
+     * @param gekozenKaart de in de view gekozen kaart
+     * @version 12 june
+     */
     public BonusCard getGekozenKaart(String gekozenKaart) {
         return bonusCardMap.get(gekozenKaart);
     }
