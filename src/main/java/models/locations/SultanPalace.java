@@ -108,7 +108,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 SultansPalaceView2.getInstance().chooseOne();
                 increasePrice();
             }else                     {
-                //add ruby
+                player.setRubies(player.getRubies()+1);
                 increasePrice();
             }
 
@@ -134,7 +134,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("fabrics: " + player.fabrics);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
 
@@ -145,7 +145,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("fruits: " + player.fruits);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
 
@@ -156,7 +156,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("spice: " + player.spices);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
 
@@ -167,7 +167,7 @@ public class SultanPalace implements Location, SultanPalaceObservable {
                 System.out.println("jewels: " + player.jewels);
                 increasePrice();
                 //afsluiten
-                //add ruby
+                player.setRubies(player.getRubies()+1);
             } else {System.out.println("bro je hebt niet genoeg");
             }
         }
@@ -212,44 +212,9 @@ public class SultanPalace implements Location, SultanPalaceObservable {
     }
 
 
-    public boolean redAs = false;
-    public boolean blueAs = false;
-    public boolean greenAs = false;
-    public boolean yellowAs = false;
-    public boolean whiteAs = false;
 
-    public boolean color(String color) {
-        boolean myColor;
-        if (color == "red") {
-            myColor = redAs;
-        } else if( color == "blue"){
-            myColor = blueAs;
-        } else if(color == "green" ){
-            myColor = greenAs;
-        } else if ( color == "yellow"){
-            myColor = yellowAs;
-        } else if (color == "white"){
-            myColor = whiteAs;
-        }
-        else{
-            myColor = false;
-        }
-        return myColor;
-    }
 
-    public void setColor(String color, boolean set){
-        if (color == "red"){
-            redAs = set;
-        } else if(color == "blue"){
-            blueAs = set;
-        } else if (color == "green"){
-            greenAs = set;
-        } else if (color == "yellow"){
-            yellowAs = set;
-        } else if (color == "white"){
-            whiteAs = set;
-        }
-    }
+
 
 
     // Observer Pattern

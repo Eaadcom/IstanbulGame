@@ -15,11 +15,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
     // Variables
     private static GemstoneDealer gemstoneDealer;
     private List<GameViewObserver> observers = new ArrayList<>();
-    public boolean redAs = false;
-    public boolean blueAs = false;
-    public boolean greenAs = false;
-    public boolean yellowAs = false;
-    public boolean whiteAs = false;
+
     private int gemstonePrice = 12;
 
     /**
@@ -47,38 +43,7 @@ public class GemstoneDealer implements Location, GemstoneDealerObservable {
         this.gemstonePrice = Math.toIntExact((long) variables.get("gemstonePrice"));
     }
 
-    public boolean color(String color) {
-        boolean myColor;
-        if (color == "red") {
-            myColor = redAs;
-        } else if( color == "blue"){
-            myColor = blueAs;
-        } else if(color == "green" ){
-            myColor = greenAs;
-        } else if ( color == "yellow"){
-            myColor = yellowAs;
-        } else if (color == "white"){
-            myColor = whiteAs;
-        }
-        else{
-            myColor = false;
-        }
-        return myColor;
-    }
 
-    public void setColor(String color, boolean set){
-        if (color == "red"){
-            redAs = set;
-        } else if(color == "blue"){
-            blueAs = set;
-        } else if (color == "green"){
-            greenAs = set;
-        } else if (color == "yellow"){
-            yellowAs = set;
-        } else if (color == "white"){
-            whiteAs = set;
-        }
-    }
 
 
 

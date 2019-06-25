@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="onegood" maxHeight="362.0" maxWidth="524.0" prefHeight="362.0" prefWidth="524.0" style="-fx-background-color: transparent;" stylesheets="@../css/popup.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.cards.BonusGainGoodView">
+   <children>
+      <Pane id="askClose" prefHeight="340.0" prefWidth="514.0" style="-fx-background-color: transparent;">
+         <children>
+            <Button id="fabric" fx:id="red" layoutX="176.0" layoutY="148.0" mnemonicParsing="false" onAction="#redOne" prefHeight="60.0" prefWidth="60.0" />
+            <Button id="spice" fx:id="green" layoutX="176.0" layoutY="235.0" mnemonicParsing="false" onAction="#greenOne" prefHeight="60.0" prefWidth="60.0" />
+            <Button id="fruit" fx:id="yellow" layoutX="291.0" layoutY="148.0" mnemonicParsing="false" onAction="#yellowOne" prefHeight="60.0" prefWidth="60.0" />
+            <Button id="jewels" fx:id="blue" layoutX="291.0" layoutY="235.0" mnemonicParsing="false" onAction="#blueOne" prefHeight="60.0" prefWidth="60.0" />
+            <Button id="closetn" layoutX="450.0" layoutY="31.0" mnemonicParsing="false" onAction="#close" prefHeight="43.0" prefWidth="43.0" />
+         </children></Pane>
+   </children>
+</AnchorPane>

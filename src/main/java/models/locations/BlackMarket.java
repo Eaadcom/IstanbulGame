@@ -19,11 +19,7 @@ public class BlackMarket implements Location, BlackMarketObservable {
     public int Location = 1;
     public models.Dice diceOne = new Dice();
     public models.Dice diceTwo = new Dice();
-    public boolean redAs = false;
-    public boolean blueAs = false;
-    public boolean greenAs = false;
-    public boolean yellowAs = false;
-    public boolean whiteAs = false;
+
 
 
     // Firebase
@@ -45,6 +41,17 @@ public class BlackMarket implements Location, BlackMarketObservable {
     public BlackMarket() {
     }
 
+    public int rollDice(){
+        int dice1=(int)(Math.random()*6+1);
+        int dice2=(int)(Math.random()*6+1);
+        int sum= dice1 + dice2;
+        return sum;
+    }
+
+    public void addJewel(int number, Player player){
+        player.setJewels(player.getJewels() + number);
+    }
+
     // Observer Pattern
     @Override
     public void register(LocationViewObserver observer) {
@@ -58,38 +65,7 @@ public class BlackMarket implements Location, BlackMarketObservable {
         }
     }
 
-    public boolean color(String color) {
-        boolean myColor;
-        if (color == "red") {
-            myColor = redAs;
-        } else if( color == "blue"){
-            myColor = blueAs;
-        } else if(color == "green" ){
-            myColor = greenAs;
-        } else if ( color == "yellow"){
-            myColor = yellowAs;
-        } else if (color == "white"){
-            myColor = whiteAs;
-        }
-        else{
-            myColor = false;
-        }
-        return myColor;
-    }
 
-    public void setColor(String color, boolean set){
-        if (color == "red"){
-            redAs = set;
-        } else if(color == "blue"){
-            blueAs = set;
-        } else if (color == "green"){
-            greenAs = set;
-        } else if (color == "yellow"){
-            yellowAs = set;
-        } else if (color == "white"){
-            whiteAs = set;
-        }
-    }
 
     public void onUse(Player player) {
 

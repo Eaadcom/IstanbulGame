@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -22,6 +23,8 @@ public class GreatMarketView implements Initializable {
     private Text jewel, fabric, fruit, spice;
     @FXML
     private TextField GMchoiceFabric, GMchoiceJewel, GMchoiceFruit, GMchoiceSpice;
+    @FXML
+    private Button none;
 
     //Singleton
     private static GreatMarketView greatMarketView;
@@ -32,7 +35,11 @@ public class GreatMarketView implements Initializable {
         return greatMarketView;
     }
     //
-
+    /**
+     * Starts the great market popup.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void greatMarket() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../../fxml/tiles/greatMarket.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -43,6 +50,11 @@ public class GreatMarketView implements Initializable {
         stage.show();
     }
 
+    /**
+     * Updates the price of the great market.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void updatePrice(){
         jewel.setText (Integer.toString(LocationController.getInstance().GMgetJewel()));
         spice.setText (Integer.toString(LocationController.getInstance().GMgetSpice()));
@@ -50,16 +62,27 @@ public class GreatMarketView implements Initializable {
         fruit.setText (Integer.toString(LocationController.getInstance().GMgetFruit()));
     }
 
+    /**
+     * Gets the choicebox values and triggers the function to confirm the purchase
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void confirmPurchase() throws IOException {
-        if(GMchoiceFruit.getText() != "" && GMchoiceFabric.getText() != "" &&GMchoiceSpice.getText() != "" &&GMchoiceJewel.getText() != "" ) {
+        if(GMchoiceFruit.getText() != null && GMchoiceFabric.getText() != null &&GMchoiceSpice.getText() != null &&GMchoiceJewel.getText() != null ) {
             int GMfabricvalue = Integer.parseInt(GMchoiceFabric.getText());
             int GMfruitvalue = Integer.parseInt(GMchoiceFruit.getText());
             int GMspicevalue = Integer.parseInt(GMchoiceSpice.getText());
             int GMjewelvalue = Integer.parseInt(GMchoiceJewel.getText());
             LocationController.getInstance().GMconfirmPurchase(GMfabricvalue, GMfruitvalue, GMspicevalue, GMjewelvalue);
+            close();
         }else{
             //doe niks
         }
+    }
+
+    public void close(){
+        Stage stage = (Stage) none.getScene().getWindow();
+        stage.close();
     }
 
     @Override

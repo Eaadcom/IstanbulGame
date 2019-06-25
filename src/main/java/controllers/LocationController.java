@@ -48,7 +48,6 @@ public class LocationController{
     private SultanPalace sultanPalace = SultanPalace.getInstance();
     private FruitWarehouse fruitWarehouse = FruitWarehouse.getInstance();
     private Caravansary caravansary = Caravansary.getInstance();
-    private CardController cardController = CardController.getInstance();
     public PlayerController playerController = PlayerController.getInstance();
     private Player myPlayer = playerController.getMyPlayer();
     private models.Board board = new models.Board();
@@ -60,201 +59,35 @@ public class LocationController{
 
     // Functie die wordt aangeroepen wanneer een locatie tile wordt gebruikt
 
-    public void AssistantLocation(int location){
-        if (myPlayer.assistants > 0) {
-            hasAssistants = true;
 
-            switch (location) {
-
-                case 1:
-                    if (blackMarket.color(myPlayer.color)) {
-                        blackMarket.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (blackMarket.color(myPlayer.color) == false) {
-                        blackMarket.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 2:
-                    if (caravansary.color(myPlayer.color)) {
-                        caravansary.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (caravansary.color(myPlayer.color) == false) {
-                        caravansary.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 3:
-                    if (fabricWarehouse.color(myPlayer.color)) {
-                        fabricWarehouse.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (fabricWarehouse.color(myPlayer.color) == false) {
-                        fabricWarehouse.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-
-                case 4:
-                    Fountain();
-                    break;
-
-                case 5:
-                    if (fruitWarehouse.color(myPlayer.color)) {
-                        fabricWarehouse.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (fruitWarehouse.color(myPlayer.color) == false) {
-                        fabricWarehouse.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 6:
-                    if (gemstoneDealer.color(myPlayer.color)) {
-                        gemstoneDealer.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (gemstoneDealer.color(myPlayer.color) == false) {
-                        gemstoneDealer.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 7:
-                    if (greatMosque.color(myPlayer.color)) {
-                        greatMosque.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (greatMosque.color(myPlayer.color) == false) {
-                        greatMosque.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-
-                case 8:
-                    if (largeMarket.color(myPlayer.color)) {
-                        largeMarket.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (largeMarket.color(myPlayer.color) == false) {
-                        largeMarket.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-
-                case 9:
-                    if (policeStation.color(myPlayer.color)) {
-                        policeStation.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (policeStation.color(myPlayer.color) == false) {
-                        policeStation.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-
-                case 10:
-                    if (postOffice.color(myPlayer.color)) {
-                        postOffice.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (postOffice.color(myPlayer.color) == false) {
-                        postOffice.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-
-                case 11:
-                    if (smallMarket.color(myPlayer.color)) {
-                        smallMarket.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (smallMarket.color(myPlayer.color) == false) {
-                        smallMarket.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 12:
-                    if (smallMosque.color(myPlayer.color)) {
-                        smallMosque.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (smallMosque.color(myPlayer.color) == false) {
-                        smallMosque.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 13:
-                    if (spiceWarehouse.color(myPlayer.color)) {
-                        spiceWarehouse.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (spiceWarehouse.color(myPlayer.color) == false) {
-                        spiceWarehouse.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-
-                case 14:
-                    if (sultanPalace.color(myPlayer.color)) {
-                        sultanPalace.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (sultanPalace.color(myPlayer.color) == false) {
-                        sultanPalace.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    break;
-                case 15:
-                    if (teaHouse.color(myPlayer.color)){
-                        teaHouse.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if (blackMarket.color(myPlayer.color) == false){
-                        teaHouse.setColor(myPlayer.color, true);
-                        myPlayer.assistants -=1;
-                    }
-
-                    break;
-                case 16:
-                    if (wainwright.color(myPlayer.color)){
-                        wainwright.setColor(myPlayer.color, false);
-                        myPlayer.assistants += 1;
-                    } else if(wainwright.color(myPlayer.color) == false){
-                        wainwright.setColor(myPlayer.color, true);
-                        myPlayer.assistants -= 1;
-                    }
-                    System.out.println("Er zijn " + myPlayer.assistants + " assistants.");
-                    break;
-
-
-            }
-        } else{
-             hasAssistants = false;
-        }
-    }
 
     public void Fountain(){
-        blackMarket.setColor(myPlayer.color, false);
-        caravansary.setColor(myPlayer.color, false);
-        fabricWarehouse.setColor(myPlayer.color, false);
-        fruitWarehouse.setColor(myPlayer.color, false);
-        teaHouse.setColor(myPlayer.color, false);
-        gemstoneDealer.setColor(myPlayer.color, false);
-        greatMosque.setColor(myPlayer.color, false);
-        largeMarket.setColor(myPlayer.color, false);
-        policeStation.setColor(myPlayer.color, false);
-        postOffice.setColor(myPlayer.color, false);
-        smallMarket.setColor(myPlayer.color, false);
-        smallMosque.setColor(myPlayer.color, false);
-        spiceWarehouse.setColor(myPlayer.color, false);
-        sultanPalace.setColor(myPlayer.color, false);
-        wainwright.setColor(myPlayer.color, false);
 
-        myPlayer.assistants = myPlayer.maxAssistants;
     }
+
+    /**
+     *  Handles the upgrading of your car when you buy one in the wainwright.
+     *  @author Floris Dekker
+     *  @version 20-6-2019
+     */
     public void wainrightBuyer(){
-        if(myPlayer.lira >= 7) {
-            if (myPlayer.carUpgrades < 3) {
-                playerController.addRubysLiras("lira", -7);
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
+        if(player.getLira() >= 7) {
+            if (player.getCarUpgrades() < 3) {
+                player.setLira(player.getLira() - 7);
+                player.setCarUpgrades(player.getCarUpgrades() + 1);
                 playerController.CarUpgrader();
-
-                System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
             }
-            System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
-
         }
-        System.out.println("Je hebt nu " + myPlayer.carUpgrades + " CarUpgrades en " + myPlayer.lira + " Lira");
 
     }
 
+    /**
+     * Set's a dice's value.
+     * @author Floris Dekker
+     * @version 22-6-2019
+     */
     public int setDiceValue() {
 
         int DiceValue = (int) (Math.random() * 6 + 1);
@@ -262,59 +95,28 @@ public class LocationController{
         return DiceValue;
     }
 
-    public void BlackMarketDice() {
-        playerController = PlayerController.getInstance();
-        blackMarket = BlackMarket.getInstance();
-        blackMarket.diceOne.DiceValue = setDiceValue();
-        blackMarket.diceTwo.DiceValue = setDiceValue();
-
-        diceResult = blackMarket.diceOne.DiceValue + blackMarket.diceTwo.DiceValue;
-        diceResult = 8;
-        System.out.println("Je hebt " + diceResult + " gegooit");
-
-        if (diceResult < 7) {
-            myPlayer.jewels = myPlayer.jewels;
-        } else if (diceResult == 7 || diceResult == 8) {
-            if (playerController.CargoCheckJewels(1) == true) {
-                myPlayer.jewels += 1;
-            }
-
-        } else if (diceResult == 9 || diceResult == 10) {
-            if (playerController.CargoCheckJewels(2)) {
-                myPlayer.jewels += 2;
-            } else if (playerController.CargoCheckJewels(1)) {
-                myPlayer.jewels += 1;
-            }
-
-        } else if (diceResult == 11 || diceResult == 12) {
-            if (playerController.CargoCheckJewels(3)) {
-                myPlayer.jewels += 3;
-            } else if (playerController.CargoCheckJewels(2)) {
-                myPlayer.jewels += 2;
-            } else if (playerController.CargoCheckJewels(1)) {
-                myPlayer.jewels += 1;
-            }
-        }
-        System.out.println("er zijn " + myPlayer.jewels + " Jewels toegevoegd!");
-
-    }
-
+    /**
+     * Handles the decision the player has to make in the BlackMarket
+     * @author Floris Deker
+     * @version 22-6-2019
+     * @param BlackMarketChoice
+     */
         public void BlackMarketChoice(int BlackMarketChoice) {
-        playerController = PlayerController.getInstance();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         if (BlackMarketChoice == 1) {
             if (playerController.CargoCheckSpices(1) == true) {
-                myPlayer.spices += 1;
+                player.setSpices(player.getSpices() +1);
 
             }
         } else if (BlackMarketChoice == 2) {
             if (playerController.CargoCheckFruits(1) == true) {
-                myPlayer.fruits += 1;
+                player.setFruits(player.getFruits() +1);
 
             }
         } else if (BlackMarketChoice == 3) {
             if (playerController.CargoCheckFabrics(1)) {
-                myPlayer.fabrics += 1;
-                System.out.println("er zijn " + myPlayer.fabrics + " Fabrics");
+                player.setFabrics(player.getFabrics() +1);
 
             } else {
 
@@ -325,12 +127,111 @@ public class LocationController{
         }
     }
 
-    public void CarravansaryCardSelector() {
+    /**
+     * Handles the smallmosque tile
+     * @author Floris Dekker
+     * @version 23-06-2019
+     * @param Bought
+     * @param choice
+     */
 
-        // hier nog even naar kijken jongens, ik weet niet hoe jullie die bonuskaarten willen hebben.
+
+    public void SmallMosque(int Bought, String choice){
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
+        int newValue;
+        switch (choice) {
+            case "fabric":
+                if (player.fabrics > Bought || player.fabrics == Bought) {
+                    newValue = player.fabrics - Bought;
+                    player.setFabrics(newValue);
+                    player.setFabricMosque(true);
+                    MosqueChecker("small");
+
+                }
+            case "spice":
+                if (player.spices > Bought || player.spices == Bought){
+                    newValue = player.spices - Bought;
+                    player.setSpices(newValue);
+                    player.setSpiceMosque(true);
+                    MosqueChecker("small");
+                    }
+        }
+    }
+
+    /**
+     * Handles the LargeMosque Tile
+     * @author Floris dekker
+     * @version 24-06-2019
+     * @param Bought
+     * @param choice
+     */
+
+    public void BigMosque(int Bought, String choice){
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
+        int newValue;
+
+        switch(choice){
+            case "jewel":
+                if(player.jewels > Bought || player.jewels == Bought){
+                    System.out.println("Je betaald nu" + Bought);
+                    newValue = player.jewels - Bought;
+                    player.setJewels(newValue);
+                    System.out.println(player.jewels);
+                    player.setJewelMosque(true);
+                    MosqueChecker("big");
+                }
+            case "fruit":
+                if(player.fruits > Bought || player.fruits == Bought){
+                    newValue = player.fruits - Bought;
+                    player.setFruits((newValue));
+                    player.setFruitMosque(true);
+                    MosqueChecker("big");
+                }
+        }
 
 
     }
+
+    /**
+     * handles the ruby functionality in the mosques.
+     * @author Floris Dekker
+     * @version 24-06-2019
+     * @param mosque
+     */
+
+    public void MosqueChecker(String mosque){
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
+        switch (mosque){
+            case "small":
+                if(player.SmallMosqueRuby == false) {
+                    if (myPlayer.fabricMosque && myPlayer.spiceMosque) {
+                        playerController.addRubysLiras("ruby", 1);
+                        player.setSmallMosqueRuby(true);
+
+                    }
+                }
+            case "big":
+                if(player.BigMosqueRuby == false) {
+                    if (myPlayer.jewelMosque && myPlayer.fruitMosque) {
+                        System.out.println("Je hebt nu beide de jewels en fruit op true staan");
+
+                        playerController.addRubysLiras("ruby", 1);
+                        player.setBigMosqueRuby(true);
+                    }
+                }
+
+        }
+    }
+
+
+    /**
+     * these are the functions that are used for all the warehouses.
+     * @author Floris Dekker
+     * @version 24-06-2019
+     */
 
     public void FruitWarehouse() {
         playerController.MaxCargoUpdater();
@@ -349,6 +250,13 @@ public class LocationController{
     }
 
 
+    /**
+     * handles the logic for the teahouse tile
+     * @author Floris Dekker
+     * @version 20-06-2019
+     * @param number
+     */
+
     public void setTeaHouseNumber(int number) {
         teaHouse.setTeahouseNumberChoice(number);
     }
@@ -364,6 +272,8 @@ public class LocationController{
     }
 
     public void TeaHouseResult(){
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         diceOne.DiceValue = setDiceValue();
         diceTwo.DiceValue = setDiceValue();
         diceResult = diceOne.DiceValue + diceTwo.DiceValue;
@@ -371,11 +281,11 @@ public class LocationController{
         teahouseNumberChoice = teaHouse.teahouseNumberChoice;
 
         if (teaHouse.teahouseNumberChoice < diceResult || teaHouse.teahouseNumberChoice == diceResult) {
-            playerController.addRubysLiras("lira", teaHouse.teahouseNumberChoice);
-            System.out.println("Er is " + teaHouse.teahouseNumberChoice + " Lira toegevoegd!" );
-        } else if(teaHouse.teahouseNumberChoice < diceResult){
-            playerController.addRubysLiras("lira", 2);
-            System.out.println("Helaas! je ligt eronder!");
+            player.setLira(player.getLira() + teahouseNumberChoice);
+            System.out.println(player.getLira());
+        } else if(teaHouse.teahouseNumberChoice > diceResult){
+            player.setLira(player.getLira() + 2);
+            System.out.println(player.getLira());
 
     }}
         // SULTANS PALACE CODE
@@ -390,14 +300,16 @@ public class LocationController{
         *  @author Thomas van Velzen
         *  @version 20-6-2019
         */
-        public void confirmPurchase() throws IOException { SultanPalace.getInstance().confirmPurchase(GameController.getInstance().getPlayer()); }
+        public void confirmPurchase() throws IOException { SultanPalace.getInstance().confirmPurchase(GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
         /**
         *  Handles the choice of the sultans palace. Triggers the handleChoice(choice, Player) function in the SultanPalace model.
         *  @author Thomas van Velzen
         *  @version 20-6-2019
         *  @param choice
         */
-        public void handleChoice(String choice){ SultanPalace.getInstance().handleChoice(choice, GameController.getInstance().getPlayer()); }
+        public void handleChoice(String choice){ SultanPalace.getInstance().handleChoice(choice, GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
 
 
         //SMALL MARKET CODE
@@ -416,7 +328,8 @@ public class LocationController{
         *  @param jewel
         */
         public void SMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
-        SmallMarket.getInstance().confirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
+        SmallMarket.getInstance().confirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
 
         //GREAT MARKET CODE
         public int  GMgetJewel()   { return GreatMarket.getInstance().GMgetJewel();   }
@@ -433,7 +346,8 @@ public class LocationController{
         *  @param jewel
         */
         public void GMconfirmPurchase(int fabric, int fruit, int spice, int jewel) throws IOException {
-        GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getPlayer()); }
+        GreatMarket.getInstance().GMconfirmPurchase(fabric, fruit, spice, jewel, GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter)); }
 
 
     /**
@@ -501,16 +415,18 @@ public class LocationController{
      * It checks if the player has enough Lira to purchase a ruby.
      * If that's the case, the player recieves a ruby and a number of lira is withdrawn.
      * The price of a ruby goes up by one every time someone buys a ruby.
-     * @author Stan Hogenboom
+     * @author Stan Hogenboom, Floris Dekker
      * @version 17-6-2019
      */
     public void gemstoneDealerAction() {
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
         GemstoneDealer gsd = GemstoneDealer.getInstance();
         int price = gsd.getGemstonePrice();
 
-        if(myPlayer.lira > price){
-            playerController.addRubysLiras("ruby", 1);
-            playerController.addRubysLiras("lira", -price);
+        if(player.getLira() > price){
+            player.setRubies(player.getRubies()+1);
+            player.setLira(player.getLira()-price);
             gsd.updatePrice(price + 1);
         }
         else {

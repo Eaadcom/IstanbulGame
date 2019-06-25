@@ -20,6 +20,17 @@ public class SmallMosque implements Location, SmallMosqueObservable {
     public boolean yellowAs = false;
     public boolean whiteAs = false;
 
+    public int getRedPrice() {
+        return redPrice;
+    }
+
+    public int getGreenPrice() {
+        return greenPrice;
+    }
+
+    public int redPrice =2;
+    public int greenPrice =2;
+
     // Firebase
     public Map<String, Object> getVariableMap(){
         Map<String, Object> Data = new HashMap<>();
@@ -30,38 +41,15 @@ public class SmallMosque implements Location, SmallMosqueObservable {
     public void setData(Map variables){
     }
 
-    public boolean color(String color) {
-        boolean myColor;
-        if (color == "red") {
-            myColor = redAs;
-        } else if( color == "blue"){
-            myColor = blueAs;
-        } else if(color == "green" ){
-            myColor = greenAs;
-        } else if ( color == "yellow"){
-            myColor = yellowAs;
-        } else if (color == "white"){
-            myColor = whiteAs;
+    public void incrementPrice(String color){
+        if(color == "red" && redPrice != 5){
+            redPrice++;
+        }else if(color == "green" && greenPrice != 5){
+            greenPrice++;
         }
-        else{
-            myColor = false;
-        }
-        return myColor;
     }
 
-    public void setColor(String color, boolean set){
-        if (color == "red"){
-            redAs = set;
-        } else if(color == "blue"){
-            blueAs = set;
-        } else if (color == "green"){
-            greenAs = set;
-        } else if (color == "yellow"){
-            yellowAs = set;
-        } else if (color == "white"){
-            whiteAs = set;
-        }
-    }
+
 
 
     // Observer Pattern

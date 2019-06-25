@@ -4,6 +4,7 @@ import models.Player;
 import observers.GameViewObserver;
 import observers.LocationViewObserver;
 import observers.locations.SmallMarketObservable;
+import views.GameView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,6 +71,7 @@ public class SmallMarket implements Location, SmallMarketObservable {
             this.fabric = 0;
             this.spice = 2;
             this.fruit = 2;
+
         }
     }
 
@@ -82,18 +84,23 @@ public class SmallMarket implements Location, SmallMarketObservable {
         if (STATE == 0) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 1) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 2) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 3) {
             STATE++;
             setStateValue();
+            notifyAllObservers();
         } else if (STATE == 4) {
             STATE = 0;
             setStateValue();
+            notifyAllObservers();
         }
     }
 
@@ -124,23 +131,23 @@ public class SmallMarket implements Location, SmallMarketObservable {
             System.out.println("player jewel: " + player.getJewels());
 
             if(fabric + fruit + spice + jewel == 1){
-                //voeg 2 lira toe
+                player.setLira(player.getLira()+2);
                 System.out.println("2 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 2){
-                //voeg 5 lira toe
+                player.setLira(player.getLira()+5);
                 System.out.println("5 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 3){
-                //voeg 9 lira toe
+                player.setLira(player.getLira()+9);
                 System.out.println("9 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 4){
-                //voeg 14 lira toe
+                player.setLira(player.getLira()+14);
                 System.out.println("14 lira toegevoegd");
                 stateHandler();
             }else if(fabric + fruit + spice + jewel == 5){
-                //voeg 20 lira toe
+                player.setLira(player.getLira()+20);
                 System.out.println("20 lira toegevoegd");
                 stateHandler();
             }
@@ -164,56 +171,24 @@ public class SmallMarket implements Location, SmallMarketObservable {
     // Variables
     private static SmallMarket smallMarket;
     private ArrayList<String> demandTiles = new ArrayList<>();
-    private List<LocationViewObserver> observers = new ArrayList<>();
-    public boolean redAs = false;
-    public boolean blueAs = false;
-    public boolean greenAs = false;
-    public boolean yellowAs = false;
-    public boolean whiteAs = false;
+    private List<GameViewObserver> observers = new ArrayList<>();
 
-    public boolean color(String color) {
-        boolean myColor;
-        if (color == "red") {
-            myColor = redAs;
-        } else if( color == "blue"){
-            myColor = blueAs;
-        } else if(color == "green" ){
-            myColor = greenAs;
-        } else if ( color == "yellow"){
-            myColor = yellowAs;
-        } else if (color == "white"){
-            myColor = whiteAs;
-        }
-        else{
-            myColor = false;
-        }
-        return myColor;
-    }
 
-    public void setColor(String color, boolean set){
-        if (color == "red"){
-            redAs = set;
-        } else if(color == "blue"){
-            blueAs = set;
-        } else if (color == "green"){
-            greenAs = set;
-        } else if (color == "yellow"){
-            yellowAs = set;
-        } else if (color == "white"){
-            whiteAs = set;
-        }
-    }
+
 
 
     // Observer Pattern
     @Override
-    public void register(LocationViewObserver observer) {
+    public void register(GameViewObserver observer) {
         observers.add(observer);
     }
 
     @Override
     public void notifyAllObservers() {
-        for (LocationViewObserver gvo : observers){
+        if (!observers.contains(GameView.getInstance())){
+            register(GameView.getInstance());
+        }
+        for (GameViewObserver gvo : observers){
             gvo.update(this);
         }
     }

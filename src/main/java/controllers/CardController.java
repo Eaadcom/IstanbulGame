@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Player;
 import models.cards.*;
 
 import java.util.HashMap;
@@ -9,6 +10,7 @@ public class CardController {
 
     //Variables
     private static CardController cardController;
+
 
     Map<String, BonusCard> bonusCardMap = new HashMap<>();
 
@@ -40,6 +42,9 @@ public class CardController {
 
         return RandCardInt;
     }
+
+
+
 
 
 

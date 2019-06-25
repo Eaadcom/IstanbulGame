@@ -44,6 +44,11 @@ public class PlayerProgressionView implements Initializable {
     public int STATE;
 
 
+    /**
+     * Starts the playerprogession screen and updates it with the id entered.
+     * @param id
+     * @author Thomas van Velzen
+     */
     public void playerProgression(int id){
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/playerProgression.fxml"));
         Parent root2 = null;
@@ -82,6 +87,13 @@ public class PlayerProgressionView implements Initializable {
         updateScreen(STATE-1);
     }
 
+
+    /**
+     * Updates the playerprogression screen based on the id entered in the parameters
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     * @param id
+     */
     public void updateScreen(int id){
         Platform.runLater(new Runnable(){
             @Override
@@ -95,11 +107,12 @@ public class PlayerProgressionView implements Initializable {
                     blueProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getJewels()));
                     liraProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getLira()));
                     rubyProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getRubies()));
-                    carProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getCarUpgrades()));
+                    carProg.setText(Integer.toString(GameController.getInstance().getGame().board.players.get(id).getCarUpgrades() +2));
                     STATE = id;
                 }
                 catch(Exception e) {
                     System.out.println("Je klikte op een speler die er niet is. De gegevens konden niet geladen worden.");
+                    playername.setText("Player N/A");
                 }
 
             }

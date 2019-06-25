@@ -1,5 +1,6 @@
 package views.tiles.sultansPalace;
 
+import controllers.GameController;
 import controllers.LocationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.Player;
+import models.locations.SultanPalace;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +42,20 @@ public class SultansPalaceView implements Initializable {
     //
 
     public void confirmPurchase() throws IOException {
-        Stage stage = (Stage) sultanspalacebuy.getScene().getWindow();
-        stage.close();
-        LocationController.getInstance().confirmPurchase();
+        Player player = GameController.getInstance().getGame().board.players.get(
+                GameController.getInstance().game.turnCounter);
+
+        if(player.getFabrics() >= SultanPalace.getInstance().getFabricPrice() &&
+           player.getFruits()  >= SultanPalace.getInstance().getFruitPrice()  &&
+           player.getJewels()  >= SultanPalace.getInstance().getJewelPrice()  &&
+           player.getSpices()  >= SultanPalace.getInstance().getSpicePrice()  ){
+                Stage stage = (Stage) sultanspalacebuy.getScene().getWindow();
+                stage.close();
+                LocationController.getInstance().confirmPurchase();
+        }else{
+            // doe niks
+        }
+
     }
 
     public void updatePrice(){

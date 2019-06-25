@@ -4,7 +4,9 @@ import observers.FamilyMemberObservable;
 import observers.GameViewObserver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This model stores information about the family member.
@@ -23,6 +25,18 @@ public class FamilyMember implements FamilyMemberObservable {
         location = newLocation;
     }
 
+    // Firebase
+    public Map<String, Object> getFamilyMemberMap(){
+        Map<String, Object> familyMemberMap = new HashMap<>();
+
+        familyMemberMap.put("location", location);
+
+        return familyMemberMap;
+    }
+
+    public void setFamilyMembermap(Map<String, Object> familyMembermap){
+        this.location = Math.toIntExact((long) familyMembermap.get("location"));
+    }
 
     // Observer pattern
     @Override

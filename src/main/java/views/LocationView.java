@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 import observers.LocationViewObserver;
 import observers.locations.*;
 import views.GameView;
+import views.tiles.BlackMarketView;
 import views.tiles.GemstoneDealerView;
 import views.tiles.TeaHouseView;
 import views.tiles.WainwrightView;
@@ -39,6 +40,11 @@ public class LocationView implements LocationViewObserver, Initializable {
     @FXML private TextField TeaHouseDice;
 
 
+    /**
+     * Starts the blackmarket pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Creates blackmarket popup
     public void blackMarket() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/blackMarket/blackMarket.fxml"));
@@ -50,6 +56,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.show();
     }
 
+    /**
+     * Action if you choose fabric at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Code voor +1 fabric
     public void blackMarketFabric() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
@@ -57,6 +68,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         LocationController.getInstance().BlackMarketChoice(3);
     }
 
+    /**
+     * Action if you choose fruit at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Stuk code voor +1 fruit
     public void blackMarketFruit() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
@@ -65,6 +81,11 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     }
 
+    /**
+     * Action if you choose spice at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Stuk code voor +1 spice
     public void blackMarketSpice() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
@@ -73,37 +94,16 @@ public class LocationView implements LocationViewObserver, Initializable {
 
     }
 
+    /**
+     * Rolls the dice at the blackmarket
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     // Function for rolling the dice
     public void blackMarketRollDice() throws IOException {
-        //locationController.BlackMarketDice();
-        //als je geen moskee tegel hebt
-        // OF wel een moskee tegel hebt en een reroll hebt gedaan
-        // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
-        rootPane.getChildren().setAll(pane);
-
-        //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket4.fxml"));
-        rootPane.getChildren().setAll(pane2);
-
-        LocationController.getInstance().BlackMarketDice();
-    }
-
-    // Function to do a reroll
-    public void acceptRerollBlackMarket() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket3.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    // Function to change one of your dice rolls to 4
-    public void turnToFourBlackMarket() {
-        //stuk code om de laagste dice naar een 4 te veranderen
-    }
-
-    // Function to do a reroll
-    public void blackMarketRerollDices() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/tiles/blackMarket/blackMarket2.fxml"));
-        rootPane.getChildren().setAll(pane);
+        Stage stage = (Stage) dices.getScene().getWindow();
+        stage.close();
+        BlackMarketView.getInstance().BlackMarketResult();
     }
 
     // Function to close the popup
@@ -112,6 +112,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         stage.close();
     }
 
+    /**
+     * Opens the fabric warehouse pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void fabricWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fabricWarehouse.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -126,6 +131,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxFabrics();
     }
+    /**
+     * Opens the fruit warehouse pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void fruitWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/fruitWarehouse.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -140,6 +150,11 @@ public class LocationView implements LocationViewObserver, Initializable {
         GameController.getInstance().getGame().board.players.get(
                 GameController.getInstance().game.turnCounter).setMaxFruits();
     }
+    /**
+     * Opens the spice warehouse pop up.
+     * @author Thomas van Velzen
+     * @version 24-6-2019
+     */
     public void spiceWarehouse() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tiles/spiceWarehouse.fxml"));
         Parent root = (Parent) fxmlloader.load();
@@ -172,21 +187,13 @@ public class LocationView implements LocationViewObserver, Initializable {
     }
 
     public void teaHouseRollDice() throws IOException {
-        // als je geen moskee tegel hebt
-        // OF wel een moskee tegel hebt en een reroll hebt gedaan
-        // OF wel een moskee tegel hebt en de laagste dice naar een 4 hebt veranderd (HIER MOET LOGICA)
+        Stage stage = (Stage) dices.getScene().getWindow();
+        stage.close();
         LocationController.getInstance().TeaHouseResult();
         LocationController.getInstance().setTeaHouseDice(Integer.parseInt(LocationController.getInstance().diceResultStr));
         thv.teaHouseResult();}
 
 
-        //System.out.println((locationController.getTeaHouseNumber()));
-
-
-        //als je wel een moskee tegel hebt (HIER MOET LOGICA)
-        /*
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("../fxml/tiles/teaHouse/teaHouse4.fxml"));
-        rootPane2.getChildren().setAll(pane2);*/
 
     public void wainwright() throws IOException {
         wwv.wainwright();
@@ -208,12 +215,25 @@ public class LocationView implements LocationViewObserver, Initializable {
         }
     }
 
+    /**
+     * This function performs the action of the police station.
+     * It saves the text in the textfield, where the player has inserted the tile they want to move to.
+     * Finally it calls the actual movement function in the LocationControllerm with the player's choice as an argument.
+     * @author Stan Hogenboom
+     * @throws IOException
+     */
     public void policeStationAction() throws IOException {
         String pschoice = policeStationChoice.getText();
         close();
         LocationController.getInstance().policeStation(pschoice); //aanroepen functie die familymember verplaatst en daarna de actie uitvoert
     }
 
+    /**
+     * This opens a pop-up which shows the tile numbers to the player when they are at the police station.
+     * @version 24-6-2019
+     * @author Stan Hogenboom
+     * @throws IOException
+     */
     public void policeStationTileNumbers() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("../fxml/tileNumbers.fxml"));
         Parent root = (Parent) fxmlloader.load();

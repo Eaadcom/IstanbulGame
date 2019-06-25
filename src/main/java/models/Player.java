@@ -26,16 +26,23 @@ public class Player implements PlayerObservable {
     private List<GameViewObserver> observers = new ArrayList<>();
 
     // GameVariables
+    public boolean fabricMosque = false;
+    public boolean spiceMosque = false;
+    public boolean fruitMosque = false;
+    public boolean jewelMosque = false;
+    public boolean BigMosqueRuby = false;
+    public boolean SmallMosqueRuby = false;
+
     public int rubies = 0;
     public int lira = 0;
     public int carUpgrades = 0;
     public List<BonusCard> playerBonusCards = new ArrayList<>();
     public String color = "red";
 
-    public int spices = 2;
-    public int fruits = 2;
-    public int jewels = 2;
-    public int fabrics = 2;
+    public int spices = 0;
+    public int fruits = 0;
+    public int jewels = 0;
+    public int fabrics = 0;
 
 
     public int maxJewels = 2;
@@ -45,6 +52,38 @@ public class Player implements PlayerObservable {
 
     public int assistants = 4;
     public int maxAssistants = 4;
+
+    public boolean isGreenTile() {
+        return greenTile;
+    }
+
+    public void setGreenTile(boolean greenTile) {
+        this.greenTile = greenTile;
+    }
+
+    public boolean isRedTile() {
+        return redTile;
+    }
+
+    public void setRedTile(boolean redTile) {
+        this.redTile = redTile;
+    }
+
+    public boolean isBlueTile() {
+        return blueTile;
+    }
+
+    public void setBlueTile(boolean blueTile) {
+        this.blueTile = blueTile;
+    }
+
+    public boolean isYellowTile() {
+        return yellowTile;
+    }
+
+    public void setYellowTile(boolean yellowTile) {
+        this.yellowTile = yellowTile;
+    }
 
     public boolean greenTile = false;
     public boolean redTile = false;
@@ -83,6 +122,7 @@ public class Player implements PlayerObservable {
         playerData.put("yellowTile", yellowTile);
         playerData.put("name", name);
         playerData.put("playerID", playerID);
+        playerData.put("familyMember", familyMember.getFamilyMemberMap());
 
         return playerData;
     }
@@ -110,6 +150,7 @@ public class Player implements PlayerObservable {
         this.yellowTile = (boolean) playerData.get("yellowTile");
         this.name = (String) playerData.get("name");
         this.playerID = Math.toIntExact((long) playerData.get("playerID"));
+        this.familyMember.setFamilyMembermap((Map) playerData.get("familyMember"));
     }
 
     public Player() {}
@@ -171,6 +212,36 @@ public class Player implements PlayerObservable {
         notifyAllObservers();
     }
 
+    public void setFabricMosque(boolean fabricMosque){
+        this.fabricMosque = fabricMosque;
+        notifyAllObservers();
+    }
+
+    public void setFruitMosque(boolean fruitMosque){
+        this.fruitMosque = fruitMosque;
+        notifyAllObservers();
+    }
+
+    public void setJewelMosque(boolean jewelMosque){
+        this.fruitMosque = fruitMosque;
+        notifyAllObservers();
+    }
+
+    public void setSpiceMosque(boolean spiceMosque){
+        this.spiceMosque = spiceMosque;
+        notifyAllObservers();
+    }
+
+    public void setSmallMosqueRuby(boolean smallMosqueRuby){
+        this.SmallMosqueRuby = smallMosqueRuby;
+        notifyAllObservers();
+    }
+
+    public void setBigMosqueRuby(boolean bigMosqueRuby){
+        this.BigMosqueRuby = bigMosqueRuby;
+        notifyAllObservers();
+    }
+
     public int getSpices() {
         return spices;
     }
@@ -214,6 +285,10 @@ public class Player implements PlayerObservable {
     public int getPlayerID() {
         return playerID;
     }
+    public boolean getSpiceMosque (){return spiceMosque;}
+    public boolean getFabricMosque(){return fabricMosque;}
+    public boolean getFruitMosque(){return fruitMosque;}
+    public boolean getJewelMosque(){return jewelMosque;}
 
     // Observer Pattern
     @Override

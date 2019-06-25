@@ -49,11 +49,10 @@ public class PlayerController {
 
     /**
      * Upgrades the maximum values of the cart so the player can have more goods.
-     * @author Stan Hogenboom
+     * @author Stan Hogenboom, Floris Dekker
      * @version 19-6-2019
      */
     public void CarUpgrader(){
-            myPlayer.carUpgrades++;
             myPlayer.maxSpices++;
             myPlayer.maxFabrics++;
             myPlayer.maxFruits++;
@@ -63,6 +62,14 @@ public class PlayerController {
             }
         }
 
+
+    /**
+     * Cargo checkers ensure that the amount that needs to be added does not exceed the max that  player can have.
+     * @author Floris Dekker
+     * @version 24-06-2019
+     * @param toAdd
+     * @return
+     */
 
     public boolean CargoCheckSpices(int toAdd){
         boolean CargoCheckSpices;
@@ -122,6 +129,12 @@ public class PlayerController {
 
         return CargoCheckJewels;
     }
+
+    /**
+     * The MaxCargoUpdater updates the Max Cargo when once car has been upgraded
+     * @author Floris Dekker
+     * @version 24-06-2019
+     */
     public void MaxCargoUpdater(){
         myPlayer.maxSpices = myPlayer.maxSpices + myPlayer.carUpgrades;
         myPlayer.maxFabrics = myPlayer.maxFabrics + myPlayer.carUpgrades;
@@ -132,7 +145,7 @@ public class PlayerController {
     /**
      * Adds either rubies or lira to the player.
      * Can also be used to remove rubies and lira by inserting a negative number.
-     * @author Stan Hogenboom
+     * @author Stan Hogenboom, Floris Dekker
      * @version 20-6-2019
      * @param g
      * @param amount
@@ -175,6 +188,13 @@ public class PlayerController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * this function is called when the warehouse tiles have been reached by a player.
+     * @author Floris Dekker
+     * @version 24-06-2019
+     * @param nameOfGoods
+     */
 
     public void MaxGoods(String nameOfGoods){
         switch(nameOfGoods) {

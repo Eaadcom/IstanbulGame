@@ -38,7 +38,13 @@ public class FirebaseController {
     }
 
 
-    // gets all game documents and returns them in a list
+    /**
+     * Gets all game documents and returns them in a list.
+     *
+     * @author Edward Deen
+     * @version 24-6-2019
+     * @return
+     */
     public List<QueryDocumentSnapshot> fillGameLobby() {
         try {
             ApiFuture<QuerySnapshot> future = db.collection("Games").get();
@@ -59,16 +65,13 @@ public class FirebaseController {
         return null;
     }
 
-    //TODO can i remove this? -Ed
-    public void saveLobbyInfo(List<QueryDocumentSnapshot> documents) {
-        ArrayList<Map> documentsList = new ArrayList<Map>();
-
-        for (QueryDocumentSnapshot document : documents) {
-            documentsList.add(document.getData());
-        }
-    }
-
-    // Outputs firestore token used to do operations with firebase
+    /**
+     * Outputs firestore token used to do operations with firebase.
+     *
+     * @author Edward Deen
+     * @version 24-6-2019
+     * @return
+     */
     public Firestore firebaseLogin() {
         try {
             InputStream serviceAccount = new FileInputStream("src//main//resources//istanbulgame-c7958-firebase-adminsdk-gn1yc-811acdb682.json");
@@ -110,6 +113,14 @@ public class FirebaseController {
         }
     }
 
+    /**
+     * Creates a map containing all data of one tile and returns it.
+     *
+     * @version 24-62019
+     * @author Edward Deen
+     * @param board
+     * @return
+     */
     private Map<String, Object> createKeyValueMapForTiles(Board board) {
         Map<String, Object> tileData = new HashMap<>();
         tileData.put("BlackMarket", BlackMarket.getInstance().getVariableMap());
@@ -135,52 +146,30 @@ public class FirebaseController {
     }
 
     /**
-     * Nethode om alle properties van de spelers op te slaan in een map
-     * @author Joeri
-     * @version 12 june
+     * Creates a map containing all player data and returns it.
+     *
+     * @author Edward Deen, Joeri
+     * @version 24-6-2019
+     * @param board
+     * @return
      */
     private Map<String, Object> createKeyValueMapForPlayers(Board board) {
-//        try {
-            Map<String, Object> playerMap = new HashMap<>();
-            List<Player> players = board.getPlayers();
-            for (int i = 0; i < players.size(); i++) {
-                playerMap.put(Integer.toString(i), players.get(i).getVariableMap());
-            }
-            return playerMap;
-
-//
-//            int playerTotal = GameController.getInstance().getGame().getPlayerTotal();
-//            int playerListLength = gameController.getInstance().getGame().board.players.size();
-//
-//            Player player1 = board.getPlayers().get(0);
-//            players.put("Player1", player1.getVariableMap());
-//            if (playerListLength > 1) {
-//                Player player2 = board.getPlayers().get(1);
-//                players.put("Player2", player2.getVariableMap());
-//            }
-//            if (playerTotal >= 3) {
-//                Player player3 = board.getPlayers().get(2);
-//                players.put("Player3", player3.getVariableMap());
-//            }
-//            if (playerTotal >= 4) {
-//                Player player4 = board.getPlayers().get(3);
-//                players.put("Player4", player4.getVariableMap());
-//            }
-//            if (playerTotal == 5) {
-//                Player player5 = board.getPlayers().get(4);
-//                players.put("Player1", player5.getVariableMap());
-//            }
-//
-//            return players;
-//        } catch (IndexOutOfBoundsException ie) {
-//            Map<String, Object> players = new HashMap<>();
-//            Player player1 = board.getPlayers().get(0);
-//            players.put("Player1", player1.getVariableMap());
-//            return players;
-//        }
-
+        Map<String, Object> playerMap = new HashMap<>();
+        List<Player> players = board.getPlayers();
+        for (int i = 0; i < players.size(); i++) {
+            playerMap.put(Integer.toString(i), players.get(i).getVariableMap());
+        }
+        return playerMap;
     }
 
+    /**
+     * Creates a map containing all board data and returns it.
+     *
+     * @author Edward Deen
+     * @version 24-6-2019
+     * @param board
+     * @return
+     */
     private Map<String, Object> createKeyValueMapForBoard(Board board) {
         Map<String, Object> boardData = new HashMap<>();
         boardData.put("Players", createKeyValueMapForPlayers(board));
@@ -194,10 +183,12 @@ public class FirebaseController {
     }
 
     /**
-     * Methode om de positie van de spelers op te slaan
-     * @author Joeri
-     * @param playerTiles de posities van de spelers
-     * @version 12 june
+     * Creates a map from maps of tile data and returns it.
+     *
+     * @author Joeri, Edward Deen
+     * @version 24-6-2019
+     * @param playerTiles
+     * @return
      */
     private Map<String, String> createPlayerTiles(Map<Integer, String> playerTiles) {
         Map<String, String> stringMap = new HashMap<>();
@@ -207,12 +198,16 @@ public class FirebaseController {
         return stringMap;
     }
 
+    /**
+     * Creates a map of all game data and returns it.
+     *
+     * @author Edward Deen
+     * @version 24-6-2019
+     * @param game
+     * @return
+     */
     private Map<String, Object> createKeyValueMapForGame(Game game) {
         Map<String, Object> data = new HashMap<>();
-//        ArrayList<String> userNames = new ArrayList<>();
-//        for (Player player : game.getPlayers()) {
-//            userNames.add(player.getName());
-//        }
 
         data.put("gameName", game.getName());
         data.put("playerTotal", game.getPlayerTotal());
@@ -227,14 +222,6 @@ public class FirebaseController {
         return data;
     }
 
-    /**
-     * Methode om een document aan te maken met data, in een meegegeven collection
-     * @author Joeri
-     * @param collection de collection naam waarin opgeslagen wordt
-     * @param documentName de naam van de game
-     * @param data de data van de game
-     * @version 12 june
-     */
     private void create(String collection, String documentName, Map<String, Object> data) {
         try {
             DocumentReference docRef = db.collection(collection).document(documentName);
@@ -250,7 +237,13 @@ public class FirebaseController {
         }
     }
 
-    // Create Online Game
+    /**
+     * Creates a new game.
+     *
+     * @author Edward Deen
+     * @version 24-6-2019
+     * @param game
+     */
     public void createNewGame(Game game) {
         try {
             Map<String, Object> data = createKeyValueMapForGame(game);
@@ -268,6 +261,13 @@ public class FirebaseController {
         return firebaseController;
     }
 
+    /**
+     * Gets data from the firebase
+     *
+     * @author Edward Deen
+     * @version 24-6-2019
+     * @return
+     */
     public DocumentSnapshot getGameDataFromFirebase() {
         try {
             System.out.println(db);

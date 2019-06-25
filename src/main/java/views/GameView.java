@@ -27,8 +27,7 @@ import observers.*;
 import java.io.IOException;
 import java.net.URL;
 
-import observers.locations.GemstoneDealerObservable;
-import observers.locations.SultanPalaceObservable;
+import observers.locations.*;
 import views.tiles.*;
 import views.tiles.sultansPalace.SultansPalaceView;
 
@@ -83,6 +82,12 @@ public class GameView implements GameViewObserver, Initializable {
     @FXML
     public Text maxFruit, maxSpice, maxJewel, maxFabric;
     @FXML
+    public Text postRed, postBlue, postYellow, postGreen, postLira;
+    @FXML
+    public Text smallRed, smallBlue, smallYellow, smallGreen;
+    @FXML
+    public Text largeRed, largeBlue, largeYellow, largeGreen;
+    @FXML
     public Button whiteProg, redProg, yellowProg, greenProg, blueProg;
 
     private List<BonusCard> bonusCardsHuidigeSpeler = new ArrayList<>();
@@ -133,6 +138,25 @@ public class GameView implements GameViewObserver, Initializable {
                         SultanYellow = (Text) root1.lookup("#SultanYellow");
                         SultanGreen = (Text) root1.lookup("#SultanGreen");
                         SultanChoice = (Text) root1.lookup("#SultanChoice");
+
+                        //Post office values
+                        postRed = (Text) root1.lookup("#postRed");
+                        postBlue = (Text) root1.lookup("#postBlue");
+                        postYellow = (Text) root1.lookup("#postYellow");
+                        postGreen = (Text) root1.lookup("#postGreen");
+                        postLira = (Text) root1.lookup("#postLira");
+
+                        //Small market
+                        smallRed = (Text) root1.lookup("#smallRed");
+                        smallBlue = (Text) root1.lookup("#smallBlue");
+                        smallYellow = (Text) root1.lookup("#smallYellow");
+                        smallGreen = (Text) root1.lookup("#smallGreen");
+
+                        //Large market
+                        largeRed = (Text) root1.lookup("#largeRed");
+                        largeBlue = (Text) root1.lookup("#largeBlue");
+                        largeYellow = (Text) root1.lookup("#largeYellow");
+                        largeGreen = (Text) root1.lookup("#largeGreen");
 
                         //player values
                         playerLira = (Text) root1.lookup("#playerLira");
@@ -284,6 +308,8 @@ public class GameView implements GameViewObserver, Initializable {
 
     }
 
+
+
     private void initializePlayerColor() {
         if (GameController.getInstance().getMyPlayerID() == 1) {
             playerGrid.setRowIndex(whiteProg, 1);
@@ -297,6 +323,32 @@ public class GameView implements GameViewObserver, Initializable {
         } else if (GameController.getInstance().getMyPlayerID() == 4) {
             playerGrid.setRowIndex(whiteProg, 4);
             playerGrid.setRowIndex(blueProg, 5);
+        }
+
+        try {
+
+        } catch (Exception e) {
+            //
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(1);
+        } catch (Exception e) {
+            yellowProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(2);
+        } catch (Exception e) {
+            greenProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(3);
+        } catch (Exception e) {
+            blueProg.setDisable(true);
+        }
+        try {
+            GameController.getInstance().getGame().board.players.get(4);
+        } catch (Exception e) {
+            whiteProg.setDisable(true);
         }
     }
 
@@ -378,10 +430,10 @@ public class GameView implements GameViewObserver, Initializable {
             addToGrid(famgreen, findNode(GameController.getInstance().getGame().board.players.get(2).familyMember.location));
         }
         if (GameController.getInstance().getGame().board.players.size() > 3) {
-            addToGrid(famwhite, findNode(GameController.getInstance().getGame().board.players.get(3).familyMember.location));
+            addToGrid(famblue, findNode(GameController.getInstance().getGame().board.players.get(3).familyMember.location));
         }
         if (GameController.getInstance().getGame().board.players.size() > 4) {
-            addToGrid(famblue, findNode(GameController.getInstance().getGame().board.players.get(4).familyMember.location));
+            addToGrid(famwhite, findNode(GameController.getInstance().getGame().board.players.get(4).familyMember.location));
         }
 
 //        //spelers op de juiste plek zetten
@@ -463,6 +515,20 @@ public class GameView implements GameViewObserver, Initializable {
             playerProgressionView.playerProgression(2);
         } else if (source.getId().equals("player3")) {
             playerProgressionView.playerProgression(3);
+        }
+    }
+
+    public void goodsButton() {
+        if (GameController.getInstance().getMyPlayerID() == 1) {
+            playerProgressionView.playerProgression(0);
+        } else if (GameController.getInstance().getMyPlayerID() == 2) {
+            playerProgressionView.playerProgression(1);
+        } else if (GameController.getInstance().getMyPlayerID() == 3) {
+            playerProgressionView.playerProgression(2);
+        } else if (GameController.getInstance().getMyPlayerID() == 4) {
+            playerProgressionView.playerProgression(3);
+        } else if (GameController.getInstance().getMyPlayerID() == 5) {
+            playerProgressionView.playerProgression(4);
         }
     }
 
@@ -678,6 +744,90 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
     /**
+     * Updates position of the familymember in Firebase
+     * @author Edward Deen
+     * @verison 24-6-2019
+     * @throws IOException
+     */
+    public void updateFamilyPos() throws IOException {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int i = 0; i < GameController.getInstance().getGame().getPlayers().size() -1; i++){
+                    int tileNumber = GameController.getInstance().getGame().getPlayers().get(i).familyMember.location;
+                    Pane familyMember = findPlayerColor(i, false);
+
+                    if (tileNumber == 1) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile1));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 1;
+                    } else if (tileNumber == 2) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile2));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile2));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 2;
+                    } else if (tileNumber == 3) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile3));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile3));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 3;
+                    } else if (tileNumber == 4) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile4));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile4));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 4;
+                    } else if (tileNumber == 5) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile5));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile5));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 5;
+                    } else if (tileNumber == 6) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile6));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile6));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 6;
+                    } else if (tileNumber == 7) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile7));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile7));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 7;
+                    } else if (tileNumber == 8) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile8));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile8));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 8;
+                    } else if (tileNumber == 9) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile9));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile9));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 9;
+                    } else if (tileNumber == 10) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile10));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile10));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 10;
+                    } else if (tileNumber == 11) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile1));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile11));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 11;
+                    } else if (tileNumber == 12) {
+                        /* This is the policesttion itself, probably shouldn't be included*/
+                    } else if (tileNumber == 13) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile13));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile13));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 13;
+                    } else if (tileNumber == 14) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile14));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile14));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 14;
+                    } else if (tileNumber == 15) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile15));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile15));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 15;
+                    } else if (tileNumber == 16) {
+                        GridPane.setColumnIndex(familyMember, GridPane.getColumnIndex(tile16));
+                        GridPane.setRowIndex(familyMember, GridPane.getRowIndex(tile16));
+                        GameController.getInstance().getGame().getPlayers().get(i).familyMember.location = 16;
+                    }
+                }
+            }
+        });
+    }
+
+    /**
      * finds out the color of the player so other methods know which character to move
      *
      * @param playerID
@@ -793,6 +943,8 @@ public class GameView implements GameViewObserver, Initializable {
     }
 
 
+
+
     // Closes the game
     //TODO this function is not used anywhere
     public void close() {
@@ -802,7 +954,7 @@ public class GameView implements GameViewObserver, Initializable {
     /**
      * This opens the rules so the player can take a look at them.
      *
-     * @throws IOException
+     * @throws Exception
      * @author Stan Hogenboom
      * @version June 5th, 2019
      */
@@ -846,7 +998,7 @@ public class GameView implements GameViewObserver, Initializable {
 
         // [1,0] [-1,0] [0,1] [0,-1]
 
-        final int moves = 4;
+        final int moves = 2;
 
         for (int i = 0; i < tiles.size(); i++) {
             Button button = tiles.get(i);
@@ -957,6 +1109,12 @@ public class GameView implements GameViewObserver, Initializable {
             disableTiles(true);
         }
         updateGameIcons(game);
+//        try{
+//            updateFamilyPos();
+//        } catch (IOException ioe){
+//            ioe.printStackTrace();
+//        }
+
     }
 
     private void updateGameIcons(Game game) {
@@ -989,6 +1147,47 @@ public class GameView implements GameViewObserver, Initializable {
         Platform.runLater(() -> {
             System.out.println("vis");
             gemPrice.setText(String.valueOf(gdo.getGemstonePrice()));
+        });
+    }
+
+    @Override
+    public void update(PostOfficeObservable poo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                postBlue.setText(String.valueOf(poo.PostOfficeGetJewel()));
+                postRed.setText(String.valueOf(poo.PostOfficeGetFabric()));
+                postGreen.setText(String.valueOf(poo.PostOfficeGetSpice()));
+                postYellow.setText(String.valueOf(poo.PostOfficeGetFruit()));
+                postLira.setText(String.valueOf(poo.PostOfficeGetLira()));
+            }
+        });
+    }
+
+    @Override
+    public void update(SmallMarketObservable smo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                smallBlue.setText(String.valueOf(smo.getJewel()));
+                smallRed.setText(String.valueOf(smo.getFabric()));
+                smallGreen.setText(String.valueOf(smo.getSpice()));
+                smallYellow.setText(String.valueOf(smo.getFruit()));
+            }
+        });
+    }
+
+    @Override
+    public void update(GreatMarketObservable gmo) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("YOUP");
+                largeBlue.setText(String.valueOf(gmo.GMgetJewel()));
+                largeRed.setText(String.valueOf(gmo.GMgetFabric()));
+                largeGreen.setText(String.valueOf(gmo.GMgetSpice()));
+                largeYellow.setText(String.valueOf(gmo.GMgetFruit()));
+            }
         });
     }
 
